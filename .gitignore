@@ -1,0 +1,13 @@
+EmptyGeneralTesting/AutoTester/Debug
+EmptyGeneralTesting/AutoTester/Release
+EmptyGeneralTesting/Debug
+EmptyGeneralTesting/Release
+EmptyGeneralTesting/IntegrationTesting/Debug
+EmptyGeneralTesting/IntegrationTesting/Release
+EmptyGeneralTesting/packages
+EmptyGeneralTesting/SPA/Debug
+EmptyGeneralTesting/SPA/Release
+EmptyGeneralTesting/UnitTesting/Debug
+EmptyGeneralTesting/UnitTesting/Release
+EmptyGeneralTesting/.vs
+.idea
