@@ -22,20 +22,26 @@
     <ClInclude Include="Affects.h" />
     <ClInclude Include="AssignNode.h" />
     <ClInclude Include="CallNode.h" />
+    <ClInclude Include="ConstNode.h" />
     <ClInclude Include="ExprNode.h" />
     <ClInclude Include="IfNode.h" />
+    <ClInclude Include="MinusNode.h" />
     <ClInclude Include="Next.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Calls.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Follows.h" />
+    <ClInclude Include="PlusNode.h" />
     <ClInclude Include="ProcedureNode.h" />
     <ClInclude Include="ProgramNode.h" />
+    <ClInclude Include="RefNode.h" />
     <ClInclude Include="StmtListNode.h" />
     <ClInclude Include="StmtNode.h" />
+    <ClInclude Include="TimesNode.h" />
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />
+    <ClInclude Include="VariableNode.h" />
     <ClInclude Include="WhileNode.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
