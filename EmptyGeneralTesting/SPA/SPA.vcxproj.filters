@@ -92,5 +92,8 @@
     <ClInclude Include="IfNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
+    <ClInclude Include="ExprNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

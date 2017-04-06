@@ -22,6 +22,7 @@
     <ClInclude Include="Affects.h" />
     <ClInclude Include="AssignNode.h" />
     <ClInclude Include="CallNode.h" />
+    <ClInclude Include="ExprNode.h" />
     <ClInclude Include="IfNode.h" />
     <ClInclude Include="Next.h" />
     <ClInclude Include="Node.h" />
