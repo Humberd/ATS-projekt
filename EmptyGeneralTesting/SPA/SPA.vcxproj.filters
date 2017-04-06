@@ -59,5 +59,8 @@
     <ClInclude Include="Affects.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
+    <ClInclude Include="Next.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
