@@ -13,7 +13,7 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\NewFilter1">
+    <Filter Include="Header Files\PKB">
       <UniqueIdentifier>{94bcb1fb-c239-413f-925e-ad9a6675ffa6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -38,28 +38,28 @@
     <ClInclude Include="..\source\TNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Affects.h">
+      <Filter>Header Files\PKB</Filter>
     </ClInclude>
     <ClInclude Include="Calls.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
-    <ClInclude Include="Modifies.h">
-      <Filter>Header Files\PKB</Filter>
-    </ClInclude>
-    <ClInclude Include="Uses.h">
+    <ClInclude Include="Constants.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
     <ClInclude Include="Follows.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
-    <ClInclude Include="Parent.h">
-      <Filter>Header Files\PKB</Filter>
-    </ClInclude>
-    <ClInclude Include="Affects.h">
+    <ClInclude Include="Modifies.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
     <ClInclude Include="Next.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
+    <ClInclude Include="Parent.h">
+      <Filter>Header Files\PKB</Filter>
+    </ClInclude>
+    <ClInclude Include="Uses.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
   </ItemGroup>
