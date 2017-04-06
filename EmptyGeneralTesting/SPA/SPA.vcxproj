@@ -20,13 +20,22 @@
     <ClInclude Include="..\source\PKB.h" />
     <ClInclude Include="..\source\TNode.h" />
     <ClInclude Include="Affects.h" />
+    <ClInclude Include="AssignNode.h" />
+    <ClInclude Include="CallNode.h" />
+    <ClInclude Include="IfNode.h" />
     <ClInclude Include="Next.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Calls.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Follows.h" />
+    <ClInclude Include="ProcedureNode.h" />
+    <ClInclude Include="ProgramNode.h" />
+    <ClInclude Include="StmtListNode.h" />
+    <ClInclude Include="StmtNode.h" />
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />
+    <ClInclude Include="WhileNode.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DC21A1EA-D2C6-4D14-A2B4-E025B64BDE81}</ProjectGuid>

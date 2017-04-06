@@ -16,6 +16,9 @@
     <Filter Include="Header Files\PKB">
       <UniqueIdentifier>{94bcb1fb-c239-413f-925e-ad9a6675ffa6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AST">
+      <UniqueIdentifier>{a63a6f02-9873-4762-ac60-494019940af5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\DesignExtractor.cpp">
@@ -61,6 +64,33 @@
     </ClInclude>
     <ClInclude Include="Uses.h">
       <Filter>Header Files\PKB</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcedureNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="StmtListNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="StmtNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="CallNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="WhileNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="IfNode.h">
+      <Filter>Header Files\AST</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
