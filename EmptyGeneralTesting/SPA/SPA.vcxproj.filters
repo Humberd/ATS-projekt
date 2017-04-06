@@ -13,8 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\PKB">
-      <UniqueIdentifier>{75f28b68-cdc1-4f61-82b8-29c8d2dec1bf}</UniqueIdentifier>
+    <Filter Include="Header Files\NewFilter1">
+      <UniqueIdentifier>{94bcb1fb-c239-413f-925e-ad9a6675ffa6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
