@@ -19,6 +19,9 @@
     <Filter Include="Header Files\AST">
       <UniqueIdentifier>{a63a6f02-9873-4762-ac60-494019940af5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AST">
+      <UniqueIdentifier>{2f5e669c-7329-432d-b47e-d209b50fec7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -93,5 +96,13 @@
     <ClInclude Include="ReferenceNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
