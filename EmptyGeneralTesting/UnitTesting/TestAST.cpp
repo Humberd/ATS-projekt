@@ -13,9 +13,9 @@ namespace UnitTesting
 		
 		TEST_METHOD(TestMethod1)
 		{
-			TNode T;
-			// TODO: Your test code here
-			std::cout << "dupa";
+//			TNode T;
+//			// TODO: Your test code here
+//			std::cout << "dupa";
 		}
 
 	};
