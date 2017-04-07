@@ -10,4 +10,5 @@ EmptyGeneralTesting/SPA/Release
 EmptyGeneralTesting/UnitTesting/Debug
 EmptyGeneralTesting/UnitTesting/Release
 EmptyGeneralTesting/.vs
+#EmptyGeneralTesting/EmptyGeneralTesting.VC.db
 .idea
