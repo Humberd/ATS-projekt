@@ -11,19 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\DesignExtractor.cpp" />
-    <ClCompile Include="..\source\Parser.cpp" />
-    <ClCompile Include="..\source\PKB.cpp" />
-    <ClCompile Include="..\source\TNode.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\source\PKB.h" />
-    <ClInclude Include="..\source\TNode.h" />
     <ClInclude Include="Affects.h" />
     <ClInclude Include="AssignNode.h" />
     <ClInclude Include="CallNode.h" />
-    <ClInclude Include="ConstNode.h" />
-    <ClInclude Include="ExprNode.h" />
+    <ClInclude Include="ConstantNode.h" />
+    <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="IfNode.h" />
     <ClInclude Include="MinusNode.h" />
     <ClInclude Include="Next.h" />
@@ -35,9 +27,9 @@
     <ClInclude Include="PlusNode.h" />
     <ClInclude Include="ProcedureNode.h" />
     <ClInclude Include="ProgramNode.h" />
-    <ClInclude Include="RefNode.h" />
-    <ClInclude Include="StmtListNode.h" />
-    <ClInclude Include="StmtNode.h" />
+    <ClInclude Include="ReferenceNode.h" />
+    <ClInclude Include="StatementListNode.h" />
+    <ClInclude Include="StatementNode.h" />
     <ClInclude Include="TimesNode.h" />
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />

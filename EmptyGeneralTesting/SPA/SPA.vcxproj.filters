@@ -21,33 +21,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\DesignExtractor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\PKB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\TNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\source\PKB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\TNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Affects.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
     <ClInclude Include="Calls.h">
-      <Filter>Header Files\PKB</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
     <ClInclude Include="Follows.h">
@@ -74,12 +51,6 @@
     <ClInclude Include="ProcedureNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="StmtListNode.h">
-      <Filter>Header Files\AST</Filter>
-    </ClInclude>
-    <ClInclude Include="StmtNode.h">
-      <Filter>Header Files\AST</Filter>
-    </ClInclude>
     <ClInclude Include="AssignNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
@@ -92,9 +63,6 @@
     <ClInclude Include="IfNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="ExprNode.h">
-      <Filter>Header Files\AST</Filter>
-    </ClInclude>
     <ClInclude Include="PlusNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
@@ -104,13 +72,25 @@
     <ClInclude Include="TimesNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="RefNode.h">
-      <Filter>Header Files\AST</Filter>
-    </ClInclude>
     <ClInclude Include="VariableNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="ConstNode.h">
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="StatementNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="StatementListNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="ReferenceNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
   </ItemGroup>
