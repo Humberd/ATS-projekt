@@ -1,12 +1,13 @@
 #pragma once
-#include "StmtNode.h"
+#include "StatementNode.h"
 
-class IfNode: public StmtNode {
+class IfNode: public StatementNode {
 
 public:
 	IfNode();
 	~IfNode();
 
+	// pozwala tylko na 3 childy: VariableNode, StmLstNode i StmLstNode
 	void addChild(Node* child) override;
 	void validate() override;
 };

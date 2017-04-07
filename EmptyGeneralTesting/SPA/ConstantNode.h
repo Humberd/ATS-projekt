@@ -1,18 +1,18 @@
 #pragma once
 #include "Node.h"
 
-class ConstNode: public Node {
+class ConstantNode: public Node {
 private:
 	int value;
 
 public:
-	explicit ConstNode(int value);
-	~ConstNode() override;
-
+	explicit ConstantNode(int value);
+	~ConstantNode() override;
 
 	void setValue(int value);
 	int getValue();
 
+	// pozwala na 0 childow
 	void addChild(Node* child) override;
 	void validate() override;
 };

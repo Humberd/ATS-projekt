@@ -1,18 +1,18 @@
 #pragma once
 #include "Node.h"
 
-class StmtListNode: public Node {
+class StatementListNode: public Node {
 private:
 	int lineNumber;
 
 public:
-	explicit StmtListNode(int lineNumber);
-	~StmtListNode();
+	explicit StatementListNode(int lineNumber);
+	~StatementListNode();
 
 	void setLineNumber(int lineNumber);
 	int getLineNumber();
 
-	//pozwala na 1 lub wiêcej ExprNode
+	//pozwala na 1 lub wiêcej ExpressionNode
 	void addChild(Node* child) override;
 	void validate() override;
 };

@@ -1,17 +1,18 @@
 #pragma once
-#include "ExprNode.h"
+#include "ExpressionNode.h"
 
-class RefNode: public ExprNode {
+class ReferenceNode: public ExpressionNode {
 private: 
 	int value;
 
 public:
-	explicit RefNode(int value);
-	~RefNode();
+	explicit ReferenceNode(int value);
+	~ReferenceNode();
 
 	void setValue(int value);
 	int getValue();
 
+	// pozwala na 0 childow
 	void addChild(Node* child) override;
 	void validate() override;
 };

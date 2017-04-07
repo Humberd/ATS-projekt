@@ -14,6 +14,7 @@ public:
 	void setName(string name);
 	string getName();
 
+	// pozwala na 0 childow
 	void addChild(Node* child) override;
 	void validate() override;
 };
