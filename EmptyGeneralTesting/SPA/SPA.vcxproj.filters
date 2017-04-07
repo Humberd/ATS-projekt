@@ -96,9 +96,6 @@
     <ClInclude Include="ReferenceNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">

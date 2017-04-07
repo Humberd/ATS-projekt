@@ -28,7 +28,6 @@
     <ClInclude Include="ProcedureNode.h" />
     <ClInclude Include="ProgramNode.h" />
     <ClInclude Include="ReferenceNode.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="StatementListNode.h" />
     <ClInclude Include="StatementNode.h" />
     <ClInclude Include="TimesNode.h" />
