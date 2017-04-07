@@ -3,12 +3,12 @@
 
 using namespace std;
 
-class ProdecureNode : Node {
+class ProdecureNode : public Node {
 private:
 	string name;
 
 public:
-	explicit ProdecureNode();
+	explicit ProdecureNode(string name);
 	~ProdecureNode();
 
 	void setName(string name);
@@ -16,4 +16,5 @@ public:
 
 	// pozwala tylko na 1 StmLstNode
 	void addChild(Node* child) override;
+	void validate() override;
 };

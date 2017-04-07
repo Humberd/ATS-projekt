@@ -1,10 +1,10 @@
 #pragma once
 #include "StmtNode.h"
 
-class CallNode: StmtNode {
+class CallNode: public StmtNode {
 public:
-	explicit CallNode();
-	~CallNode() override;
+	CallNode();
+	~CallNode();
 
 
 	void addChild(Node* child) override;

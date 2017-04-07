@@ -1,11 +1,11 @@
 #pragma once
 #include "StmtNode.h"
 
-class WhileNode: StmtNode {
+class WhileNode: public StmtNode {
 public:
-	explicit WhileNode();
-	~WhileNode() override;
-
+	WhileNode();
+	~WhileNode();
 
 	void addChild(Node* child) override;
+	void validate() override;
 };

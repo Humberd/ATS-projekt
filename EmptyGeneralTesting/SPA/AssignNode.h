@@ -1,11 +1,12 @@
 #pragma once
 #include "StmtNode.h"
 
-class AssignNode: StmtNode {
+class AssignNode: public StmtNode {
 
 public:
-	explicit AssignNode();
-	~AssignNode() override;
+	AssignNode();
+	~AssignNode() ;
 
 	void addChild(Node* child) override;
+	void validate() override;
 };

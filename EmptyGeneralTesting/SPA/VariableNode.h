@@ -3,16 +3,17 @@
 
 using namespace std;
 
-class VarNode: Node {
+class VarNode : public Node {
 private:
 	string name;
 
 public:
-	explicit VarNode();
+	explicit VarNode(string name);
 	~VarNode();
 
 	void setName(string name);
 	string getName();
 
 	void addChild(Node* child) override;
+	void validate() override;
 };

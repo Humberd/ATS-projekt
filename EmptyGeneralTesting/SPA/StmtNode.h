@@ -2,9 +2,9 @@
 #include "Node.h"
 
 class StmtNode: public Node {
-public:
-	explicit StmtNode();
-	virtual ~StmtNode() = 0;
+protected:
+	StmtNode();
 
-	virtual void addChild(Node* child) override;
+public:
+	virtual ~StmtNode() = 0;
 };

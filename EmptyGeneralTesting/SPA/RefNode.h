@@ -1,16 +1,17 @@
 #pragma once
 #include "ExprNode.h"
 
-class RefNode: ExprNode {
+class RefNode: public ExprNode {
 private: 
 	int value;
 
 public:
-	explicit RefNode();
+	explicit RefNode(int value);
 	~RefNode();
 
 	void setValue(int value);
 	int getValue();
 
 	void addChild(Node* child) override;
+	void validate() override;
 };

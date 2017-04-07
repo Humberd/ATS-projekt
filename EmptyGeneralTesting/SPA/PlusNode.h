@@ -1,11 +1,11 @@
 #pragma once
 #include "ExprNode.h"
 
-class PlusNode: ExprNode {
-public: 
-	explicit PlusNode();
+class PlusNode : public ExprNode {
+public:
+	PlusNode();
 	~PlusNode();
 
-
 	void addChild(Node* child) override;
+	void validate() override;
 };

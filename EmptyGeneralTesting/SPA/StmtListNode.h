@@ -1,12 +1,12 @@
 #pragma once
 #include "Node.h"
 
-class StmtListNode: Node {
+class StmtListNode: public Node {
 private:
 	int lineNumber;
 
 public:
-	explicit StmtListNode();
+	explicit StmtListNode(int lineNumber);
 	~StmtListNode();
 
 	void setLineNumber(int lineNumber);
@@ -14,4 +14,5 @@ public:
 
 	//pozwala na 1 lub wiêcej ExprNode
 	void addChild(Node* child) override;
+	void validate() override;
 };

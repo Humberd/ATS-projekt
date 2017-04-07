@@ -1,10 +1,11 @@
 #pragma once
 #include "ExprNode.h"
 
-class TimesNode: ExprNode {
+class TimesNode: public ExprNode {
 public:
-	explicit TimesNode();
+	TimesNode();
 	~TimesNode();
 
 	void addChild(Node* child) override;
+	void validate() override;
 };

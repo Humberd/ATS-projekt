@@ -2,13 +2,13 @@
 #include "Node.h"
 
 
-class ProgramNode : Node {
+class ProgramNode : public Node {
 
 public:
-	explicit ProgramNode();
+	ProgramNode();
 	~ProgramNode();
 
 	//pozwala na 1 lub wiêcej ProcedureNode
 	void addChild(Node* child) override;
-
+	void validate() override;
 };
