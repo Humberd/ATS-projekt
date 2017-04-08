@@ -45,7 +45,7 @@ TEST_CLASS(FOO) {//nazwa dowolna
 		
 		/*
     		Tutaj tworze sobie taką dziwną funkcję.
-    		W jej ciele wywołuje metodę, która ma wyrzucić wyjątek, a jako parametr w nawiasach '[]' podaję obiekt, z którego wywoływana będzie metoda.
+    		W jej ciele wywołuje metodę, która ma wyrzucić wyjątek, a jako parametr w nawiasach '[]' podaję wszystkie obiekty, które będą używane w ciele.
     		Słowo kluczowe 'auto' określa, że zmienna będzie dowolnego typu.
 		*/
 		auto pointer = [programNode] { 
