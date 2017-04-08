@@ -22,4 +22,6 @@ public:
 
 	//sprawdzam, ze wszystkie nody, maja wymagana liczbe dzieci
 	virtual void validate() = 0;
+
+//	virtual string toString();
 };

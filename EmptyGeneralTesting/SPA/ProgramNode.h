@@ -11,4 +11,5 @@ public:
 	//pozwala na 1 lub wiêcej ProcedureNode
 	void addChild(Node* child) override;
 	void validate() override;
+//	string toString() override;
 };

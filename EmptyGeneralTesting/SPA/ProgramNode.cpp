@@ -22,3 +22,7 @@ void ProgramNode::validate() {
 		throw ValidateException("ProgramNode requires 1+ ProcedureNodes, but instead got: " + size);
 	}
 }
+
+//string ProgramNode::toString() {
+//	return typeid(this).raw_name()
+//}

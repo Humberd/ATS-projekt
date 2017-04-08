@@ -117,7 +117,7 @@
       <Filter>Source Files\AST</Filter>
     </ClCompile>
     <ClCompile Include="ValidateException.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\AST\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

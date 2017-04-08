@@ -22,7 +22,6 @@ Node* Node::getChild(int index) const {
 	return this->children.at(index);
 }
 
-
 void Node::setParent(Node* parent){
 	this->parent = parent;
 }

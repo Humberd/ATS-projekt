@@ -9,7 +9,7 @@ private:
 
 public:
 	explicit ProcedureNode(string name);
-	~ProcedureNode();
+	~ProcedureNode() override;
 
 	void setName(string name);
 	string getName() const;
