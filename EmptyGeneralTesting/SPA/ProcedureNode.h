@@ -3,16 +3,16 @@
 
 using namespace std;
 
-class ProdecureNode : public Node {
+class ProcedureNode : public Node {
 private:
 	string name;
 
 public:
-	explicit ProdecureNode(string name);
-	~ProdecureNode();
+	explicit ProcedureNode(string name);
+	~ProcedureNode();
 
 	void setName(string name);
-	string getName();
+	string getName() const;
 
 	// pozwala tylko na 1 StmLstNode
 	void addChild(Node* child) override;

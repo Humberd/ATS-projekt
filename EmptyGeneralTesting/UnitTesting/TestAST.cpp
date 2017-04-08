@@ -6,16 +6,13 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTesting
-{		
-	TEST_CLASS(TestAST)
+{
+	TEST_CLASS(TestAst)
 	{
 	public:
-		
+
 		TEST_METHOD(TestMethod1)
 		{
-//			TNode T;
-//			// TODO: Your test code here
-//			std::cout << "dupa";
 		}
 
 	};
