@@ -15,11 +15,11 @@ public:
 	virtual ~Node() = 0;
 
 	virtual void addChild(Node* child) = 0;
-	vector<Node*> getChildren();
-	Node* getChild(int index);
+	vector<Node*> getChildren() const;
+	Node* getChild(int index) const;
 
 	void setParent(Node* parent);
-	Node* getParent();
+	Node* getParent() const;
 
 	//sprawdzam, ze wszystkie nody, maja wymagana liczbe dzieci
 	virtual void validate() = 0;

@@ -22,6 +22,9 @@
     <Filter Include="Source Files\AST">
       <UniqueIdentifier>{2f5e669c-7329-432d-b47e-d209b50fec7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AST\Exceptions">
+      <UniqueIdentifier>{789c142f-f524-467a-87ae-b7eea9c37dc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
