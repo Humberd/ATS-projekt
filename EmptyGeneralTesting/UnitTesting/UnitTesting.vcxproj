@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NodeTest.cpp" />
+    <ClCompile Include="ProcedureNodeTest.cpp" />
     <ClCompile Include="ProgramNodeTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

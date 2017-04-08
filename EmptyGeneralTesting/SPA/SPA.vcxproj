@@ -41,6 +41,7 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
     <ClCompile Include="ProgramNode.cpp" />
+    <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="ValidateException.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -10,7 +10,7 @@ ProgramNode::~ProgramNode() {
 
 void ProgramNode::addChild(Node* child) {
 	if(dynamic_cast<ProcedureNode*>(child) == nullptr) {
-		throw invalid_argument("ProgramNode accepts only ProcedureNode as a child, but instead got: " + string(typeid(child).name()));
+		throw invalid_argument("ProgramNode accepts only ProcedureNode as a child, but instead got: " + string(typeid(*child).name()));
 	}
 
 	this->children.push_back(child);
@@ -23,6 +23,3 @@ void ProgramNode::validate() {
 	}
 }
 
-//string ProgramNode::toString() {
-//	return typeid(this).raw_name()
-//}

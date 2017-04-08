@@ -8,8 +8,8 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
 TEST_CLASS(ProgramNodeTest) {
-	TEST_METHOD(addChild_InvalidType) {
-		ProgramNode* programNode = new ProgramNode;
+	TEST_METHOD(ProgramNode_addChild_InvalidType) {
+		auto programNode = new ProgramNode;
 
 		auto pointer = [programNode] { 
 			programNode->addChild(programNode); 
@@ -21,19 +21,19 @@ TEST_CLASS(ProgramNodeTest) {
 
 		delete programNode;
 	}
-	TEST_METHOD(addChild_ValidType) {
-		ProgramNode* programNode = new ProgramNode;
-		ProcedureNode* procedureNode = new ProcedureNode("my Procedure");
+	TEST_METHOD(ProgramNode_addChild_ValidType) {
+		auto programNode = new ProgramNode;
+		auto procedureNode = new ProcedureNode("my Procedure");
 
 		programNode->addChild(procedureNode);
 
 		Assert::IsTrue(1 == programNode->getChildren().size());
 
-		delete programNode, procedureNode;
+		delete programNode;
 	}
 
-	TEST_METHOD(validate_0_Children) {
-		ProgramNode* programNode = new ProgramNode;
+	TEST_METHOD(ProgramNode_validate_0_Children) {
+		auto programNode = new ProgramNode;
 
 		auto pointer = [programNode] {
 			programNode->validate();
@@ -44,14 +44,14 @@ TEST_CLASS(ProgramNodeTest) {
 		delete programNode;
 	}
 
-	TEST_METHOD(validate_1_Child) {
-		ProgramNode* programNode = new ProgramNode;
-		ProcedureNode* procedureNode = new ProcedureNode("foo procedure");
+	TEST_METHOD(ProgramNode_validate_1_Child) {
+		auto programNode = new ProgramNode;
+		auto procedureNode = new ProcedureNode("foo procedure");
 		programNode->addChild(procedureNode);
 
 		programNode->validate();
 
-		delete programNode, procedureNode;
+		delete programNode;
 	}
 };
 

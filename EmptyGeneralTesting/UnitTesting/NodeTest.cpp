@@ -22,7 +22,7 @@ public:
 };
 
 TEST_CLASS(NodeTest) {
-	TEST_METHOD(getChildren_newEmpty) {
+	TEST_METHOD(Node_getChildren_newEmpty) {
 		auto mockNode = new MockNode;
 
 		Assert::IsTrue(0 == mockNode->getChildren().size());
@@ -30,7 +30,7 @@ TEST_CLASS(NodeTest) {
 		delete mockNode;
 	}
 
-	TEST_METHOD(getChildren_add2Children) {
+	TEST_METHOD(Node_getChildren_add2Children) {
 		auto mockNode = new MockNode;
 		auto child1 = new MockNode;
 		auto child2 = new MockNode;
@@ -40,10 +40,10 @@ TEST_CLASS(NodeTest) {
 
 		Assert::IsTrue(2 == mockNode->getChildren().size());
 
-		delete mockNode, child1, child2;
+		delete mockNode;
 	}
 
-	TEST_METHOD(getParent_setParent) {
+	TEST_METHOD(Node_getParent_setParent) {
 		auto mockNode = new MockNode;
 		auto parentNode = new MockNode;
 
@@ -53,6 +53,6 @@ TEST_CLASS(NodeTest) {
 
 		Assert::IsNotNull(mockNode->getParent());
 
-		delete mockNode, parentNode;
+		delete mockNode;
 	}
 };
