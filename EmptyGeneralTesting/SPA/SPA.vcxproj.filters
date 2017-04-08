@@ -25,11 +25,8 @@
     <Filter Include="Header Files\AST\Exceptions">
       <UniqueIdentifier>{789c142f-f524-467a-87ae-b7eea9c37dc1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\helpers">
-      <UniqueIdentifier>{561d20ac-9362-45f1-aaee-68647223a51c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\helpers">
-      <UniqueIdentifier>{cf8f5d77-1abb-4912-b11a-55034301a112}</UniqueIdentifier>
+    <Filter Include="Source Files\AST\Exceptions">
+      <UniqueIdentifier>{08f1279a-a385-4089-8af1-02baa7457a15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -105,8 +102,8 @@
     <ClInclude Include="ReferenceNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="TypesHelper.h">
-      <Filter>Header Files\helpers</Filter>
+    <ClInclude Include="ValidateException.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -119,8 +116,8 @@
     <ClCompile Include="ProcedureNode.cpp">
       <Filter>Source Files\AST</Filter>
     </ClCompile>
-    <ClCompile Include="TypesHelper.cpp">
-      <Filter>Source Files\helpers</Filter>
+    <ClCompile Include="ValidateException.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

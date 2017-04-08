@@ -4,11 +4,10 @@
 using namespace std;
 
 class Node {
-private:
-	vector<Node*> children;
-	Node* parent;
-
 protected:
+	vector<Node*> children;
+	Node* parent = nullptr;
+
 	Node();
 
 public:
