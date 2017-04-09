@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "RangeNumber.h"
 
 using namespace std;
 
@@ -12,16 +13,17 @@ private:
 	/*A line number in the program of a node*/
 	int lineNumber;
 
+	RangeNumber* rangeOfRequiredChildNodes = nullptr;
+
+	/*Helper variable to check if the tree is not looping - used by validate() method*/
+	bool startedValidating = false;
+
 protected:
 	/*Initialize a node with the line number*/
-	explicit Node(int lineNumber);
+	explicit Node(int lineNumber, RangeNumber* rangeOfRequiredChildNodes);
 
 	/*Adding a child and setting this object as its parent*/
 	void _addChild(Node* child);
-	/*Need to check if there is no loops when traversing a tree
-	 * and if there is a required number of children nodes
-	 */
-	void _validate();
 
 public:
 	/*Making this class abstract*/
@@ -37,9 +39,14 @@ public:
 	/*Getting a parent Node*/
 	Node* getParent() const;
 
-	//sprawdzam, ze wszystkie nody, maja wymagana liczbe dzieci
-	virtual void validate() = 0;
+	/*Getting a line number*/
+	int getLineNumber() const;
 
-	virtual void addChild(Node* child) = 0;
+	/*Need to check if there is no loops when traversing a tree
+	* and if there is a required number of children nodes
+	*/
+	virtual void validate();
+
+	virtual void addChild(Node* child);
 
 };

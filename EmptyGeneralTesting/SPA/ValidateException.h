@@ -1,15 +1,15 @@
 #pragma once
 #include <exception>
 #include <string>
+#include "ASTException.h"
 
 using namespace std;
 
-class ValidateException : public exception
+class ValidateException : public ASTException
 {
 public:
-	explicit ValidateException(const string& _Message);
+	explicit ValidateException(Node* node, char const* _Message);
 
-	explicit ValidateException(const char *_Message);
-
+	explicit ValidateException(Node* node, string& _Message);
 };
 

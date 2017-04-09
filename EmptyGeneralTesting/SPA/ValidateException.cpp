@@ -1,7 +1,7 @@
 #include "ValidateException.h"
 
-ValidateException::ValidateException(const string& _Message): exception(_Message.c_str()) {
+ValidateException::ValidateException(Node* node, char const* _Message) : ASTException(node, _Message) {
 }
 
-ValidateException::ValidateException(const char* _Message): exception(_Message) {
+ValidateException::ValidateException(Node* node, string& _Message) : ASTException(node, _Message) {
 }
