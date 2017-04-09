@@ -9,10 +9,10 @@ private:
 
 public:
 	explicit VariableNode(string name);
-	~VariableNode();
+	~VariableNode() override;
 
 	void setName(string name);
-	string getName();
+	string getName() const;
 
 	// pozwala na 0 childow
 	void addChild(Node* child) override;
