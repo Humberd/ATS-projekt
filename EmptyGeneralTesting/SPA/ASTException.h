@@ -21,5 +21,7 @@ public:
 
 	explicit ASTException(Node* node, string& _Message);
 
+	explicit ASTException(Node* node, string const& _Message);
+
 	char const* what() const override;
 };

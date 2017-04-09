@@ -108,11 +108,17 @@
     <ClInclude Include="ReferenceNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="ValidateException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RangeNumber.h">
       <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="ValidateException.h">
+      <Filter>Header Files\AST\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ASTException.h">
+      <Filter>Header Files\AST\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="InvalidArgumentException.h">
+      <Filter>Header Files\AST\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +175,12 @@
     </ClCompile>
     <ClCompile Include="RangeNumber.cpp">
       <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="ASTException.cpp">
+      <Filter>Source Files\AST\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="InvalidArgumentException.cpp">
+      <Filter>Source Files\AST\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

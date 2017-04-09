@@ -26,4 +26,7 @@ public:
 	*	isWithinRangeExclusive(3); //false
 	*/
 	bool isWithinRangeExclusive(int value) const;
+
+	int getMin() const;
+	int getMax() const;
 };
