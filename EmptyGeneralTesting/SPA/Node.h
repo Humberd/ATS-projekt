@@ -17,6 +17,8 @@ private:
 
 	/*Helper variable to check if the tree is not looping - used by validate() method*/
 	bool startedValidating = false;
+	/*Helper variable to check if the tree deletion is not looping - used by destuctors*/
+	bool startedDeleting = false;
 
 protected:
 	/*Initialize a node with the line number*/
@@ -47,6 +49,10 @@ public:
 	*/
 	virtual void validate();
 
-	virtual void addChild(Node* child);
+	virtual void addChild(Node* child) = 0;
+
+
+	//////////////////////
+	bool isStartedDeleting() const;
 
 };

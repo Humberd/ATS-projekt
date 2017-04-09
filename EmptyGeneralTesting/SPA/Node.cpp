@@ -2,6 +2,7 @@
 #include "ValidateException.h"
 #include <cassert>
 #include "InvalidArgumentException.h"
+#include <CppUnitTestLogger.h>
 
 using namespace std;
 
@@ -18,9 +19,14 @@ Node::Node(int lineNumber, RangeNumber* rangeOfRequiredChildNodes) {
 }
 
 Node::~Node() {
-	for (Node* child : this->children) {
-		delete child;
+	startedDeleting = true;
+
+	for (auto child : this->children) {
+		if (!child->isStartedDeleting()) {
+			delete child;
+		}
 	}
+
 	this->children.clear();
 
 	delete rangeOfRequiredChildNodes;
@@ -76,4 +82,8 @@ Node* Node::getParent() const {
 
 int Node::getLineNumber() const {
 	return this->lineNumber;
+}
+
+bool Node::isStartedDeleting() const {
+	return this->startedDeleting;
 }
