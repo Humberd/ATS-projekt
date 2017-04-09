@@ -3,13 +3,13 @@
 
 using namespace std;
 
-class VarNode : public Node {
+class VariableNode : public Node {
 private:
 	string name;
 
 public:
-	explicit VarNode(string name);
-	~VarNode();
+	explicit VariableNode(string name);
+	~VariableNode();
 
 	void setName(string name);
 	string getName();

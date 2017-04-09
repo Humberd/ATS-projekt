@@ -5,7 +5,7 @@ class AssignNode: public StatementNode {
 
 public:
 	AssignNode();
-	~AssignNode() ;
+	~AssignNode() override;
 
 	// pozwala tylko na 2 childy: VariableNode i ExpressionNode
 	void addChild(Node* child) override;

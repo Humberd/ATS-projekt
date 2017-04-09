@@ -47,5 +47,8 @@
     <ClCompile Include="ProcedureNodeTest.cpp">
       <Filter>Source Files\AST</Filter>
     </ClCompile>
+    <ClCompile Include="StatementListNodeTest.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,5 @@
 #include "ProgramNode.h"
 #include "ProcedureNode.h"
-#include <memory>
 #include "ValidateException.h"
 
 ProgramNode::ProgramNode() {

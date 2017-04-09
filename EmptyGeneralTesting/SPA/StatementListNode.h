@@ -10,9 +10,9 @@ public:
 	~StatementListNode();
 
 	void setLineNumber(int lineNumber);
-	int getLineNumber();
+	int getLineNumber() const;
 
-	//pozwala na 1 lub wiêcej ExpressionNode
+	//pozwala na 1 lub wiêcej StatementNode
 	void addChild(Node* child) override;
 	void validate() override;
 };
