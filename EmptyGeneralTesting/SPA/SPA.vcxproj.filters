@@ -28,6 +28,12 @@
     <Filter Include="Source Files\AST\Exceptions">
       <UniqueIdentifier>{08f1279a-a385-4089-8af1-02baa7457a15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\helpers">
+      <UniqueIdentifier>{90a42431-b6a7-46c4-930e-1cb9a4f9fdb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\helpers">
+      <UniqueIdentifier>{558620a4-d3c0-43a6-b500-3e70900bc304}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -105,6 +111,9 @@
     <ClInclude Include="ValidateException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RangeNumber.h">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -157,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="ReferenceNode.cpp">
       <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="RangeNumber.cpp">
+      <Filter>Source Files\helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include <CppUnitTestAssert.h>
-#include <memory>
 #include "../SPA/ProcedureNode.h"
 #include "../SPA/StatementListNode.h"
 #include "../SPA/ValidateException.h"

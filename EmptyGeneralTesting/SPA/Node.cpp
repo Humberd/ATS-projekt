@@ -6,8 +6,10 @@ Node::Node() {
 	
 }
 
+/**
+ * Deletes only children, not a parent
+ */
 Node::~Node() {
-	delete this->parent;
 	for (Node* child : this->children) {
 		delete child;
 	}
@@ -28,4 +30,10 @@ void Node::setParent(Node* parent){
 
 Node* Node::getParent() const{
 	return this->parent;
+}
+
+void Node::_addChild(Node* child) {
+	this->children.push_back(child);
+
+	child->setParent(this);
 }

@@ -27,6 +27,7 @@
     <ClInclude Include="PlusNode.h" />
     <ClInclude Include="ProcedureNode.h" />
     <ClInclude Include="ProgramNode.h" />
+    <ClInclude Include="RangeNumber.h" />
     <ClInclude Include="ReferenceNode.h" />
     <ClInclude Include="StatementListNode.h" />
     <ClInclude Include="StatementNode.h" />
@@ -48,6 +49,7 @@
     <ClCompile Include="PlusNode.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
     <ClCompile Include="ProgramNode.cpp" />
+    <ClCompile Include="RangeNumber.cpp" />
     <ClCompile Include="ReferenceNode.cpp" />
     <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="StatementNode.cpp" />

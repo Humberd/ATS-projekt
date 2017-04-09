@@ -19,6 +19,9 @@
     <Filter Include="Header Files\AST">
       <UniqueIdentifier>{9fac8cf0-bf64-4690-ac70-9fa6cc9cb1ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\helpers">
+      <UniqueIdentifier>{2929f5e0-c1d3-45fb-a82e-2fe5d9264129}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -49,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="StatementListNodeTest.cpp">
       <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="RangeNumberTest.cpp">
+      <Filter>Source Files\helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
