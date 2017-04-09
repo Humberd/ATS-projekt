@@ -8,7 +8,7 @@ private:
 	string name;
 
 public:
-	explicit ProcedureNode(string name);
+	explicit ProcedureNode(int lineNumber, string name);
 	~ProcedureNode() override;
 
 	void setName(string name);
@@ -16,5 +16,4 @@ public:
 
 	// pozwala tylko na 1 StmLstNode
 	void addChild(Node* child) override;
-	void validate() override;
 };

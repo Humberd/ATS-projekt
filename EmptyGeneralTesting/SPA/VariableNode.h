@@ -8,7 +8,7 @@ private:
 	string name;
 
 public:
-	explicit VariableNode(string name);
+	explicit VariableNode(int lineNumber, string name);
 	~VariableNode() override;
 
 	void setName(string name);
@@ -16,5 +16,4 @@ public:
 
 	// pozwala na 0 childow
 	void addChild(Node* child) override;
-	void validate() override;
 };

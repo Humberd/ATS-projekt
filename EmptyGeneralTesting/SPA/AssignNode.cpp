@@ -3,27 +3,20 @@
 #include "ExpressionNode.h"
 #include <vcruntime_typeinfo.h>
 #include "ValidateException.h"
+#include "InvalidArgumentException.h"
 
-AssignNode::AssignNode() {
+
+AssignNode::AssignNode(int lineNumber) : StatementNode(lineNumber, new RangeNumber(2, 2)) {
 }
+
 AssignNode::~AssignNode() {
 }
 
 void AssignNode::addChild(Node* child) {
-	if(dynamic_cast<VariableNode*>(child) == nullptr
+	if (dynamic_cast<VariableNode*>(child) == nullptr
 		&& dynamic_cast<ExpressionNode*>(child) == nullptr) {
-		throw invalid_argument("AssignNode accepts only VariableNode or ExpressionNode  as a child, but instead got: " + string(typeid(*child).name()));
+		throw InvalidArgumentException(this, "AssignNode accepts only VariableNode or ExpressionNode  as a child, but instead got: " + string(typeid(*child).name()));
 	}
 
-	this->children.push_back(child);
+	this->_addChild(child);
 }
-
-void AssignNode::validate() {
-	int size = this->getChildren().size();
-	if (size != 2) {
-		throw ValidateException("AssignNode requires 2 Nodes: VariableNode and ExpressionNode, but instead got: " + size);
-	}
-}
-
-
-

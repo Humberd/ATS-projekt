@@ -1,24 +1,18 @@
 #include "ProgramNode.h"
 #include "ProcedureNode.h"
 #include "ValidateException.h"
+#include "InvalidArgumentException.h"
 
-ProgramNode::ProgramNode() {
+ProgramNode::ProgramNode(int lineNumber):Node(lineNumber, new RangeNumber(1, INT32_MAX)) {
 }
+
 ProgramNode::~ProgramNode() {
 }
 
 void ProgramNode::addChild(Node* child) {
 	if(dynamic_cast<ProcedureNode*>(child) == nullptr) {
-		throw invalid_argument("ProgramNode accepts only ProcedureNode as a child, but instead got: " + string(typeid(*child).name()));
+		throw InvalidArgumentException(this, "ProgramNode accepts only ProcedureNode as a child, but instead got: " + string(typeid(*child).name()));
 	}
 
-	this->children.push_back(child);
+	this->_addChild(child);
 }
-
-void ProgramNode::validate() {
-	int size = this->getChildren().size();
-	if (size == 0) {
-		throw ValidateException("ProgramNode requires 1+ ProcedureNodes, but instead got: " + size);
-	}
-}
-

@@ -2,17 +2,10 @@
 #include "ExpressionNode.h"
 
 class ReferenceNode: public ExpressionNode {
-private: 
-	int value;
-
 public:
-	explicit ReferenceNode(int value);
+	explicit ReferenceNode(int lineNumber);
 	~ReferenceNode() override;
 
-	void setValue(int value);
-	int getValue() const;
-
-	// pozwala na 0 childow
+	// pozwala na 1 child
 	void addChild(Node* child) override;
-	void validate() override;
 };

@@ -1,7 +1,7 @@
 #include "TimesNode.h"
 #include "ValidateException.h"
 
-TimesNode::TimesNode() {
+TimesNode::TimesNode(int lineNumber) : ExpressionNode(lineNumber, new RangeNumber(2, 2)) {
 }
 
 TimesNode::~TimesNode() {
@@ -12,12 +12,5 @@ void TimesNode::addChild(Node* child) {
 		throw invalid_argument("TimesNode accepts only ExpressionNode as a child, but instead got: " + string(typeid(*child).name()));
 	}
 
-	this->children.push_back(child);
-}
-
-void TimesNode::validate() {
-	int size = this->getChildren().size();
-	if (size != 2) {
-		throw ValidateException("TimesNode requires 2 ExpressionNodes, but instead got: " + size);
-	}
+	this->_addChild(child);
 }

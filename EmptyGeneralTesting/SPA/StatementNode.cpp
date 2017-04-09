@@ -1,5 +1,4 @@
 #include "StatementNode.h"
 
-StatementNode::StatementNode() {	
+StatementNode::StatementNode(int lineNumber, RangeNumber* rangeOfRequiredChildNodes) :Node(lineNumber, rangeOfRequiredChildNodes) {
 }
-
