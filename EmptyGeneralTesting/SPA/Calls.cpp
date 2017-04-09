@@ -1,6 +1,7 @@
 #include "Calls.h"
 #include <algorithm>
 #include <set>
+#include "GetCallsDeepTraverser.h"
 
 Calls *Calls::instance = 0;
 
@@ -11,7 +12,7 @@ Calls::Calls()
 
 Calls::~Calls()
 {
-	delete &callsTable;
+//	delete &callsTable; wypierdala wyj¹tek
 }
 
 vector<PROC> Calls::getCalls(PROC p)
@@ -21,38 +22,18 @@ vector<PROC> Calls::getCalls(PROC p)
 
 vector<PROC> Calls::getCallsDeep(PROC p)
 {
-	if (treeRoot) {
-		delete treeRoot;
-		treeRoot = nullptr;
-	}
+	GetCallsDeepTraverser* traverser = new GetCallsDeepTraverser(callsTable);
 
-	treeRoot = new CallsNode(p);
-	CallsNode* currentNode = nullptr;
-	set<PROC> tmpProcList;
+	traverser->traverse(p);
 
-	if (callsTable.count(p) != 0) {
-		treeRoot->addChildren(callsTable[p]);
-	}
-	
-	currentNode = treeRoot;
+	set<PROC> resultSet = traverser->getGatheringList();
 
-	while (1) {
-		for (Node* proc : currentNode->getChildren()) {
-			CallsNode* tmp = dynamic_cast<CallsNode*>(proc);
+	/*Zamieniam set na vector*/
+	vector<PROC> resultVec(resultSet.begin(), resultSet.end());
 
-			tmpProcList.insert(tmp->getProc());
-		}
+	delete traverser;
 
-		if (callsTable.size() == tmpProcList.size()) {
-			break;
-		}
-
-		if (currentNode->getChildren().size() > 1) {
-
-		}
-	}
-
-	return vector<PROC>();
+	return resultVec;
 }
 
 
@@ -79,13 +60,13 @@ Calls *Calls::getInstance()
 {
 	if (!instance) {
 		instance = new Calls();
-   }
+	}
 
 	return instance;
 }
 
 void Calls::setCalls(PROC p, PROC q)
-{ 
+{
 	callsTable[p].push_back(q);
 }
 
@@ -104,7 +85,7 @@ bool Calls::isCalls(PROC p, PROC q)
 	if (callsTable.count(p) == 0)
 	{
 		return false;
-	} 
+	}
 	else
 	{
 		for (PROC proc : callsTable[p]) {

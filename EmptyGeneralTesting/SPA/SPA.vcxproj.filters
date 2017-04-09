@@ -132,6 +132,9 @@
     <ClInclude Include="CallsNode.h">
       <Filter>Header Files\PKB\PKBTree</Filter>
     </ClInclude>
+    <ClInclude Include="GetCallsDeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -198,6 +201,9 @@
       <Filter>Source Files\AST\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="CallsNode.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="GetCallsDeepTraverser.cpp">
       <Filter>Source Files\PKB\PKBTree</Filter>
     </ClCompile>
   </ItemGroup>

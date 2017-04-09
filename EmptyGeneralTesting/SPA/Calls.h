@@ -10,10 +10,8 @@ class Calls
 {
 private:
 	map<PROC, vector<PROC>> callsTable;
-	CallsNode* treeRoot = nullptr;
+//	CallsNode* treeRoot = nullptr;
 	static Calls *instance;
-
-	Calls();
 
 	vector<PROC> getCalls(PROC p);
 	vector<PROC> getCallsDeep(PROC p);
@@ -22,6 +20,7 @@ private:
 
 public:
 	static Calls *getInstance();
+	Calls();
 	~Calls();
 	void setCalls(PROC p, PROC q);
 	vector<PROC> getCalls(PROC p, bool goDeep);	

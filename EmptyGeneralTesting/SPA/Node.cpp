@@ -1,6 +1,5 @@
 #include "Node.h"
 #include "ValidateException.h"
-#include <cassert>
 #include "InvalidArgumentException.h"
 
 using namespace std;
