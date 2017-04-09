@@ -21,12 +21,41 @@ vector<PROC> Calls::getCalls(PROC p)
 
 vector<PROC> Calls::getCallsDeep(PROC p)
 {
+	if (treeRoot) {
+		delete treeRoot;
+		treeRoot = nullptr;
+	}
+
+	treeRoot = new CallsNode(p);
+	CallsNode* currentNode = nullptr;
 	set<PROC> tmpProcList;
 
+	if (callsTable.count(p) != 0) {
+		treeRoot->addChildren(callsTable[p]);
+	}
+	
+	currentNode = treeRoot;
 
+	while (1) {
+		for (Node* proc : currentNode->getChildren()) {
+			CallsNode* tmp = dynamic_cast<CallsNode*>(proc);
+
+			tmpProcList.insert(tmp->getProc());
+		}
+
+		if (callsTable.size() == tmpProcList.size()) {
+			break;
+		}
+
+		if (currentNode->getChildren().size() > 1) {
+
+		}
+	}
 
 	return vector<PROC>();
 }
+
+
 
 vector<PROC> Calls::getCallsFrom(PROC p)
 {

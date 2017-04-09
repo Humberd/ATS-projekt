@@ -2,6 +2,7 @@
 #include "Constants.h"
 #include <vector>
 #include <map>
+#include "../SPA/CallsNode.h"
 
 using namespace std;
 
@@ -9,6 +10,7 @@ class Calls
 {
 private:
 	map<PROC, vector<PROC>> callsTable;
+	CallsNode* treeRoot = nullptr;
 	static Calls *instance;
 
 	Calls();

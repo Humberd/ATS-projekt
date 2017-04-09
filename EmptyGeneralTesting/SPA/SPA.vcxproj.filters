@@ -28,9 +28,6 @@
     <Filter Include="Header Files\PKB\PKBTree">
       <UniqueIdentifier>{1ac5977d-f7aa-4796-aee6-2746d13ab89e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\PKBTree">
-      <UniqueIdentifier>{e087f068-e76f-4bd5-8cb1-8453f9d001a5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\AST\Exceptions">
       <UniqueIdentifier>{789c142f-f524-467a-87ae-b7eea9c37dc1}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,9 @@
     </Filter>
     <Filter Include="Source Files\helpers">
       <UniqueIdentifier>{558620a4-d3c0-43a6-b500-3e70900bc304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PKB\PKBTree">
+      <UniqueIdentifier>{e087f068-e76f-4bd5-8cb1-8453f9d001a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,9 +129,6 @@
     <ClInclude Include="InvalidArgumentException.h">
       <Filter>Header Files\AST\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="NodePKBT.h">
-      <Filter>Header Files\PKB\PKBTree</Filter>
-    </ClInclude>
     <ClInclude Include="CallsNode.h">
       <Filter>Header Files\PKB\PKBTree</Filter>
     </ClInclude>
@@ -142,9 +139,6 @@
     </ClCompile>
     <ClCompile Include="Calls.cpp">
       <Filter>Source Files\PKB</Filter>
-    </ClCompile>
-    <ClCompile Include="NodePKBT.cpp">
-      <Filter>Source Files\PKBTree</Filter>
     </ClCompile>
     <ClCompile Include="ProgramNode.cpp">
       <Filter>Source Files\AST</Filter>
@@ -202,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="InvalidArgumentException.cpp">
       <Filter>Source Files\AST\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="CallsNode.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

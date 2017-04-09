@@ -23,7 +23,6 @@
     <ClInclude Include="MinusNode.h" />
     <ClInclude Include="Next.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="NodePKBT.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Calls.h" />
     <ClInclude Include="Constants.h" />
@@ -47,13 +46,13 @@
     <ClCompile Include="AssignNode.cpp" />
     <ClCompile Include="ASTException.cpp" />
     <ClCompile Include="CallNode.cpp" />
+    <ClCompile Include="CallsNode.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Node.cpp" />
-    <ClCompile Include="NodePKBT.cpp" />
     <ClCompile Include="PlusNode.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
     <ClCompile Include="ProgramNode.cpp" />
