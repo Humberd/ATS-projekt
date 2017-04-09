@@ -3,18 +3,17 @@
 
 using namespace std;
 
-class VarNode : public Node {
+class VariableNode : public Node {
 private:
 	string name;
 
 public:
-	explicit VarNode(string name);
-	~VarNode();
+	explicit VariableNode(int lineNumber, string name);
+	~VariableNode() override;
 
 	void setName(string name);
-	string getName();
+	string getName() const;
 
 	// pozwala na 0 childow
 	void addChild(Node* child) override;
-	void validate() override;
 };
