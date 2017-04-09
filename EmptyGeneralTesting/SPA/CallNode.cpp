@@ -16,7 +16,7 @@ void CallNode::setProcedureName(string procedureName) {
 }
 
 void CallNode::addChild(Node* child) {
-	throw invalid_argument("CallNode accepts 0 Nodes as a child, but instead got: "+string(typeid(*child).name()))
+	throw invalid_argument("CallNode accepts 0 Nodes as a child, but instead got: " + string(typeid(*child).name()));
 }
 
 void CallNode::validate() {

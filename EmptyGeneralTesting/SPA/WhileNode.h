@@ -4,7 +4,7 @@
 class WhileNode: public StatementNode {
 public:
 	WhileNode();
-	~WhileNode();
+	~WhileNode() override;
 
 	// pozwala tylko na 2 childy: VariableNode i StmLstNode
 	void addChild(Node* child) override;

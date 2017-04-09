@@ -7,10 +7,10 @@ private:
 
 public:
 	explicit ReferenceNode(int value);
-	~ReferenceNode();
+	~ReferenceNode() override;
 
 	void setValue(int value);
-	int getValue();
+	int getValue() const;
 
 	// pozwala na 0 childow
 	void addChild(Node* child) override;

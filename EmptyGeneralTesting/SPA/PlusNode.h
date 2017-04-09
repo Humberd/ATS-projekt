@@ -4,7 +4,7 @@
 class PlusNode : public ExpressionNode {
 public:
 	PlusNode();
-	~PlusNode();
+	~PlusNode() override;
 
 	// pozwala na 2 childy: ExpressionNode i ExpressionNode
 	void addChild(Node* child) override;

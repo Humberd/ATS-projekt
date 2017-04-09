@@ -5,7 +5,7 @@ class IfNode: public StatementNode {
 
 public:
 	IfNode();
-	~IfNode();
+	~IfNode() override;
 
 	// pozwala tylko na 3 childy: VariableNode, StmLstNode i StmLstNode
 	void addChild(Node* child) override;
