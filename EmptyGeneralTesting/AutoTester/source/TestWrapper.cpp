@@ -7,7 +7,7 @@ AbstractWrapper* WrapperFactory::createWrapper() {
   return wrapper;
 }
 // Do not modify the following line
-volatile bool AbstractWrapper::GlobalStop = false;
+volatile bool TestWrapper::GlobalStop = false;
 
 // a default constructor
 TestWrapper::TestWrapper() {
