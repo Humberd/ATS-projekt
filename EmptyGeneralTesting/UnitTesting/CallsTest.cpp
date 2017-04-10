@@ -108,35 +108,66 @@ TEST_CLASS(CallsTest) {
 
 		delete calls;
 	}
-	//
-//		TEST_METHOD(getCallsFrom) {
-//			Calls *calls = new Calls;
-//	
-//			PROC p0 = "1";
-//			PROC p1 = "2";
-//	
-//			calls->setCalls("1", "1");
-//			calls->setCalls("1", "5");
-//			calls->setCalls("1", "6");
-//			calls->setCalls("1", "3");
-//	
-//			calls->setCalls("2", "1");
-//			calls->setCalls("2", "5");
-//			calls->setCalls("2", "6");
-//			calls->setCalls("2", "8");
-//			calls->setCalls("2", "7");
-//			calls->setCalls("2", "3");
-//	
-//			calls->setCalls("3", "4");
-//			calls->setCalls("3", "5");
-//			calls->setCalls("3", "3");
-//			calls->setCalls("3", "4");
-//	
-//			vector<PROC> callsList = calls->getCallsFrom("3", false);
-//	
-//			Assert::AreEqual(p0, callsList[0]);
-//			Assert::AreEqual(p1, callsList[1]);
-//	
-//			delete calls;
-//		}
+	
+		TEST_METHOD(getCallsFrom) {
+			Calls *calls = new Calls;
+	
+			PROC p0 = "1";
+			PROC p1 = "2";
+	
+			calls->setCalls("1", "1");
+			calls->setCalls("1", "5");
+			calls->setCalls("1", "6");
+			calls->setCalls("1", "3");
+	
+			calls->setCalls("2", "1");
+			calls->setCalls("2", "5");
+			calls->setCalls("2", "6");
+			calls->setCalls("2", "8");
+			calls->setCalls("2", "7");
+			calls->setCalls("2", "3");
+	
+			calls->setCalls("3", "4");
+			calls->setCalls("3", "5");
+			calls->setCalls("3", "3");
+			calls->setCalls("3", "4");
+	
+			vector<PROC> callsList = calls->getCallsFrom("3", false);
+	
+			Assert::AreEqual(p0, callsList[0]);
+			Assert::AreEqual(p1, callsList[1]);
+	
+			delete calls;
+		}
+
+		TEST_METHOD(getCallsFromDeep) {
+			Calls *calls = new Calls;
+
+			PROC p0 = "1";
+			PROC p1 = "2";
+
+			calls->setCalls("1", "1");
+			calls->setCalls("1", "5");
+			calls->setCalls("1", "6");
+			calls->setCalls("1", "3");
+
+			calls->setCalls("2", "1");
+			calls->setCalls("2", "5");
+			calls->setCalls("2", "6");
+			calls->setCalls("2", "8");
+			calls->setCalls("2", "7");
+			calls->setCalls("2", "3");
+
+			calls->setCalls("3", "4");
+			calls->setCalls("3", "5");
+			calls->setCalls("3", "3");
+			calls->setCalls("3", "4");
+
+			vector<PROC> callsList = calls->getCallsFrom("3", true);
+
+			Assert::AreEqual(p0, callsList[0]);
+			Assert::AreEqual(p1, callsList[1]);
+
+			delete calls;
+		}
 };

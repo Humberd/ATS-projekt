@@ -3,6 +3,11 @@
 #include <set>
 #include "GetCallsDeepTraverser.h"
 
+#include "../SPA/DeepTraverser.h"
+#include "../SPA/DeepTraverser.cpp"
+#include "../SPA/FromDeepTraverser.h"
+#include "../SPA/FromDeepTraverser.cpp"
+
 Calls *Calls::instance = 0;
 
 Calls::Calls()
@@ -12,7 +17,7 @@ Calls::Calls()
 
 Calls::~Calls()
 {
-//	delete &callsTable; wypierdala wyj¹tek
+
 }
 
 vector<PROC> Calls::getCalls(PROC p)
@@ -22,7 +27,8 @@ vector<PROC> Calls::getCalls(PROC p)
 
 vector<PROC> Calls::getCallsDeep(PROC p)
 {
-	GetCallsDeepTraverser* traverser = new GetCallsDeepTraverser(callsTable);
+	DeepTraverser<PROC>* traverser = new DeepTraverser<PROC>();
+	traverser->setTraverserTable(callsTable);
 
 	traverser->traverse(p);
 
@@ -35,8 +41,6 @@ vector<PROC> Calls::getCallsDeep(PROC p)
 
 	return resultVec;
 }
-
-
 
 vector<PROC> Calls::getCallsFrom(PROC p)
 {
@@ -53,7 +57,19 @@ vector<PROC> Calls::getCallsFrom(PROC p)
 
 vector<PROC> Calls::getCallsDeepFrom(PROC p)
 {
-	return vector<PROC>();
+	FromDeepTraverser<PROC>* traverser = new FromDeepTraverser<PROC>();
+	traverser->setTraverserTable(callsTable);
+
+	traverser->traverse(p);
+
+	set<PROC> resultSet = traverser->getGatheringList();
+
+	/*Zamieniam set na vector*/
+	vector<PROC> resultVec(resultSet.begin(), resultSet.end());
+
+	delete traverser;
+
+	return resultVec;
 }
 
 Calls *Calls::getInstance()

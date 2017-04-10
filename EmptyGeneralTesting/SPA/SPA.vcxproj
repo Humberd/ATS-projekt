@@ -17,7 +17,9 @@
     <ClInclude Include="CallNode.h" />
     <ClInclude Include="CallsNode.h" />
     <ClInclude Include="ConstantNode.h" />
+    <ClInclude Include="DeepTraverser.h" />
     <ClInclude Include="ExpressionNode.h" />
+    <ClInclude Include="FromDeepTraverser.h" />
     <ClInclude Include="GetCallsDeepTraverser.h" />
     <ClInclude Include="IfNode.h" />
     <ClInclude Include="InvalidArgumentException.h" />
@@ -49,7 +51,9 @@
     <ClCompile Include="CallNode.cpp" />
     <ClCompile Include="CallsNode.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
+    <ClCompile Include="DeepTraverser.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
+    <ClCompile Include="FromDeepTraverser.cpp" />
     <ClCompile Include="GetCallsDeepTraverser.cpp" />
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />

@@ -10,7 +10,6 @@ class Calls
 {
 private:
 	map<PROC, vector<PROC>> callsTable;
-//	CallsNode* treeRoot = nullptr;
 	static Calls *instance;
 
 	vector<PROC> getCalls(PROC p);
