@@ -46,5 +46,8 @@
     <Text Include="Source1.txt">
       <Filter>Resource Files\VS10-Sample</Filter>
     </Text>
+    <Text Include="Queries2.txt">
+      <Filter>Resource Files\Assignment</Filter>
+    </Text>
   </ItemGroup>
 </Project>

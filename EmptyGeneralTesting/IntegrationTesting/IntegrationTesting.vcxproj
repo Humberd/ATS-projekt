@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Queries1.txt" />
+    <Text Include="Queries2.txt" />
     <Text Include="Source1.txt" />
     <Text Include="Source2.txt" />
   </ItemGroup>
