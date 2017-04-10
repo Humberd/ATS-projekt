@@ -2,11 +2,16 @@
 #include "StatementNode.h"
 
 class CallNode: public StatementNode {
+private:
+	string procedureName;
+
 public:
-	CallNode();
-	~CallNode();
+	explicit CallNode(int lineNumber, string procedureName);
+	~CallNode() override;
+
+	string getProcedureName() const;
+	void setProcedureName(string procedureName);
 
 	// pozwala tylko na 0 childow
 	void addChild(Node* child) override;
-	void validate() override;
 };

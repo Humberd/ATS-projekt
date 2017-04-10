@@ -170,6 +170,11 @@
     </ClCompile>
     <ClCompile Include="TestFrontEnd.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Queries1.txt" />
+    <Text Include="Source1.txt" />
+    <Text Include="Source2.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
