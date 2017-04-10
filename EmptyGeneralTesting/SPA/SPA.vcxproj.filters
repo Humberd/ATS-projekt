@@ -19,35 +19,27 @@
     <Filter Include="Header Files\AST">
       <UniqueIdentifier>{a63a6f02-9873-4762-ac60-494019940af5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AST">
+      <UniqueIdentifier>{2f5e669c-7329-432d-b47e-d209b50fec7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AST\Exceptions">
+      <UniqueIdentifier>{789c142f-f524-467a-87ae-b7eea9c37dc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AST\Exceptions">
+      <UniqueIdentifier>{08f1279a-a385-4089-8af1-02baa7457a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\helpers">
+      <UniqueIdentifier>{90a42431-b6a7-46c4-930e-1cb9a4f9fdb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\helpers">
+      <UniqueIdentifier>{558620a4-d3c0-43a6-b500-3e70900bc304}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\DesignExtractor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\PKB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\TNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\source\PKB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\TNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Affects.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
     <ClInclude Include="Calls.h">
-      <Filter>Header Files\PKB</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
       <Filter>Header Files\PKB</Filter>
     </ClInclude>
     <ClInclude Include="Follows.h">
@@ -74,12 +66,6 @@
     <ClInclude Include="ProcedureNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="StmtListNode.h">
-      <Filter>Header Files\AST</Filter>
-    </ClInclude>
-    <ClInclude Include="StmtNode.h">
-      <Filter>Header Files\AST</Filter>
-    </ClInclude>
     <ClInclude Include="AssignNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
@@ -92,9 +78,6 @@
     <ClInclude Include="IfNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="ExprNode.h">
-      <Filter>Header Files\AST</Filter>
-    </ClInclude>
     <ClInclude Include="PlusNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
@@ -104,14 +87,100 @@
     <ClInclude Include="TimesNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="RefNode.h">
-      <Filter>Header Files\AST</Filter>
-    </ClInclude>
     <ClInclude Include="VariableNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="ConstNode.h">
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
+    <ClInclude Include="ExpressionNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="StatementNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="StatementListNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="ReferenceNode.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeNumber.h">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="ValidateException.h">
+      <Filter>Header Files\AST\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ASTException.h">
+      <Filter>Header Files\AST\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="InvalidArgumentException.h">
+      <Filter>Header Files\AST\Exceptions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcedureNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="ValidateException.cpp">
+      <Filter>Source Files\AST\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementListNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="CallNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="WhileNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="IfNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="PlusNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="MinusNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="TimesNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="ReferenceNode.cpp">
+      <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="RangeNumber.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="ASTException.cpp">
+      <Filter>Source Files\AST\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="InvalidArgumentException.cpp">
+      <Filter>Source Files\AST\Exceptions</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,26 +1,58 @@
 #pragma once
 #include <vector>
+#include "RangeNumber.h"
 
 using namespace std;
 
 class Node {
 private:
+	/*A list of children nodes*/
 	vector<Node*> children;
-	Node* parent;
+	/*A parent node*/
+	Node* parent = nullptr;
+	/*A line number in the program of a node*/
+	int lineNumber;
+
+	RangeNumber* rangeOfRequiredChildNodes = nullptr;
+
+	/*Helper variable to check if the tree is not looping - used by validate() method*/
+	bool startedValidating = false;
+	/*Helper variable to check if the tree deletion is not looping - used by destuctors*/
+	bool startedDeleting = false;
 
 protected:
-	Node();
+	/*Initialize a node with the line number*/
+	explicit Node(int lineNumber, RangeNumber* rangeOfRequiredChildNodes);
+
+	/*Adding a child and setting this object as its parent*/
+	void _addChild(Node* child);
 
 public:
+	/*Making this class abstract*/
 	virtual ~Node() = 0;
 
-	virtual void addChild(Node* child) = 0;
-	vector<Node*> getChildren();
-	Node* getChild(int index);
+	/*Getting a list of children Nodes*/
+	vector<Node*> getChildren() const;
+	/*Getting a specific child Node*/
+	Node* getChild(int index) const;
 
+	/*Setting a parent Node*/
 	void setParent(Node* parent);
-	Node* getParent();
+	/*Getting a parent Node*/
+	Node* getParent() const;
 
-	//sprawdzam, ze wszystkie nody, maja wymagana liczbe dzieci
-	virtual void validate() = 0;
+	/*Getting a line number*/
+	int getLineNumber() const;
+
+	/*Need to check if there is no loops when traversing a tree
+	* and if there is a required number of children nodes
+	*/
+	virtual void validate();
+
+	virtual void addChild(Node* child) = 0;
+
+
+	//////////////////////
+	bool isStartedDeleting() const;
+
 };

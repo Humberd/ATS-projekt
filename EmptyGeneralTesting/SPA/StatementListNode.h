@@ -2,17 +2,10 @@
 #include "Node.h"
 
 class StatementListNode: public Node {
-private:
-	int lineNumber;
-
 public:
 	explicit StatementListNode(int lineNumber);
-	~StatementListNode();
+	~StatementListNode() override;
 
-	void setLineNumber(int lineNumber);
-	int getLineNumber();
-
-	//pozwala na 1 lub wiêcej ExpressionNode
+	//pozwala na 1 lub wiêcej StatementNode
 	void addChild(Node* child) override;
-	void validate() override;
 };
