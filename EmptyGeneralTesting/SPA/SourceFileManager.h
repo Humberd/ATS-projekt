@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <string>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -17,5 +18,5 @@ public:
 	explicit SourceFileManager(string filePath);
 	~SourceFileManager();
 
-	void readFile();
+	vector<string> readFile();
 };

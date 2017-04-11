@@ -1,6 +1,7 @@
 #include "SourceFileManager.h"
 #include "SourceFileException.h"
 #include <CppUnitTestLogger.h>
+#include <numeric>
 
 SourceFileManager::SourceFileManager(string filePath) : filePath(filePath) {
 	this->openFile();
@@ -11,19 +12,30 @@ SourceFileManager::~SourceFileManager() {
 }
 
 void SourceFileManager::openFile() {
-	inputStream.open(this->filePath);
+	inputStream.open(filePath);
 }
 
 void SourceFileManager::closeFile() {
 	inputStream.close();
 }
 
-void SourceFileManager::readFile() {
+vector<string> SourceFileManager::readFile() {
+	vector<string> result;
+
 	if (!inputStream.is_open()) {
-		throw SourceFileException("Cannot open a file: " + this->filePath);
+		throw SourceFileException("Cannot open a file: " + filePath);
 	}
 
-	for (string str; getline(this->inputStream, str);) {
-		Microsoft::VisualStudio::CppUnitTestFramework::Logger::WriteMessage(str.c_str());
+	/*Read line by line*/
+	for (string str; getline(inputStream, str);) {
+		/*If after reading there is an error*/
+		if (inputStream.fail()) {
+			string whatIManagedToRead;
+			whatIManagedToRead = accumulate(begin(result), end(result), whatIManagedToRead);
+			throw SourceFileException("There was a problem reading a file: " + filePath + " | " + whatIManagedToRead);
+		}
+		result.push_back(str);
 	}
+
+	return result;
 }
