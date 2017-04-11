@@ -3,10 +3,9 @@
 
 class TimesNode: public ExpressionNode {
 public:
-	TimesNode();
-	~TimesNode();
+	explicit TimesNode(int lineNumber);
+	~TimesNode() override;
 
 	// pozwala na 2 childy: ExpressionNode i ExpressionNode
 	void addChild(Node* child) override;
-	void validate() override;
 };
