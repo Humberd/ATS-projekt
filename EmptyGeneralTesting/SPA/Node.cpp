@@ -2,7 +2,7 @@
 #include "ValidateException.h"
 #include <cassert>
 #include "InvalidArgumentException.h"
-#include <CppUnitTestLogger.h>
+//#include <CppUnitTestLogger.h>
 
 using namespace std;
 
