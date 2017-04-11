@@ -58,6 +58,7 @@
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
     <ClCompile Include="MinusNode.cpp" />
+    <ClCompile Include="Modifies.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PlusNode.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />

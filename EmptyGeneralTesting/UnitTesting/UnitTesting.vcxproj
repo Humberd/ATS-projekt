@@ -163,6 +163,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ModifiesTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="ProcedureNodeTest.cpp" />
     <ClCompile Include="ProgramNodeTest.cpp" />

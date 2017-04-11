@@ -218,5 +218,8 @@
     <ClCompile Include="FromDeepTraverser.cpp">
       <Filter>Source Files\PKB\PKBTree</Filter>
     </ClCompile>
+    <ClCompile Include="Modifies.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
