@@ -29,11 +29,11 @@ list<string> FollowsTag::DoQuery()
 
 				if (_queryParts.tag.substr(_queryParts.parameteresInBracket[1].size() - 1, 1) == "*")
 				{
-					result = follows.getFollows(s1, true);
+					//result = follows.getFollows(s1, true);
 				}
 				else
 				{
-					result = follows.getFollows(s1, false);
+					//result = follows.getFollows(s1, false);
 				}
 			}
 			else if (_queryParts.parameters[1][0] != _queryParts.selectingItem)
@@ -43,11 +43,11 @@ list<string> FollowsTag::DoQuery()
 
 				if (_queryParts.tag.substr(_queryParts.parameteresInBracket[1].size() - 1, 1) == "*")
 				{
-					result = follows.getFollowsBy(s1, true);
+					//result = follows.getFollowsBy(s1, true);
 				}
 				else
 				{
-					result = follows.getFollowsBy(s1, false);
+					//result = follows.getFollowsBy(s1, false);
 				}
 			}
 
@@ -71,11 +71,11 @@ list<string> FollowsTag::DoQuery()
 		bool boolResult;
 		if (_queryParts.tag.substr(_queryParts.parameteresInBracket[1].size() - 1, 1) == "*")
 		{
-			boolResult = follows.isFollows(s1, s2, true);
+			//boolResult = follows.isFollows(s1, s2, true);
 		}
 		else
 		{
-			boolResult = follows.isFollows(s1, s2, false);
+			//boolResult = follows.isFollows(s1, s2, false);
 		}
 		finalResult.push_back(to_string(boolResult));
 	}

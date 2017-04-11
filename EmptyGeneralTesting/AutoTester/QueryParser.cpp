@@ -1,7 +1,5 @@
 #include "QueryParser.h"
-
-
-
+/*
 QueryParser::QueryParser()
 {
 }
@@ -10,12 +8,13 @@ QueryParser::QueryParser()
 QueryParser::~QueryParser()
 {
 }
-
+*/
 vector<vector<string>> QueryParser::ReadFile(string path)
 {
+	vector<vector<string>> vectorResult;
+	/*
 	ifstream inputFile(path);
 	string line;
-	vector<vector<string>> vectorResult;
 	while (getline(inputFile, line))
 	{
 		vector<string> splitedLine;
@@ -24,10 +23,16 @@ vector<vector<string>> QueryParser::ReadFile(string path)
 			splitedLine.push_back(s);
 		vectorResult.push_back(splitedLine);
 	}
-	//SplitQuery(vectorResult[0]);
+	QueryParts parts =SplitQuery(vectorResult[0]);
+	AffectsTag tag(parts);
+	tag.DoQuery();
+	*/
 	return vectorResult;
 };
-
+void Dupa()
+{
+	return;
+}
 QueryParts QueryParser::SplitQuery(vector<string> query)
 {
 	string helpString;

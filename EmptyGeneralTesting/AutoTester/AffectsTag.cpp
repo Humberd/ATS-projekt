@@ -27,11 +27,11 @@ list<string> AffectsTag::DoQuery()
 
 				if (_queryParts.tag.substr(_queryParts.parameteresInBracket[1].size() - 1, 1) == "*")
 				{
-					result = affects.getAffects(s1, true);
+					//result = affects.getAffects(s1, true);
 				}
 				else
 				{
-					result = affects.getAffects(s1, false);
+					//result = affects.getAffects(s1, false);
 				}
 			}
 			else if (_queryParts.parameters[1][0] != _queryParts.selectingItem)
@@ -41,11 +41,11 @@ list<string> AffectsTag::DoQuery()
 
 				if (_queryParts.tag.substr(_queryParts.parameteresInBracket[1].size() - 1, 1) == "*")
 				{
-					result = affects.getAffectsBy(s1, true);
+					//result = affects.getAffectsBy(s1, true);
 				}
 				else
 				{
-					result = affects.getAffectsBy(s1, false);
+					//result = affects.getAffectsBy(s1, false);
 				}
 			}
 
@@ -67,11 +67,11 @@ list<string> AffectsTag::DoQuery()
 		bool boolResult;
 		if (_queryParts.tag.substr(_queryParts.parameteresInBracket[1].size() - 1, 1) == "*")
 		{
-			boolResult = affects.ifAffects(s1, s2, true);
+			//boolResult = affects.ifAffects(s1, s2, true);
 		}
 		else
 		{
-			boolResult = affects.ifAffects(s1, s2, false);
+			//boolResult = affects.ifAffects(s1, s2, false);
 		}
 		finalResult.push_back(to_string(boolResult));
 	}

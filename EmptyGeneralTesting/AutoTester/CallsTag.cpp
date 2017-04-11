@@ -31,11 +31,11 @@ list<string> CallsTag::DoQuery()
 				p1 = _queryParts.parameteresInBracket[0];
 			if (_queryParts.tag.substr(_queryParts.parameteresInBracket[1].size() - 1, 1) == "*")
 			{
-				result = calls.getCallsFrom(p1, true);
+				//result = calls.getCallsFrom(p1, true);
 			}
 			else
 			{
-				result = calls.getCallsFrom(p1, false);
+				//result = calls.getCallsFrom(p1, false);
 			}
 
 		}
@@ -51,11 +51,11 @@ list<string> CallsTag::DoQuery()
 
 			if (_queryParts.tag.substr(_queryParts.parameteresInBracket[1].size() - 1, 1) == "*")
 			{
-				result = calls.getCalls(p1, true);
+				//result = calls.getCalls(p1, true);
 			}
 			else
 			{
-				result = calls.getCalls(p1, false);
+				//result = calls.getCalls(p1, false);
 			}
 		}
 
@@ -81,7 +81,7 @@ list<string> CallsTag::DoQuery()
 		}
 		else
 			p2 = _queryParts.parameteresInBracket[1];
-		bool result = calls.isCalls(p1, p2);
+		bool result;// = calls.isCalls(p1, p2);
 		finalResult.push_back(to_string(result));
 	}
 	return finalResult;
