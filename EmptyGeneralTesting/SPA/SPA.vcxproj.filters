@@ -34,6 +34,12 @@
     <Filter Include="Source Files\helpers">
       <UniqueIdentifier>{558620a4-d3c0-43a6-b500-3e70900bc304}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SourceParser">
+      <UniqueIdentifier>{e02a6c2f-2cc8-4047-b3a9-a467bcd3656d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser">
+      <UniqueIdentifier>{7025353b-9c59-4148-829b-9884abbf9a07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -120,6 +126,9 @@
     <ClInclude Include="InvalidArgumentException.h">
       <Filter>Header Files\AST\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="SourceFileManager.h">
+      <Filter>Header Files\SourceParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -181,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="InvalidArgumentException.cpp">
       <Filter>Source Files\AST\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFileManager.cpp">
+      <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
