@@ -17,6 +17,7 @@
     <ClInclude Include="CallNode.h" />
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="ExpressionNode.h" />
+    <ClInclude Include="SourceFileException.h" />
     <ClInclude Include="SourceFileManager.h" />
     <ClInclude Include="IfNode.h" />
     <ClInclude Include="InvalidArgumentException.h" />
@@ -56,6 +57,7 @@
     <ClCompile Include="ProgramNode.cpp" />
     <ClCompile Include="RangeNumber.cpp" />
     <ClCompile Include="ReferenceNode.cpp" />
+    <ClCompile Include="SourceFileException.cpp" />
     <ClCompile Include="SourceFileManager.cpp" />
     <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="StatementNode.cpp" />

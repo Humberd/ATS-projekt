@@ -22,6 +22,12 @@
     <Filter Include="Source Files\helpers">
       <UniqueIdentifier>{2929f5e0-c1d3-45fb-a82e-2fe5d9264129}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SourceParser">
+      <UniqueIdentifier>{48c4935c-15dc-494c-8df2-2b440ee08489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\SourceParser">
+      <UniqueIdentifier>{b699830c-3986-487a-990f-8402e07657ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -53,5 +59,13 @@
     <ClCompile Include="RangeNumberTest.cpp">
       <Filter>Source Files\helpers</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFileManagerTest.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TestSource1.txt">
+      <Filter>Resource Files\SourceParser</Filter>
+    </Text>
   </ItemGroup>
 </Project>
