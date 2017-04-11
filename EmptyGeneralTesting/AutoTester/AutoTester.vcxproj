@@ -83,15 +83,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AffectsTag.cpp" />
+    <ClCompile Include="CallsTag.cpp" />
+    <ClCompile Include="FollowsTag.cpp" />
     <ClCompile Include="QueryParser.cpp" />
     <ClCompile Include="QueryParts.cpp" />
     <ClCompile Include="source\TestWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AffectsTag.h" />
+    <ClInclude Include="CallsTag.h" />
+    <ClInclude Include="FollowsTag.h" />
     <ClInclude Include="QueryParser.h" />
     <ClInclude Include="QueryParts.h" />
     <ClInclude Include="source\AbstractWrapper.h" />
     <ClInclude Include="source\TestWrapper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPA\SPA.vcxproj">
+      <Project>{dc21a1ea-d2c6-4d14-a2b4-e025b64bde81}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
