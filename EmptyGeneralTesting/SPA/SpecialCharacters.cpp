@@ -6,10 +6,10 @@ SpecialCharacters::SpecialCharacters() {
 SpecialCharacters::~SpecialCharacters() {
 }
 
-const char SpecialCharacters::OPEN_BRACE = '{';
-const char SpecialCharacters::CLOSE_BRACE = '}';
-const char SpecialCharacters::EQUALS_SIGN = '=';
-const char SpecialCharacters::PLUS_SIGN = '+';
-const char SpecialCharacters::MINUS_SIGN = '-';
-const char SpecialCharacters::TIMES_SIGN = '-';
-const char SpecialCharacters::SEMICOLON = ';';
+const string SpecialCharacters::OPEN_BRACE = "{";
+const string SpecialCharacters::CLOSE_BRACE = "}";
+const string SpecialCharacters::EQUALS_SIGN = "=";
+const string SpecialCharacters::PLUS_SIGN = "+";
+const string SpecialCharacters::MINUS_SIGN = "-";
+const string SpecialCharacters::TIMES_SIGN = "-";
+const string SpecialCharacters::SEMICOLON = ";";
