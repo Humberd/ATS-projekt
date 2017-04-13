@@ -17,6 +17,7 @@
     <ClInclude Include="CallNode.h" />
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="ExpressionNode.h" />
+    <ClInclude Include="Keywords.h" />
     <ClInclude Include="SourceFileException.h" />
     <ClInclude Include="SourceFileManager.h" />
     <ClInclude Include="IfNode.h" />
@@ -33,6 +34,7 @@
     <ClInclude Include="ProgramNode.h" />
     <ClInclude Include="RangeNumber.h" />
     <ClInclude Include="ReferenceNode.h" />
+    <ClInclude Include="SpecialCharacters.h" />
     <ClInclude Include="StatementListNode.h" />
     <ClInclude Include="StatementNode.h" />
     <ClInclude Include="TimesNode.h" />
@@ -50,6 +52,7 @@
     <ClCompile Include="ExpressionNode.cpp" />
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
+    <ClCompile Include="Keywords.cpp" />
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PlusNode.cpp" />
@@ -59,6 +62,7 @@
     <ClCompile Include="ReferenceNode.cpp" />
     <ClCompile Include="SourceFileException.cpp" />
     <ClCompile Include="SourceFileManager.cpp" />
+    <ClCompile Include="SpecialCharacters.cpp" />
     <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="StatementNode.cpp" />
     <ClCompile Include="TimesNode.cpp" />

@@ -46,6 +46,9 @@
     <Filter Include="Source Files\SourceParser\Exceptions">
       <UniqueIdentifier>{f8324100-c885-4546-8b4d-bb42ffa30e49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SourceParser\Parsers">
+      <UniqueIdentifier>{800b03f2-7a35-4074-bd3d-d2c4097666b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -138,6 +141,12 @@
     <ClInclude Include="SourceFileException.h">
       <Filter>Header Files\SourceParser\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="Keywords.h">
+      <Filter>Header Files\SourceParser</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialCharacters.h">
+      <Filter>Header Files\SourceParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -205,6 +214,12 @@
     </ClCompile>
     <ClCompile Include="SourceFileException.cpp">
       <Filter>Source Files\SourceParser\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Keywords.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialCharacters.cpp">
+      <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
