@@ -19,6 +19,4 @@ public:
 	static bool isIn(char character, string pool);
 	static string scanName(string::iterator& iterator, string::iterator& endIterator);
 	static string scanInteger(string::iterator& iterator, string::iterator& endIterator);
-	static void foo(string::iterator& iterator, string::iterator& endIterator);
-
 };

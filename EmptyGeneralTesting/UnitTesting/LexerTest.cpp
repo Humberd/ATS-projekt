@@ -151,5 +151,8 @@ TEST_CLASS(LexerTest) {
 		string sourceLine = "procedure Foo {";
 
 		vector<LexerToken*> result = Lexer::parseLine(sourceLine);
+
+		Assert::IsTrue(result.size() == 3);
+		Assert::IsTrue((*new LexerToken("name", "procedure")) == *result.at(0));
 	}
 };

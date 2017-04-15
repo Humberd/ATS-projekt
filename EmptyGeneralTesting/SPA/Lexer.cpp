@@ -32,8 +32,10 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine) {
 
 		if (std::isblank(character)) {
 			continue;
-		} else if (isIn(character, SpecialCharacters::getAll())) {
+		} else if (isIn(character, "{}=;")) {
 			result.push_back(new LexerToken("specialCharacter", character));
+		} else if (isIn(character, "+-*")) {
+			result.push_back(new LexerToken("operation", character));
 		} else if (std::isalpha(character)) {
 			result.push_back(new LexerToken("name", scanName(iterator, sourceLine.end())));
 		} else if (std::isdigit(character)) {
@@ -62,20 +64,6 @@ void Lexer::mergeVectors(vector<LexerToken*>* to, vector<LexerToken*>* add) {
  */
 bool Lexer::isIn(char character, string pool) {
 	return pool.find(character) != string::npos;
-}
-
-
-void Lexer::foo(string::iterator& iterator, string::iterator& endIterator) {
-	auto address = &iterator;
-
-//	auto first = *iterator;
-//	++iterator;
-//	auto second = *iterator;
-
-	for (auto item = &iterator; *item != endIterator; ++*item) {
-		auto itemAddress = item;
-	}
-
 }
 
 string Lexer::scanName(string::iterator& iterator, string::iterator& endIterator) {
