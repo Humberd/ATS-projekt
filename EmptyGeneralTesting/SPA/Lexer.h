@@ -11,7 +11,7 @@ private:
 public:
 	~Lexer();
 
-	static vector<LexerToken*> parse(vector<string> sourceLines);
+	static vector<LexerToken*> parse(vector<string>& sourceLines);
 	static vector<LexerToken*> parseLine(string sourceLine);
 
 

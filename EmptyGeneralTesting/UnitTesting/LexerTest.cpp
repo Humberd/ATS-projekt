@@ -14,9 +14,6 @@ TEST_CLASS(LexerTest) {
 		vector<LexerToken*> base;
 		vector<LexerToken*> add;
 
-		auto basePointer = &base;
-		auto addPointer = &add;
-
 		base.push_back(new LexerToken("foo", "bar"));
 		add.push_back(new LexerToken("bla", "bla"));
 
@@ -91,6 +88,9 @@ TEST_CLASS(LexerTest) {
 		testList.push_back(new ScanTestInstance("_bar32", ""));
 		testList.push_back(new ScanTestInstance("/nbar", ""));
 		testList.push_back(new ScanTestInstance("\nbar", ""));
+		testList.push_back(new ScanTestInstance("44bar", ""));
+		testList.push_back(new ScanTestInstance("3 bar", ""));
+		testList.push_back(new ScanTestInstance("2", ""));
 
 
 		for (auto instance : testList) {
@@ -157,7 +157,7 @@ TEST_CLASS(LexerTest) {
 		testList.clear();
 	}
 
-	TEST_METHOD(Lexer_parseLine) {
+	TEST_METHOD(Lexer_parseLine_1) {
 		string sourceLine = "procedure Foo {";
 
 		vector<LexerToken*> result = Lexer::parseLine(sourceLine);
@@ -172,6 +172,61 @@ TEST_CLASS(LexerTest) {
 
 		Assert::IsTrue(result.at(2)->getKey() == "specialcharacter");
 		Assert::IsTrue(result.at(2)->getValue() == "{");
+
+		for (auto item : result) {
+			delete item;
+		}
+		result.clear();
+	}
+
+	TEST_METHOD(Lexer_parseLine_2) {
+		string sourceLine = "	x= a+b * 15; ";
+
+		vector<LexerToken*> result = Lexer::parseLine(sourceLine);
+
+		Assert::IsTrue(result.size() == 8);
+
+		Assert::IsTrue(result.at(0)->getKey() == "name");
+		Assert::IsTrue(result.at(0)->getValue() == "x");
+
+		Assert::IsTrue(result.at(1)->getKey() == "specialcharacter");
+		Assert::IsTrue(result.at(1)->getValue() == "=");
+
+		Assert::IsTrue(result.at(2)->getKey() == "name");
+		Assert::IsTrue(result.at(2)->getValue() == "a");
+
+		Assert::IsTrue(result.at(3)->getKey() == "operator");
+		Assert::IsTrue(result.at(3)->getValue() == "+");
+
+		Assert::IsTrue(result.at(4)->getKey() == "name");
+		Assert::IsTrue(result.at(4)->getValue() == "b");
+
+		Assert::IsTrue(result.at(5)->getKey() == "operator");
+		Assert::IsTrue(result.at(5)->getValue() == "*");
+
+		Assert::IsTrue(result.at(6)->getKey() == "integer");
+		Assert::IsTrue(result.at(6)->getValue() == "15");
+
+		Assert::IsTrue(result.at(7)->getKey() == "specialcharacter");
+		Assert::IsTrue(result.at(7)->getValue() == ";");
+
+		for (auto item : result) {
+			delete item;
+		}
+		result.clear();
+	}
+
+	TEST_METHOD(Lexer_parse) {
+		vector<string> source;
+		source.push_back("procedure q {");
+		source.push_back("if x then {");
+		source.push_back("z = x + 1; }");
+		source.push_back("else {");
+		source.push_back("x = z + x; } }");
+
+		vector<LexerToken*> result = Lexer::parse(source);
+
+		Assert::IsTrue(result.size() == 24);
 
 		for (auto item : result) {
 			delete item;

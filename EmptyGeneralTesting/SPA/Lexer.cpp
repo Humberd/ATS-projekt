@@ -12,7 +12,7 @@ Lexer::Lexer() {
 Lexer::~Lexer() {
 }
 
-vector<LexerToken*> Lexer::parse(vector<string> sourceLines) {
+vector<LexerToken*> Lexer::parse(vector<string>& sourceLines) {
 	vector<LexerToken*> result;
 
 	for (auto line : sourceLines) {
@@ -34,15 +34,18 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine) {
 
 		/*If a character is a space or a tab*/
 		if (std::isblank(character)) {
+			++iterator;
 			continue;
 		}
 		/*If a character is a special character: "{}=;" */
 		else if (SpecialCharacters::isSpecialCharacter(character)) {
 			result.push_back(new LexerToken("specialcharacter", character));
+			++iterator;
 		}
 		/*If a character is an operator: "+-*" */
 		else if (Operators::isOperator(character)) {
 			result.push_back(new LexerToken("operator", character));
+			++iterator;
 		}
 		/*If a character is alphanumeric:
 		 * Start with: a-zA-Z
@@ -59,14 +62,12 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine) {
 		}
 		/*If a character is a digit: 0-9*/
 		else if (std::isdigit(character)) {
-			result.push_back(new LexerToken("integer", scanName(iterator, sourceLine.end())));
+			result.push_back(new LexerToken("integer", scanInteger(iterator, sourceLine.end())));
 		}
 		/*If I can't find an appropriate symbol*/
 		else {
 			throw LexerException("Unknown symbol: " + character);
 		}
-
-		++iterator;
 	}
 
 
