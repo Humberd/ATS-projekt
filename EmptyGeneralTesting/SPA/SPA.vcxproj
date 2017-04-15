@@ -18,6 +18,8 @@
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="Keywords.h" />
+    <ClInclude Include="Lexer.h" />
+    <ClInclude Include="LexerToken.h" />
     <ClInclude Include="SourceFileException.h" />
     <ClInclude Include="SourceFileManager.h" />
     <ClInclude Include="IfNode.h" />
@@ -53,6 +55,8 @@
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
     <ClCompile Include="Keywords.cpp" />
+    <ClCompile Include="Lexer.cpp" />
+    <ClCompile Include="LexerToken.cpp" />
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PlusNode.cpp" />

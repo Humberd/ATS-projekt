@@ -16,4 +16,6 @@ public:
 	static const string MINUS_SIGN;
 	static const string TIMES_SIGN;
 	static const string SEMICOLON;
+
+	static string getAll();
 };

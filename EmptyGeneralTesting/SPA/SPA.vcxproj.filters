@@ -46,8 +46,11 @@
     <Filter Include="Source Files\SourceParser\Exceptions">
       <UniqueIdentifier>{f8324100-c885-4546-8b4d-bb42ffa30e49}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\SourceParser\Parsers">
-      <UniqueIdentifier>{800b03f2-7a35-4074-bd3d-d2c4097666b2}</UniqueIdentifier>
+    <Filter Include="Header Files\SourceParser\Lexer">
+      <UniqueIdentifier>{e38c9046-60a6-42bb-8edc-f3b4c2f6b9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Lexer">
+      <UniqueIdentifier>{4a5bd137-696a-4b18-ae4d-af3ac1736b0e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +150,12 @@
     <ClInclude Include="SpecialCharacters.h">
       <Filter>Header Files\SourceParser</Filter>
     </ClInclude>
+    <ClInclude Include="Lexer.h">
+      <Filter>Header Files\SourceParser\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="LexerToken.h">
+      <Filter>Header Files\SourceParser\Lexer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -220,6 +229,12 @@
     </ClCompile>
     <ClCompile Include="SpecialCharacters.cpp">
       <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="LexerToken.cpp">
+      <Filter>Source Files\SourceParser\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer.cpp">
+      <Filter>Source Files\SourceParser\Lexer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
