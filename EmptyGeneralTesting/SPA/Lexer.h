@@ -17,7 +17,8 @@ public:
 
 	static void mergeVectors(vector<LexerToken*>* to, vector<LexerToken*>* add);
 	static bool isIn(char character, string pool);
-	static string scanName(string::iterator* iterator, string::iterator* endIterator);
-	static string scanInteger(string::iterator* iterator, string::iterator* endIterator);
+	static string scanName(string::iterator& iterator, string::iterator& endIterator);
+	static string scanInteger(string::iterator& iterator, string::iterator& endIterator);
+	static void foo(string::iterator& iterator, string::iterator& endIterator);
 
 };

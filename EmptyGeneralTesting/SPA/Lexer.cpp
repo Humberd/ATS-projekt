@@ -30,17 +30,17 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine) {
 	while (iterator != sourceLine.end()) {
 		auto character = *iterator;
 
-		//		if (std::isblank(character)) {
-		//			continue;
-		//		} else if (isIn(character, SpecialCharacters::getAll())) {
-		//			result.push_back(new LexerToken("specialCharacter", character));
-		//		} else if (std::isalpha(character)) {
-		//			result.push_back(new LexerToken("name", scanName(&iterator, &sourceLine.end())));
-		//		} else if (std::isdigit(character)) {
-		//			result.push_back(new LexerToken("integer", scanName(&iterator, &sourceLine.end())));
-		//		} else {
-		//			throw exception("Unknown symbol: " + character);
-		//		}
+		if (std::isblank(character)) {
+			continue;
+		} else if (isIn(character, SpecialCharacters::getAll())) {
+			result.push_back(new LexerToken("specialCharacter", character));
+		} else if (std::isalpha(character)) {
+			result.push_back(new LexerToken("name", scanName(iterator, sourceLine.end())));
+		} else if (std::isdigit(character)) {
+			result.push_back(new LexerToken("integer", scanName(iterator, sourceLine.end())));
+		} else {
+			throw LexerException("Unknown symbol: " + character);
+		}
 
 		++iterator;
 	}
@@ -65,12 +65,26 @@ bool Lexer::isIn(char character, string pool) {
 }
 
 
-string Lexer::scanName(string::iterator* iterator, string::iterator* endIterator) {
+void Lexer::foo(string::iterator& iterator, string::iterator& endIterator) {
+	auto address = &iterator;
+
+//	auto first = *iterator;
+//	++iterator;
+//	auto second = *iterator;
+
+	for (auto item = &iterator; *item != endIterator; ++*item) {
+		auto itemAddress = item;
+	}
+
+}
+
+string Lexer::scanName(string::iterator& iterator, string::iterator& endIterator) {
+	auto address = &iterator;
 	string response = "";
 
-	for (auto item = *iterator; item != *endIterator; ++item) {
+	for (auto item = &iterator; *item != endIterator; ++*item) {
 		/*Need to change all to lower case, because isAlpha() method works only on lowercase chars*/
-		auto character = std::tolower(*item);
+		auto character = std::tolower(**item);
 
 		/*The first character can only be a letter.
 		 * Space doesn't mean anything, because the word hasn't even started yet.
@@ -86,7 +100,6 @@ string Lexer::scanName(string::iterator* iterator, string::iterator* endIterator
 		}
 		/*The other characters can be either a letter or a number.
 		 * The space says that the Name has ended
-		 * 
 		 */
 		else {
 			if (std::isalnum(character)) {
@@ -101,23 +114,25 @@ string Lexer::scanName(string::iterator* iterator, string::iterator* endIterator
 	return response;
 }
 
-string Lexer::scanInteger(string::iterator* iterator, string::iterator* endIterator) {
+string Lexer::scanInteger(string::iterator& iterator, string::iterator& endIterator) {
 	string response = "";
 
-	for (auto item = *iterator; item != *endIterator; ++item) {
-		auto character = *item;
+	for (auto item = &iterator; *item != endIterator; ++*item) {
+		auto character = **item;
 
 		if (std::isdigit(character)) {
 			response += character;
-		} else if(std::isblank(character)) {
+		} else if (std::isblank(character)) {
 			/*If the number hasn't even started*/
-			if (response.length() == 0) continue;
+			if (response.length() == 0)
+				continue;
 			/*If the number has been already started*/
-			if (response.length() != 0) break; 
+			if (response.length() != 0)
+				break;
 		} else {
 			throw LexerException("Integer can only consist of digits, but instead there is: " + character);
 		}
-	
+
 	}
 	return response;
 }

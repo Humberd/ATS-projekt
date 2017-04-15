@@ -50,6 +50,16 @@ TEST_CLASS(LexerTest) {
 		}
 	};
 
+	TEST_METHOD(Lexer_scanName_IsChangingOutsideIterator) {
+		string foo = "foo";
+		auto itBegin = foo.begin();
+		auto itEnd = foo.end();
+
+		Lexer::scanName(itBegin, itEnd);
+
+		Assert::IsTrue(itBegin == itEnd);
+	}
+
 	TEST_METHOD(Lexer_scanName_Valid) {
 		vector<ScanTestInstance*> testList;
 		/*First param is what we want to scan a NAME from, 
@@ -63,7 +73,7 @@ TEST_CLASS(LexerTest) {
 
 
 		for (auto instance : testList) {
-			Assert::IsTrue(instance->expectedResult == Lexer::scanName(&instance->input.begin(), &instance->input.end()));
+			Assert::IsTrue(instance->expectedResult == Lexer::scanName(instance->input.begin(), instance->input.end()));
 			delete instance;
 		}
 
@@ -82,7 +92,7 @@ TEST_CLASS(LexerTest) {
 
 		for (auto instance : testList) {
 			auto pointer = [instance] {
-						Lexer::scanName(&instance->input.begin(), &instance->input.end());
+						Lexer::scanName(instance->input.begin(), instance->input.end());
 					};
 
 			Assert::ExpectException<LexerException>(pointer);
@@ -105,7 +115,7 @@ TEST_CLASS(LexerTest) {
 
 
 		for (auto instance : testList) {
-			Assert::IsTrue(instance->expectedResult == Lexer::scanInteger(&instance->input.begin(), &instance->input.end()));
+			Assert::IsTrue(instance->expectedResult == Lexer::scanInteger(instance->input.begin(), instance->input.end()));
 			delete instance;
 		}
 
@@ -127,13 +137,19 @@ TEST_CLASS(LexerTest) {
 
 		for (auto instance : testList) {
 			auto pointer = [instance] {
-				Lexer::scanInteger(&instance->input.begin(), &instance->input.end());
-			};
+						Lexer::scanInteger(instance->input.begin(), instance->input.end());
+					};
 
 			Assert::ExpectException<LexerException>(pointer);
 			delete instance;
 		}
 
 		testList.clear();
+	}
+
+	TEST_METHOD(Lexer_parseLine) {
+		string sourceLine = "procedure Foo {";
+
+		vector<LexerToken*> result = Lexer::parseLine(sourceLine);
 	}
 };
