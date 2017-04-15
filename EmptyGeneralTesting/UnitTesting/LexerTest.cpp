@@ -20,7 +20,7 @@ TEST_CLASS(LexerTest) {
 		base.push_back(new LexerToken("foo", "bar"));
 		add.push_back(new LexerToken("bla", "bla"));
 
-		Lexer::mergeVectors(&base, &add);
+		Lexer::mergeVectors(base, add);
 
 		Assert::IsTrue(base.size() == 2);
 		Assert::IsTrue(base.at(1) == add.at(0));
@@ -67,10 +67,13 @@ TEST_CLASS(LexerTest) {
 		 */
 		testList.push_back(new ScanTestInstance("foo", "foo"));
 		testList.push_back(new ScanTestInstance(" foo", "foo"));
-		testList.push_back(new ScanTestInstance(" Foo ", "foo"));
+		testList.push_back(new ScanTestInstance(" Foo ", "Foo"));
 		testList.push_back(new ScanTestInstance(" foo bar", "foo"));
-		testList.push_back(new ScanTestInstance(" f23p4 ", "f23p4"));
-
+		testList.push_back(new ScanTestInstance("	foobar", "foobar"));
+		testList.push_back(new ScanTestInstance(" foo32 ", "foo32"));
+		testList.push_back(new ScanTestInstance("Foo Bar", "Foo"));
+		testList.push_back(new ScanTestInstance("foo;", "foo"));
+		testList.push_back(new ScanTestInstance("foobar*9", "foobar"));
 
 		for (auto instance : testList) {
 			Assert::IsTrue(instance->expectedResult == Lexer::scanName(instance->input.begin(), instance->input.end()));
@@ -109,10 +112,14 @@ TEST_CLASS(LexerTest) {
 		*/
 		testList.push_back(new ScanTestInstance("2", "2"));
 		testList.push_back(new ScanTestInstance(" 2", "2"));
-		testList.push_back(new ScanTestInstance(" 453 ", "453"));
+		testList.push_back(new ScanTestInstance("	 453 ", "453"));
 		testList.push_back(new ScanTestInstance(" 12 45", "12"));
-		testList.push_back(new ScanTestInstance(" 0123456789 ", "0123456789"));
-
+		testList.push_back(new ScanTestInstance(" 123", "123"));
+		testList.push_back(new ScanTestInstance("  1 32", "1"));
+		testList.push_back(new ScanTestInstance("54 b3 ", "54"));
+		testList.push_back(new ScanTestInstance("23;", "23"));
+		testList.push_back(new ScanTestInstance("23{", "23"));
+		testList.push_back(new ScanTestInstance("98+12", "98"));
 
 		for (auto instance : testList) {
 			Assert::IsTrue(instance->expectedResult == Lexer::scanInteger(instance->input.begin(), instance->input.end()));
@@ -133,6 +140,9 @@ TEST_CLASS(LexerTest) {
 		testList.push_back(new ScanTestInstance("1.2", ""));
 		testList.push_back(new ScanTestInstance("1,5", ""));
 		testList.push_back(new ScanTestInstance("456f", ""));
+		testList.push_back(new ScanTestInstance("27as 32", ""));
+		testList.push_back(new ScanTestInstance("11/32", ""));
+		testList.push_back(new ScanTestInstance("e 32", ""));
 
 
 		for (auto instance : testList) {
@@ -153,6 +163,19 @@ TEST_CLASS(LexerTest) {
 		vector<LexerToken*> result = Lexer::parseLine(sourceLine);
 
 		Assert::IsTrue(result.size() == 3);
-		Assert::IsTrue((*new LexerToken("name", "procedure")) == *result.at(0));
+
+		Assert::IsTrue(result.at(0)->getKey() == "keyword");
+		Assert::IsTrue(result.at(0)->getValue() == "procedure");
+
+		Assert::IsTrue(result.at(1)->getKey() == "name");
+		Assert::IsTrue(result.at(1)->getValue() == "Foo");
+
+		Assert::IsTrue(result.at(2)->getKey() == "specialcharacter");
+		Assert::IsTrue(result.at(2)->getValue() == "{");
+
+		for (auto item : result) {
+			delete item;
+		}
+		result.clear();
 	}
 };

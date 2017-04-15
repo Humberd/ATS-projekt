@@ -159,6 +159,9 @@
     <ClInclude Include="LexerException.h">
       <Filter>Header Files\SourceParser\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="Operators.h">
+      <Filter>Header Files\SourceParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -241,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="LexerException.cpp">
       <Filter>Source Files\SourceParser\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

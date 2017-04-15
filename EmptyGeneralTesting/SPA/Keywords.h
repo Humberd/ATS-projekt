@@ -14,4 +14,6 @@ public:
 	static const string THEN;
 	static const string ELSE;
 	static const string CALL;
+
+	static bool isKeyword(string value);
 };

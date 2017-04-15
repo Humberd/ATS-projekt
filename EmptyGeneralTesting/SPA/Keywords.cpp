@@ -12,3 +12,13 @@ const string Keywords::IF = "if";
 const string Keywords::THEN = "then";
 const string Keywords::ELSE = "else";
 const string Keywords::CALL = "call";
+
+
+bool Keywords::isKeyword(string value) {
+	return value == PROCEDURE ||
+			value == WHILE ||
+			value == IF ||
+			value == THEN ||
+			value == ELSE ||
+			value == CALL;
+}

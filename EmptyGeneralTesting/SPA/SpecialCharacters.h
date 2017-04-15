@@ -12,10 +12,8 @@ public:
 	static const string OPEN_BRACE;
 	static const string CLOSE_BRACE;
 	static const string EQUALS_SIGN;
-	static const string PLUS_SIGN;
-	static const string MINUS_SIGN;
-	static const string TIMES_SIGN;
 	static const string SEMICOLON;
 
-	static string getAll();
+	static bool isSpecialCharacter(string value);
+	static bool isSpecialCharacter(char value);
 };

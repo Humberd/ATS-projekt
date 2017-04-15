@@ -163,13 +163,16 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="KeywordsTest.cpp" />
     <ClCompile Include="LexerTest.cpp" />
     <ClCompile Include="LexerTokenTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
+    <ClCompile Include="OperatorsTest.cpp" />
     <ClCompile Include="ProcedureNodeTest.cpp" />
     <ClCompile Include="ProgramNodeTest.cpp" />
     <ClCompile Include="RangeNumberTest.cpp" />
     <ClCompile Include="SourceFileManagerTest.cpp" />
+    <ClCompile Include="SpecialCharactersTest.cpp" />
     <ClCompile Include="StatementListNodeTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
