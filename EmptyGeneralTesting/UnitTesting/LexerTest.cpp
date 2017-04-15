@@ -3,6 +3,8 @@
 #include <vector>
 #include "../SPA/LexerToken.h"
 #include "../SPA/Lexer.h"
+#include <map>
+#include "../SPA/LexerException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -38,14 +40,100 @@ TEST_CLASS(LexerTest) {
 		Assert::IsFalse(Lexer::isIn(' ', "foobar\n"));
 	}
 
-	TEST_METHOD(Lexer_scanName) {
-		string input = "foo";
-		string::iterator iterator = input.begin();
+	class ScanTestInstance {
+	public:
+		string input;
+		string expectedResult;
 
-		char character = *iterator;
+		explicit ScanTestInstance(string input, string result): input(input), expectedResult(result) {
 
-		Logger::WriteMessage(string(1, character).c_str());
+		}
+	};
 
-		Lexer::scanName(&iterator, &input.end());
+	TEST_METHOD(Lexer_scanName_Valid) {
+		vector<ScanTestInstance*> testList;
+		/*First param is what we want to scan a NAME from, 
+		 * Second is expected NAME from that string
+		 */
+		testList.push_back(new ScanTestInstance("foo", "foo"));
+		testList.push_back(new ScanTestInstance(" foo", "foo"));
+		testList.push_back(new ScanTestInstance(" Foo ", "foo"));
+		testList.push_back(new ScanTestInstance(" foo bar", "foo"));
+		testList.push_back(new ScanTestInstance(" f23p4 ", "f23p4"));
+
+
+		for (auto instance : testList) {
+			Assert::IsTrue(instance->expectedResult == Lexer::scanName(&instance->input.begin(), &instance->input.end()));
+			delete instance;
+		}
+
+		testList.clear();
+	}
+
+	TEST_METHOD(Lexer_scanName_Invalid) {
+		vector<ScanTestInstance*> testList;
+		/*First param is a string we want to scan a NAME from, that will throw an exception*/
+		testList.push_back(new ScanTestInstance("1foo", ""));
+		testList.push_back(new ScanTestInstance(" 1Foo", ""));
+		testList.push_back(new ScanTestInstance("_bar32", ""));
+		testList.push_back(new ScanTestInstance("/nbar", ""));
+		testList.push_back(new ScanTestInstance("\nbar", ""));
+
+
+		for (auto instance : testList) {
+			auto pointer = [instance] {
+						Lexer::scanName(&instance->input.begin(), &instance->input.end());
+					};
+
+			Assert::ExpectException<LexerException>(pointer);
+			delete instance;
+		}
+
+		testList.clear();
+	}
+
+	TEST_METHOD(Lexer_scanInteger_Valid) {
+		vector<ScanTestInstance*> testList;
+		/*First param is what we want to scan a INTEGER from,
+		* Second is expected INTEGER from that string
+		*/
+		testList.push_back(new ScanTestInstance("2", "2"));
+		testList.push_back(new ScanTestInstance(" 2", "2"));
+		testList.push_back(new ScanTestInstance(" 453 ", "453"));
+		testList.push_back(new ScanTestInstance(" 12 45", "12"));
+		testList.push_back(new ScanTestInstance(" 0123456789 ", "0123456789"));
+
+
+		for (auto instance : testList) {
+			Assert::IsTrue(instance->expectedResult == Lexer::scanInteger(&instance->input.begin(), &instance->input.end()));
+			delete instance;
+		}
+
+		testList.clear();
+	}
+
+	TEST_METHOD(Lexer_scanInteger_Invalid) {
+		vector<ScanTestInstance*> testList;
+		/*First param is a string we want to scan a INTEGER from, that will throw an exception*/
+		testList.push_back(new ScanTestInstance("1foo", ""));
+		testList.push_back(new ScanTestInstance(" 1Foo", ""));
+		testList.push_back(new ScanTestInstance("_bar32", ""));
+		testList.push_back(new ScanTestInstance("/nbar", ""));
+		testList.push_back(new ScanTestInstance("\nbar", ""));
+		testList.push_back(new ScanTestInstance("1.2", ""));
+		testList.push_back(new ScanTestInstance("1,5", ""));
+		testList.push_back(new ScanTestInstance("456f", ""));
+
+
+		for (auto instance : testList) {
+			auto pointer = [instance] {
+				Lexer::scanInteger(&instance->input.begin(), &instance->input.end());
+			};
+
+			Assert::ExpectException<LexerException>(pointer);
+			delete instance;
+		}
+
+		testList.clear();
 	}
 };

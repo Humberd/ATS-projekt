@@ -156,6 +156,9 @@
     <ClInclude Include="LexerToken.h">
       <Filter>Header Files\SourceParser\Lexer</Filter>
     </ClInclude>
+    <ClInclude Include="LexerException.h">
+      <Filter>Header Files\SourceParser\Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="Lexer.cpp">
       <Filter>Source Files\SourceParser\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="LexerException.cpp">
+      <Filter>Source Files\SourceParser\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

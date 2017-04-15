@@ -19,6 +19,7 @@
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="Keywords.h" />
     <ClInclude Include="Lexer.h" />
+    <ClInclude Include="LexerException.h" />
     <ClInclude Include="LexerToken.h" />
     <ClInclude Include="SourceFileException.h" />
     <ClInclude Include="SourceFileManager.h" />
@@ -56,6 +57,7 @@
     <ClCompile Include="InvalidArgumentException.cpp" />
     <ClCompile Include="Keywords.cpp" />
     <ClCompile Include="Lexer.cpp" />
+    <ClCompile Include="LexerException.cpp" />
     <ClCompile Include="LexerToken.cpp" />
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Node.cpp" />
