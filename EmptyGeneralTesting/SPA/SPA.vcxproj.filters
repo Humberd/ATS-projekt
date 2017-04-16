@@ -171,6 +171,15 @@
     <ClInclude Include="Parser.h">
       <Filter>Header Files\SourceParser\Parser</Filter>
     </ClInclude>
+    <ClInclude Include="TokenKeys.h">
+      <Filter>Header Files\SourceParser\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserException.h">
+      <Filter>Header Files\SourceParser\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Printable.h">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -259,6 +268,15 @@
     </ClCompile>
     <ClCompile Include="Parser.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenKeys.cpp">
+      <Filter>Source Files\SourceParser\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserException.cpp">
+      <Filter>Source Files\SourceParser\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Printable.cpp">
+      <Filter>Source Files\helpers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -23,6 +23,8 @@
     <ClInclude Include="LexerToken.h" />
     <ClInclude Include="Operators.h" />
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="ParserException.h" />
+    <ClInclude Include="Printable.h" />
     <ClInclude Include="SourceFileException.h" />
     <ClInclude Include="SourceFileManager.h" />
     <ClInclude Include="IfNode.h" />
@@ -43,6 +45,7 @@
     <ClInclude Include="StatementListNode.h" />
     <ClInclude Include="StatementNode.h" />
     <ClInclude Include="TimesNode.h" />
+    <ClInclude Include="TokenKeys.h" />
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />
     <ClInclude Include="ValidateException.h" />
@@ -65,17 +68,20 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Operators.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="ParserException.cpp" />
     <ClCompile Include="PlusNode.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
     <ClCompile Include="ProgramNode.cpp" />
     <ClCompile Include="RangeNumber.cpp" />
     <ClCompile Include="ReferenceNode.cpp" />
+    <ClCompile Include="Printable.cpp" />
     <ClCompile Include="SourceFileException.cpp" />
     <ClCompile Include="SourceFileManager.cpp" />
     <ClCompile Include="SpecialCharacters.cpp" />
     <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="StatementNode.cpp" />
     <ClCompile Include="TimesNode.cpp" />
+    <ClCompile Include="TokenKeys.cpp" />
     <ClCompile Include="ValidateException.cpp" />
     <ClCompile Include="VariableNode.cpp" />
     <ClCompile Include="WhileNode.cpp" />

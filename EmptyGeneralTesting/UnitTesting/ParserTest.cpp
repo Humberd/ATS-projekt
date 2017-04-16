@@ -29,5 +29,6 @@ TEST_CLASS(ParserTest) {
 		}
 
 		tokensList.clear();
+		delete rootNode;
 	}
 };
