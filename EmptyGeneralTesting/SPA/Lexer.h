@@ -14,7 +14,6 @@ public:
 	static vector<LexerToken*> parse(vector<string>& sourceLines);
 	static vector<LexerToken*> parseLine(string sourceLine);
 
-
 	static void mergeVectors(vector<LexerToken*>& to, vector<LexerToken*>& add);
 	static bool isIn(char character, string pool);
 	static string scanName(string::iterator& iterator, string::iterator& endIterator);
