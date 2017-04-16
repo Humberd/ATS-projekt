@@ -30,6 +30,7 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
 	vector<LexerToken*> result;
 
 	auto iterator = sourceLine.begin();
+	auto iteratorEnd = sourceLine.end();
 
 	while (iterator != sourceLine.end()) {
 		auto character = *iterator;
@@ -54,7 +55,7 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
 		 * All next: a-zA-Z0-9
 		 */
 		else if (std::isalpha(character)) {
-			string name = scanName(iterator, sourceLine.end());
+			string name = scanName(iterator, iteratorEnd);
 
 			if (Keywords::isKeyword(name)) {
 				result.push_back(new LexerToken("keyword", name, fileLineNumber));
@@ -64,7 +65,7 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
 		}
 		/*If a character is a digit: 0-9*/
 		else if (std::isdigit(character)) {
-			result.push_back(new LexerToken("integer", scanInteger(iterator, sourceLine.end()), fileLineNumber));
+			result.push_back(new LexerToken("integer", scanInteger(iterator, iteratorEnd), fileLineNumber));
 		}
 		/*If I can't find an appropriate symbol*/
 		else {
