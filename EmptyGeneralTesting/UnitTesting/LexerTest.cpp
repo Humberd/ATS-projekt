@@ -27,16 +27,6 @@ TEST_CLASS(LexerTest) {
 		}
 	}
 
-	TEST_METHOD(Lexer_isIn) {
-		Assert::IsFalse(Lexer::isIn('{', "foobar"));
-		Assert::IsTrue(Lexer::isIn('{', "\{}/"));
-		Assert::IsTrue(Lexer::isIn('{', "\\{}/"));
-		Assert::IsTrue(Lexer::isIn('{', "/{}\\"));
-
-		Assert::IsTrue(Lexer::isIn(' ', "foo bar"));
-		Assert::IsFalse(Lexer::isIn(' ', "foobar\n"));
-	}
-
 	class ScanTestInstance {
 	public:
 		string input;

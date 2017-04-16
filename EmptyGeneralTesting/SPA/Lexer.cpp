@@ -83,13 +83,6 @@ void Lexer::mergeVectors(vector<LexerToken*>& to, vector<LexerToken*>& add) {
 }
 
 /*
- * If a character is inside a string
- */
-bool Lexer::isIn(char character, string pool) {
-	return pool.find(character) != string::npos;
-}
-
-/*
  * This method finds the first name from the string.
  * The name can have spaces before.
  * The name can end with special characters: "{}=;"
