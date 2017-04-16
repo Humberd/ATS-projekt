@@ -52,6 +52,12 @@
     <Filter Include="Source Files\SourceParser\Lexer">
       <UniqueIdentifier>{4a5bd137-696a-4b18-ae4d-af3ac1736b0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SourceParser\Parser">
+      <UniqueIdentifier>{15c9981d-a795-4aae-98c6-27a05790e7f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Parser">
+      <UniqueIdentifier>{3a979d0b-f93f-420b-94ec-473adc34bd0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -162,6 +168,9 @@
     <ClInclude Include="Operators.h">
       <Filter>Header Files\SourceParser</Filter>
     </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -247,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="Operators.cpp">
       <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

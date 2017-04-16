@@ -31,6 +31,9 @@
     <Filter Include="Source Files\SourceParser\Lexer">
       <UniqueIdentifier>{050740a3-cef5-4e90-9cd6-04691bc35470}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SourceParser\Parser">
+      <UniqueIdentifier>{abc19594-8039-4f51-bf95-0345f13634c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="KeywordsTest.cpp">
       <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

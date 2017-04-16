@@ -22,6 +22,7 @@
     <ClInclude Include="LexerException.h" />
     <ClInclude Include="LexerToken.h" />
     <ClInclude Include="Operators.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="SourceFileException.h" />
     <ClInclude Include="SourceFileManager.h" />
     <ClInclude Include="IfNode.h" />
@@ -63,6 +64,7 @@
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Operators.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="PlusNode.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
     <ClCompile Include="ProgramNode.cpp" />

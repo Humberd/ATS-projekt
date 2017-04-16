@@ -25,6 +25,9 @@ TEST_CLASS(LexerTest) {
 		for (auto token : base) {
 			delete token;
 		}
+
+		base.clear();
+		add.clear();
 	}
 
 	class ScanTestInstance {
