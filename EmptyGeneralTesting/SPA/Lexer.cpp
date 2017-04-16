@@ -15,8 +15,10 @@ Lexer::~Lexer() {
 vector<LexerToken*> Lexer::parse(vector<string>& sourceLines) {
 	vector<LexerToken*> result;
 
-	for (auto line : sourceLines) {
-		auto parsedLine = parseLine(line);
+	for (int i = 0; i < sourceLines.size(); i++) {
+		auto line = sourceLines.at(i);
+
+		vector<LexerToken*> parsedLine = parseLine(line, i + 1);
 		mergeVectors(result, parsedLine);
 	}
 
@@ -24,7 +26,7 @@ vector<LexerToken*> Lexer::parse(vector<string>& sourceLines) {
 }
 
 
-vector<LexerToken*> Lexer::parseLine(string sourceLine) {
+vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
 	vector<LexerToken*> result;
 
 	auto iterator = sourceLine.begin();
@@ -39,12 +41,12 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine) {
 		}
 		/*If a character is a special character: "{}=;" */
 		else if (SpecialCharacters::isSpecialCharacter(character)) {
-			result.push_back(new LexerToken("specialcharacter", character));
+			result.push_back(new LexerToken("specialcharacter", character, fileLineNumber));
 			++iterator;
 		}
 		/*If a character is an operator: "+-*" */
 		else if (Operators::isOperator(character)) {
-			result.push_back(new LexerToken("operator", character));
+			result.push_back(new LexerToken("operator", character, fileLineNumber));
 			++iterator;
 		}
 		/*If a character is alphanumeric:
@@ -55,14 +57,14 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine) {
 			string name = scanName(iterator, sourceLine.end());
 
 			if (Keywords::isKeyword(name)) {
-				result.push_back(new LexerToken("keyword", name));
+				result.push_back(new LexerToken("keyword", name, fileLineNumber));
 			} else {
-				result.push_back(new LexerToken("name", name));
+				result.push_back(new LexerToken("name", name, fileLineNumber));
 			}
 		}
 		/*If a character is a digit: 0-9*/
 		else if (std::isdigit(character)) {
-			result.push_back(new LexerToken("integer", scanInteger(iterator, sourceLine.end())));
+			result.push_back(new LexerToken("integer", scanInteger(iterator, sourceLine.end()), fileLineNumber));
 		}
 		/*If I can't find an appropriate symbol*/
 		else {
@@ -129,7 +131,7 @@ string Lexer::scanName(string::iterator& iterator, string::iterator& endIterator
 			/*If a character is a special character: "{}=;" */
 			else if (SpecialCharacters::isSpecialCharacter(character)) {
 				break; //stop the name
-			} 
+			}
 			/*If a character is an operator: "+-*" */
 			else if (Operators::isOperator(character)) {
 				break; //stop the name

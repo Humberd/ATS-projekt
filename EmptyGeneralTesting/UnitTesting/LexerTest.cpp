@@ -14,8 +14,8 @@ TEST_CLASS(LexerTest) {
 		vector<LexerToken*> base;
 		vector<LexerToken*> add;
 
-		base.push_back(new LexerToken("foo", "bar"));
-		add.push_back(new LexerToken("bla", "bla"));
+		base.push_back(new LexerToken("foo", "bar", 1));
+		add.push_back(new LexerToken("bla", "bla", 1));
 
 		Lexer::mergeVectors(base, add);
 
@@ -153,18 +153,21 @@ TEST_CLASS(LexerTest) {
 	TEST_METHOD(Lexer_parseLine_1) {
 		string sourceLine = "procedure Foo {";
 
-		vector<LexerToken*> result = Lexer::parseLine(sourceLine);
+		vector<LexerToken*> result = Lexer::parseLine(sourceLine, 5);
 
 		Assert::IsTrue(result.size() == 3);
 
 		Assert::IsTrue(result.at(0)->getKey() == "keyword");
 		Assert::IsTrue(result.at(0)->getValue() == "procedure");
+		Assert::IsTrue(result.at(0)->getFileLineNumber() == 5);
 
 		Assert::IsTrue(result.at(1)->getKey() == "name");
 		Assert::IsTrue(result.at(1)->getValue() == "Foo");
+		Assert::IsTrue(result.at(1)->getFileLineNumber() == 5);
 
 		Assert::IsTrue(result.at(2)->getKey() == "specialcharacter");
 		Assert::IsTrue(result.at(2)->getValue() == "{");
+		Assert::IsTrue(result.at(2)->getFileLineNumber() == 5);
 
 		for (auto item : result) {
 			delete item;
@@ -175,33 +178,41 @@ TEST_CLASS(LexerTest) {
 	TEST_METHOD(Lexer_parseLine_2) {
 		string sourceLine = "	x= a+b * 15; ";
 
-		vector<LexerToken*> result = Lexer::parseLine(sourceLine);
+		vector<LexerToken*> result = Lexer::parseLine(sourceLine, 13);
 
 		Assert::IsTrue(result.size() == 8);
 
 		Assert::IsTrue(result.at(0)->getKey() == "name");
 		Assert::IsTrue(result.at(0)->getValue() == "x");
+		Assert::IsTrue(result.at(0)->getFileLineNumber() == 13);
 
 		Assert::IsTrue(result.at(1)->getKey() == "specialcharacter");
 		Assert::IsTrue(result.at(1)->getValue() == "=");
+		Assert::IsTrue(result.at(1)->getFileLineNumber() == 13);
 
 		Assert::IsTrue(result.at(2)->getKey() == "name");
 		Assert::IsTrue(result.at(2)->getValue() == "a");
+		Assert::IsTrue(result.at(2)->getFileLineNumber() == 13);
 
 		Assert::IsTrue(result.at(3)->getKey() == "operator");
 		Assert::IsTrue(result.at(3)->getValue() == "+");
+		Assert::IsTrue(result.at(3)->getFileLineNumber() == 13);
 
 		Assert::IsTrue(result.at(4)->getKey() == "name");
 		Assert::IsTrue(result.at(4)->getValue() == "b");
+		Assert::IsTrue(result.at(4)->getFileLineNumber() == 13);
 
 		Assert::IsTrue(result.at(5)->getKey() == "operator");
 		Assert::IsTrue(result.at(5)->getValue() == "*");
+		Assert::IsTrue(result.at(5)->getFileLineNumber() == 13);
 
 		Assert::IsTrue(result.at(6)->getKey() == "integer");
 		Assert::IsTrue(result.at(6)->getValue() == "15");
+		Assert::IsTrue(result.at(6)->getFileLineNumber() == 13);
 
 		Assert::IsTrue(result.at(7)->getKey() == "specialcharacter");
 		Assert::IsTrue(result.at(7)->getValue() == ";");
+		Assert::IsTrue(result.at(7)->getFileLineNumber() == 13);
 
 		for (auto item : result) {
 			delete item;
