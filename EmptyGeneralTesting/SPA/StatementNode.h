@@ -6,5 +6,5 @@ protected:
 	explicit StatementNode(int lineNumber, RangeNumber* rangeOfRequiredChildNodes);
 
 public:
-	virtual ~StatementNode() = 0;
+	virtual ~StatementNode();
 };

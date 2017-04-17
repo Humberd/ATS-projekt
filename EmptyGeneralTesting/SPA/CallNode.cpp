@@ -1,6 +1,5 @@
 #include "CallNode.h"
 #include <vcruntime_typeinfo.h>
-#include "ValidateException.h"
 #include "InvalidArgumentException.h"
 
 CallNode::CallNode(int lineNumber, string procedureName) :StatementNode(lineNumber, new RangeNumber(0, 0)) {
