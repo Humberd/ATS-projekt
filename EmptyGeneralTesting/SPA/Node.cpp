@@ -47,9 +47,9 @@ void Node::validate() {
 	/*If the number of children is not in range of the range provided in a constructor*/
 	if (!this->rangeOfRequiredChildNodes->isWithinRangeInclusive(this->getChildren().size())) {
 		throw ValidateException(this, "Node requires to have a number of children between "
-			+ to_string(this->rangeOfRequiredChildNodes->getMin()) + " and "
-			+ to_string(this->rangeOfRequiredChildNodes->getMax()) + ", but instead got: "
-			+ to_string(this->getChildren().size()));
+		                        + to_string(this->rangeOfRequiredChildNodes->getMin()) + " and "
+		                        + to_string(this->rangeOfRequiredChildNodes->getMax()) + ", but instead got: "
+		                        + to_string(this->getChildren().size()));
 	}
 
 	/*Validate every child*/
@@ -57,8 +57,7 @@ void Node::validate() {
 		for (auto child : this->getChildren()) {
 			child->validate();
 		}
-	}
-	catch (ValidateException* e) {
+	} catch (ValidateException* e) {
 		this->startedValidating = false;
 		throw e;
 	}

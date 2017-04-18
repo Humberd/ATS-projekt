@@ -3,7 +3,7 @@
 #include <vector>
 #include "../SPA/LexerToken.h"
 #include "../SPA/Node.h"
-#include "../SPA/Parser.h"
+#include "../SPA/SourceParser.h"
 #include "../SPA/SpecialCharacters.h"
 #include "../SPA/TokenKeys.h"
 #include "../SPA/Keywords.h"
@@ -26,7 +26,7 @@ TEST_CLASS(ParserTest) {
 		tokensList.push_back(new LexerToken("specialcharacter", ";", 2));
 		tokensList.push_back(new LexerToken("specialcharacter", "}", 2));
 
-		Node* rootNode = Parser::parse(tokensList);
+		Node* rootNode = SourceParser::parse(tokensList);
 
 		for (auto token : tokensList) {
 			delete token;
@@ -44,7 +44,7 @@ TEST_CLASS(ParserTest) {
 		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
 
 		/*Check if didn't receive a nullptr*/
-		Node* node = Parser::parseCall(tokensList.begin());
+		Node* node = SourceParser::parseCall(tokensList.begin());
 		Assert::IsNotNull(node);
 
 		/*Check if Node* is a typeof CallNode* */
@@ -74,7 +74,7 @@ TEST_CLASS(ParserTest) {
 //		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
 //
 //		/*Check if didn't receive a nullptr*/
-//		Node* node = Parser::parseCall(tokensList.begin(), tokensList.end());
+//		Node* node = SourceParser::parseCall(tokensList.begin(), tokensList.end());
 //		Assert::IsNotNull(node);
 //
 //		/*Check if Node* is a typeof CallNode* */
@@ -103,7 +103,7 @@ TEST_CLASS(ParserTest) {
 		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
 
 		/*Check if didn't receive a nullptr*/
-		Node* node = Parser::parseExpression(tokensList.begin());
+		Node* node = SourceParser::parseExpression(tokensList.begin());
 
 		for (auto token : tokensList) {
 			delete token;

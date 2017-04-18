@@ -4,10 +4,10 @@
 
 //using namespace std;
 
-class Parser {
+class SourceParser {
 private:
-	Parser();
-	~Parser();
+	SourceParser();
+	~SourceParser();
 
 public:
 

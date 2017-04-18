@@ -1,4 +1,4 @@
-#include "Parser.h"
+#include "SourceParser.h"
 #include "ProgramNode.h"
 #include "ParserException.h"
 #include "CallNode.h"
@@ -6,13 +6,13 @@
 #include "VariableNode.h"
 #include "ExpressionNode.h"
 
-Parser::Parser() {
+SourceParser::SourceParser() {
 }
 
-Parser::~Parser() {
+SourceParser::~SourceParser() {
 }
 
-Node* Parser::parse(vector<LexerToken*>& tokensList) {
+Node* SourceParser::parse(vector<LexerToken*>& tokensList) {
 	auto iterator = tokensList.begin();
 	auto iteratorEnd = tokensList.end();
 
@@ -20,7 +20,7 @@ Node* Parser::parse(vector<LexerToken*>& tokensList) {
 }
 
 
-void Parser::nextElement(string name,
+void SourceParser::nextElement(string name,
                          vector<LexerToken*>::iterator& iterator) {
 	try {
 		++iterator;
@@ -29,7 +29,7 @@ void Parser::nextElement(string name,
 	}
 }
 
-Node* Parser::parseCall(vector<LexerToken*>::iterator& iterator) {
+Node* SourceParser::parseCall(vector<LexerToken*>::iterator& iterator) {
 	CallNode* node = nullptr;
 	int fileLineNumber;
 	string procedureName;
@@ -72,7 +72,7 @@ Node* Parser::parseCall(vector<LexerToken*>::iterator& iterator) {
 	return node;
 }
 
-Node* Parser::parseAssign(vector<LexerToken*>::iterator& iterator) {
+Node* SourceParser::parseAssign(vector<LexerToken*>::iterator& iterator) {
 	AssignNode* node = nullptr;
 	int fileLineNumber;
 	string leftVariableName;
@@ -109,7 +109,7 @@ Node* Parser::parseAssign(vector<LexerToken*>::iterator& iterator) {
 	return node;
 }
 
-Node* Parser::parseExpression(vector<LexerToken*>::iterator& iterator) {
+Node* SourceParser::parseExpression(vector<LexerToken*>::iterator& iterator) {
 	ExpressionNode* node = nullptr;
 
 	return nullptr;
