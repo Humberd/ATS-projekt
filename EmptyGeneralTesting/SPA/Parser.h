@@ -13,9 +13,12 @@ public:
 
 	static Node* parse(vector<LexerToken*>& tokensList);
 
-	static Node* parseCall(vector<LexerToken*>::iterator& iterator,
-	                       vector<LexerToken*>::iterator& iteratorEnd);
+	static Node* parseCall(vector<LexerToken*>::iterator& iterator);
 
-	static Node* parseCallBetter(vector<LexerToken*>::iterator& iterator,
-	                             vector<LexerToken*>::iterator& iteratorEnd);
+	static Node* parseAssign(vector<LexerToken*>::iterator& iterator);
+
+	static Node* parseExpression(vector<LexerToken*>::iterator& iterator);
+
+	static void nextElement(string name,
+	                        vector<LexerToken*>::iterator& iterator);
 };
