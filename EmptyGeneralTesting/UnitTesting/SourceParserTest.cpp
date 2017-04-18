@@ -12,7 +12,7 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
-TEST_CLASS(ParserTest) {
+TEST_CLASS(SourceParserTest) {
 	TEST_METHOD(Parser_parse_Valid) {
 		vector<LexerToken*> tokensList;
 

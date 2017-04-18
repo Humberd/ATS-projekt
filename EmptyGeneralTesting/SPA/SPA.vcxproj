@@ -17,12 +17,14 @@
     <ClInclude Include="CallNode.h" />
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="ExpressionNode.h" />
+    <ClInclude Include="ExpressionParser.h" />
     <ClInclude Include="Keywords.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LexerException.h" />
     <ClInclude Include="LexerToken.h" />
     <ClInclude Include="Operators.h" />
-    <ClInclude Include="Parser.h" />
+    <ClInclude Include="ParsingEntity.h" />
+    <ClInclude Include="SourceParser.h" />
     <ClInclude Include="ParserException.h" />
     <ClInclude Include="Printable.h" />
     <ClInclude Include="SourceFileException.h" />
@@ -58,6 +60,7 @@
     <ClCompile Include="CallNode.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
+    <ClCompile Include="ExpressionParser.cpp" />
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
     <ClCompile Include="Keywords.cpp" />
@@ -67,7 +70,8 @@
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Operators.cpp" />
-    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="ParsingEntity.cpp" />
+    <ClCompile Include="SourceParser.cpp" />
     <ClCompile Include="ParserException.cpp" />
     <ClCompile Include="PlusNode.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />

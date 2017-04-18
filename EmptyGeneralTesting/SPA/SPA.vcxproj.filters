@@ -168,9 +168,6 @@
     <ClInclude Include="Operators.h">
       <Filter>Header Files\SourceParser</Filter>
     </ClInclude>
-    <ClInclude Include="Parser.h">
-      <Filter>Header Files\SourceParser\Parser</Filter>
-    </ClInclude>
     <ClInclude Include="TokenKeys.h">
       <Filter>Header Files\SourceParser\Lexer</Filter>
     </ClInclude>
@@ -179,6 +176,15 @@
     </ClInclude>
     <ClInclude Include="Printable.h">
       <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ParsingEntity.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -266,9 +272,6 @@
     <ClCompile Include="Operators.cpp">
       <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
-    <ClCompile Include="Parser.cpp">
-      <Filter>Source Files\SourceParser\Parser</Filter>
-    </ClCompile>
     <ClCompile Include="TokenKeys.cpp">
       <Filter>Source Files\SourceParser\Lexer</Filter>
     </ClCompile>
@@ -277,6 +280,15 @@
     </ClCompile>
     <ClCompile Include="Printable.cpp">
       <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParsingEntity.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -74,9 +74,6 @@
     <ClCompile Include="LexerTokenTest.cpp">
       <Filter>Source Files\SourceParser\Lexer</Filter>
     </ClCompile>
-    <ClCompile Include="ParserTest.cpp">
-      <Filter>Source Files\SourceParser\Parser</Filter>
-    </ClCompile>
     <ClCompile Include="KeywordsTest.cpp">
       <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
@@ -85,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="SpecialCharactersTest.cpp">
       <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 #include "LexerToken.h"
+#include "Node.h"
 
 using namespace std;
 
-template <class T>
 class ParsingEntity {
 protected:
 	ParsingEntity();
@@ -12,7 +12,9 @@ protected:
 public:
 	virtual ~ParsingEntity();
 
-	virtual T* parseEntity(vector<LexerToken*>::iterator& iterator) = 0;
+	virtual Node* parseEntity(vector<LexerToken*>::iterator& iterator) = 0;
 
 	void nextElement(vector<LexerToken*>::iterator& iterator) const;
+
+	string getClassName();
 };
