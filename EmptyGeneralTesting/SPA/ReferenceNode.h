@@ -2,10 +2,9 @@
 #include "ExpressionNode.h"
 
 class ReferenceNode: public ExpressionNode {
-public:
+protected:
 	explicit ReferenceNode(int lineNumber);
-	~ReferenceNode() override;
 
-	// pozwala na 1 child
-	void addChild(Node* child) override;
+public:
+	virtual ~ReferenceNode();
 };

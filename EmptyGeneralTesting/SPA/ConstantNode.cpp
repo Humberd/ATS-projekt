@@ -2,7 +2,7 @@
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
 
-ConstantNode::ConstantNode(int lineNumber, int value) :Node(lineNumber, new RangeNumber(0, 0)) {
+ConstantNode::ConstantNode(int lineNumber, int value) : ReferenceNode(lineNumber) {
 	this->value = value;
 }
 

@@ -4,6 +4,7 @@
 #include "CallNode.h"
 #include "AssignNode.h"
 #include "VariableNode.h"
+#include "ExpressionNode.h"
 
 Parser::Parser() {
 }
@@ -109,5 +110,7 @@ Node* Parser::parseAssign(vector<LexerToken*>::iterator& iterator) {
 }
 
 Node* Parser::parseExpression(vector<LexerToken*>::iterator& iterator) {
+	ExpressionNode* node = nullptr;
+
 	return nullptr;
 }

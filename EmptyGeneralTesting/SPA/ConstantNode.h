@@ -1,7 +1,8 @@
 #pragma once
 #include "Node.h"
+#include "ReferenceNode.h"
 
-class ConstantNode: public Node {
+class ConstantNode: public ReferenceNode {
 private:
 	int value;
 

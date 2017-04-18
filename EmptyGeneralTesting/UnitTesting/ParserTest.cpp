@@ -98,8 +98,8 @@ TEST_CLASS(ParserTest) {
 	TEST_METHOD(Parser_parseExpression) {
 		vector<LexerToken*> tokensList;
 
-		tokensList.push_back(new LexerToken(TokenKeys::KEYWORD, Keywords::CALL, 1));
-		tokensList.push_back(new LexerToken(TokenKeys::NAME, "FooProc", 1));
+		tokensList.push_back(new LexerToken(TokenKeys::NAME, "x", 1));
+		tokensList.push_back(new LexerToken(TokenKeys::INTEGER, 1, 1));
 		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
 
 		/*Check if didn't receive a nullptr*/

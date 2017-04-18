@@ -1,9 +1,10 @@
 #pragma once
 #include "Node.h"
+#include "ReferenceNode.h"
 
 using namespace std;
 
-class VariableNode : public Node {
+class VariableNode : public ReferenceNode {
 private:
 	string name;
 
