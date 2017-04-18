@@ -86,6 +86,9 @@
     <ClCompile Include="SourceParserTest.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
+    <ClCompile Include="ParsingEntityTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">

@@ -16,5 +16,5 @@ public:
 
 	void nextElement(vector<LexerToken*>::iterator& iterator) const;
 
-	string getClassName();
+	string getClassName() const;
 };
