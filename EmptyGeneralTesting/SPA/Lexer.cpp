@@ -1,7 +1,6 @@
 #include "Lexer.h"
 #include <cctype>
 #include "SpecialCharacters.h"
-#include <CppUnitTestLogger.h>
 #include "LexerException.h"
 #include "Keywords.h"
 #include "Operators.h"
@@ -14,7 +13,7 @@ Lexer::~Lexer() {
 
 vector<LexerToken*> Lexer::parse(vector<string>& sourceLines) {
 	vector<LexerToken*> result;
-
+	
 	for (int i = 0; i < sourceLines.size(); i++) {
 		auto line = sourceLines.at(i);
 

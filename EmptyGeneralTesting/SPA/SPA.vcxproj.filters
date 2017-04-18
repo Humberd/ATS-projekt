@@ -279,4 +279,7 @@
       <Filter>Source Files\helpers</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>
