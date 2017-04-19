@@ -5,6 +5,10 @@
 #include "../SPA/Lexer.h"
 #include <map>
 #include "../SPA/LexerException.h"
+#include "../SPA/TokenKeys.h"
+#include "../SPA/Keywords.h"
+#include "../SPA/SpecialCharacters.h"
+#include "../SPA/Operators.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -157,16 +161,16 @@ TEST_CLASS(LexerTest) {
 
 		Assert::IsTrue(result.size() == 3);
 
-		Assert::IsTrue(result.at(0)->getKey() == "keyword");
-		Assert::IsTrue(result.at(0)->getValue() == "procedure");
+		Assert::IsTrue(result.at(0)->getKey() == TokenKeys::KEYWORD);
+		Assert::IsTrue(result.at(0)->getValue() == Keywords::PROCEDURE);
 		Assert::IsTrue(result.at(0)->getFileLineNumber() == 5);
 
-		Assert::IsTrue(result.at(1)->getKey() == "name");
+		Assert::IsTrue(result.at(1)->getKey() == TokenKeys::NAME);
 		Assert::IsTrue(result.at(1)->getValue() == "Foo");
 		Assert::IsTrue(result.at(1)->getFileLineNumber() == 5);
 
-		Assert::IsTrue(result.at(2)->getKey() == "specialcharacter");
-		Assert::IsTrue(result.at(2)->getValue() == "{");
+		Assert::IsTrue(result.at(2)->getKey() == TokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(2)->getValue() == SpecialCharacters::OPEN_BRACE);
 		Assert::IsTrue(result.at(2)->getFileLineNumber() == 5);
 
 		for (auto item : result) {
@@ -182,36 +186,36 @@ TEST_CLASS(LexerTest) {
 
 		Assert::IsTrue(result.size() == 8);
 
-		Assert::IsTrue(result.at(0)->getKey() == "name");
+		Assert::IsTrue(result.at(0)->getKey() == TokenKeys::NAME);
 		Assert::IsTrue(result.at(0)->getValue() == "x");
 		Assert::IsTrue(result.at(0)->getFileLineNumber() == 13);
 
-		Assert::IsTrue(result.at(1)->getKey() == "specialcharacter");
-		Assert::IsTrue(result.at(1)->getValue() == "=");
+		Assert::IsTrue(result.at(1)->getKey() == TokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(1)->getValue() == SpecialCharacters::EQUALS_SIGN);
 		Assert::IsTrue(result.at(1)->getFileLineNumber() == 13);
 
-		Assert::IsTrue(result.at(2)->getKey() == "name");
+		Assert::IsTrue(result.at(2)->getKey() == TokenKeys::NAME);
 		Assert::IsTrue(result.at(2)->getValue() == "a");
 		Assert::IsTrue(result.at(2)->getFileLineNumber() == 13);
 
-		Assert::IsTrue(result.at(3)->getKey() == "operator");
-		Assert::IsTrue(result.at(3)->getValue() == "+");
+		Assert::IsTrue(result.at(3)->getKey() == TokenKeys::OPERATOR);
+		Assert::IsTrue(result.at(3)->getValue() == Operators::PLUS_SIGN);
 		Assert::IsTrue(result.at(3)->getFileLineNumber() == 13);
 
-		Assert::IsTrue(result.at(4)->getKey() == "name");
+		Assert::IsTrue(result.at(4)->getKey() == TokenKeys::NAME);
 		Assert::IsTrue(result.at(4)->getValue() == "b");
 		Assert::IsTrue(result.at(4)->getFileLineNumber() == 13);
 
-		Assert::IsTrue(result.at(5)->getKey() == "operator");
-		Assert::IsTrue(result.at(5)->getValue() == "*");
+		Assert::IsTrue(result.at(5)->getKey() == TokenKeys::OPERATOR);
+		Assert::IsTrue(result.at(5)->getValue() == Operators::TIMES_SIGN);
 		Assert::IsTrue(result.at(5)->getFileLineNumber() == 13);
 
-		Assert::IsTrue(result.at(6)->getKey() == "integer");
+		Assert::IsTrue(result.at(6)->getKey() == TokenKeys::INTEGER);
 		Assert::IsTrue(result.at(6)->getValue() == "15");
 		Assert::IsTrue(result.at(6)->getFileLineNumber() == 13);
 
-		Assert::IsTrue(result.at(7)->getKey() == "specialcharacter");
-		Assert::IsTrue(result.at(7)->getValue() == ";");
+		Assert::IsTrue(result.at(7)->getKey() == TokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(7)->getValue() == SpecialCharacters::SEMICOLON);
 		Assert::IsTrue(result.at(7)->getFileLineNumber() == 13);
 
 		for (auto item : result) {
