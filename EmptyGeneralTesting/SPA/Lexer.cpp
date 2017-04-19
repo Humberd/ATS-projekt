@@ -4,6 +4,7 @@
 #include "LexerException.h"
 #include "Keywords.h"
 #include "Operators.h"
+#include "TokenKeys.h"
 
 Lexer::Lexer() {
 }
@@ -41,12 +42,12 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
 		}
 		/*If a character is a special character: "{}=;" */
 		else if (SpecialCharacters::isSpecialCharacter(character)) {
-			result.push_back(new LexerToken("specialcharacter", character, fileLineNumber));
+			result.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, character, fileLineNumber));
 			++iterator;
 		}
 		/*If a character is an operator: "+-*" */
 		else if (Operators::isOperator(character)) {
-			result.push_back(new LexerToken("operator", character, fileLineNumber));
+			result.push_back(new LexerToken(TokenKeys::OPERATOR, character, fileLineNumber));
 			++iterator;
 		}
 		/*If a character is alphanumeric:
@@ -57,14 +58,14 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
 			string name = scanName(iterator, iteratorEnd);
 
 			if (Keywords::isKeyword(name)) {
-				result.push_back(new LexerToken("keyword", name, fileLineNumber));
+				result.push_back(new LexerToken(TokenKeys::KEYWORD, name, fileLineNumber));
 			} else {
-				result.push_back(new LexerToken("name", name, fileLineNumber));
+				result.push_back(new LexerToken(TokenKeys::NAME, name, fileLineNumber));
 			}
 		}
 		/*If a character is a digit: 0-9*/
 		else if (std::isdigit(character)) {
-			result.push_back(new LexerToken("integer", scanInteger(iterator, iteratorEnd), fileLineNumber));
+			result.push_back(new LexerToken(TokenKeys::INTEGER, scanInteger(iterator, iteratorEnd), fileLineNumber));
 		}
 		/*If I can't find an appropriate symbol*/
 		else {
