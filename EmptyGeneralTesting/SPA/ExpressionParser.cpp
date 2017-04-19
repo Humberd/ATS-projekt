@@ -1,11 +1,13 @@
 #include "ExpressionParser.h"
 
-ExpressionParser::ExpressionParser() {
+
+ExpressionParser::ExpressionParser(vector<LexerToken*>::iterator& iterator,
+                                   vector<LexerToken*>::iterator& iteratorEnd): ExpressionParser(iterator, iteratorEnd) {
 }
 
 ExpressionParser::~ExpressionParser() {
 }
 
-Node* ExpressionParser::parseEntity(vector<LexerToken*>::iterator& iterator) {
+Node* ExpressionParser::parse() {
 	return nullptr;
 }

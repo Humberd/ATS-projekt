@@ -3,8 +3,9 @@
 
 class ExpressionParser: public ParsingEntity {
 public:
-	ExpressionParser();
+	explicit ExpressionParser(vector<LexerToken*>::iterator& iterator, vector<LexerToken*>::iterator& iteratorEnd);
+
 	~ExpressionParser();
 
-	Node* parseEntity(vector<LexerToken*>::iterator& iterator) override;
+	Node* parse() override;
 };

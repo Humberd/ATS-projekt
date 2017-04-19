@@ -8,67 +8,63 @@ using namespace std;
 
 class MockParser: public ParsingEntity {
 
+
 public:
-	Node* parseEntity(vector<LexerToken*>::iterator& iterator) override {
+	MockParser(vector<LexerToken*>::iterator& iterator,
+	           vector<LexerToken*>::iterator& iteratorEnd) : ParsingEntity(iterator, iteratorEnd) {
+	}
+
+	Node* parse() override {
 		return nullptr;
 	};
 };
 
 TEST_CLASS(ParsingEntityTest) {
 	TEST_METHOD(ParsingEntity_getClassName) {
-		MockParser mockParser;
+		vector<LexerToken*> tokensList;
+		MockParser* mockParser = new MockParser(tokensList.begin(), tokensList.end());
 
-		auto className = mockParser.getClassName();
+		auto className = mockParser->getClassName();
 
 		Assert::IsTrue(className == "class MockParser");
+
+		delete mockParser;
 	}
 
 	TEST_METHOD(ParsingEntity_nextElement_Valid) {
-		MockParser mockParser;
 		vector<LexerToken*> tokensList;
 		tokensList.push_back(nullptr);
 
 		auto iterator = tokensList.begin();
 		auto iteratorEnd = tokensList.end();
 
+		MockParser* mockParser = new MockParser(iterator, iteratorEnd);
+
 		Assert::IsTrue(iterator != iteratorEnd);
-		mockParser.nextElement(iterator);
+		mockParser->nextElement();
 		/*Successfully iterated over 1 element*/
 		Assert::IsTrue(iterator == iteratorEnd);
+
+		delete mockParser;
 	}
 
 	TEST_METHOD(ParsingEntity_nextElement_Invalid_LastElement) {
-		MockParser mockParser;
 		vector<LexerToken*> tokensList;
 		tokensList.push_back(nullptr);
-
 		auto iterator = tokensList.begin();
 		auto iteratorEnd = tokensList.end();
 
 		++iterator;
 
+		MockParser* mockParser = new MockParser(iterator, iteratorEnd);
+
 		Assert::IsTrue(iterator == iteratorEnd);
 
-		mockParser.nextElement(iterator);
-
-		auto pointer = [mockParser, &iterator] {
-			mockParser.nextElement(iterator);
-
-		};
-
+		auto pointer = [mockParser] {
+					mockParser->nextElement();
+				};
 		Assert::ExpectException<ParserException>(pointer);
-	}
 
-	TEST_METHOD(plusplusIterator) {
-		vector<int> myVec;
-
-		auto iterator = myVec.begin();
-
-		try {
-			++iterator;
-		} catch(exception& e) {
-			Logger::WriteMessage("Caught an Exception");
-		}
-		
+		delete mockParser;
 	}
 };

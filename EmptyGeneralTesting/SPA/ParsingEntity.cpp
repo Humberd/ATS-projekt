@@ -1,21 +1,21 @@
 #include "ParsingEntity.h"
 #include "ParserException.h"
 
-ParsingEntity::ParsingEntity() {
+ParsingEntity::ParsingEntity(vector<LexerToken*>::iterator& iterator,
+                             vector<LexerToken*>::iterator& iteratorEnd): iterator(iterator), iteratorEnd(iteratorEnd) {
 }
 
 ParsingEntity::~ParsingEntity() {
 }
 
-void ParsingEntity::nextElement(vector<LexerToken*>::iterator& iterator) const{
-	try {
+void ParsingEntity::nextElement() const {
+	if (iterator != iteratorEnd) {
 		++iterator;
-	} catch (exception& e) {
+	} else {
 		throw ParserException(getClassName() + " - Unexpected end of file");
 	}
 }
 
-
-string ParsingEntity::getClassName() const{
+string ParsingEntity::getClassName() const {
 	return string(typeid(*this).name());
 }

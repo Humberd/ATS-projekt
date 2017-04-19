@@ -6,15 +6,20 @@
 using namespace std;
 
 class ParsingEntity {
+private:
+	vector<LexerToken*>::iterator& iterator;
+	vector<LexerToken*>::iterator& iteratorEnd;
+
 protected:
-	ParsingEntity();
+	explicit ParsingEntity(vector<LexerToken*>::iterator& iterator,
+	              vector<LexerToken*>::iterator& iteratorEnd);
 
 public:
 	virtual ~ParsingEntity();
 
-	virtual Node* parseEntity(vector<LexerToken*>::iterator& iterator) = 0;
+	virtual Node* parse() = 0;
 
-	void nextElement(vector<LexerToken*>::iterator& iterator) const;
+	void nextElement() const;
 
 	string getClassName() const;
 };
