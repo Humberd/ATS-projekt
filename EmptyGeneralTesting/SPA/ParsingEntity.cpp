@@ -1,8 +1,9 @@
 #include "ParsingEntity.h"
 #include "ParserException.h"
 
-ParsingEntity::ParsingEntity(vector<LexerToken*>::iterator& iterator,
-                             vector<LexerToken*>::iterator& iteratorEnd): iterator(iterator), iteratorEnd(iteratorEnd) {
+ParsingEntity::ParsingEntity(ParsersRepository* parsersRepo,
+                             vector<LexerToken*>::iterator& iterator,
+                             vector<LexerToken*>::iterator& iteratorEnd): parsersRepo(parsersRepo), iterator(iterator), iteratorEnd(iteratorEnd) {
 }
 
 ParsingEntity::~ParsingEntity() {

@@ -2,17 +2,20 @@
 #include <vector>
 #include "LexerToken.h"
 #include "Node.h"
+#include "ParsersRepository.h"
 
 using namespace std;
 
 class ParsingEntity {
 private:
+	ParsersRepository* parsersRepo;
 	vector<LexerToken*>::iterator& iterator;
 	vector<LexerToken*>::iterator& iteratorEnd;
 
 protected:
-	explicit ParsingEntity(vector<LexerToken*>::iterator& iterator,
-	              vector<LexerToken*>::iterator& iteratorEnd);
+	explicit ParsingEntity(ParsersRepository* parsersRepo,
+	                       vector<LexerToken*>::iterator& iterator,
+	                       vector<LexerToken*>::iterator& iteratorEnd);
 
 public:
 	virtual ~ParsingEntity();

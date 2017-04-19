@@ -1,15 +1,21 @@
 #include "SourceParser.h"
 #include "ProgramNode.h"
+#include "ExpressionParser.h"
 
-SourceParser::SourceParser() {
+
+SourceParser::SourceParser(vector<LexerToken*>& tokensList): tokensList(tokensList) {
+	auto iterator = tokensList.begin();
+	auto iteratorEnd = tokensList.end();
+
+	parsersRepo = new ParsersRepository;
+	parsersRepo->expressionParser = new ExpressionParser(parsersRepo, iterator, iteratorEnd);
 }
 
 SourceParser::~SourceParser() {
+	delete parsersRepo;
 }
 
-Node* SourceParser::parse(vector<LexerToken*>& tokensList) {
-	auto iterator = tokensList.begin();
-	auto iteratorEnd = tokensList.end();
+Node* SourceParser::parse() {
 
 	return nullptr;
 }

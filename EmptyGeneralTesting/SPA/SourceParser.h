@@ -1,15 +1,17 @@
 #pragma once
 #include "Node.h"
 #include "LexerToken.h"
+#include "ParsersRepository.h"
 
-//using namespace std;
+using namespace std;
 
 class SourceParser {
 private:
-	SourceParser();
-	~SourceParser();
+	ParsersRepository* parsersRepo;
+	vector<LexerToken*>& tokensList;
 
 public:
-
-	static Node* parse(vector<LexerToken*>& tokensList);
+	explicit SourceParser(vector<LexerToken*>& tokensList);
+	~SourceParser();
+	Node* parse();
 };

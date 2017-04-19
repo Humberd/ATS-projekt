@@ -1,8 +1,9 @@
 #include "ExpressionParser.h"
 
 
-ExpressionParser::ExpressionParser(vector<LexerToken*>::iterator& iterator,
-                                   vector<LexerToken*>::iterator& iteratorEnd): ExpressionParser(iterator, iteratorEnd) {
+ExpressionParser::ExpressionParser(ParsersRepository* parsersRepo,
+                                   vector<LexerToken*>::iterator& iterator,
+                                   vector<LexerToken*>::iterator& iteratorEnd): ParsingEntity(parsersRepo, iterator, iteratorEnd) {
 }
 
 ExpressionParser::~ExpressionParser() {
