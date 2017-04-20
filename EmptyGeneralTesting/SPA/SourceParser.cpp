@@ -7,9 +7,13 @@ SourceParser::SourceParser(vector<LexerToken*>& tokensList) : tokensList(tokensL
 	auto iterator = tokensList.begin();
 	auto iteratorEnd = tokensList.end();
 
+	parsersRepo = new ParsersRepository;
+	parsersRepo->expressionParser = new ExpressionParser(parsersRepo, iterator, iteratorEnd);
+
 }
 
 SourceParser::~SourceParser() {
+	delete parsersRepo;
 }
 
 Node* SourceParser::parse() {

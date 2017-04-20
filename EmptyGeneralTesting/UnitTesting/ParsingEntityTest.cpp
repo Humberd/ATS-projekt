@@ -8,8 +8,9 @@ using namespace std;
 
 class MockParser: public ParsingEntity {
 public:
-	MockParser(vector<LexerToken*>::iterator& iterator,
-	           vector<LexerToken*>::iterator& iteratorEnd) : ParsingEntity( iterator, iteratorEnd) {
+	MockParser(ParsersRepository* parsersRepo,
+	           vector<LexerToken*>::iterator& iterator,
+	           vector<LexerToken*>::iterator& iteratorEnd) : ParsingEntity(parsersRepo, iterator, iteratorEnd) {
 	}
 
 	Node* parse() override {
@@ -20,7 +21,7 @@ public:
 TEST_CLASS(ParsingEntityTest) {
 	TEST_METHOD(ParsingEntity_getClassName) {
 		vector<LexerToken*> tokensList;
-		MockParser* mockParser = new MockParser(tokensList.begin(), tokensList.end());
+		MockParser* mockParser = new MockParser(nullptr, tokensList.begin(), tokensList.end());
 
 		auto className = mockParser->getClassName();
 
@@ -36,7 +37,7 @@ TEST_CLASS(ParsingEntityTest) {
 		auto iterator = tokensList.begin();
 		auto iteratorEnd = tokensList.end();
 
-		MockParser* mockParser = new MockParser( iterator, iteratorEnd);
+		MockParser* mockParser = new MockParser(nullptr, iterator, iteratorEnd);
 
 		Assert::IsTrue(iterator != iteratorEnd);
 		mockParser->nextElement();
@@ -54,7 +55,7 @@ TEST_CLASS(ParsingEntityTest) {
 
 		++iterator;
 
-		MockParser* mockParser = new MockParser( iterator, iteratorEnd);
+		MockParser* mockParser = new MockParser(nullptr, iterator, iteratorEnd);
 
 		Assert::IsTrue(iterator == iteratorEnd);
 

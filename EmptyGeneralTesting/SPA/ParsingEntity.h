@@ -9,11 +9,13 @@ class ParsersRepository;
 
 class ParsingEntity {
 private:
+	ParsersRepository* parsersRepo;
 	vector<LexerToken*>::iterator& iterator;
 	vector<LexerToken*>::iterator& iteratorEnd;
 
 protected:
-	explicit ParsingEntity(vector<LexerToken*>::iterator& iterator,
+	explicit ParsingEntity(ParsersRepository* parsersRepo,
+	                       vector<LexerToken*>::iterator& iterator,
 	                       vector<LexerToken*>::iterator& iteratorEnd);
 
 public:
