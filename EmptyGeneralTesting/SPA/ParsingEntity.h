@@ -8,12 +8,11 @@ using namespace std;
 class ParsersRepository;
 
 class ParsingEntity {
-private:
+protected:
 	ParsersRepository* parsersRepo;
 	vector<LexerToken*>::iterator& iterator;
 	vector<LexerToken*>::iterator& iteratorEnd;
 
-protected:
 	explicit ParsingEntity(ParsersRepository* parsersRepo,
 	                       vector<LexerToken*>::iterator& iterator,
 	                       vector<LexerToken*>::iterator& iteratorEnd);
