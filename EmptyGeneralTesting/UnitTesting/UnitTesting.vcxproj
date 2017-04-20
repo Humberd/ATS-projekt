@@ -163,6 +163,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ExpressionParserTest.cpp" />
     <ClCompile Include="KeywordsTest.cpp" />
     <ClCompile Include="LexerTest.cpp" />
     <ClCompile Include="LexerTokenTest.cpp" />
