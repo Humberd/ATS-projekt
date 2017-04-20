@@ -5,6 +5,8 @@
 
 using namespace std;
 
+class ParsersRepository;
+
 class ParsingEntity {
 private:
 	vector<LexerToken*>::iterator& iterator;
