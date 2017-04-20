@@ -3,6 +3,9 @@
 #include "LexerToken.h"
 #include "Node.h"
 #include "ParsingEntity.h"
+#include "ParsersRepository.h"
+
+using namespace std;
 
 using namespace std;
 

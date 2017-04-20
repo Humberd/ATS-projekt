@@ -2,6 +2,7 @@
 #include <vector>
 #include "LexerToken.h"
 #include "Node.h"
+#include "ParsersRepository.h"
 
 using namespace std;
 
