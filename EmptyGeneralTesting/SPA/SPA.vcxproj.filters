@@ -186,9 +186,6 @@
     <ClInclude Include="ExpressionParser.h">
       <Filter>Header Files\SourceParser\Parser</Filter>
     </ClInclude>
-    <ClInclude Include="ParsersRepository.h">
-      <Filter>Header Files\SourceParser\Parser</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -291,9 +288,6 @@
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
     <ClCompile Include="ExpressionParser.cpp">
-      <Filter>Source Files\SourceParser\Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="ParsersRepository.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
   </ItemGroup>

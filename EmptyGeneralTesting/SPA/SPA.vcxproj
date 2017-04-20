@@ -23,7 +23,6 @@
     <ClInclude Include="LexerException.h" />
     <ClInclude Include="LexerToken.h" />
     <ClInclude Include="Operators.h" />
-    <ClInclude Include="ParsersRepository.h" />
     <ClInclude Include="ParsingEntity.h" />
     <ClInclude Include="SourceParser.h" />
     <ClInclude Include="ParserException.h" />
@@ -71,7 +70,6 @@
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Operators.cpp" />
-    <ClCompile Include="ParsersRepository.cpp" />
     <ClCompile Include="ParsingEntity.cpp" />
     <ClCompile Include="SourceParser.cpp" />
     <ClCompile Include="ParserException.cpp" />
