@@ -6,4 +6,5 @@ ParsersRepository::ParsersRepository() {
 
 ParsersRepository::~ParsersRepository() {
 	delete expressionParser;
+	delete assignParser;
 }

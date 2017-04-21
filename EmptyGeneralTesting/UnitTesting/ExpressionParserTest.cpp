@@ -13,8 +13,6 @@ TEST_CLASS(ExpressionParserTest) {
 	TEST_METHOD(ExpressionParser_parse_Valid_testCase1) {
 		vector<LexerToken*> tokensList;
 		tokensList.push_back(new LexerToken(TokenKeys::NAME, "x", 1));
-		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::EQUALS_SIGN, 1));
-		tokensList.push_back(new LexerToken(TokenKeys::NAME, "x", 1));
 		tokensList.push_back(new LexerToken(TokenKeys::OPERATOR, Operators::PLUS_SIGN, 1));
 		tokensList.push_back(new LexerToken(TokenKeys::NAME, "y", 1));
 		tokensList.push_back(new LexerToken(TokenKeys::OPERATOR, Operators::TIMES_SIGN, 1));
@@ -30,9 +28,7 @@ TEST_CLASS(ExpressionParserTest) {
 		ExpressionParser* expParser = new ExpressionParser(parsersRepository, iterator, iteratorEnd);
 
 		auto node = expParser->parse();
-
 		node->validate();
-
 		node->prettyPrint();
 
 		for (auto token : tokensList) {

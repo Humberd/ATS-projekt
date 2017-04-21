@@ -189,6 +189,9 @@
     <ClInclude Include="ParsersRepository.h">
       <Filter>Header Files\SourceParser\Parser</Filter>
     </ClInclude>
+    <ClInclude Include="AssignParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -294,6 +297,9 @@
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
     <ClCompile Include="ParsersRepository.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignParser.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include "SourceParser.h"
 #include "ProgramNode.h"
 #include "ExpressionParser.h"
+#include "AssignParser.h"
 
 
 SourceParser::SourceParser(vector<LexerToken*>& tokensList) : tokensList(tokensList) {
@@ -9,6 +10,7 @@ SourceParser::SourceParser(vector<LexerToken*>& tokensList) : tokensList(tokensL
 
 	parsersRepo = new ParsersRepository;
 	parsersRepo->expressionParser = new ExpressionParser(parsersRepo, iterator, iteratorEnd);
+	parsersRepo->assignParser = new AssignParser(parsersRepo, iterator, iteratorEnd);
 
 }
 

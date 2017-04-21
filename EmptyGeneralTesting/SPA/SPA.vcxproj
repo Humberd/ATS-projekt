@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="Affects.h" />
     <ClInclude Include="AssignNode.h" />
+    <ClInclude Include="AssignParser.h" />
     <ClInclude Include="ASTException.h" />
     <ClInclude Include="CallNode.h" />
     <ClInclude Include="ConstantNode.h" />
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssignNode.cpp" />
+    <ClCompile Include="AssignParser.cpp" />
     <ClCompile Include="ASTException.cpp" />
     <ClCompile Include="CallNode.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
