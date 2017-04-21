@@ -13,7 +13,7 @@ void ParsingEntity::nextElement() const {
 	if (iterator != iteratorEnd) {
 		++iterator;
 	} else {
-		throw ParserException(getClassName() + " - Unexpected end of file");
+		throw ParserException(getClassName() + " - Unexpected end of file: " + (*(iterator - 1))->toString());
 	}
 }
 

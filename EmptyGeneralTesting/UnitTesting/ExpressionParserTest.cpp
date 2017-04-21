@@ -21,6 +21,7 @@ TEST_CLASS(ExpressionParserTest) {
 		tokensList.push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
 		tokensList.push_back(new LexerToken(TokenKeys::OPERATOR, Operators::PLUS_SIGN, 1));
 		tokensList.push_back(new LexerToken(TokenKeys::INTEGER, "4", 1));
+		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
 
 		auto iterator = tokensList.begin();
 		auto iteratorEnd = tokensList.end();
@@ -28,7 +29,9 @@ TEST_CLASS(ExpressionParserTest) {
 
 		ExpressionParser* expParser = new ExpressionParser(parsersRepository, iterator, iteratorEnd);
 
-		expParser->parse();
+		auto node = expParser->parse();
+
+		node->validate();
 
 		for (auto token : tokensList) {
 			delete token;
