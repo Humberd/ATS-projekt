@@ -16,4 +16,7 @@ public:
 
 	// pozwala tylko na 1 StmLstNode
 	void addChild(Node* child) override;
+
+
+	string toString() const override;
 };

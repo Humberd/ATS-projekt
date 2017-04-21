@@ -26,3 +26,7 @@ void ProcedureNode::addChild(Node* child) {
 
 	this->_addChild(child);
 }
+
+string ProcedureNode::toString() const {
+	return Node::toString() + " - name: " + name;
+}

@@ -19,3 +19,8 @@ void CallNode::setProcedureName(string procedureName) {
 void CallNode::addChild(Node* child) {
 	throw InvalidArgumentException(this, "CallNode accepts 0 Nodes as a child, but instead got: " + string(typeid(*child).name()));
 }
+
+
+string CallNode::toString() const {
+	return Node::toString() + "procName: " + procedureName;
+}

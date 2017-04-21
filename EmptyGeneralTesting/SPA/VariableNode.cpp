@@ -21,3 +21,7 @@ string VariableNode::getName() const {
 void VariableNode::addChild(Node* child) {
 	throw InvalidArgumentException(this, "VariableNode accepts 0 Nodes as a child, but instead got: " + string(typeid(*child).name()));
 }
+
+string VariableNode::toString() const {
+	return Node::toString() + " - name: " + name;
+}

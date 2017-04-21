@@ -44,6 +44,15 @@ public:
 	/*Getting a line number*/
 	int getLineNumber() const;
 
+	/*Gets the name of the class, for example: "class VariableNode"*/
+	string getClassName() const;
+
+	virtual string toString() const;
+
+	/*Prints all the node details and its children*/
+	void prettyPrint(int indent);
+	void prettyPrint();
+
 	/*Need to check if there is no loops when traversing a tree
 	* and if there is a required number of children nodes
 	*/
@@ -54,5 +63,4 @@ public:
 
 	//////////////////////
 	bool isStartedDeleting() const;
-
 };

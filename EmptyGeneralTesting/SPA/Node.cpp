@@ -1,8 +1,8 @@
 #include "Node.h"
 #include "ValidateException.h"
-#include <cassert>
 #include "InvalidArgumentException.h"
 #include <CppUnitTestLogger.h>
+#include <sstream>
 
 using namespace std;
 
@@ -85,4 +85,31 @@ int Node::getLineNumber() const {
 
 bool Node::isStartedDeleting() const {
 	return this->startedDeleting;
+}
+
+string Node::getClassName() const {
+	return string(typeid(*this).name());
+}
+
+void Node::prettyPrint(int indent) {
+	stringstream ss;
+
+	for (int i = 0; i < indent; i++) {
+		ss << "|  ";
+	}
+	ss << toString();
+
+	Microsoft::VisualStudio::CppUnitTestFramework::Logger::WriteMessage(ss.str().c_str());
+
+	for (auto child : children) {
+		child->prettyPrint(indent + 1);
+	}
+}
+
+void Node::prettyPrint() {
+	prettyPrint(0);
+}
+
+string Node::toString() const {
+	return getClassName() + "(" + to_string(lineNumber) + ")";
 }

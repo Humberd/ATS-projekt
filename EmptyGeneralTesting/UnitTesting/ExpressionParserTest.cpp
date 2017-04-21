@@ -33,6 +33,8 @@ TEST_CLASS(ExpressionParserTest) {
 
 		node->validate();
 
+		node->prettyPrint();
+
 		for (auto token : tokensList) {
 			delete token;
 		}
