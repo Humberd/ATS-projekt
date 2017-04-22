@@ -31,9 +31,9 @@ TEST_CLASS(AssignParserTest) {
 		ParsersRepository* parsersRepository = new ParsersRepository;
 		parsersRepository->expressionParser = new ExpressionParserMock(parsersRepository, iterator, iteratorEnd);
 
-		AssignParser* assParser = new AssignParser(parsersRepository, iterator, iteratorEnd);
+		AssignParser* assignParser = new AssignParser(parsersRepository, iterator, iteratorEnd);
 
-		auto node = assParser->parse();
+		auto node = assignParser->parse();
 		node->validate();
 
 		/*
@@ -56,7 +56,7 @@ TEST_CLASS(AssignParserTest) {
 		for (auto token : tokensList) {
 			delete token;
 		}
-		delete node , assParser , parsersRepository;
+		delete node , assignParser , parsersRepository;
 	}
 
 	TEST_METHOD(AssignParser_parse_Invalid) {

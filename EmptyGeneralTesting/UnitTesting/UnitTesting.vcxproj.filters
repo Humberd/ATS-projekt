@@ -116,6 +116,9 @@
     <ClCompile Include="ExpressinoParserMock.cpp">
       <Filter>Source Files\SourceParser\mocks</Filter>
     </ClCompile>
+    <ClCompile Include="CallParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">
