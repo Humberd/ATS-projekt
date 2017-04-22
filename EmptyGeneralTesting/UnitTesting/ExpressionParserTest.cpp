@@ -15,7 +15,28 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
 TEST_CLASS(ExpressionParserTest) {
+
 	TEST_METHOD(ExpressionParser_parse_Valid_testCase1) {
+		vector<LexerToken*> tokensList;
+
+		tokensList.push_back(new LexerToken(TokenKeys::INTEGER, "10", 1));
+		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
+
+		auto iterator = tokensList.begin();
+		auto iteratorEnd = tokensList.end();
+		ParsersRepository* parsersRepository = new ParsersRepository;
+
+		ExpressionParser* expParser = new ExpressionParser(parsersRepository, iterator, iteratorEnd);
+
+		auto node = expParser->parse();
+
+		ConstantNode* constantNode = dynamic_cast<ConstantNode*>(node);
+		Assert::IsNotNull(constantNode);
+		Assert::IsTrue(constantNode->getValue() == 10);
+		Assert::IsTrue(constantNode->getChildren().size() == 0);
+	}
+
+	TEST_METHOD(ExpressionParser_parse_Valid_testCase2) {
 		vector<LexerToken*> tokensList;
 		/*x + y * 5 + 4; */
 		tokensList.push_back(new LexerToken(TokenKeys::NAME, "x", 1));
@@ -114,6 +135,14 @@ TEST_CLASS(ExpressionParserTest) {
 
 		/*no semicolon*/
 		list = new vector<LexerToken*>();
+		list->push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
+		list->push_back(new LexerToken(TokenKeys::OPERATOR, Operators::TIMES_SIGN, 1));
+		list->push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
+		invalidCasesList.push_back(list);
+
+		/*start with invalid character*/
+		list = new vector<LexerToken*>();
+		list->push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::EQUALS_SIGN, 1));
 		list->push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
 		list->push_back(new LexerToken(TokenKeys::OPERATOR, Operators::TIMES_SIGN, 1));
 		list->push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
