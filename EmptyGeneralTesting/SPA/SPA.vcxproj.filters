@@ -201,6 +201,9 @@
     <ClInclude Include="WhileParser.h">
       <Filter>Header Files\SourceParser\Parser</Filter>
     </ClInclude>
+    <ClInclude Include="StatementListParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -318,6 +321,9 @@
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
     <ClCompile Include="IfParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementListParser.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
   </ItemGroup>

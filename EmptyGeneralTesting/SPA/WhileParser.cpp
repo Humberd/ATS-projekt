@@ -1,5 +1,6 @@
 #include "WhileParser.h"
 #include "ParsersRepository.h"
+#include "ParserException.h"
 
 WhileParser::WhileParser(ParsersRepository* parsersRepo,
                          vector<LexerToken*>::iterator& iterator,
@@ -10,5 +11,5 @@ WhileParser::~WhileParser() {
 }
 
 Node* WhileParser::parse() {
-	return nullptr;
+	throw ParserException("dd");
 }

@@ -49,6 +49,7 @@
     <ClInclude Include="ReferenceNode.h" />
     <ClInclude Include="SpecialCharacters.h" />
     <ClInclude Include="StatementListNode.h" />
+    <ClInclude Include="StatementListParser.h" />
     <ClInclude Include="StatementNode.h" />
     <ClInclude Include="TimesNode.h" />
     <ClInclude Include="TokenKeys.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="SourceFileManager.cpp" />
     <ClCompile Include="SpecialCharacters.cpp" />
     <ClCompile Include="StatementListNode.cpp" />
+    <ClCompile Include="StatementListParser.cpp" />
     <ClCompile Include="StatementNode.cpp" />
     <ClCompile Include="TimesNode.cpp" />
     <ClCompile Include="TokenKeys.cpp" />

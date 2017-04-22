@@ -1,5 +1,6 @@
 #include "IfParser.h"
 #include "ParsersRepository.h"
+#include "ParserException.h"
 
 IfParser::IfParser(ParsersRepository* parsersRepo,
                    vector<LexerToken*>::iterator& iterator,
@@ -10,5 +11,5 @@ IfParser::~IfParser() {
 }
 
 Node* IfParser::parse() {
-	return nullptr;;
+	throw ParserException("fd");
 }

@@ -57,9 +57,9 @@ void Node::validate() {
 		for (auto child : this->getChildren()) {
 			child->validate();
 		}
-	} catch (ValidateException* e) {
+	} catch (ValidateException&) {
 		this->startedValidating = false;
-		throw e;
+		throw;
 	}
 }
 
