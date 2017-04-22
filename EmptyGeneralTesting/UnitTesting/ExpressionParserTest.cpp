@@ -9,6 +9,7 @@
 #include "../SPA/ConstantNode.h"
 #include "../SPA/VariableNode.h"
 #include "../SPA/TimesNode.h"
+#include "../SPA/ParserException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -34,7 +35,6 @@ TEST_CLASS(ExpressionParserTest) {
 
 		auto node = expParser->parse();
 		node->validate();
-		node->prettyPrint();
 
 		/*A tree should look like this
 		 *1.					+
@@ -75,5 +75,74 @@ TEST_CLASS(ExpressionParserTest) {
 		for (auto token : tokensList) {
 			delete token;
 		}
+	}
+
+	TEST_METHOD(ExpressinParser_parse_Invalid) {
+		vector<vector<LexerToken*>*> invalidCasesList;
+
+		vector<LexerToken*>* list= new vector<LexerToken*>();
+		//empty case
+		invalidCasesList.push_back(list);
+
+		/*need to have an operator between x and y*/
+		list = new vector<LexerToken*>();
+		list->push_back(new LexerToken(TokenKeys::NAME, "x", 1));
+		list->push_back(new LexerToken(TokenKeys::NAME, "y", 1));
+		list->push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
+		invalidCasesList.push_back(list);
+
+		/*need to have a value after minus_sign*/
+		list = new vector<LexerToken*>();
+		list->push_back(new LexerToken(TokenKeys::NAME, "x", 1));
+		list->push_back(new LexerToken(TokenKeys::OPERATOR, Operators::MINUS_SIGN, 1));
+		list->push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
+		invalidCasesList.push_back(list);
+
+		/*don't have an operator between name and integer*/
+		list = new vector<LexerToken*>();
+		list->push_back(new LexerToken(TokenKeys::NAME, "x", 1));
+		list->push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
+		list->push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
+		invalidCasesList.push_back(list);
+
+		/*cannot begin with operator*/
+		list = new vector<LexerToken*>();
+		list->push_back(new LexerToken(TokenKeys::OPERATOR, Operators::MINUS_SIGN, 1));
+		list->push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
+		list->push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
+		invalidCasesList.push_back(list);
+
+		/*no semicolon*/
+		list = new vector<LexerToken*>();
+		list->push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
+		list->push_back(new LexerToken(TokenKeys::OPERATOR, Operators::TIMES_SIGN, 1));
+		list->push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
+		invalidCasesList.push_back(list);
+
+		ParsersRepository* parsersRepository = new ParsersRepository;
+
+		for (auto caseList: invalidCasesList) {
+			auto iterator = caseList->begin();
+			auto iteratorEnd = caseList->end();
+			
+			ExpressionParser* expParser = new ExpressionParser(parsersRepository, iterator, iteratorEnd);
+
+			auto pointer = [expParser] {
+				expParser->parse();
+			};
+
+			Assert::ExpectException<ParserException>(pointer);
+
+		}
+		
+		for (auto caseList : invalidCasesList) {
+			for (auto token: *caseList) {
+				delete token;
+			}
+			delete caseList;
+		}
+
+		invalidCasesList.clear();
+
 	}
 };
