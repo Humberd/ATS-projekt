@@ -17,6 +17,13 @@ void ParsingEntity::nextElement() const {
 	}
 }
 
+
+void ParsingEntity::throwOnEOF() const {
+	if (iterator == iteratorEnd) {
+		throw ParserException(getClassName() + " - Unexpected end of file");
+	}
+}
+
 string ParsingEntity::getClassName() const {
 	return string(typeid(*this).name());
 }

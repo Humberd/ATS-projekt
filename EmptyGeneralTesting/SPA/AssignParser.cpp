@@ -16,9 +16,7 @@ Node* AssignParser::parse() {
 	Node* leftExpr;
 	Node* assignNode;
 
-	if (iterator == iteratorEnd) {
-		throw ParserException(getClassName() + " - Unexpected end of file");
-	}
+	throwOnEOF();
 
 	if ((*iterator)->isName()) {
 		leftExpr = new VariableNode((*iterator)->getFileLineNumber(), (*iterator)->getValue());
@@ -27,6 +25,7 @@ Node* AssignParser::parse() {
 		throw ParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
 	}
 	nextElement();
+	throwOnEOF();
 
 	if ((*iterator)->isEquals()) {
 		//empty
@@ -34,6 +33,7 @@ Node* AssignParser::parse() {
 		throw ParserException(getClassName() + " - expected an equals sign, but instead got: " + (*iterator)->toString());
 	}
 	nextElement();
+	throwOnEOF();
 
 	/*Calling Expression Parser*/
 	Node* rightExpr = parsersRepo->expressionParser->parse();

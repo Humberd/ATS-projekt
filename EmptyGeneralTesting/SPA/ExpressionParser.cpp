@@ -62,9 +62,8 @@ Node* ExpressionParser::parse() {
 	vector<ExpressionNode*> expressionNodes;
 	vector<OperatorNode*> operatorNodes;
 
-	if (iterator == iteratorEnd) {
-		throw ParserException(getClassName() + " - Unexpected end of file");
-	}
+//	throwEOF();
+	throwOnEOF();
 
 	int numberOfTimes = 0;
 	int numberOfPlusMinus = 0;
@@ -74,9 +73,7 @@ Node* ExpressionParser::parse() {
 	 */
 	int ct = 0;
 	while (true) {
-		if (iterator == iteratorEnd) {
-			throw ParserException(getClassName() + " - Unexpected end of file");
-		}
+		throwOnEOF();
 		if ((*iterator)->isName() && ct == 0) {
 			expressionNodes.push_back(new VariableNode((*iterator)->getFileLineNumber(), (*iterator)->getValue()));
 			ct = 1;

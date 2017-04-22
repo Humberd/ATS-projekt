@@ -24,5 +24,7 @@ public:
 
 	void nextElement() const;
 
+	void throwOnEOF() const;
+
 	string getClassName() const;
 };
