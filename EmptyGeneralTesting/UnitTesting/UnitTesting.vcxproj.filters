@@ -34,6 +34,15 @@
     <Filter Include="Source Files\SourceParser\Parser">
       <UniqueIdentifier>{abc19594-8039-4f51-bf95-0345f13634c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SourceParser">
+      <UniqueIdentifier>{1b6c67be-3382-416c-9a2e-1cfb1f6199fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SourceParser\mocks">
+      <UniqueIdentifier>{d979d175-e15d-4517-a958-20134a5407ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\mocks">
+      <UniqueIdentifier>{92b53ca5-f52b-4d9a-8654-bc2b1bb66650}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -44,6 +53,12 @@
     </ClInclude>
     <ClInclude Include="MockNode.h">
       <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionNodeMock.h">
+      <Filter>Header Files\SourceParser\mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionParserMock.h">
+      <Filter>Header Files\SourceParser\mocks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +106,15 @@
     </ClCompile>
     <ClCompile Include="ExpressionParserTest.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionNodeMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressinoParserMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

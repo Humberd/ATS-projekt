@@ -34,6 +34,11 @@ TEST_CLASS(ExpressionParserTest) {
 		Assert::IsNotNull(constantNode);
 		Assert::IsTrue(constantNode->getValue() == 10);
 		Assert::IsTrue(constantNode->getChildren().size() == 0);
+
+		for (auto token : tokensList) {
+			delete token;
+		}
+		delete node, expParser, parsersRepository;
 	}
 
 	TEST_METHOD(ExpressionParser_parse_Valid_testCase2) {
@@ -96,6 +101,8 @@ TEST_CLASS(ExpressionParserTest) {
 		for (auto token : tokensList) {
 			delete token;
 		}
+
+		delete node, expParser, parsersRepository;
 	}
 
 	TEST_METHOD(ExpressinParser_parse_Invalid) {
@@ -162,6 +169,7 @@ TEST_CLASS(ExpressionParserTest) {
 
 			Assert::ExpectException<ParserException>(pointer);
 
+			delete expParser;
 		}
 		
 		for (auto caseList : invalidCasesList) {
@@ -171,7 +179,8 @@ TEST_CLASS(ExpressionParserTest) {
 			delete caseList;
 		}
 
-		invalidCasesList.clear();
+		delete parsersRepository;
 
+		invalidCasesList.clear();
 	}
 };
