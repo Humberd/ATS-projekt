@@ -5,7 +5,8 @@ ParsersRepository::ParsersRepository() {
 	assignParser = nullptr;
 	callParser = nullptr;
 	whileParser = nullptr;
-	ifparser = nullptr;
+	ifParser = nullptr;
+	statementListParser = nullptr;
 }
 
 ParsersRepository::~ParsersRepository() {
@@ -13,5 +14,6 @@ ParsersRepository::~ParsersRepository() {
 	delete assignParser;
 	delete callParser;
 	delete whileParser;
-	delete ifparser;
+	delete ifParser;
+	delete statementListParser;
 }

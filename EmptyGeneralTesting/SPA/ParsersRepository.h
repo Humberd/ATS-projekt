@@ -9,7 +9,8 @@ public:
 	ParsingEntity* assignParser;
 	ParsingEntity* callParser;
 	ParsingEntity* whileParser;
-	ParsingEntity* ifparser;
+	ParsingEntity* ifParser;
+	ParsingEntity* statementListParser;
 
 	ParsersRepository();
 	~ParsersRepository();

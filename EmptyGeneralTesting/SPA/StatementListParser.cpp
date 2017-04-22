@@ -25,13 +25,14 @@ Node* StatementListParser::parse() {
 	nextElement();
 
 	while (true) {
-		stringstream errorsStream;
+		stringstream* errorsStream = new basic_stringstream<char>;
 
 		throwOnEOF();
 
 		if ((*iterator)->isCloseBrace()) {
 			if (statementListNode->getChildren().size() != 0) {
 				nextElement();
+				delete errorsStream, statementListNode;
 				break;
 			} else {
 				throw ParserException(getClassName() + " - there need to be at least one Statement: " + (*iterator)->toString());
@@ -45,7 +46,7 @@ Node* StatementListParser::parse() {
 			nextElement();
 			continue;
 		} catch (ParserException& e) {
-			errorsStream << e.what() << "\n";
+			*errorsStream << e.what() << "\n";
 		}
 
 		try {
@@ -54,7 +55,7 @@ Node* StatementListParser::parse() {
 			nextElement();
 			continue;
 		} catch (ParserException& e) {
-			errorsStream << e.what() << "\n";
+			*errorsStream << e.what() << "\n";
 		}
 
 		try {
@@ -63,19 +64,22 @@ Node* StatementListParser::parse() {
 			nextElement();
 			continue;
 		} catch (ParserException& e) {
-			errorsStream << e.what() << "\n";
+			*errorsStream << e.what() << "\n";
 		}
 
 		try {
-			auto statementNode = parsersRepo->ifparser->parse();
+			auto statementNode = parsersRepo->ifParser->parse();
 			statementListNode->addChild(statementNode);
 			nextElement();
 			continue;
 		} catch (ParserException& e) {
-			errorsStream << e.what() << "\n";
+			*errorsStream << e.what() << "\n";
 		}
 
-		throw ParserException(getClassName() + " - " + errorsStream.str());
+		string errorsString = (*errorsStream).str();
+		delete errorsStream, statementListNode;
+
+		throw ParserException(getClassName() + " - " + errorsString);
 	}
 
 	return statementListNode;
