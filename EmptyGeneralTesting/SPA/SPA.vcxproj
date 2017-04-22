@@ -16,6 +16,7 @@
     <ClInclude Include="AssignParser.h" />
     <ClInclude Include="ASTException.h" />
     <ClInclude Include="CallNode.h" />
+    <ClInclude Include="CallParser.h" />
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="ExpressionParser.h" />
@@ -61,6 +62,7 @@
     <ClCompile Include="AssignParser.cpp" />
     <ClCompile Include="ASTException.cpp" />
     <ClCompile Include="CallNode.cpp" />
+    <ClCompile Include="CallParser.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
     <ClCompile Include="ExpressionParser.cpp" />

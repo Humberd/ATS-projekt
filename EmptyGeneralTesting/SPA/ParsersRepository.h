@@ -7,6 +7,7 @@ class ParsersRepository {
 public:
 	ParsingEntity* expressionParser;
 	ParsingEntity* assignParser;
+	ParsingEntity* callParser;
 
 	ParsersRepository();
 	~ParsersRepository();

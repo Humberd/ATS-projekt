@@ -192,6 +192,9 @@
     <ClInclude Include="AssignParser.h">
       <Filter>Header Files\SourceParser\Parser</Filter>
     </ClInclude>
+    <ClInclude Include="CallParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -300,6 +303,9 @@
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
     <ClCompile Include="AssignParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CallParser.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
   </ItemGroup>
