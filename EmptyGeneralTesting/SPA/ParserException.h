@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class ParserException: exception {
+class ParserException: public exception {
 public:
 	explicit ParserException(char const* _Message);
 

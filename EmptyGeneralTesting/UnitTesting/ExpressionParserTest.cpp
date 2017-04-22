@@ -5,6 +5,8 @@
 #include "../SPA/SpecialCharacters.h"
 #include "../SPA/Operators.h"
 #include "../SPA/ParsersRepository.h"
+#include "../SPA/PlusNode.h"
+#include "../SPA/ConstantNode.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -30,6 +32,14 @@ TEST_CLASS(ExpressionParserTest) {
 		auto node = expParser->parse();
 		node->validate();
 		node->prettyPrint();
+
+		Assert::IsNotNull(dynamic_cast<PlusNode*>(node));
+		Assert::IsTrue(node->getChildren().size() == 2);
+		PlusNode* c1left = dynamic_cast<PlusNode*>(node->getChild(0));
+		ConstantNode* c1right = dynamic_cast<ConstantNode*>(node->getChild(1));
+		Assert::IsNotNull(c1right);
+		Assert::IsTrue(c1right->getValue() == 4);
+
 
 		for (auto token : tokensList) {
 			delete token;
