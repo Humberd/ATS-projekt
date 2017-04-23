@@ -11,7 +11,6 @@
 #include "../SPA/AssignNode.h"
 #include "../SPA/VariableNode.h"
 #include "../SPA/ParserException.h"
-#include "../SPA/Operators.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;

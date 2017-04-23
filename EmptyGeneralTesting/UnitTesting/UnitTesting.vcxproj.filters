@@ -60,6 +60,18 @@
     <ClInclude Include="ExpressionParserMock.h">
       <Filter>Header Files\SourceParser\mocks</Filter>
     </ClInclude>
+    <ClInclude Include="WhileParserMock.h">
+      <Filter>Header Files\SourceParser\mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="IfParserMock.h">
+      <Filter>Header Files\SourceParser\mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignParserMock.h">
+      <Filter>Header Files\SourceParser\mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="CallParserMock.h">
+      <Filter>Header Files\SourceParser\mocks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -113,14 +125,29 @@
     <ClCompile Include="ExpressionNodeMock.cpp">
       <Filter>Source Files\SourceParser\mocks</Filter>
     </ClCompile>
-    <ClCompile Include="ExpressinoParserMock.cpp">
-      <Filter>Source Files\SourceParser\mocks</Filter>
-    </ClCompile>
     <ClCompile Include="CallParserTest.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
     <ClCompile Include="StatementListParserTest.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="WhileParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionParserMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
+    </ClCompile>
+    <ClCompile Include="WhileParserMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
+    </ClCompile>
+    <ClCompile Include="IfParserMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignParserMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
+    </ClCompile>
+    <ClCompile Include="CallParserMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
