@@ -2,7 +2,7 @@
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
 
-ConstantNode::ConstantNode(int lineNumber, int value) :Node(lineNumber, new RangeNumber(0, 0)) {
+ConstantNode::ConstantNode(int lineNumber, int value) : ReferenceNode(lineNumber) {
 	this->value = value;
 }
 
@@ -19,4 +19,8 @@ int ConstantNode::getValue() const {
 
 void ConstantNode::addChild(Node* child) {
 	throw InvalidArgumentException(this, "WhileNode accepts 0 Nodes as a child, but instead got: " + string(typeid(*child).name()));
+}
+
+string ConstantNode::toString() const {
+	return Node::toString() + " - value: " + to_string(value);
 }

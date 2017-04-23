@@ -14,4 +14,6 @@ public:
 
 	// pozwala tylko na 0 childow
 	void addChild(Node* child) override;
+
+	string toString() const override;
 };

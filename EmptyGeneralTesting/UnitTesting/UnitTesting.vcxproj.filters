@@ -22,6 +22,27 @@
     <Filter Include="Source Files\helpers">
       <UniqueIdentifier>{2929f5e0-c1d3-45fb-a82e-2fe5d9264129}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SourceParser">
+      <UniqueIdentifier>{48c4935c-15dc-494c-8df2-2b440ee08489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\SourceParser">
+      <UniqueIdentifier>{b699830c-3986-487a-990f-8402e07657ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Lexer">
+      <UniqueIdentifier>{050740a3-cef5-4e90-9cd6-04691bc35470}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Parser">
+      <UniqueIdentifier>{abc19594-8039-4f51-bf95-0345f13634c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SourceParser">
+      <UniqueIdentifier>{1b6c67be-3382-416c-9a2e-1cfb1f6199fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SourceParser\mocks">
+      <UniqueIdentifier>{d979d175-e15d-4517-a958-20134a5407ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\mocks">
+      <UniqueIdentifier>{92b53ca5-f52b-4d9a-8654-bc2b1bb66650}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -32,6 +53,12 @@
     </ClInclude>
     <ClInclude Include="MockNode.h">
       <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionNodeMock.h">
+      <Filter>Header Files\SourceParser\mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionParserMock.h">
+      <Filter>Header Files\SourceParser\mocks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -53,5 +80,52 @@
     <ClCompile Include="RangeNumberTest.cpp">
       <Filter>Source Files\helpers</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFileManagerTest.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="LexerTest.cpp">
+      <Filter>Source Files\SourceParser\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="LexerTokenTest.cpp">
+      <Filter>Source Files\SourceParser\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="KeywordsTest.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorsTest.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialCharactersTest.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParsingEntityTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionNodeMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressinoParserMock.cpp">
+      <Filter>Source Files\SourceParser\mocks</Filter>
+    </ClCompile>
+    <ClCompile Include="CallParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementListParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TestSource1.txt">
+      <Filter>Resource Files\SourceParser</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -22,7 +22,7 @@
     <ProjectGuid>{74CA3A41-F84C-4C47-B882-5EBF60895525}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>UnitTesting</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -158,22 +158,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ExpressionNodeMock.h" />
+    <ClInclude Include="ExpressionParserMock.h" />
     <ClInclude Include="MockNode.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssignParserTest.cpp" />
+    <ClCompile Include="CallParserTest.cpp" />
+    <ClCompile Include="ExpressinoParserMock.cpp" />
+    <ClCompile Include="ExpressionNodeMock.cpp" />
+    <ClCompile Include="ExpressionParserTest.cpp" />
+    <ClCompile Include="KeywordsTest.cpp" />
+    <ClCompile Include="LexerTest.cpp" />
+    <ClCompile Include="LexerTokenTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
+    <ClCompile Include="OperatorsTest.cpp" />
+    <ClCompile Include="ParsingEntityTest.cpp" />
+    <ClCompile Include="SourceParserTest.cpp" />
     <ClCompile Include="ProcedureNodeTest.cpp" />
     <ClCompile Include="ProgramNodeTest.cpp" />
     <ClCompile Include="RangeNumberTest.cpp" />
+    <ClCompile Include="SourceFileManagerTest.cpp" />
+    <ClCompile Include="SpecialCharactersTest.cpp" />
     <ClCompile Include="StatementListNodeTest.cpp" />
+    <ClCompile Include="StatementListParserTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="TestSource1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
