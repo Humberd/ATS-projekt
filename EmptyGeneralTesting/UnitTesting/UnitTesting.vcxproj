@@ -194,13 +194,10 @@
     <ClCompile Include="OperatorsTest.cpp" />
     <ClCompile Include="ParsingEntityTest.cpp" />
     <ClCompile Include="SourceParserTest.cpp" />
-    <ClCompile Include="ProcedureNodeTest.cpp" />
-    <ClCompile Include="ProgramNodeTest.cpp" />
     <ClCompile Include="RangeNumberTest.cpp" />
     <ClCompile Include="SourceFileManagerTest.cpp" />
     <ClCompile Include="SpecialCharactersTest.cpp" />
     <ClCompile Include="StatementListNodeMock.cpp" />
-    <ClCompile Include="StatementListNodeTest.cpp" />
     <ClCompile Include="StatementListParserMock.cpp" />
     <ClCompile Include="StatementListParserTest.cpp" />
     <ClCompile Include="stdafx.cpp">
