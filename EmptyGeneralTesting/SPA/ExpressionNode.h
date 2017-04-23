@@ -6,5 +6,5 @@ protected:
 	explicit ExpressionNode(int lineNumber, RangeNumber* rangeOfRequiredChildNodes);
 
 public:
-	virtual ~ExpressionNode() = 0;
+	virtual ~ExpressionNode();
 };

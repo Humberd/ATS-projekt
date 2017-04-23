@@ -34,6 +34,30 @@
     <Filter Include="Source Files\helpers">
       <UniqueIdentifier>{558620a4-d3c0-43a6-b500-3e70900bc304}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SourceParser">
+      <UniqueIdentifier>{e02a6c2f-2cc8-4047-b3a9-a467bcd3656d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser">
+      <UniqueIdentifier>{7025353b-9c59-4148-829b-9884abbf9a07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SourceParser\Exceptions">
+      <UniqueIdentifier>{ede2a057-3d91-413a-a655-b89d719259a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Exceptions">
+      <UniqueIdentifier>{f8324100-c885-4546-8b4d-bb42ffa30e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SourceParser\Lexer">
+      <UniqueIdentifier>{e38c9046-60a6-42bb-8edc-f3b4c2f6b9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Lexer">
+      <UniqueIdentifier>{4a5bd137-696a-4b18-ae4d-af3ac1736b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SourceParser\Parser">
+      <UniqueIdentifier>{15c9981d-a795-4aae-98c6-27a05790e7f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Parser">
+      <UniqueIdentifier>{3a979d0b-f93f-420b-94ec-473adc34bd0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -120,6 +144,72 @@
     <ClInclude Include="InvalidArgumentException.h">
       <Filter>Header Files\AST\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="SourceFileManager.h">
+      <Filter>Header Files\SourceParser</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFileException.h">
+      <Filter>Header Files\SourceParser\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Keywords.h">
+      <Filter>Header Files\SourceParser</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialCharacters.h">
+      <Filter>Header Files\SourceParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer.h">
+      <Filter>Header Files\SourceParser\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="LexerToken.h">
+      <Filter>Header Files\SourceParser\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="LexerException.h">
+      <Filter>Header Files\SourceParser\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Operators.h">
+      <Filter>Header Files\SourceParser</Filter>
+    </ClInclude>
+    <ClInclude Include="TokenKeys.h">
+      <Filter>Header Files\SourceParser\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="ParserException.h">
+      <Filter>Header Files\SourceParser\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Printable.h">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ParsingEntity.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ParsersRepository.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="AssignParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="CallParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="IfParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="WhileParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="StatementListParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcedureParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramParser.h">
+      <Filter>Header Files\SourceParser\Parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -182,5 +272,74 @@
     <ClCompile Include="InvalidArgumentException.cpp">
       <Filter>Source Files\AST\Exceptions</Filter>
     </ClCompile>
+    <ClCompile Include="SourceFileManager.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFileException.cpp">
+      <Filter>Source Files\SourceParser\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Keywords.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialCharacters.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="LexerToken.cpp">
+      <Filter>Source Files\SourceParser\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer.cpp">
+      <Filter>Source Files\SourceParser\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="LexerException.cpp">
+      <Filter>Source Files\SourceParser\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files\SourceParser</Filter>
+    </ClCompile>
+    <ClCompile Include="TokenKeys.cpp">
+      <Filter>Source Files\SourceParser\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="ParserException.cpp">
+      <Filter>Source Files\SourceParser\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Printable.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParsingEntity.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ParsersRepository.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="AssignParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="CallParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="WhileParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="IfParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementListParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcedureParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramParser.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
