@@ -28,6 +28,8 @@
     <ClInclude Include="Operators.h" />
     <ClInclude Include="ParsersRepository.h" />
     <ClInclude Include="ParsingEntity.h" />
+    <ClInclude Include="ProcedureParser.h" />
+    <ClInclude Include="ProgramParser.h" />
     <ClInclude Include="SourceParser.h" />
     <ClInclude Include="ParserException.h" />
     <ClInclude Include="Printable.h" />
@@ -81,6 +83,8 @@
     <ClCompile Include="Operators.cpp" />
     <ClCompile Include="ParsersRepository.cpp" />
     <ClCompile Include="ParsingEntity.cpp" />
+    <ClCompile Include="ProcedureParser.cpp" />
+    <ClCompile Include="ProgramParser.cpp" />
     <ClCompile Include="SourceParser.cpp" />
     <ClCompile Include="ParserException.cpp" />
     <ClCompile Include="PlusNode.cpp" />

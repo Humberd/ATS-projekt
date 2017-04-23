@@ -7,6 +7,8 @@ ParsersRepository::ParsersRepository() {
 	whileParser = nullptr;
 	ifParser = nullptr;
 	statementListParser = nullptr;
+	procedureParser = nullptr;
+	programParser = nullptr;
 }
 
 ParsersRepository::~ParsersRepository() {
@@ -16,4 +18,6 @@ ParsersRepository::~ParsersRepository() {
 	delete whileParser;
 	delete ifParser;
 	delete statementListParser;
+	delete procedureParser;
+	delete programParser;
 }

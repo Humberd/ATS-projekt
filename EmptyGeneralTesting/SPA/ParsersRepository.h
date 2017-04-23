@@ -11,6 +11,8 @@ public:
 	ParsingEntity* whileParser;
 	ParsingEntity* ifParser;
 	ParsingEntity* statementListParser;
+	ParsingEntity* procedureParser;
+	ParsingEntity* programParser;
 
 	ParsersRepository();
 	~ParsersRepository();
