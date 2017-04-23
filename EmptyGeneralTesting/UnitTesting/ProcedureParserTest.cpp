@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include <CppUnitTestAssert.h>
 #include <vector>
-#include "../SPA/SpecialCharacters.h"
 #include "../SPA/TokenKeys.h"
 #include "../SPA/LexerToken.h"
 #include "TokenKeyMocks.h"

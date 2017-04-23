@@ -167,6 +167,8 @@
     <ClInclude Include="IfNodeMock.h" />
     <ClInclude Include="IfParserMock.h" />
     <ClInclude Include="MockNode.h" />
+    <ClInclude Include="ProcedureNodeMock.h" />
+    <ClInclude Include="ProcedureParserMock.h" />
     <ClInclude Include="StatementListNodeMock.h" />
     <ClInclude Include="StatementListParserMock.h" />
     <ClInclude Include="stdafx.h" />
@@ -193,7 +195,10 @@
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="OperatorsTest.cpp" />
     <ClCompile Include="ParsingEntityTest.cpp" />
+    <ClCompile Include="ProcedureNodeMock.cpp" />
+    <ClCompile Include="ProcedureParserMock.cpp" />
     <ClCompile Include="ProcedureParserTest.cpp" />
+    <ClCompile Include="ProgramParserTest.cpp" />
     <ClCompile Include="SourceParserTest.cpp" />
     <ClCompile Include="RangeNumberTest.cpp" />
     <ClCompile Include="SourceFileManagerTest.cpp" />

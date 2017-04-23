@@ -12,4 +12,5 @@ public:
 	static const string WHILE_MOCK;
 	static const string EXPRESSION_MOCK;
 	static const string STATEMENT_LIST_MOCK;
+	static const string PROCEDURE_MOCK;
 };

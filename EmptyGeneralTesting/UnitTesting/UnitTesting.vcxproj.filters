@@ -105,6 +105,12 @@
     <ClInclude Include="TokenKeyMocks.h">
       <Filter>Header Files\SourceParser\mocks</Filter>
     </ClInclude>
+    <ClInclude Include="ProcedureParserMock.h">
+      <Filter>Header Files\SourceParser\mocks\parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcedureNodeMock.h">
+      <Filter>Header Files\SourceParser\mocks\nodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -196,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="ProcedureParserTest.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcedureParserMock.cpp">
+      <Filter>Source Files\SourceParser\mocks\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcedureNodeMock.cpp">
+      <Filter>Source Files\SourceParser\mocks\nodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
