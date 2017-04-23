@@ -30,6 +30,8 @@ TEST_CLASS(ExpressionParserTest) {
 
 		auto node = expParser->parse();
 
+		Assert::IsTrue(iterator == iteratorEnd);
+
 		ConstantNode* constantNode = dynamic_cast<ConstantNode*>(node);
 		Assert::IsNotNull(constantNode);
 		Assert::IsTrue(constantNode->getValue() == 10);
@@ -61,6 +63,8 @@ TEST_CLASS(ExpressionParserTest) {
 
 		auto node = expParser->parse();
 		node->validate();
+
+		Assert::IsTrue(iterator == iteratorEnd);
 
 		/*A tree should look like this
 		 *1.					+

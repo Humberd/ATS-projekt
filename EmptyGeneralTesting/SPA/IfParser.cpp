@@ -36,6 +36,14 @@ Node* IfParser::parse() {
 	nextElement();
 	throwOnEOF();
 
+	if ((*iterator)->isThen()) {
+		//do nothing
+	} else {
+		throw ParserException(getClassName() + " - expected a 'then' keyword, but instead got: " + (*iterator)->toString());
+	}
+	nextElement();
+	throwOnEOF();
+
 	midExpr = parsersRepo->statementListParser->parse();
 	if (midExpr == nullptr) {
 		throw ParserException(getClassName() + " - unexpected first statementList == nullptr");

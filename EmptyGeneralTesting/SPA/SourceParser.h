@@ -10,6 +10,8 @@ class SourceParser {
 private:
 	ParsersRepository* parsersRepo;
 	vector<LexerToken*>& tokensList;
+	vector<LexerToken*>::iterator iterator;
+	vector<LexerToken*>::iterator iteratorEnd;
 
 public:
 	explicit SourceParser(vector<LexerToken*>& tokensList);

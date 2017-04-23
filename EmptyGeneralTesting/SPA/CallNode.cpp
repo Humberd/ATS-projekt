@@ -22,5 +22,5 @@ void CallNode::addChild(Node* child) {
 
 
 string CallNode::toString() const {
-	return Node::toString() + "procName: " + procedureName;
+	return Node::toString() + " - procName: " + procedureName;
 }

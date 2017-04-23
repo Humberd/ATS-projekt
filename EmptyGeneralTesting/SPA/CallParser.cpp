@@ -37,6 +37,7 @@ Node* CallParser::parse() {
 	} else {
 		throw ParserException(getClassName() + " - expected a semicolon, but instead got: " + (*iterator)->toString());
 	}
+	nextElement();
 
 	return callNode;
 }
