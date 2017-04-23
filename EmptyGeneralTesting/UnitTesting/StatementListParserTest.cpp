@@ -14,6 +14,15 @@
 #include "StatementListParserMock.h"
 #include "WhileParserMock.h"
 #include "TokenKeyMocks.h"
+#include "../SPA/StatementListNode.h"
+#include "../SPA/AssignNode.h"
+#include "../SPA/CallNode.h"
+#include "../SPA/IfNode.h"
+#include "../SPA/WhileNode.h"
+#include "AssignNodeMock.h"
+#include "CallNodeMock.h"
+#include "IfNodeMock.h"
+#include "WhileNodeMock.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -43,6 +52,27 @@ TEST_CLASS(StatementListParserTest) {
 		auto statementListParser = new StatementListParser(parsersRepository, iterator, iteratorEnd);
 
 		Node* node = statementListParser->parse();
+		node->validate();
+		/*A tree should look like this
+		 *1.							stmtLstNode
+		 *2.	<assignNode>	<callNode>		<ifNode>		<whileNode>
+		 */
+
+		StatementListNode* stmLstNode = dynamic_cast<StatementListNode*>(node);
+		Assert::IsNotNull(stmLstNode);
+		Assert::IsTrue(stmLstNode->getChildren().size() == 4);
+
+		AssignNodeMock* assignNode = dynamic_cast<AssignNodeMock*>(stmLstNode->getChild(0));
+		Assert::IsNotNull(assignNode);
+
+		CallNodeMock* callNode = dynamic_cast<CallNodeMock*>(stmLstNode->getChild(1));
+		Assert::IsNotNull(callNode);
+
+		IfNodeMock* ifNode = dynamic_cast<IfNodeMock*>(stmLstNode->getChild(2));
+		Assert::IsNotNull(ifNode);
+
+		WhileNodeMock* whileNode = dynamic_cast<WhileNodeMock*>(stmLstNode->getChild(3));
+		Assert::IsNotNull(whileNode);
 
 	}
 
