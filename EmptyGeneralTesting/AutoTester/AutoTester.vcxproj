@@ -21,7 +21,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -83,19 +83,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AffectsTag.cpp" />
-    <ClCompile Include="CallsTag.cpp" />
-    <ClCompile Include="FollowsTag.cpp" />
-    <ClCompile Include="QueryParser.cpp" />
-    <ClCompile Include="QueryParts.cpp" />
     <ClCompile Include="source\TestWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AffectsTag.h" />
-    <ClInclude Include="CallsTag.h" />
-    <ClInclude Include="FollowsTag.h" />
-    <ClInclude Include="QueryParser.h" />
-    <ClInclude Include="QueryParts.h" />
     <ClInclude Include="source\AbstractWrapper.h" />
     <ClInclude Include="source\TestWrapper.h" />
   </ItemGroup>

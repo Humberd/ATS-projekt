@@ -12,13 +12,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h" />
+    <ClInclude Include="AffectsTag.h" />
     <ClInclude Include="AssignNode.h" />
     <ClInclude Include="ASTException.h" />
     <ClInclude Include="CallNode.h" />
     <ClInclude Include="CallsNode.h" />
+    <ClInclude Include="CallsTag.h" />
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="DeepTraverser.h" />
     <ClInclude Include="ExpressionNode.h" />
+    <ClInclude Include="FollowsTag.h" />
     <ClInclude Include="FromDeepTraverser.h" />
     <ClInclude Include="GetCallsDeepTraverser.h" />
     <ClInclude Include="IfNode.h" />
@@ -26,13 +29,17 @@
     <ClInclude Include="MinusNode.h" />
     <ClInclude Include="Next.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Parameter.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Calls.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Follows.h" />
+    <ClInclude Include="Part.h" />
     <ClInclude Include="PlusNode.h" />
     <ClInclude Include="ProcedureNode.h" />
     <ClInclude Include="ProgramNode.h" />
+    <ClInclude Include="QueryParser.h" />
+    <ClInclude Include="QueryParts.h" />
     <ClInclude Include="RangeNumber.h" />
     <ClInclude Include="ReferenceNode.h" />
     <ClInclude Include="StatementListNode.h" />
@@ -45,23 +52,30 @@
     <ClInclude Include="WhileNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AffectsTag.cpp" />
     <ClCompile Include="Calls.cpp" />
     <ClCompile Include="AssignNode.cpp" />
     <ClCompile Include="ASTException.cpp" />
     <ClCompile Include="CallNode.cpp" />
     <ClCompile Include="CallsNode.cpp" />
+    <ClCompile Include="CallsTag.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="DeepTraverser.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
+    <ClCompile Include="FollowsTag.cpp" />
     <ClCompile Include="FromDeepTraverser.cpp" />
     <ClCompile Include="GetCallsDeepTraverser.cpp" />
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="Part.cpp" />
     <ClCompile Include="PlusNode.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
     <ClCompile Include="ProgramNode.cpp" />
+    <ClCompile Include="QueryParser.cpp" />
+    <ClCompile Include="QueryParts.cpp" />
     <ClCompile Include="RangeNumber.cpp" />
     <ClCompile Include="ReferenceNode.cpp" />
     <ClCompile Include="StatementListNode.cpp" />
@@ -81,7 +95,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>

@@ -18,42 +18,12 @@
     <ClCompile Include="source\TestWrapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QueryParts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QueryParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CallsTag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FollowsTag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AffectsTag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AbstractWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\TestWrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QueryParts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="QueryParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CallsTag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FollowsTag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AffectsTag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

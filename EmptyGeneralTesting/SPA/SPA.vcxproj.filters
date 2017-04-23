@@ -43,6 +43,12 @@
     <Filter Include="Source Files\PKB\PKBTree">
       <UniqueIdentifier>{e087f068-e76f-4bd5-8cb1-8453f9d001a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\QueryParser">
+      <UniqueIdentifier>{17e7425e-dd6d-422c-b938-eb10e359ece4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser">
+      <UniqueIdentifier>{fb405b1e-b838-4748-acbe-da7521996656}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -141,6 +147,27 @@
     <ClInclude Include="FromDeepTraverser.h">
       <Filter>Header Files\PKB\PKBTree</Filter>
     </ClInclude>
+    <ClInclude Include="AffectsTag.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="CallsTag.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowsTag.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryParser.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryParts.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Part.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -217,6 +244,27 @@
     </ClCompile>
     <ClCompile Include="FromDeepTraverser.cpp">
       <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="AffectsTag.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="CallsTag.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowsTag.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryParser.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryParts.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Part.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
