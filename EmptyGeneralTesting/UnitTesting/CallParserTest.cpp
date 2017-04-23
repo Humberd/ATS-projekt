@@ -30,6 +30,8 @@ TEST_CLASS(CallParserTest) {
 		auto node = callParser->parse();
 		node->validate();
 
+		Assert::IsTrue(iterator == iteratorEnd);
+
 		CallNode* callNode = dynamic_cast<CallNode*>(node);
 		Assert::IsNotNull(callNode);
 		Assert::IsTrue(callNode->getProcedureName() == "myProc");

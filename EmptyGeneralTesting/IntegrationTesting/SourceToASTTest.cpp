@@ -17,6 +17,10 @@ TEST_CLASS(SourceToASTTest) {
 		vector<LexerToken*> tokensList = Lexer::parse(fileLines);
 
 		SourceParser* sourceParser = new SourceParser(tokensList);
-		Node* rootNode = sourceParser->parse();
+		try {
+			Node* rootNode = sourceParser->parse();
+		} catch (exception& e) {
+			Logger::WriteMessage(e.what());
+		}
 	}
 };

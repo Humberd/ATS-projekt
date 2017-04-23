@@ -7,11 +7,12 @@
 #include "StatementListParser.h"
 #include "IfParser.h"
 #include "ProgramParser.h"
+#include "ProcedureParser.h"
 
 
 SourceParser::SourceParser(vector<LexerToken*>& tokensList) : tokensList(tokensList) {
-	auto iterator = tokensList.begin();
-	auto iteratorEnd = tokensList.end();
+	iterator = tokensList.begin();
+	iteratorEnd = tokensList.end();
 
 	parsersRepo = new ParsersRepository;
 	parsersRepo->expressionParser = new ExpressionParser(parsersRepo, iterator, iteratorEnd);
@@ -20,8 +21,8 @@ SourceParser::SourceParser(vector<LexerToken*>& tokensList) : tokensList(tokensL
 	parsersRepo->whileParser = new WhileParser(parsersRepo, iterator, iteratorEnd);
 	parsersRepo->ifParser = new IfParser(parsersRepo, iterator, iteratorEnd);
 	parsersRepo->statementListParser = new StatementListParser(parsersRepo, iterator, iteratorEnd);
+	parsersRepo->procedureParser = new ProcedureParser(parsersRepo, iterator, iteratorEnd);
 	parsersRepo->programParser = new ProgramParser(parsersRepo, iterator, iteratorEnd);
-
 }
 
 SourceParser::~SourceParser() {

@@ -99,6 +99,7 @@ Node* ExpressionParser::parse() {
 
 			ct = 0;
 		} else if ((*iterator)->isSemicolon() && ct == 1) {
+			nextElement();
 			break;
 		} else {
 			if (ct == 0) {
