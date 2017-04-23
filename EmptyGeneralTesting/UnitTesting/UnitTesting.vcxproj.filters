@@ -194,6 +194,9 @@
     <ClCompile Include="TokenKeyMocks.cpp">
       <Filter>Source Files\SourceParser\mocks</Filter>
     </ClCompile>
+    <ClCompile Include="ProcedureParserTest.cpp">
+      <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">

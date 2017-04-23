@@ -1,7 +1,8 @@
 #pragma once
 #include "../SPA/Node.h"
+#include "../SPA/StatementListNode.h"
 
-class StatementListNodeMock : public Node {
+class StatementListNodeMock : public StatementListNode {
 public:
 	explicit StatementListNodeMock(int lineNumber);
 	~StatementListNodeMock();

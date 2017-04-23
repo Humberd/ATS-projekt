@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "StatementListNodeMock.h"
 
-StatementListNodeMock::StatementListNodeMock(int lineNumber) : Node(lineNumber, new RangeNumber(0, 0)) {
+StatementListNodeMock::StatementListNodeMock(int lineNumber) : StatementListNode(lineNumber) {
 }
 
 StatementListNodeMock::~StatementListNodeMock() {

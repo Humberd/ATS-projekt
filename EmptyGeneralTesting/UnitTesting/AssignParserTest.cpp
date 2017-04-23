@@ -25,7 +25,6 @@ TEST_CLASS(AssignParserTest) {
 		tokensList.push_back(new LexerToken(TokenKeyMocks::EXPRESSION_MOCK, "", 1));
 		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
 
-
 		auto iterator = tokensList.begin();
 		auto iteratorEnd = tokensList.end();
 		ParsersRepository* parsersRepository = new ParsersRepository;
