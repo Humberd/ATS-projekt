@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "CallParserMock.h"
 #include "../SPA/ParsersRepository.h"
+#include "CallNodeMock.h"
+#include "../SPA/ParserException.h"
+#include "TokenKeyMocks.h"
 
 CallParserMock::CallParserMock(ParsersRepository* parsersRepo,
                                vector<LexerToken*>::iterator& iterator,
@@ -11,5 +14,12 @@ CallParserMock::~CallParserMock() {
 }
 
 Node* CallParserMock::parse() {
-	return nullptr;
+	throwOnEOF();
+
+	if ((*iterator)->getKey() == TokenKeyMocks::CALL_MOCK) {
+		nextElement();
+		return new CallNodeMock(1);
+	} else {
+		throw ParserException("exc");
+	}
 }

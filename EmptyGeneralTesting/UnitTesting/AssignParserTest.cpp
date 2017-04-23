@@ -11,6 +11,7 @@
 #include "../SPA/AssignNode.h"
 #include "../SPA/VariableNode.h"
 #include "../SPA/ParserException.h"
+#include "TokenKeyMocks.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -21,7 +22,7 @@ TEST_CLASS(AssignParserTest) {
 
 		tokensList.push_back(new LexerToken(TokenKeys::NAME, "x", 1));
 		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::EQUALS_SIGN, 1));
-		tokensList.push_back(new LexerToken(TokenKeys::INTEGER, "5", 1));
+		tokensList.push_back(new LexerToken(TokenKeyMocks::EXPRESSION_MOCK, "", 1));
 		tokensList.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, SpecialCharacters::SEMICOLON, 1));
 
 

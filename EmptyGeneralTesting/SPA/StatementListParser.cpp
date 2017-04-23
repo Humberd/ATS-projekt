@@ -39,11 +39,9 @@ Node* StatementListParser::parse() {
 			}
 		}
 
-
 		try {
 			auto statementNode = parsersRepo->assignParser->parse();
 			statementListNode->addChild(statementNode);
-			nextElement();
 			continue;
 		} catch (ParserException& e) {
 			*errorsStream << e.what() << "\n";
@@ -52,7 +50,6 @@ Node* StatementListParser::parse() {
 		try {
 			auto statementNode = parsersRepo->callParser->parse();
 			statementListNode->addChild(statementNode);
-			nextElement();
 			continue;
 		} catch (ParserException& e) {
 			*errorsStream << e.what() << "\n";
@@ -61,7 +58,6 @@ Node* StatementListParser::parse() {
 		try {
 			auto statementNode = parsersRepo->whileParser->parse();
 			statementListNode->addChild(statementNode);
-			nextElement();
 			continue;
 		} catch (ParserException& e) {
 			*errorsStream << e.what() << "\n";
@@ -70,7 +66,6 @@ Node* StatementListParser::parse() {
 		try {
 			auto statementNode = parsersRepo->ifParser->parse();
 			statementListNode->addChild(statementNode);
-			nextElement();
 			continue;
 		} catch (ParserException& e) {
 			*errorsStream << e.what() << "\n";

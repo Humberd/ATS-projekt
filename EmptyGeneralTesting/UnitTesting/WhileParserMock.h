@@ -6,7 +6,7 @@ class ParsersRepository;
 
 class WhileParserMock : public ParsingEntity {
 public:
-	WhileParserMock(ParsersRepository* parsersRepo,
+	explicit WhileParserMock(ParsersRepository* parsersRepo,
 	                vector<LexerToken*>::iterator& iterator,
 	                vector<LexerToken*>::iterator& iteratorEnd);
 	~WhileParserMock();

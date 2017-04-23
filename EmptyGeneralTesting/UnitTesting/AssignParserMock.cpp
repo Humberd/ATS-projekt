@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "AssignParserMock.h"
 #include "../SPA/ParsersRepository.h"
+#include "AssignNodeMock.h"
+#include "../SPA/ParserException.h"
+#include "TokenKeyMocks.h"
 
 AssignParserMock::AssignParserMock(ParsersRepository* parsersRepo,
                                    vector<LexerToken*>::iterator& iterator,
@@ -11,5 +14,12 @@ AssignParserMock::~AssignParserMock() {
 }
 
 Node* AssignParserMock::parse() {
-	return nullptr;
+	throwOnEOF();
+
+	if ((*iterator)->getKey() == TokenKeyMocks::ASSIGN_MOCK) {
+		nextElement();
+		return new AssignNodeMock(1);
+	} else {
+		throw ParserException("exc");
+	}
 }

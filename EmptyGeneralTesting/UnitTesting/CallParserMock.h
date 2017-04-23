@@ -6,7 +6,7 @@ class ParsersRepository;
 
 class CallParserMock : public ParsingEntity {
 public:
-	CallParserMock(ParsersRepository* parsersRepo,
+	explicit CallParserMock(ParsersRepository* parsersRepo,
 	               vector<LexerToken*>::iterator& iterator,
 	               vector<LexerToken*>::iterator& iteratorEnd);
 	~CallParserMock();

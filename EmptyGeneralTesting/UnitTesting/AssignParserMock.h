@@ -6,7 +6,7 @@ class ParsersRepository;
 
 class AssignParserMock : public ParsingEntity {
 public:
-	AssignParserMock(ParsersRepository* parsersRepo,
+	explicit AssignParserMock(ParsersRepository* parsersRepo,
 	                 vector<LexerToken*>::iterator& iterator,
 	                 vector<LexerToken*>::iterator& iteratorEnd);
 	~AssignParserMock();

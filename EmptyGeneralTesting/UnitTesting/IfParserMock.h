@@ -6,7 +6,7 @@ class ParsersRepository;
 
 class IfParserMock : public ParsingEntity {
 public:
-	IfParserMock(ParsersRepository* parsersRepo,
+	explicit IfParserMock(ParsersRepository* parsersRepo,
 	             vector<LexerToken*>::iterator& iterator,
 	             vector<LexerToken*>::iterator& iteratorEnd);
 	~IfParserMock();
