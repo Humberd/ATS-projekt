@@ -4,8 +4,10 @@
 #include "InvalidArgumentException.h"
 
 
-ProcedureNode::ProcedureNode(int lineNumber, string name) : Node(lineNumber, new RangeNumber(1, 1)) {
-	setName(name);
+ProcedureNode::ProcedureNode(int sourceLineNumber,
+                             int programLineNumber,
+                             string name) : Node(sourceLineNumber, programLineNumber, new RangeNumber(1, 1)) {
+	this->name = name;
 }
 
 ProcedureNode::~ProcedureNode() {

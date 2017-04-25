@@ -3,7 +3,9 @@
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
 
-VariableNode::VariableNode(int lineNumber, string name) : ReferenceNode(lineNumber) {
+VariableNode::VariableNode(int sourceLineNumber,
+                           int programLineNumber,
+                           string name) : ReferenceNode(sourceLineNumber, programLineNumber) {
 	this->name = name;
 }
 

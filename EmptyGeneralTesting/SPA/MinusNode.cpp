@@ -2,7 +2,8 @@
 #include <vcruntime_typeinfo.h>
 #include "ValidateException.h"
 
-MinusNode::MinusNode(int lineNumber): ExpressionNode(lineNumber, new RangeNumber(2,2)) {
+MinusNode::MinusNode(int sourceLineNumber,
+                     int programLineNumber): ExpressionNode(sourceLineNumber, programLineNumber, new RangeNumber(2, 2)) {
 }
 
 MinusNode::~MinusNode() {

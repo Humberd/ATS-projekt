@@ -5,7 +5,8 @@
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
 
-IfNode::IfNode(int lineNumber) : StatementNode(lineNumber, new RangeNumber(3, 3)) {
+IfNode::IfNode(int sourceLineNumber,
+               int programLineNumber) : StatementNode(sourceLineNumber, programLineNumber, new RangeNumber(3, 3)) {
 }
 
 IfNode::~IfNode() {

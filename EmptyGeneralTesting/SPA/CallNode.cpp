@@ -2,9 +2,12 @@
 #include <vcruntime_typeinfo.h>
 #include "InvalidArgumentException.h"
 
-CallNode::CallNode(int lineNumber, string procedureName) :StatementNode(lineNumber, new RangeNumber(0, 0)) {
+CallNode::CallNode(int sourceLineNumber,
+                   int programLineNumber,
+                   string procedureName) : StatementNode(sourceLineNumber, programLineNumber, new RangeNumber(0, 0)) {
 	this->procedureName = procedureName;
 }
+
 CallNode::~CallNode() {
 }
 
