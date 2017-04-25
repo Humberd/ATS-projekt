@@ -9,18 +9,20 @@ class LexerToken: public Printable {
 private:
 	string key;
 	string value;
-	int fileLineNumber;
+	int sourceLineNumber;
+	int programLineNumber;
 
 public:
-	explicit LexerToken(string key, string value, int fileLineNumber);
-	explicit LexerToken(string key, char value, int fileLineNumber);
-	explicit LexerToken(char key, char value, int fileLineNumber);
-	explicit LexerToken(char key, string value, int fileLineNumber);
+	explicit LexerToken(string key, string value, int sourceLineNumber, int programLineNumber);
+	explicit LexerToken(string key, char value, int sourceLineNumber, int programLineNumber);
+	explicit LexerToken(char key, char value, int sourceLineNumber, int programLineNumber);
+	explicit LexerToken(char key, string value, int sourceLineNumber, int programLineNumber);
 	~LexerToken();
 
 	string getKey() const;
 	string getValue() const;
-	int getFileLineNumber() const;
+	int getSourceLineNumber() const;
+	int getProgramLineNumber() const;
 
 	bool isKeyword() const;
 	bool isName() const;
@@ -43,7 +45,6 @@ public:
 	bool isCloseBrace() const;
 	bool isEquals() const;
 	bool isSemicolon() const;
-
 
 	string toString() const override;
 };
