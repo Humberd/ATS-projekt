@@ -6,15 +6,19 @@
 
 using namespace std;
 
-Node::Node(int lineNumber, RangeNumber* rangeOfRequiredChildNodes) {
-	if (lineNumber < 1) {
-		throw InvalidArgumentException(this, "lineNumber must be a positive integer, but instead is: " + to_string(1));
+Node::Node(int sourceLineNumber, int programLineNumber, RangeNumber* rangeOfRequiredChildNodes) {
+	if (sourceLineNumber < 1) {
+		throw InvalidArgumentException(this, "sourceLineNumber must be a positive integer, but instead is: " + to_string(sourceLineNumber));
+	}
+	if (programLineNumber < 1) {
+		throw InvalidArgumentException(this, "programLineNumber must be a positive integer, but instead is: " + to_string(programLineNumber));
 	}
 	if (rangeOfRequiredChildNodes == nullptr) {
 		throw InvalidArgumentException(this, "rangeOfRequiredChildNodes must not be a null");
 	}
 
-	this->lineNumber = lineNumber;
+	this->sourceLineNumber = sourceLineNumber;
+	this->programLineNumber = programLineNumber;
 	this->rangeOfRequiredChildNodes = rangeOfRequiredChildNodes;
 }
 
@@ -79,8 +83,12 @@ Node* Node::getParent() const {
 	return this->parent;
 }
 
-int Node::getLineNumber() const {
-	return this->lineNumber;
+int Node::getSourceLineNumber() const {
+	return sourceLineNumber;
+}
+
+int Node::getProgramLineNumber() const {
+	return programLineNumber;
 }
 
 bool Node::isStartedDeleting() const {
@@ -111,5 +119,5 @@ void Node::prettyPrint() {
 }
 
 string Node::toString() const {
-	return getClassName() + "(" + to_string(lineNumber) + ")";
+	return getClassName() + "(" + to_string(sourceLineNumber) + ", " + to_string(programLineNumber) + ")";
 }

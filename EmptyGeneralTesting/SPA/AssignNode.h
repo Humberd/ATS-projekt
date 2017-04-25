@@ -4,7 +4,7 @@
 class AssignNode: public StatementNode {
 
 public:
-	explicit AssignNode(int lineNumber);
+	explicit AssignNode(int sourceLineNumber, int programLineNumber);
 	~AssignNode() override;
 
 	// pozwala tylko na 2 childy: VariableNode i ExpressionNode

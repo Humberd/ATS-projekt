@@ -9,7 +9,7 @@ private:
 	string name;
 
 public:
-	explicit VariableNode(int lineNumber, string name);
+	explicit VariableNode(int sourceLineNumber, int programLineNumber, string name);
 	~VariableNode() override;
 
 	void setName(string name);

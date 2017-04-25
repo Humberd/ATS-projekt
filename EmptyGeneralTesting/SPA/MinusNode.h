@@ -3,7 +3,7 @@
 
 class MinusNode: public ExpressionNode {
 public: 
-	explicit MinusNode(int lineNumber);
+	explicit MinusNode(int sourceLineNumber, int programLineNumber);
 	~MinusNode() override;
 
 	// pozwala na 2 childy: ExpressionNode i ExpressionNode

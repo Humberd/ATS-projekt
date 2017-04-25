@@ -8,7 +8,7 @@ private:
 	string name;
 
 public:
-	explicit ProcedureNode(int lineNumber, string name);
+	explicit ProcedureNode(int sourceLineNumber, int programLineNumber, string name);
 	~ProcedureNode() override;
 
 	void setName(string name);

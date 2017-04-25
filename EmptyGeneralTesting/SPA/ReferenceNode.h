@@ -3,7 +3,7 @@
 
 class ReferenceNode: public ExpressionNode {
 protected:
-	explicit ReferenceNode(int lineNumber);
+	explicit ReferenceNode(int sourceLineNumber, int programLineNumber);
 
 public:
 	virtual ~ReferenceNode();
