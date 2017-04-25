@@ -3,7 +3,7 @@
 
 class WhileNode: public StatementNode {
 public:
-	explicit WhileNode(int lineNumber);
+	explicit WhileNode(int sourceLineNumber, int programLineNumber);
 	~WhileNode() override;
 
 	// pozwala tylko na 2 childy: VariableNode i StmLstNode

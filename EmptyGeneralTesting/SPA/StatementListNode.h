@@ -3,7 +3,7 @@
 
 class StatementListNode: public Node {
 public:
-	explicit StatementListNode(int lineNumber);
+	explicit StatementListNode(int sourceLineNumber, int programLineNumber);
 	~StatementListNode() override;
 
 	//pozwala na 1 lub wiêcej StatementNode

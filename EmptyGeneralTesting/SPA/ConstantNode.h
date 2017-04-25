@@ -7,7 +7,7 @@ private:
 	int value;
 
 public:
-	explicit ConstantNode(int lineNumber, int value);
+	explicit ConstantNode(int sourceLineNumber, int programLineNumber, int value);
 	~ConstantNode() override;
 
 	void setValue(int value);

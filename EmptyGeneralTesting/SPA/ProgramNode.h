@@ -6,7 +6,7 @@ class ProgramNode : public Node {
 
 public:
 
-	explicit ProgramNode(int lineNumber);
+	explicit ProgramNode(int sourceLineNumber, int programLineNumber);
 	~ProgramNode() override;
 
 	//pozwala na 1 lub wiêcej ProcedureNode

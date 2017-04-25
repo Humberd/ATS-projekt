@@ -10,8 +10,10 @@ private:
 	vector<Node*> children;
 	/*A parent node*/
 	Node* parent = nullptr;
-	/*A line number in the program of a node*/
-	int lineNumber;
+	/*A line, which the Node exists in a source file*/
+	int sourceLineNumber;
+	/*A sourceline, but without counting: procedure declarations, empty lanes and else statements*/
+	int programLineNumber;
 
 	RangeNumber* rangeOfRequiredChildNodes = nullptr;
 
@@ -22,7 +24,7 @@ private:
 
 protected:
 	/*Initialize a node with the line number*/
-	explicit Node(int lineNumber, RangeNumber* rangeOfRequiredChildNodes);
+	explicit Node(int sourceLineNumber, int programLineNumber, RangeNumber* rangeOfRequiredChildNodes);
 
 	/*Adding a child and setting this object as its parent*/
 	void _addChild(Node* child);
@@ -41,8 +43,11 @@ public:
 	/*Getting a parent Node*/
 	Node* getParent() const;
 
-	/*Getting a line number*/
-	int getLineNumber() const;
+	/*Getting a source line number*/
+	int getSourceLineNumber() const;
+
+	/*Getting a program line number*/
+	int getProgramLineNumber() const;
 
 	/*Gets the name of the class, for example: "class VariableNode"*/
 	string getClassName() const;
@@ -59,7 +64,6 @@ public:
 	virtual void validate();
 
 	virtual void addChild(Node* child) = 0;
-
 
 	//////////////////////
 	bool isStartedDeleting() const;
