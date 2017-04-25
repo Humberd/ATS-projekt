@@ -3,7 +3,7 @@
 
 class WhileNodeMock : public StatementNode {
 public:
-	explicit WhileNodeMock(int lineNumber);
+	explicit WhileNodeMock(int sourceLineNumber, int programLineNumber);
 	~WhileNodeMock();
 
 	void addChild(Node* child) override;

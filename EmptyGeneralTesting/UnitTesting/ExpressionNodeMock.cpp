@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "ExpressionNodeMock.h"
 
-ExpressionNodeMock::ExpressionNodeMock(int lineNumber): ExpressionNode(lineNumber, new RangeNumber(0, 0)) {
+ExpressionNodeMock::ExpressionNodeMock(int sourceLineNumber,
+                                       int programLineNumber): ExpressionNode(sourceLineNumber, programLineNumber, new RangeNumber(0, 0)) {
 }
 
 ExpressionNodeMock::~ExpressionNodeMock() {

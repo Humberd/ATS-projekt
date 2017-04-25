@@ -18,7 +18,7 @@ Node* ProcedureParserMock::parse() {
 
 	if ((*iterator)->getKey() == TokenKeyMocks::PROCEDURE_MOCK) {
 		nextElement();
-		return new ProcedureNodeMock(1);
+		return new ProcedureNodeMock(1, 1);
 	} else {
 		throw ParserException("exc");
 	}

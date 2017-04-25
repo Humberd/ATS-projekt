@@ -7,8 +7,8 @@ class ParsersRepository;
 class StatementListParserMock : public ParsingEntity {
 public:
 	explicit StatementListParserMock(ParsersRepository* parsersRepo,
-	                        vector<LexerToken*>::iterator& iterator,
-	                        vector<LexerToken*>::iterator& iteratorEnd);
+	                                 vector<LexerToken*>::iterator& iterator,
+	                                 vector<LexerToken*>::iterator& iteratorEnd);
 	~StatementListParserMock();
 
 	Node* parse() override;

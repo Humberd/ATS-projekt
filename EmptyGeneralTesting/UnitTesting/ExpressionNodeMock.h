@@ -3,7 +3,7 @@
 
 class ExpressionNodeMock : public ExpressionNode {
 public:
-	explicit ExpressionNodeMock(int lineNumber);
+	explicit ExpressionNodeMock(int sourceLineNumber, int programLineNumber);
 	~ExpressionNodeMock();
 
 	void addChild(Node* child) override;

@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "ProcedureNodeMock.h"
 
-ProcedureNodeMock::ProcedureNodeMock(int lineNumber) : ProcedureNode(lineNumber, "bar") {
+ProcedureNodeMock::ProcedureNodeMock(int sourceLineNumber,
+                                     int programLineNumber) : ProcedureNode(sourceLineNumber, programLineNumber, "bar") {
 }
 
 ProcedureNodeMock::~ProcedureNodeMock() {

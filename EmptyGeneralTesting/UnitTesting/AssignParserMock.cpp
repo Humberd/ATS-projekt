@@ -18,7 +18,7 @@ Node* AssignParserMock::parse() {
 
 	if ((*iterator)->getKey() == TokenKeyMocks::ASSIGN_MOCK) {
 		nextElement();
-		return new AssignNodeMock(1);
+		return new AssignNodeMock(1, 1);
 	} else {
 		throw ParserException("exc");
 	}

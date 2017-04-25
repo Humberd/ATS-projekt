@@ -18,7 +18,7 @@ Node* WhileParserMock::parse() {
 
 	if ((*iterator)->getKey() == TokenKeyMocks::WHILE_MOCK) {
 		nextElement();
-		return new WhileNodeMock(1);
+		return new WhileNodeMock(1, 1);
 	} else {
 		throw ParserException("exc");
 	}
