@@ -43,6 +43,12 @@
     <Filter Include="Source Files\PKB\PKBTree">
       <UniqueIdentifier>{e087f068-e76f-4bd5-8cb1-8453f9d001a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Constants">
+      <UniqueIdentifier>{b600af61-dcdc-4e11-be6b-6efc7ed2a014}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Constants">
+      <UniqueIdentifier>{f32ed212-0f25-4314-8fb1-68398ce50b30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -99,9 +105,6 @@
     <ClInclude Include="VariableNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ConstantNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
@@ -129,9 +132,6 @@
     <ClInclude Include="InvalidArgumentException.h">
       <Filter>Header Files\AST\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="CallsNode.h">
-      <Filter>Header Files\PKB\PKBTree</Filter>
-    </ClInclude>
     <ClInclude Include="GetCallsDeepTraverser.h">
       <Filter>Header Files\PKB\PKBTree</Filter>
     </ClInclude>
@@ -139,6 +139,21 @@
       <Filter>Header Files\PKB\PKBTree</Filter>
     </ClInclude>
     <ClInclude Include="FromDeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
+    <ClInclude Include="PROC.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="ASSIGN.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="STMT.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="VAR.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="FromCallDeepTraverser.h">
       <Filter>Header Files\PKB\PKBTree</Filter>
     </ClInclude>
   </ItemGroup>
@@ -206,9 +221,6 @@
     <ClCompile Include="InvalidArgumentException.cpp">
       <Filter>Source Files\AST\Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="CallsNode.cpp">
-      <Filter>Source Files\PKB\PKBTree</Filter>
-    </ClCompile>
     <ClCompile Include="GetCallsDeepTraverser.cpp">
       <Filter>Source Files\PKB\PKBTree</Filter>
     </ClCompile>
@@ -220,6 +232,24 @@
     </ClCompile>
     <ClCompile Include="Modifies.cpp">
       <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Uses.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="ASSIGN.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="PROC.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="STMT.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="VAR.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="FromCallDeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

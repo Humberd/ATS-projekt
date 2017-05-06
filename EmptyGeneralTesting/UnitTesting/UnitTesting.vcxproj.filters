@@ -62,5 +62,8 @@
     <ClCompile Include="ModifiesTest.cpp">
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
+    <ClCompile Include="UsesTest.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,16 +3,16 @@
 #include <set>
 #include "GetCallsDeepTraverser.h"
 
-#include "../SPA/DeepTraverser.h"
-#include "../SPA/DeepTraverser.cpp"
-#include "../SPA/FromDeepTraverser.h"
-#include "../SPA/FromDeepTraverser.cpp"
+#include "../SPA/GetCallsDeepTraverser.h"
+#include "../SPA/GetCallsDeepTraverser.cpp"
+#include "../SPA/FromCallDeepTraverser.h"
+#include "../SPA/FromCallDeepTraverser.cpp"
 
 Calls *Calls::instance = 0;
 
 Calls::Calls()
 {
-
+	//callsTable = new map<string, vector<PROC*>>();
 }
 
 Calls::~Calls()
@@ -20,52 +20,52 @@ Calls::~Calls()
 
 }
 
-vector<PROC> Calls::getCalls(PROC p)
+vector<PROC*> Calls::getCalls(PROC* p)
 {
-	return callsTable[p];
+	return callsTable.at(p->getProc());
 }
 
-vector<PROC> Calls::getCallsDeep(PROC p)
+vector<PROC*> Calls::getCallsDeep(PROC* p)
 {
-	DeepTraverser<PROC>* traverser = new DeepTraverser<PROC>();
-	traverser->setTraverserTable(callsTable);
+	GetCallsDeepTraverser* traverser = new GetCallsDeepTraverser(callsTable);
+	//traverser->setTraverserTable(callsTable);
 
 	traverser->traverse(p);
 
-	set<PROC> resultSet = traverser->getGatheringList();
+	set<PROC*> resultSet = traverser->getGatheringList();
 
 	/*Zamieniam set na vector*/
-	vector<PROC> resultVec(resultSet.begin(), resultSet.end());
+	vector<PROC*> resultVec(resultSet.begin(), resultSet.end());
 
-	delete traverser;
+	//delete traverser;
 
 	return resultVec;
 }
 
-vector<PROC> Calls::getCallsFrom(PROC p)
+vector<PROC*> Calls::getCallsFrom(PROC* p)
 {
-	vector<PROC> returnCallsList;
+	vector<PROC*> returnCallsList;
 
-	for (map<PROC, vector<PROC>>::iterator it = callsTable.begin(); it != callsTable.end(); ++it) {
+	for (map<string, vector<PROC*>>::const_iterator it = callsTable.begin(); it != callsTable.end(); ++it) {
 		if (isCalls(it->first, p)) {
-			returnCallsList.push_back(it->first);
+			returnCallsList.push_back(new PROC(it->first));
 		}
 	}
 
 	return returnCallsList;
 }
 
-vector<PROC> Calls::getCallsDeepFrom(PROC p)
+vector<PROC*> Calls::getCallsDeepFrom(PROC* p)
 {
-	FromDeepTraverser<PROC>* traverser = new FromDeepTraverser<PROC>();
-	traverser->setTraverserTable(callsTable);
+	FromCallDeepTraverser* traverser = new FromCallDeepTraverser(callsTable);
+	//traverser->setTraverserTable(callsTable);
 
 	traverser->traverse(p);
 
-	set<PROC> resultSet = traverser->getGatheringList();
+	set<PROC*> resultSet = traverser->getGatheringList();
 
 	/*Zamieniam set na vector*/
-	vector<PROC> resultVec(resultSet.begin(), resultSet.end());
+	vector<PROC*> resultVec(resultSet.begin(), resultSet.end());
 
 	delete traverser;
 
@@ -81,22 +81,31 @@ Calls *Calls::getInstance()
 	return instance;
 }
 
-void Calls::setCalls(PROC p, PROC q)
+void Calls::setCalls(PROC* p, PROC* q)
 {
-	callsTable[p].push_back(q);
+	if (callsTable.count(p->getProc()) == 0) 
+	{
+		vector<PROC*> tmp;
+		tmp.push_back(q);
+		callsTable.insert(pair<string,vector<PROC*>>(p->getProc(), tmp));
+	}
+	else
+	{
+		callsTable.at(p->getProc()).push_back(q);
+	}
 }
 
-vector<PROC> Calls::getCalls(PROC p, bool goDeep)
+vector<PROC*> Calls::getCalls(PROC* p, bool goDeep)
 {
 	return goDeep ? getCallsDeep(p) : getCalls(p);
 }
 
-vector<PROC> Calls::getCallsFrom(PROC q, bool goDeep)
+vector<PROC*> Calls::getCallsFrom(PROC* q, bool goDeep)
 {
 	return goDeep ? getCallsDeepFrom(q) : getCallsFrom(q);
 }
 
-bool Calls::isCalls(PROC p, PROC q)
+bool Calls::isCalls(string p, PROC* q)
 {
 	if (callsTable.count(p) == 0)
 	{
@@ -104,8 +113,8 @@ bool Calls::isCalls(PROC p, PROC q)
 	}
 	else
 	{
-		for (PROC proc : callsTable[p]) {
-			if (proc == q) {
+		for (PROC* proc : callsTable.at(p)) {
+			if (proc->getProc() == q->getProc()) {
 				return true;
 			}
 		}

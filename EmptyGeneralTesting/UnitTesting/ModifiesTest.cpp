@@ -9,172 +9,171 @@ TEST_CLASS(ModifiesTest) {
 
 	TEST_METHOD(Modifies_setModifiesSTMT_Test) {
 		auto modifies = new Modifies();
+		
+		modifies->setModifies(new STMT(1), new VAR("a"));
+		modifies->setModifies(new STMT(1), new VAR("b"));
+		modifies->setModifies(new STMT(1), new VAR("c"));
+		modifies->setModifies(new STMT(1), new VAR("d"));
 
-		modifies->setModifies(1, "a");
-		modifies->setModifies(1, "b");
-		modifies->setModifies(1, "c");
-		modifies->setModifies(1, "d");
+		modifies->setModifies(new STMT(2), new VAR("a1"));
+		modifies->setModifies(new STMT(2), new VAR("b1"));
+		modifies->setModifies(new STMT(2), new VAR("c1"));
+		modifies->setModifies(new STMT(2), new VAR("d1"));
 
-		modifies->setModifies(2, "a1");
-		modifies->setModifies(2, "b1");
-		modifies->setModifies(2, "c1");
-		modifies->setModifies(2, "d1");
-
-		Assert::IsTrue(4 == modifies->getModifiesBy(1).size());
-		Assert::IsTrue(4 == modifies->getModifiesBy(2).size());
+		Assert::IsTrue(4 == modifies->getModifiesBy(new STMT(1)).size());
+		Assert::IsTrue(4 == modifies->getModifiesBy(new STMT(2)).size());
 	}
 
 	TEST_METHOD(Modifies_setModifiesPROC_Test) {
 		auto modifies = new Modifies();
 
-		modifies->setModifies("p1", "a");
-		modifies->setModifies("p1", "b");
-		modifies->setModifies("p1", "c");
-		modifies->setModifies("p1", "d");
+		modifies->setModifies(new PROC("p1"), new VAR("a"));
+		modifies->setModifies(new PROC("p1"), new VAR("b"));
+		modifies->setModifies(new PROC("p1"), new VAR("c"));
+		modifies->setModifies(new PROC("p1"), new VAR("d"));
 
-		modifies->setModifies("p2", "a1");
-		modifies->setModifies("p2", "b1");
-		modifies->setModifies("p2", "c1");
-		modifies->setModifies("p2", "d1");
+		modifies->setModifies(new PROC("p2"), new VAR("a1"));
+		modifies->setModifies(new PROC("p2"), new VAR("b1"));
+		modifies->setModifies(new PROC("p2"), new VAR("c1"));
+		modifies->setModifies(new PROC("p2"), new VAR("d1"));
 
-		Assert::IsTrue(4 == modifies->getModifiesBy("p1").size());
-		Assert::IsTrue(4 == modifies->getModifiesBy("p2").size());
+		Assert::IsTrue(4 == modifies->getModifiesBy(new PROC("p1")).size());
+		Assert::IsTrue(4 == modifies->getModifiesBy(new PROC("p2")).size());
 	}
 
-	//typedef string PROC;
-	//typedef int STMT;
-	//typedef string VAR;
-	//typedef int ASSIGN;
 	TEST_METHOD(Modifies_getModifiesSTMT_Test) {
 		auto modifies = new Modifies();
 
-		modifies->setModifies(1, "a");
-		modifies->setModifies(1, "b");
-		modifies->setModifies(1, "c");
-		modifies->setModifies(1, "d");
+		modifies->setModifies(new STMT(1), new VAR("a"));
+		modifies->setModifies(new STMT(1), new VAR("b"));
+		modifies->setModifies(new STMT(1), new VAR("c"));
+		modifies->setModifies(new STMT(1), new VAR("d"));
 
-		modifies->setModifies(2, "a1");
-		modifies->setModifies(2, "b1");
-		modifies->setModifies(2, "c1");
-		modifies->setModifies(2, "d1");
+		modifies->setModifies(new STMT(2), new VAR("a1"));
+		modifies->setModifies(new STMT(2), new VAR("b1"));
+		modifies->setModifies(new STMT(2), new VAR("c1"));
+		modifies->setModifies(new STMT(2), new VAR("d1"));
 
-		modifies->setModifies(3, "a");
-		modifies->setModifies(3, "b");
-		modifies->setModifies(3, "c");
-		modifies->setModifies(3, "d");
+		modifies->setModifies(new STMT(3), new VAR("a"));
+		modifies->setModifies(new STMT(3), new VAR("b"));
+		modifies->setModifies(new STMT(3), new VAR("c"));
+		modifies->setModifies(new STMT(3), new VAR("d"));
 
-		Assert::IsTrue(1 == modifies->getModifiesSTMT("a1").size());
-		Assert::IsTrue(2 == modifies->getModifiesSTMT("c").size());
+		Assert::IsTrue(1 == modifies->getModifiesSTMT(new VAR("a1")).size());
+		Assert::IsTrue(2 == modifies->getModifiesSTMT(new VAR("c")).size());
 	}
 
 	TEST_METHOD(Modifies_getModifiesPROC_Test) {
 		auto modifies = new Modifies();
 
-		modifies->setModifies("p1", "a");
-		modifies->setModifies("p1", "b");
-		modifies->setModifies("p1", "c");
-		modifies->setModifies("p1", "d");
+		modifies->setModifies(new PROC("p1"), new VAR("a"));
+		modifies->setModifies(new PROC("p1"), new VAR("b"));
+		modifies->setModifies(new PROC("p1"), new VAR("c"));
+		modifies->setModifies(new PROC("p1"), new VAR("d"));
 
-		modifies->setModifies("p2", "a1");
-		modifies->setModifies("p2", "b1");
-		modifies->setModifies("p2", "c1");
-		modifies->setModifies("p2", "d1");
+		modifies->setModifies(new PROC("p2"), new VAR("a1"));
+		modifies->setModifies(new PROC("p2"), new VAR("b1"));
+		modifies->setModifies(new PROC("p2"), new VAR("c1"));
+		modifies->setModifies(new PROC("p2"), new VAR("d1"));
 
-		modifies->setModifies("p3", "a1");
-		modifies->setModifies("p3", "b1");
-		modifies->setModifies("p3", "c1");
-		modifies->setModifies("p3", "d1");
+		modifies->setModifies(new PROC("p3"), new VAR("a1"));
+		modifies->setModifies(new PROC("p3"), new VAR("b1"));
+		modifies->setModifies(new PROC("p3"), new VAR("c1"));
+		modifies->setModifies(new PROC("p3"), new VAR("d1"));
 
-		Assert::IsTrue(1 == modifies->getModifiesPROC("a").size());
-		Assert::IsTrue(2 == modifies->getModifiesPROC("d1").size());
+		bool a = modifies->getModifiesPROC(new VAR("a")).size();
+		bool b = modifies->getModifiesPROC(new VAR("d1")).size();
+
+		Assert::IsTrue(1 == modifies->getModifiesPROC(new VAR("a")).size());
+		Assert::IsTrue(2 == modifies->getModifiesPROC(new VAR("d1")).size());
 	}
 
 	TEST_METHOD(Modifies_getModifiesBySTMT_Test) {
 		auto modifies = new Modifies();
 
-		modifies->setModifies(1, "a");
-		modifies->setModifies(1, "b");
-		modifies->setModifies(1, "c");
-		modifies->setModifies(1, "d");
+		modifies->setModifies(new STMT(1), new VAR("a"));
+		modifies->setModifies(new STMT(1), new VAR("b"));
+		modifies->setModifies(new STMT(1), new VAR("c"));
+		modifies->setModifies(new STMT(1), new VAR("d"));
 
-		modifies->setModifies(2, "a1");
-		modifies->setModifies(2, "b1");
-		modifies->setModifies(2, "c1");
-		modifies->setModifies(2, "d1");
+		modifies->setModifies(new STMT(2), new VAR("a1"));
+		modifies->setModifies(new STMT(2), new VAR("b1"));
+		modifies->setModifies(new STMT(2), new VAR("c1"));
+		modifies->setModifies(new STMT(2), new VAR("d1"));
 
-		modifies->setModifies(3, "a");
-		modifies->setModifies(3, "b");
-		modifies->setModifies(3, "c");
-		modifies->setModifies(3, "d");
+		modifies->setModifies(new STMT(3), new VAR("a"));
+		modifies->setModifies(new STMT(3), new VAR("b"));
+		modifies->setModifies(new STMT(3), new VAR("c"));
+		modifies->setModifies(new STMT(3), new VAR("d"));
 
-		Assert::IsTrue(4 == modifies->getModifiesBy(1).size());
-		Assert::IsTrue(4 == modifies->getModifiesBy(2).size());
+		Assert::IsTrue(4 == modifies->getModifiesBy(new STMT(1)).size());
+		Assert::IsTrue(4 == modifies->getModifiesBy(new STMT(2)).size());
 	}
 
 	TEST_METHOD(Modifies_getModifiesByPROC_Test) {
 		auto modifies = new Modifies();
 
-		modifies->setModifies("p1", "a");
-		modifies->setModifies("p1", "b");
-		modifies->setModifies("p1", "c");
-		modifies->setModifies("p1", "d");
+		modifies->setModifies(new PROC("p1"), new VAR("a"));
+		modifies->setModifies(new PROC("p1"), new VAR("b"));
+		modifies->setModifies(new PROC("p1"), new VAR("c"));
+		modifies->setModifies(new PROC("p1"), new VAR("d"));
 
-		modifies->setModifies("p2", "a1");
-		modifies->setModifies("p2", "b1");
-		modifies->setModifies("p2", "c1");
-		modifies->setModifies("p2", "d1");
+		modifies->setModifies(new PROC("p2"), new VAR("a1"));
+		modifies->setModifies(new PROC("p2"), new VAR("b1"));
+		modifies->setModifies(new PROC("p2"), new VAR("c1"));
+		modifies->setModifies(new PROC("p2"), new VAR("d1"));
 
-		modifies->setModifies("p3", "a1");
-		modifies->setModifies("p3", "b1");
-		modifies->setModifies("p3", "c1");
-		modifies->setModifies("p3", "d1");
+		modifies->setModifies(new PROC("p3"), new VAR("a1"));
+		modifies->setModifies(new PROC("p3"), new VAR("b1"));
+		modifies->setModifies(new PROC("p3"), new VAR("c1"));
+		modifies->setModifies(new PROC("p3"), new VAR("d1"));
 
-		Assert::IsTrue(4 == modifies->getModifiesBy("p1").size());
-		Assert::IsTrue(4 == modifies->getModifiesBy("p3").size());
+		Assert::IsTrue(4 == modifies->getModifiesBy(new PROC("p1")).size());
+		Assert::IsTrue(4 == modifies->getModifiesBy(new PROC("p3")).size());
 	}
 
 	TEST_METHOD(Modifies_isModifiesSTMT_Test) {
 		auto modifies = new Modifies();
 
-		modifies->setModifies(1, "a");
-		modifies->setModifies(1, "b");
-		modifies->setModifies(1, "c");
-		modifies->setModifies(1, "d");
+		modifies->setModifies(new STMT(1), new VAR("a"));
+		modifies->setModifies(new STMT(1), new VAR("b"));
+		modifies->setModifies(new STMT(1), new VAR("c"));
+		modifies->setModifies(new STMT(1), new VAR("d"));
 
-		modifies->setModifies(2, "a1");
-		modifies->setModifies(2, "b1");
-		modifies->setModifies(2, "c1");
-		modifies->setModifies(2, "d1");
+		modifies->setModifies(new STMT(2), new VAR("a1"));
+		modifies->setModifies(new STMT(2), new VAR("b1"));
+		modifies->setModifies(new STMT(2), new VAR("c1"));
+		modifies->setModifies(new STMT(2), new VAR("d1"));
 
-		modifies->setModifies(3, "a");
-		modifies->setModifies(3, "b");
-		modifies->setModifies(3, "c");
-		modifies->setModifies(3, "d");
+		modifies->setModifies(new STMT(3), new VAR("a"));
+		modifies->setModifies(new STMT(3), new VAR("b"));
+		modifies->setModifies(new STMT(3), new VAR("c"));
+		modifies->setModifies(new STMT(3), new VAR("d"));
 
-		Assert::IsTrue(modifies->isModifies(1,"a"));
-		Assert::IsFalse(modifies->isModifies(2, "a"));
+		Assert::IsTrue(modifies->isModifies(1,new VAR("a")));
+		Assert::IsFalse(modifies->isModifies(2, new VAR("a")));
 	}
 
 	TEST_METHOD(Modifies_isModifiesPROC_Test) {
 		auto modifies = new Modifies();
 
-		modifies->setModifies("p1", "a");
-		modifies->setModifies("p1", "b");
-		modifies->setModifies("p1", "c");
-		modifies->setModifies("p1", "d");
+		modifies->setModifies(new PROC("p1"), new VAR("a"));
+		modifies->setModifies(new PROC("p1"), new VAR("b"));
+		modifies->setModifies(new PROC("p1"), new VAR("c"));
+		modifies->setModifies(new PROC("p1"), new VAR("d"));
 
-		modifies->setModifies("p2", "a1");
-		modifies->setModifies("p2", "b1");
-		modifies->setModifies("p2", "c1");
-		modifies->setModifies("p2", "d1");
+		modifies->setModifies(new PROC("p2"), new VAR("a1"));
+		modifies->setModifies(new PROC("p2"), new VAR("b1"));
+		modifies->setModifies(new PROC("p2"), new VAR("c1"));
+		modifies->setModifies(new PROC("p2"), new VAR("d1"));
 
-		modifies->setModifies("p3", "a1");
-		modifies->setModifies("p3", "b1");
-		modifies->setModifies("p3", "c1");
-		modifies->setModifies("p3", "d1");
+		modifies->setModifies(new PROC("p3"), new VAR("a1"));
+		modifies->setModifies(new PROC("p3"), new VAR("b1"));
+		modifies->setModifies(new PROC("p3"), new VAR("c1"));
+		modifies->setModifies(new PROC("p3"), new VAR("d1"));
 
-		Assert::IsTrue(modifies->isModifies("p1", "a"));
-		Assert::IsFalse(modifies->isModifies("p3", "a"));
+		Assert::IsTrue(modifies->isModifies("p1", new VAR("a")));
+		Assert::IsFalse(modifies->isModifies("p3", new VAR("a")));
 	}
 
 };

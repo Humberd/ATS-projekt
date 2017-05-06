@@ -12,13 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h" />
+    <ClInclude Include="ASSIGN.h" />
     <ClInclude Include="AssignNode.h" />
     <ClInclude Include="ASTException.h" />
     <ClInclude Include="CallNode.h" />
-    <ClInclude Include="CallsNode.h" />
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="DeepTraverser.h" />
     <ClInclude Include="ExpressionNode.h" />
+    <ClInclude Include="FromCallDeepTraverser.h" />
     <ClInclude Include="FromDeepTraverser.h" />
     <ClInclude Include="GetCallsDeepTraverser.h" />
     <ClInclude Include="IfNode.h" />
@@ -28,31 +29,34 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Calls.h" />
-    <ClInclude Include="Constants.h" />
     <ClInclude Include="Follows.h" />
     <ClInclude Include="PlusNode.h" />
+    <ClInclude Include="PROC.h" />
     <ClInclude Include="ProcedureNode.h" />
     <ClInclude Include="ProgramNode.h" />
     <ClInclude Include="RangeNumber.h" />
     <ClInclude Include="ReferenceNode.h" />
     <ClInclude Include="StatementListNode.h" />
     <ClInclude Include="StatementNode.h" />
+    <ClInclude Include="STMT.h" />
     <ClInclude Include="TimesNode.h" />
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />
     <ClInclude Include="ValidateException.h" />
+    <ClInclude Include="VAR.h" />
     <ClInclude Include="VariableNode.h" />
     <ClInclude Include="WhileNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ASSIGN.cpp" />
     <ClCompile Include="Calls.cpp" />
     <ClCompile Include="AssignNode.cpp" />
     <ClCompile Include="ASTException.cpp" />
     <ClCompile Include="CallNode.cpp" />
-    <ClCompile Include="CallsNode.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="DeepTraverser.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
+    <ClCompile Include="FromCallDeepTraverser.cpp" />
     <ClCompile Include="FromDeepTraverser.cpp" />
     <ClCompile Include="GetCallsDeepTraverser.cpp" />
     <ClCompile Include="IfNode.cpp" />
@@ -61,14 +65,18 @@
     <ClCompile Include="Modifies.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PlusNode.cpp" />
+    <ClCompile Include="PROC.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
     <ClCompile Include="ProgramNode.cpp" />
     <ClCompile Include="RangeNumber.cpp" />
     <ClCompile Include="ReferenceNode.cpp" />
     <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="StatementNode.cpp" />
+    <ClCompile Include="STMT.cpp" />
     <ClCompile Include="TimesNode.cpp" />
+    <ClCompile Include="Uses.cpp" />
     <ClCompile Include="ValidateException.cpp" />
+    <ClCompile Include="VAR.cpp" />
     <ClCompile Include="VariableNode.cpp" />
     <ClCompile Include="WhileNode.cpp" />
   </ItemGroup>
