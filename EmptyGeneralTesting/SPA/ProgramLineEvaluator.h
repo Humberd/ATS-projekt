@@ -27,7 +27,7 @@ public:
 	explicit ProgramLineEvaluator();
 	~ProgramLineEvaluator();
 
-	void evaluate(Node* node);
+	void evaluate(Node* node) const;
 
-	void evaluate(Node* node, int& programLineNumber);
+	void evaluate(Node* node, int& programLineNumber) const;
 };
