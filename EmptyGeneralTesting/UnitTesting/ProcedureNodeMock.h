@@ -3,7 +3,7 @@
 
 class ProcedureNodeMock : public ProcedureNode {
 public:
-	explicit ProcedureNodeMock(int sourceLineNumber, int programLineNumber);
+	explicit ProcedureNodeMock(int sourceLineNumber);
 	~ProcedureNodeMock();
 
 	void addChild(Node* child) override;

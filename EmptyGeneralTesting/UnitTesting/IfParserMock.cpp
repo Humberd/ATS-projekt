@@ -18,7 +18,7 @@ Node* IfParserMock::parse() {
 
 	if ((*iterator)->getKey() == TokenKeyMocks::IF_MOCK) {
 		nextElement();
-		return new IfNodeMock(1, 1);
+		return new IfNodeMock(1);
 	} else {
 		throw ParserException("exc");
 	}

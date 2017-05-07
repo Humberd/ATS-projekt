@@ -4,7 +4,7 @@
 
 class StatementListNodeMock : public StatementListNode {
 public:
-	explicit StatementListNodeMock(int sourceLineNumber, int programLineNumber);
+	explicit StatementListNodeMock(int sourceLineNumber);
 	~StatementListNodeMock();
 
 	void addChild(Node* child) override;

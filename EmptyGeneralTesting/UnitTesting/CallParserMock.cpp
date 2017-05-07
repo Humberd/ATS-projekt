@@ -18,7 +18,7 @@ Node* CallParserMock::parse() {
 
 	if ((*iterator)->getKey() == TokenKeyMocks::CALL_MOCK) {
 		nextElement();
-		return new CallNodeMock(1, 1);
+		return new CallNodeMock(1);
 	} else {
 		throw ParserException("exc");
 	}

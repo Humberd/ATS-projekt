@@ -16,7 +16,7 @@ Node* ExpressionParserMock::parse() {
 
 	if ((*iterator)->getKey() == TokenKeyMocks::EXPRESSION_MOCK) {
 		nextElement();
-		return new ExpressionNodeMock(1, 1);
+		return new ExpressionNodeMock(1);
 	} else {
 		throw ParserException("exc");
 	}

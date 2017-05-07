@@ -75,23 +75,23 @@ Node* ExpressionParser::parse() {
 	while (true) {
 		throwOnEOF();
 		if ((*iterator)->isName() && ct == 0) {
-			expressionNodes.push_back(new VariableNode((*iterator)->getFileLineNumber(), (*iterator)->getValue()));
+			expressionNodes.push_back(new VariableNode((*iterator)->getSourceLineNumber(), (*iterator)->getValue()));
 			ct = 1;
 		} else if ((*iterator)->isInteger() && ct == 0) {
-			expressionNodes.push_back(new ConstantNode((*iterator)->getFileLineNumber(), stoi((*iterator)->getValue())));
+			expressionNodes.push_back(new ConstantNode((*iterator)->getSourceLineNumber(), stoi((*iterator)->getValue())));
 			ct = 1;
 		} else if ((*iterator)->isOperator() && ct == 1) {
 			/*For every operator I set a default WEIGHT
 			 * The higher - the more important the operator is
 			 */
 			if ((*iterator)->isPlus()) {
-				operatorNodes.push_back(new OperatorNode(PLUS_MINUS_WEIGHT, new PlusNode((*iterator)->getFileLineNumber())));
+				operatorNodes.push_back(new OperatorNode(PLUS_MINUS_WEIGHT, new PlusNode((*iterator)->getSourceLineNumber())));
 				++numberOfPlusMinus;
 			} else if ((*iterator)->isMinus()) {
-				operatorNodes.push_back(new OperatorNode(PLUS_MINUS_WEIGHT, new MinusNode((*iterator)->getFileLineNumber())));
+				operatorNodes.push_back(new OperatorNode(PLUS_MINUS_WEIGHT, new MinusNode((*iterator)->getSourceLineNumber())));
 				++numberOfPlusMinus;
 			} else if ((*iterator)->isTimes()) {
-				operatorNodes.push_back(new OperatorNode(TIMES_WEIGHT, new TimesNode((*iterator)->getFileLineNumber())));
+				operatorNodes.push_back(new OperatorNode(TIMES_WEIGHT, new TimesNode((*iterator)->getSourceLineNumber())));
 				++numberOfTimes;
 			} else {
 				throw ParserException(getClassName() + " - expected plus, minus or times operator, but instead got: " + (*iterator)->toString());

@@ -12,8 +12,7 @@ class MockNode : public Node {
 
 public:
 	explicit MockNode(int sourceLineNumber,
-	                  int programLineNumber,
-	                  RangeNumber* rangeOfRequiredChildNodes) : Node(sourceLineNumber, programLineNumber, rangeOfRequiredChildNodes) {
+	                  RangeNumber* rangeOfRequiredChildNodes) : Node(sourceLineNumber, rangeOfRequiredChildNodes) {
 	}
 
 	~MockNode() override {
@@ -26,20 +25,19 @@ public:
 
 TEST_CLASS(NodeTest) {
 	TEST_METHOD(Node_initialize_noChildren_noParent) {
-		auto mockNode = new MockNode(2, 1, new RangeNumber(1, 3));
+		auto mockNode = new MockNode(2, new RangeNumber(1, 3));
 
 		Assert::IsTrue(0 == mockNode->getChildren().size());
 		Assert::IsNull(mockNode->getParent());
 		Assert::IsTrue(2 == mockNode->getSourceLineNumber());
-		Assert::IsTrue(1 == mockNode->getProgramLineNumber());
 
 		delete mockNode;
 	}
 
 	TEST_METHOD(Node_getChildren_add2Children) {
-		auto mockNode = new MockNode(1, 1, new RangeNumber(2, 2));
-		auto child1 = new MockNode(2, 2, new RangeNumber(0, 0));
-		auto child2 = new MockNode(3, 3, new RangeNumber(0, 0));
+		auto mockNode = new MockNode(1, new RangeNumber(2, 2));
+		auto child1 = new MockNode(2, new RangeNumber(0, 0));
+		auto child2 = new MockNode(3, new RangeNumber(0, 0));
 
 		mockNode->addChild(child1);
 		mockNode->addChild(child2);
@@ -54,8 +52,8 @@ TEST_CLASS(NodeTest) {
 		Assert::IsTrue(child2 == mockNode->getChild(1));
 
 		auto pointer = [mockNode] {
-					mockNode->getChild(2);
-				};
+			mockNode->getChild(2);
+		};
 
 		Assert::ExpectException<exception>(pointer);
 
@@ -63,8 +61,8 @@ TEST_CLASS(NodeTest) {
 	}
 
 	TEST_METHOD(Node_getParent_setParent) {
-		auto mockNode = new MockNode(2, 2, new RangeNumber(0, 0));
-		auto parentNode = new MockNode(1, 1, new RangeNumber(1, 1));
+		auto mockNode = new MockNode(2, new RangeNumber(0, 0));
+		auto parentNode = new MockNode(1, new RangeNumber(1, 1));
 
 		Assert::IsNull(mockNode->getParent());
 
@@ -76,8 +74,8 @@ TEST_CLASS(NodeTest) {
 	}
 
 	TEST_METHOD(Node_validate_Valid) {
-		auto parentNode = new MockNode(1, 1, new RangeNumber(1, 1));
-		auto childNode = new MockNode(2, 2, new RangeNumber(0, 0));
+		auto parentNode = new MockNode(1, new RangeNumber(1, 1));
+		auto childNode = new MockNode(2, new RangeNumber(0, 0));
 
 		parentNode->addChild(childNode);
 
@@ -87,11 +85,11 @@ TEST_CLASS(NodeTest) {
 	}
 
 	TEST_METHOD(Node_validate_InvalidSelf) {
-		auto parentNode = new MockNode(1, 1, new RangeNumber(1, 1));
+		auto parentNode = new MockNode(1, new RangeNumber(1, 1));
 
 		auto pointer = [parentNode] {
-					parentNode->validate();
-				};
+			parentNode->validate();
+		};
 
 		Assert::ExpectException<ValidateException>(pointer);
 
@@ -99,14 +97,14 @@ TEST_CLASS(NodeTest) {
 	}
 
 	TEST_METHOD(Node_validate_InvalidChild) {
-		auto parentNode = new MockNode(1, 1, new RangeNumber(1, 1));
-		auto childNode = new MockNode(2, 2, new RangeNumber(1, 1));
+		auto parentNode = new MockNode(1, new RangeNumber(1, 1));
+		auto childNode = new MockNode(2, new RangeNumber(1, 1));
 
 		parentNode->addChild(childNode);
 
 		auto pointer = [parentNode] {
-					parentNode->validate();
-				};
+			parentNode->validate();
+		};
 
 		Assert::ExpectException<ValidateException>(pointer);
 
@@ -114,13 +112,13 @@ TEST_CLASS(NodeTest) {
 	}
 
 	TEST_METHOD(Node_validate_LoopCatchSelf) {
-		auto parentNode = new MockNode(1, 1, new RangeNumber(1, 1));
+		auto parentNode = new MockNode(1, new RangeNumber(1, 1));
 
 		parentNode->addChild(parentNode);
 
 		auto pointer = [parentNode] {
-					parentNode->validate();
-				};
+			parentNode->validate();
+		};
 
 		Assert::ExpectException<ValidateException>(pointer);
 
@@ -128,15 +126,15 @@ TEST_CLASS(NodeTest) {
 	}
 
 	TEST_METHOD(Node_validate_LoopCatchChild) {
-		auto parentNode = new MockNode(1, 1, new RangeNumber(1, 1));
-		auto childNode = new MockNode(2, 2, new RangeNumber(1, 1));
+		auto parentNode = new MockNode(1, new RangeNumber(1, 1));
+		auto childNode = new MockNode(2, new RangeNumber(1, 1));
 
 		parentNode->addChild(childNode);
 		childNode->addChild(parentNode);
 
 		auto pointer = [parentNode] {
-					parentNode->validate();
-				};
+			parentNode->validate();
+		};
 
 		Assert::ExpectException<ValidateException>(pointer);
 

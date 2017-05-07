@@ -21,7 +21,7 @@ Node* IfParser::parse() {
 	throwOnEOF();
 
 	if ((*iterator)->isIf()) {
-		ifNode = new IfNode((*iterator)->getFileLineNumber());
+		ifNode = new IfNode((*iterator)->getSourceLineNumber());
 	} else {
 		throw ParserException(getClassName() + " - expected an 'if' keyword, but instead got: " + (*iterator)->toString());
 	}
@@ -29,7 +29,7 @@ Node* IfParser::parse() {
 	throwOnEOF();
 
 	if ((*iterator)->isName()) {
-		leftExpr = new VariableNode((*iterator)->getFileLineNumber(), (*iterator)->getValue());
+		leftExpr = new VariableNode((*iterator)->getSourceLineNumber(), (*iterator)->getValue());
 	} else {
 		throw ParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
 	}

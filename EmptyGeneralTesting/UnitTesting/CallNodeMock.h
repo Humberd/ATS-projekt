@@ -3,7 +3,7 @@
 
 class CallNodeMock : public StatementNode {
 public:
-	explicit CallNodeMock(int sourceLineNumber, int programLineNumber);
+	explicit CallNodeMock(int sourceLineNumber);
 	~CallNodeMock();
 
 	void addChild(Node* child) override;

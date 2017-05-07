@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "WhileNodeMock.h"
 
-WhileNodeMock::WhileNodeMock(int sourceLineNumber,
-                             int programLineNumber) : StatementNode(sourceLineNumber, programLineNumber, new RangeNumber(0, 0)) {
+WhileNodeMock::WhileNodeMock(int sourceLineNumber) : StatementNode(sourceLineNumber, new RangeNumber(0, 0)) {
 }
 
 WhileNodeMock::~WhileNodeMock() {

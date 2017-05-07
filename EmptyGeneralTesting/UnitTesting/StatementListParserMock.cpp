@@ -18,7 +18,7 @@ Node* StatementListParserMock::parse() {
 
 	if ((*iterator)->getKey() == TokenKeyMocks::STATEMENT_LIST_MOCK) {
 		nextElement();
-		return new StatementListNodeMock(1, 1);
+		return new StatementListNodeMock(1);
 	} else {
 		throw ParserException("exc");
 	}

@@ -14,7 +14,7 @@ ProgramParser::~ProgramParser() {
 Node* ProgramParser::parse() {
 	throwOnEOF();
 
-	Node* programNode = new ProgramNode((*iterator)->getFileLineNumber());
+	Node* programNode = new ProgramNode((*iterator)->getSourceLineNumber());
 
 	while (iterator != iteratorEnd) {
 		Node* procedureNode = parsersRepo->procedureParser->parse();

@@ -25,7 +25,7 @@ Node* CallParser::parse() {
 	throwOnEOF();
 
 	if ((*iterator)->isName()) {
-		callNode = new CallNode((*iterator)->getFileLineNumber(), (*iterator)->getValue());
+		callNode = new CallNode((*iterator)->getSourceLineNumber(), (*iterator)->getValue());
 	} else {
 		throw ParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
 	}

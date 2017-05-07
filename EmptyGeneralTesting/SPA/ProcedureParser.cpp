@@ -25,7 +25,7 @@ Node* ProcedureParser::parse() {
 	throwOnEOF();
 
 	if ((*iterator)->isName()) {
-		procNode = new ProcedureNode((*iterator)->getFileLineNumber(), (*iterator)->getValue());
+		procNode = new ProcedureNode((*iterator)->getSourceLineNumber(), (*iterator)->getValue());
 	} else {
 		throw ParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
 	}
