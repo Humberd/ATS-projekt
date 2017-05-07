@@ -4,8 +4,7 @@
 #include "StatementNode.h"
 #include "InvalidArgumentException.h"
 
-StatementListNode::StatementListNode(int sourceLineNumber,
-                                     int programLineNumber) : Node(sourceLineNumber, programLineNumber, new RangeNumber(1, INT32_MAX)) {
+StatementListNode::StatementListNode(int sourceLineNumber) : Node(sourceLineNumber, new RangeNumber(1, INT32_MAX)) {
 }
 
 StatementListNode::~StatementListNode() {

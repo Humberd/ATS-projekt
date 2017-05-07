@@ -3,7 +3,7 @@
 
 class TimesNode: public ExpressionNode {
 public:
-	explicit TimesNode(int sourceLineNumber, int programLineNumber);
+	explicit TimesNode(int sourceLineNumber);
 	~TimesNode() override;
 
 	// pozwala na 2 childy: ExpressionNode i ExpressionNode

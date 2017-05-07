@@ -10,19 +10,17 @@ private:
 	string key;
 	string value;
 	int sourceLineNumber;
-	int programLineNumber;
 
 public:
-	explicit LexerToken(string key, string value, int sourceLineNumber, int programLineNumber);
-	explicit LexerToken(string key, char value, int sourceLineNumber, int programLineNumber);
-	explicit LexerToken(char key, char value, int sourceLineNumber, int programLineNumber);
-	explicit LexerToken(char key, string value, int sourceLineNumber, int programLineNumber);
+	explicit LexerToken(string key, string value, int sourceLineNumber);
+	explicit LexerToken(string key, char value, int sourceLineNumber);
+	explicit LexerToken(char key, char value, int sourceLineNumber);
+	explicit LexerToken(char key, string value, int sourceLineNumber);
 	~LexerToken();
 
 	string getKey() const;
 	string getValue() const;
 	int getSourceLineNumber() const;
-	int getProgramLineNumber() const;
 
 	bool isKeyword() const;
 	bool isName() const;

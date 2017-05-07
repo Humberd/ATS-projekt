@@ -6,7 +6,7 @@ private:
 	string procedureName;
 
 public:
-	explicit CallNode(int sourceLineNumber, int programLineNumber, string procedureName);
+	explicit CallNode(int sourceLineNumber, string procedureName);
 	~CallNode() override;
 
 	string getProcedureName() const;

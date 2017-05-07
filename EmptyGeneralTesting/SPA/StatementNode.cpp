@@ -1,8 +1,7 @@
 #include "StatementNode.h"
 
 StatementNode::StatementNode(int sourceLineNumber,
-                             int programLineNumber,
-                             RangeNumber* rangeOfRequiredChildNodes) : Node(sourceLineNumber, programLineNumber, rangeOfRequiredChildNodes) {
+                             RangeNumber* rangeOfRequiredChildNodes) : Node(sourceLineNumber, rangeOfRequiredChildNodes) {
 }
 
 StatementNode::~StatementNode() {

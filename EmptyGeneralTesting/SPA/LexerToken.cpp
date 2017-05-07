@@ -6,26 +6,22 @@
 
 LexerToken::LexerToken(string key,
                        string value,
-                       int sourceLineNumber,
-                       int programLineNumber): key(key), value(value), sourceLineNumber(sourceLineNumber), programLineNumber(programLineNumber) {
+                       int sourceLineNumber): key(key), value(value), sourceLineNumber(sourceLineNumber) {
 }
 
 LexerToken::LexerToken(string key,
                        char value,
-                       int sourceLineNumber,
-                       int programLineNumber): LexerToken(key, string(1, value), sourceLineNumber, programLineNumber) {
+                       int sourceLineNumber): LexerToken(key, string(1, value), sourceLineNumber) {
 }
 
 LexerToken::LexerToken(char key,
                        char value,
-                       int sourceLineNumber,
-                       int programLineNumber) : LexerToken(string(1, key), string(1, value), sourceLineNumber, programLineNumber) {
+                       int sourceLineNumber) : LexerToken(string(1, key), string(1, value), sourceLineNumber) {
 }
 
 LexerToken::LexerToken(char key,
                        string value,
-                       int sourceLineNumber,
-                       int programLineNumber): LexerToken(string(1, key), value, sourceLineNumber, programLineNumber) {
+                       int sourceLineNumber): LexerToken(string(1, key), value, sourceLineNumber) {
 }
 
 LexerToken::~LexerToken() {
@@ -41,10 +37,6 @@ string LexerToken::getValue() const {
 
 int LexerToken::getSourceLineNumber() const {
 	return sourceLineNumber;
-}
-
-int LexerToken::getProgramLineNumber() const {
-	return programLineNumber;
 }
 
 bool LexerToken::isKeyword() const {
@@ -121,7 +113,6 @@ bool LexerToken::isSemicolon() const {
 	return isSpecialCharacter() && value == SpecialCharacters::SEMICOLON;
 }
 
-
 string LexerToken::toString() const {
-	return "{key: '" + key + "', value: '" + value + "', sourceLineNumber: '" + to_string(sourceLineNumber) + "', programLineNumber: " + to_string(programLineNumber) + "}";
+	return "{key: '" + key + "', value: '" + value + "', sourceLineNumber: '" + to_string(sourceLineNumber) + "}";
 }

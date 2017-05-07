@@ -3,8 +3,7 @@
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
 
-ProgramNode::ProgramNode(int sourceLineNumber,
-                         int programLineNumber): Node(sourceLineNumber, programLineNumber, new RangeNumber(1, INT32_MAX)) {
+ProgramNode::ProgramNode(int sourceLineNumber): Node(sourceLineNumber, new RangeNumber(1, INT32_MAX)) {
 }
 
 ProgramNode::~ProgramNode() {

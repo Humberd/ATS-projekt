@@ -3,8 +3,7 @@
 #include "InvalidArgumentException.h"
 
 ConstantNode::ConstantNode(int sourceLineNumber,
-                           int programLineNumber,
-                           int value) : ReferenceNode(sourceLineNumber, programLineNumber) {
+                           int value) : ReferenceNode(sourceLineNumber) {
 	this->value = value;
 }
 

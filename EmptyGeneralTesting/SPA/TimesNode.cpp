@@ -1,8 +1,7 @@
 #include "TimesNode.h"
 #include "ValidateException.h"
 
-TimesNode::TimesNode(int sourceLineNumber,
-                     int programLineNumber) : ExpressionNode(sourceLineNumber, programLineNumber, new RangeNumber(2, 2)) {
+TimesNode::TimesNode(int sourceLineNumber) : ExpressionNode(sourceLineNumber, new RangeNumber(2, 2)) {
 }
 
 TimesNode::~TimesNode() {

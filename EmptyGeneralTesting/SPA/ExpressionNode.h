@@ -3,7 +3,7 @@
 
 class ExpressionNode: public Node {
 protected:
-	explicit ExpressionNode(int sourceLineNumber, int programLineNumber, RangeNumber* rangeOfRequiredChildNodes);
+	explicit ExpressionNode(int sourceLineNumber, RangeNumber* rangeOfRequiredChildNodes);
 
 public:
 	virtual ~ExpressionNode();

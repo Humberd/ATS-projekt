@@ -24,7 +24,7 @@ private:
 
 protected:
 	/*Initialize a node with the line number*/
-	explicit Node(int sourceLineNumber, int programLineNumber, RangeNumber* rangeOfRequiredChildNodes);
+	explicit Node(int sourceLineNumber, RangeNumber* rangeOfRequiredChildNodes);
 
 	/*Adding a child and setting this object as its parent*/
 	void _addChild(Node* child);

@@ -4,8 +4,7 @@
 #include "InvalidArgumentException.h"
 
 VariableNode::VariableNode(int sourceLineNumber,
-                           int programLineNumber,
-                           string name) : ReferenceNode(sourceLineNumber, programLineNumber) {
+                           string name) : ReferenceNode(sourceLineNumber) {
 	this->name = name;
 }
 

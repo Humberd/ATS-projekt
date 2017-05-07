@@ -5,8 +5,7 @@
 
 
 ProcedureNode::ProcedureNode(int sourceLineNumber,
-                             int programLineNumber,
-                             string name) : Node(sourceLineNumber, programLineNumber, new RangeNumber(1, 1)) {
+                             string name) : Node(sourceLineNumber, new RangeNumber(1, 1)) {
 	this->name = name;
 }
 

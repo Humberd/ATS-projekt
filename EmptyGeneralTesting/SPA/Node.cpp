@@ -7,20 +7,15 @@
 using namespace std;
 
 Node::Node(int sourceLineNumber,
-           int programLineNumber,
            RangeNumber* rangeOfRequiredChildNodes) {
 	if (sourceLineNumber < 1) {
 		throw InvalidArgumentException(this, "sourceLineNumber must be a positive integer, but instead is: " + to_string(sourceLineNumber));
-	}
-	if (programLineNumber < 1) {
-		throw InvalidArgumentException(this, "programLineNumber must be a positive integer, but instead is: " + to_string(programLineNumber));
 	}
 	if (rangeOfRequiredChildNodes == nullptr) {
 		throw InvalidArgumentException(this, "rangeOfRequiredChildNodes must not be a null");
 	}
 
 	this->sourceLineNumber = sourceLineNumber;
-	this->programLineNumber = programLineNumber;
 	this->rangeOfRequiredChildNodes = rangeOfRequiredChildNodes;
 }
 

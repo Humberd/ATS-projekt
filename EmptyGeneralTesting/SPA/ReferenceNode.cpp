@@ -3,8 +3,7 @@
 #include "ValidateException.h"
 #include "VariableNode.h"
 
-ReferenceNode::ReferenceNode(int sourceLineNumber,
-                             int programLineNumber) : ExpressionNode(sourceLineNumber, programLineNumber, new RangeNumber(0, 0)) {
+ReferenceNode::ReferenceNode(int sourceLineNumber) : ExpressionNode(sourceLineNumber, new RangeNumber(0, 0)) {
 }
 
 ReferenceNode::~ReferenceNode() {

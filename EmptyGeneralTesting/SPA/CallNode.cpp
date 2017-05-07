@@ -3,8 +3,7 @@
 #include "InvalidArgumentException.h"
 
 CallNode::CallNode(int sourceLineNumber,
-                   int programLineNumber,
-                   string procedureName) : StatementNode(sourceLineNumber, programLineNumber, new RangeNumber(0, 0)) {
+                   string procedureName) : StatementNode(sourceLineNumber, new RangeNumber(0, 0)) {
 	this->procedureName = procedureName;
 }
 
