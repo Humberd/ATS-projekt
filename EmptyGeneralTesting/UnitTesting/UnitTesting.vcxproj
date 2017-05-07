@@ -198,6 +198,7 @@
     <ClCompile Include="ProcedureNodeMock.cpp" />
     <ClCompile Include="ProcedureParserMock.cpp" />
     <ClCompile Include="ProcedureParserTest.cpp" />
+    <ClCompile Include="ProgramLineEvaluatorTest.cpp" />
     <ClCompile Include="ProgramParserTest.cpp" />
     <ClCompile Include="SourceParserTest.cpp" />
     <ClCompile Include="RangeNumberTest.cpp" />

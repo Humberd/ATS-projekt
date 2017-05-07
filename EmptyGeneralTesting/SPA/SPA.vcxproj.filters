@@ -58,6 +58,12 @@
     <Filter Include="Source Files\SourceParser\Parser">
       <UniqueIdentifier>{3a979d0b-f93f-420b-94ec-473adc34bd0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SourceParser\ProgramLineEvaluator">
+      <UniqueIdentifier>{0a41f444-a87c-4df4-a0ab-9c6fca3da5d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\ProgramLineEvaluator">
+      <UniqueIdentifier>{aedf7cf9-1b90-4808-a0a4-93c2d17e921b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -210,6 +216,9 @@
     <ClInclude Include="ProgramParser.h">
       <Filter>Header Files\SourceParser\Parser</Filter>
     </ClInclude>
+    <ClInclude Include="ProgramLineEvaluator.h">
+      <Filter>Header Files\SourceParser\ProgramLineEvaluator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -337,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="ProgramParser.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramLineEvaluator.cpp">
+      <Filter>Source Files\SourceParser\ProgramLineEvaluator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

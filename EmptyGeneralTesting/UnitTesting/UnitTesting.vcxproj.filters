@@ -55,6 +55,9 @@
     <Filter Include="Source Files\SourceParser\mocks\nodes">
       <UniqueIdentifier>{7a36dc03-606f-49ef-adac-88d768525abb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SourceParser\ProgramLineEvaluator">
+      <UniqueIdentifier>{4ff2a2e8-9180-4646-9abd-2335f81368be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -211,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="ProcedureNodeMock.cpp">
       <Filter>Source Files\SourceParser\mocks\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgramLineEvaluatorTest.cpp">
+      <Filter>Source Files\SourceParser\ProgramLineEvaluator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
