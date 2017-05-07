@@ -84,6 +84,10 @@ int Node::getSourceLineNumber() const {
 	return sourceLineNumber;
 }
 
+void Node::setProgramLineNumber(int programLineNumber) {
+	this->programLineNumber = programLineNumber;
+}
+
 int Node::getProgramLineNumber() const {
 	return programLineNumber;
 }
