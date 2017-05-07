@@ -14,56 +14,27 @@ ProgramLineEvaluator::ProgramLineEvaluator() {
 ProgramLineEvaluator::~ProgramLineEvaluator() {
 }
 
-void ProgramLineEvaluator::evaluate(Node* node) {
+void ProgramLineEvaluator::evaluate(Node* node) const {
 	int initialProgramLineNumber = 0;
 
 	this->evaluate(node, initialProgramLineNumber);
 }
 
-void ProgramLineEvaluator::evaluate(Node* node, int& programLineNumber) {
+void ProgramLineEvaluator::evaluate(Node* node, int& programLineNumber) const {
 	if (dynamic_cast<ProgramNode*>(node)) {
 		node->setProgramLineNumber(-1);
-		for (auto child : node->getChildren()) {
-			this->evaluate(child, programLineNumber);
-		}
 	} else if (dynamic_cast<ProcedureNode*>(node)) {
 		node->setProgramLineNumber(-1);
-		for (auto child : node->getChildren()) {
-			this->evaluate(child, programLineNumber);
-		}
 	} else if (dynamic_cast<StatementListNode*>(node)) {
 		node->setProgramLineNumber(-1);
-		for (auto child : node->getChildren()) {
-			this->evaluate(child, programLineNumber);
-		}
-	} else if (dynamic_cast<AssignNode*>(node)) {
+	} else if (dynamic_cast<StatementNode*>(node)) {
 		programLineNumber++;
 		node->setProgramLineNumber(programLineNumber);
-		for (auto child : node->getChildren()) {
-			this->evaluate(child, programLineNumber);
-		}
-	} else if (dynamic_cast<CallNode*>(node)) {
-		programLineNumber++;
-		node->setProgramLineNumber(programLineNumber);
-		for (auto child : node->getChildren()) {
-			this->evaluate(child, programLineNumber);
-		}
-	} else if (dynamic_cast<WhileNode*>(node)) {
-		programLineNumber++;
-		node->setProgramLineNumber(programLineNumber);
-		for (auto child : node->getChildren()) {
-			this->evaluate(child, programLineNumber);
-		}
-	} else if (dynamic_cast<IfNode*>(node)) {
-		programLineNumber++;
-		node->setProgramLineNumber(programLineNumber);
-		this->evaluate(node->getChild(0), programLineNumber);
-		this->evaluate(node->getChild(1), programLineNumber);
-		this->evaluate(node->getChild(2), programLineNumber);
 	} else if (dynamic_cast<ExpressionNode*>(node)) {
 		node->setProgramLineNumber(programLineNumber);
-		for (auto child : node->getChildren()) {
-			this->evaluate(child, programLineNumber);
-		}
+	}
+
+	for (auto child : node->getChildren()) {
+		this->evaluate(child, programLineNumber);
 	}
 }
