@@ -2,7 +2,10 @@
 #include "ProgramNode.h"
 #include "ProcedureNode.h"
 #include "StatementListNode.h"
+#include "AssignNode.h"
 #include "CallNode.h"
+#include "WhileNode.h"
+#include "IfNode.h"
 #include "ExpressionNode.h"
 
 ProgramLineEvaluator::ProgramLineEvaluator() {
