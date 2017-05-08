@@ -1,7 +1,7 @@
 #include "Node.h"
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
-#include <CppUnitTestLogger.h>
+//#include <CppUnitTestLogger.h>
 #include <sstream>
 
 using namespace std;
@@ -108,7 +108,7 @@ void Node::prettyPrint(int indent) {
 	}
 	ss << toString();
 
-	Microsoft::VisualStudio::CppUnitTestFramework::Logger::WriteMessage(ss.str().c_str());
+//	Microsoft::VisualStudio::CppUnitTestFramework::Logger::WriteMessage(ss.str().c_str());
 
 	for (auto child : children) {
 		child->prettyPrint(indent + 1);

@@ -22,7 +22,7 @@
     <ProjectGuid>{74CA3A41-F84C-4C47-B882-5EBF60895525}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>UnitTesting</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -35,7 +35,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>false</UseOfMfc>
@@ -192,6 +192,7 @@
     <ClCompile Include="KeywordsTest.cpp" />
     <ClCompile Include="LexerTest.cpp" />
     <ClCompile Include="LexerTokenTest.cpp" />
+    <ClCompile Include="ModifiesTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="OperatorsTest.cpp" />
     <ClCompile Include="ParsingEntityTest.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="StatementListNodeMock.cpp" />
     <ClCompile Include="StatementListParserMock.cpp" />
     <ClCompile Include="StatementListParserTest.cpp" />
+    <ClCompile Include="CallsTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -217,6 +219,7 @@
     <ClCompile Include="WhileNodeMock.cpp" />
     <ClCompile Include="WhileParserMock.cpp" />
     <ClCompile Include="WhileParserTest.cpp" />
+    <ClCompile Include="UsesTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt" />

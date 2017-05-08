@@ -22,6 +22,9 @@
     <Filter Include="Source Files\helpers">
       <UniqueIdentifier>{2929f5e0-c1d3-45fb-a82e-2fe5d9264129}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\PKB">
+      <UniqueIdentifier>{fbc47deb-c866-455b-85a6-b045a03ac851}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\SourceParser">
       <UniqueIdentifier>{48c4935c-15dc-494c-8df2-2b440ee08489}</UniqueIdentifier>
     </Filter>
@@ -119,11 +122,20 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CallsTest.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
     <ClCompile Include="NodeTest.cpp">
       <Filter>Source Files\AST</Filter>
     </ClCompile>
     <ClCompile Include="RangeNumberTest.cpp">
       <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="ModifiesTest.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="UsesTest.cpp">
+      <Filter>Source Files\PKB</Filter>
     </ClCompile>
     <ClCompile Include="SourceFileManagerTest.cpp">
       <Filter>Source Files\SourceParser</Filter>

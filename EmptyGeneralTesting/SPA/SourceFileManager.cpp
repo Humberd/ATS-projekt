@@ -1,6 +1,6 @@
 #include "SourceFileManager.h"
 #include "SourceFileException.h"
-#include <CppUnitTestLogger.h>
+//#include <CppUnitTestLogger.h>
 #include <numeric>
 
 SourceFileManager::SourceFileManager(string filePath) : filePath(filePath) {

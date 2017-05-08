@@ -22,6 +22,12 @@
     <Filter Include="Source Files\AST">
       <UniqueIdentifier>{2f5e669c-7329-432d-b47e-d209b50fec7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\PKB">
+      <UniqueIdentifier>{e7ce940b-114e-495b-b1d7-4fd1915d64c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PKB\PKBTree">
+      <UniqueIdentifier>{1ac5977d-f7aa-4796-aee6-2746d13ab89e}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\AST\Exceptions">
       <UniqueIdentifier>{789c142f-f524-467a-87ae-b7eea9c37dc1}</UniqueIdentifier>
     </Filter>
@@ -63,6 +69,15 @@
     </Filter>
     <Filter Include="Source Files\SourceParser\ProgramLineEvaluator">
       <UniqueIdentifier>{aedf7cf9-1b90-4808-a0a4-93c2d17e921b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PKB\PKBTree">
+      <UniqueIdentifier>{e087f068-e76f-4bd5-8cb1-8453f9d001a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Constants">
+      <UniqueIdentifier>{b600af61-dcdc-4e11-be6b-6efc7ed2a014}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Constants">
+      <UniqueIdentifier>{f32ed212-0f25-4314-8fb1-68398ce50b30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="VariableNode.h">
       <Filter>Header Files\AST</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ConstantNode.h">
       <Filter>Header Files\AST</Filter>
@@ -219,10 +231,37 @@
     <ClInclude Include="ProgramLineEvaluator.h">
       <Filter>Header Files\SourceParser\ProgramLineEvaluator</Filter>
     </ClInclude>
+    <ClInclude Include="GetCallsDeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
+    <ClInclude Include="DeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
+    <ClInclude Include="FromDeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
+    <ClInclude Include="PROC.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="ASSIGN.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="STMT.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="VAR.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="FromCallDeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
       <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="Calls.cpp">
+      <Filter>Source Files\PKB</Filter>
     </ClCompile>
     <ClCompile Include="ProgramNode.cpp">
       <Filter>Source Files\AST</Filter>
@@ -349,6 +388,36 @@
     </ClCompile>
     <ClCompile Include="ProgramLineEvaluator.cpp">
       <Filter>Source Files\SourceParser\ProgramLineEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="GetCallsDeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="DeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="FromDeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="Modifies.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Uses.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="ASSIGN.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="PROC.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="STMT.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="VAR.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="FromCallDeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
