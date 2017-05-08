@@ -4,6 +4,9 @@
 using namespace std;
 
 class Next {
+
+	//map<int, vector<STMT*>> nextMap;
+
 	public:
 		void setNext(STMT s1, STMT s2);
 		vector<STMT> goNext(STMT s1, bool goDeep);
