@@ -168,6 +168,15 @@
     <ClInclude Include="Part.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NextTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParentTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UsesTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -264,6 +273,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Part.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NextTag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParentTag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UsesTag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

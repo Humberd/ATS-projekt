@@ -28,12 +28,14 @@
     <ClInclude Include="InvalidArgumentException.h" />
     <ClInclude Include="MinusNode.h" />
     <ClInclude Include="Next.h" />
+    <ClInclude Include="NextTag.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Calls.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Follows.h" />
+    <ClInclude Include="ParentTag.h" />
     <ClInclude Include="Part.h" />
     <ClInclude Include="PlusNode.h" />
     <ClInclude Include="ProcedureNode.h" />
@@ -47,6 +49,7 @@
     <ClInclude Include="TimesNode.h" />
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />
+    <ClInclude Include="UsesTag.h" />
     <ClInclude Include="ValidateException.h" />
     <ClInclude Include="VariableNode.h" />
     <ClInclude Include="WhileNode.h" />
@@ -68,8 +71,10 @@
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
     <ClCompile Include="MinusNode.cpp" />
+    <ClCompile Include="NextTag.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="ParentTag.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="PlusNode.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
@@ -81,6 +86,7 @@
     <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="StatementNode.cpp" />
     <ClCompile Include="TimesNode.cpp" />
+    <ClCompile Include="UsesTag.cpp" />
     <ClCompile Include="ValidateException.cpp" />
     <ClCompile Include="VariableNode.cpp" />
     <ClCompile Include="WhileNode.cpp" />

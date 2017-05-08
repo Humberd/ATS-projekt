@@ -32,8 +32,8 @@ list<string> FollowsTag::DoQuery()
 	}
 	if (selectItem == "boolean")
 	{
-		ASSIGN s1;
-		ASSIGN s2;
+		STMT s1;
+		STMT s2;
 		string par = _queryParts.parts[_which].parameteresInBracket[0];
 		string par2 = _queryParts.parts[_which].parameteresInBracket[1];
 		if ((std::find_if(par.begin(), par.end(), isdigit) != par.end()) && (std::find_if(par2.begin(), par2.end(), isdigit) != par2.end()))

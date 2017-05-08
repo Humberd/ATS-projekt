@@ -18,5 +18,5 @@ public:
 private:
 	QueryParts SplitQuery(vector<string> query);
 	const vector<string> allowedWords = { "calls","calls*","modifies","modifies*","uses","uses*","follows","follows*","parent","parent*","affects","affects*","next","next*" };
-	const vector<string> parameters = { "assign","stmt","var","proc","procedure","call" };
+	const vector<string> parameters = { "assign","stmt","var","proc","procedure","call", "variable" };
 };
