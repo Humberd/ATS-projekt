@@ -13,15 +13,19 @@
   <ItemGroup>
     <ClInclude Include="Affects.h" />
     <ClInclude Include="ASSIGN.h" />
+    <ClInclude Include="AffectsTag.h" />
     <ClInclude Include="AssignNode.h" />
     <ClInclude Include="AssignParser.h" />
     <ClInclude Include="ASTException.h" />
     <ClInclude Include="CallNode.h" />
     <ClInclude Include="CallParser.h" />
+    <ClInclude Include="CallsNode.h" />
+    <ClInclude Include="CallsTag.h" />
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="DeepTraverser.h" />
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="FromCallDeepTraverser.h" />
+    <ClInclude Include="FollowsTag.h" />
     <ClInclude Include="FromDeepTraverser.h" />
     <ClInclude Include="GetCallsDeepTraverser.h" />
     <ClInclude Include="ExpressionParser.h" />
@@ -45,14 +49,20 @@
     <ClInclude Include="InvalidArgumentException.h" />
     <ClInclude Include="MinusNode.h" />
     <ClInclude Include="Next.h" />
+    <ClInclude Include="NextTag.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Parameter.h" />
     <ClInclude Include="Parent.h" />
     <ClInclude Include="Calls.h" />
     <ClInclude Include="Follows.h" />
+    <ClInclude Include="ParentTag.h" />
+    <ClInclude Include="Part.h" />
     <ClInclude Include="PlusNode.h" />
     <ClInclude Include="PROC.h" />
     <ClInclude Include="ProcedureNode.h" />
     <ClInclude Include="ProgramNode.h" />
+    <ClInclude Include="QueryParser.h" />
+    <ClInclude Include="QueryParts.h" />
     <ClInclude Include="RangeNumber.h" />
     <ClInclude Include="ReferenceNode.h" />
     <ClInclude Include="SpecialCharacters.h" />
@@ -64,6 +74,7 @@
     <ClInclude Include="TokenKeys.h" />
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />
+    <ClInclude Include="UsesTag.h" />
     <ClInclude Include="ValidateException.h" />
     <ClInclude Include="VAR.h" />
     <ClInclude Include="VariableNode.h" />
@@ -72,16 +83,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ASSIGN.cpp" />
+    <ClCompile Include="AffectsTag.cpp" />
     <ClCompile Include="Calls.cpp" />
     <ClCompile Include="AssignNode.cpp" />
     <ClCompile Include="AssignParser.cpp" />
     <ClCompile Include="ASTException.cpp" />
     <ClCompile Include="CallNode.cpp" />
     <ClCompile Include="CallParser.cpp" />
+    <ClCompile Include="CallsNode.cpp" />
+    <ClCompile Include="CallsTag.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="DeepTraverser.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
     <ClCompile Include="FromCallDeepTraverser.cpp" />
+    <ClCompile Include="FollowsTag.cpp" />
     <ClCompile Include="FromDeepTraverser.cpp" />
     <ClCompile Include="GetCallsDeepTraverser.cpp" />
     <ClCompile Include="ExpressionParser.cpp" />
@@ -93,8 +108,12 @@
     <ClCompile Include="LexerException.cpp" />
     <ClCompile Include="LexerToken.cpp" />
     <ClCompile Include="MinusNode.cpp" />
+    <ClCompile Include="NextTag.cpp" />
     <ClCompile Include="Modifies.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="ParentTag.cpp" />
+    <ClCompile Include="Part.cpp" />
     <ClCompile Include="Operators.cpp" />
     <ClCompile Include="ParsersRepository.cpp" />
     <ClCompile Include="ParsingEntity.cpp" />
@@ -107,6 +126,8 @@
     <ClCompile Include="PROC.cpp" />
     <ClCompile Include="ProcedureNode.cpp" />
     <ClCompile Include="ProgramNode.cpp" />
+    <ClCompile Include="QueryParser.cpp" />
+    <ClCompile Include="QueryParts.cpp" />
     <ClCompile Include="RangeNumber.cpp" />
     <ClCompile Include="ReferenceNode.cpp" />
     <ClCompile Include="Printable.cpp" />
@@ -118,6 +139,7 @@
     <ClCompile Include="StatementNode.cpp" />
     <ClCompile Include="STMT.cpp" />
     <ClCompile Include="TimesNode.cpp" />
+    <ClCompile Include="UsesTag.cpp" />
     <ClCompile Include="Uses.cpp" />
     <ClCompile Include="TokenKeys.cpp" />
     <ClCompile Include="ValidateException.cpp" />
@@ -139,7 +161,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>

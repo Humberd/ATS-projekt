@@ -79,6 +79,12 @@
     <Filter Include="Source Files\Constants">
       <UniqueIdentifier>{f32ed212-0f25-4314-8fb1-68398ce50b30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\QueryParser">
+      <UniqueIdentifier>{17e7425e-dd6d-422c-b938-eb10e359ece4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser">
+      <UniqueIdentifier>{fb405b1e-b838-4748-acbe-da7521996656}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -255,6 +261,36 @@
     <ClInclude Include="FromCallDeepTraverser.h">
       <Filter>Header Files\PKB\PKBTree</Filter>
     </ClInclude>
+    <ClInclude Include="AffectsTag.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="CallsTag.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowsTag.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryParser.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryParts.h">
+      <Filter>Header Files\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Part.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NextTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParentTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UsesTag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -418,6 +454,36 @@
     </ClCompile>
     <ClCompile Include="FromCallDeepTraverser.cpp">
       <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="AffectsTag.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="CallsTag.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowsTag.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryParser.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryParts.cpp">
+      <Filter>Source Files\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Part.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NextTag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParentTag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UsesTag.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

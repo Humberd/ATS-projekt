@@ -4,6 +4,9 @@
 //#include <CppUnitTestLogger.h>
 #include <sstream>
 
+//#include <CppUnitTestLogger.h>
+
+
 using namespace std;
 
 Node::Node(int sourceLineNumber,
