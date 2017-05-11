@@ -18,7 +18,7 @@ list<string> ParentTag::DoQuery()
 	Parent parent;
 	list<string> finalResult;
 
-	vector<STMT> helpOutput;
+	vector<STMT*> helpOutput;
 	string selectItem = _queryParts.selectingItem;
 	transform(selectItem.begin(), selectItem.end(), selectItem.begin(), tolower);
 	bool InDepth = false;
@@ -33,14 +33,14 @@ list<string> ParentTag::DoQuery()
 
 	if (selectItem == "boolean")
 	{
-		STMT s1;
-		STMT s2;
+		STMT* s1;
+		STMT* s2;
 		string par = _queryParts.parts[_which].parameteresInBracket[0];
 		string par2 = _queryParts.parts[_which].parameteresInBracket[1];
 		if ((std::find_if(par.begin(), par.end(), isdigit) != par.end()) && (std::find_if(par2.begin(), par2.end(), isdigit) != par2.end()))
 		{
-			s1 = stoi(par);
-			s2 = stoi(par2);
+			s1 = new STMT(stoi(par));
+			s2 = new STMT(stoi(par2));
 			bool output = false;
 			//output= parent.isParent(s1, s2, InDepth);
 			finalResult.push_back(to_string(output));
@@ -48,22 +48,22 @@ list<string> ParentTag::DoQuery()
 	}
 	else
 	{
-		STMT s1;
+		STMT* s1;
 		string par = _queryParts.parts[_which].parameteresInBracket[0];
 		string par2 = _queryParts.parts[_which].parameteresInBracket[1];
 		if (std::find_if(par.begin(), par.end(), isdigit) != par.end())
 		{
-			s1 = stoi(par);
+			s1 = new STMT(stoi(par));
 			//helpOutput = parent.getParentOf(s1, InDepth);
 		}
 		else if (std::find_if(par2.begin(), par2.end(), isdigit) != par2.end())
 		{
-			s1 = stoi(par2);
+			s1 = new STMT(stoi(par2));
 			//helpOutput = parent.getParent(s1, InDepth);
 		}
-		for each (ASSIGN var in helpOutput)
+		for each (STMT* var in helpOutput)
 		{
-			finalResult.push_back(to_string(var));
+			finalResult.push_back(to_string(var->getSTMT()));
 		}
 	}
 }

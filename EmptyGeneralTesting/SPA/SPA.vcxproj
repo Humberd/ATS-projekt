@@ -90,7 +90,6 @@
     <ClCompile Include="ASTException.cpp" />
     <ClCompile Include="CallNode.cpp" />
     <ClCompile Include="CallParser.cpp" />
-    <ClCompile Include="CallsNode.cpp" />
     <ClCompile Include="CallsTag.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="DeepTraverser.cpp" />
