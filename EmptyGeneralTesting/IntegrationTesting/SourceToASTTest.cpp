@@ -4,12 +4,14 @@
 #include "../SPA/Lexer.h"
 #include "../SPA/SourceParser.h"
 #include "../SPA/ProgramLineEvaluator.h"
+#include "../SPA/Spa.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
 TEST_CLASS(SourceToASTTest) {
 	TEST_METHOD(SourceToAST_AssignmentSource) {
+		
 		/*Reading file and saving linest to a vector*/
 		SourceFileManager* fileManager = new SourceFileManager("../IntegrationTesting/Source1.txt");
 		vector<string> fileLines = fileManager->readFile();

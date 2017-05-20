@@ -97,6 +97,18 @@
     <Filter Include="Source Files\QueryParser2\Exceptions">
       <UniqueIdentifier>{3e96fd2a-7975-40f6-88a1-77f6005c99fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\SourceParser\Types">
+      <UniqueIdentifier>{9c299f62-d8ad-47c0-808f-388a91e4f868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Types">
+      <UniqueIdentifier>{d278380d-6b30-4379-9dbb-16eaadb19846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\Types">
+      <UniqueIdentifier>{0012cd96-c12c-4749-9344-26f0d577ef4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\Types">
+      <UniqueIdentifier>{e1f9e088-c684-48cd-b072-135c184d83cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -183,12 +195,6 @@
     <ClInclude Include="SourceFileException.h">
       <Filter>Header Files\SourceParser\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Keywords.h">
-      <Filter>Header Files\SourceParser</Filter>
-    </ClInclude>
-    <ClInclude Include="SpecialCharacters.h">
-      <Filter>Header Files\SourceParser</Filter>
-    </ClInclude>
     <ClInclude Include="Lexer.h">
       <Filter>Header Files\SourceParser\Lexer</Filter>
     </ClInclude>
@@ -197,9 +203,6 @@
     </ClInclude>
     <ClInclude Include="LexerException.h">
       <Filter>Header Files\SourceParser\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Operators.h">
-      <Filter>Header Files\SourceParser</Filter>
     </ClInclude>
     <ClInclude Include="TokenKeys.h">
       <Filter>Header Files\SourceParser\Lexer</Filter>
@@ -273,18 +276,6 @@
     <ClInclude Include="QTokenKeys.h">
       <Filter>Header Files\QueryParser2\Lexer</Filter>
     </ClInclude>
-    <ClInclude Include="QueryKeywords.h">
-      <Filter>Header Files\QueryParser2</Filter>
-    </ClInclude>
-    <ClInclude Include="QueryMethods.h">
-      <Filter>Header Files\QueryParser2</Filter>
-    </ClInclude>
-    <ClInclude Include="DeclarationKeywords.h">
-      <Filter>Header Files\QueryParser2</Filter>
-    </ClInclude>
-    <ClInclude Include="QuerySpecialCharacters.h">
-      <Filter>Header Files\QueryParser2</Filter>
-    </ClInclude>
     <ClInclude Include="QLexerToken.h">
       <Filter>Header Files\QueryParser2\Lexer</Filter>
     </ClInclude>
@@ -296,6 +287,30 @@
     </ClInclude>
     <ClInclude Include="SourceFileManager.h">
       <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Keywords.h">
+      <Filter>Header Files\SourceParser\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Operators.h">
+      <Filter>Header Files\SourceParser\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialCharacters.h">
+      <Filter>Header Files\SourceParser\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="DeclarationKeywords.h">
+      <Filter>Header Files\QueryParser2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryKeywords.h">
+      <Filter>Header Files\QueryParser2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryMethods.h">
+      <Filter>Header Files\QueryParser2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="QuerySpecialCharacters.h">
+      <Filter>Header Files\QueryParser2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Spa.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -365,12 +380,6 @@
     <ClCompile Include="SourceFileException.cpp">
       <Filter>Source Files\SourceParser\Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="Keywords.cpp">
-      <Filter>Source Files\SourceParser</Filter>
-    </ClCompile>
-    <ClCompile Include="SpecialCharacters.cpp">
-      <Filter>Source Files\SourceParser</Filter>
-    </ClCompile>
     <ClCompile Include="LexerToken.cpp">
       <Filter>Source Files\SourceParser\Lexer</Filter>
     </ClCompile>
@@ -379,9 +388,6 @@
     </ClCompile>
     <ClCompile Include="LexerException.cpp">
       <Filter>Source Files\SourceParser\Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="Operators.cpp">
-      <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
     <ClCompile Include="TokenKeys.cpp">
       <Filter>Source Files\SourceParser\Lexer</Filter>
@@ -458,18 +464,6 @@
     <ClCompile Include="FromCallDeepTraverser.cpp">
       <Filter>Source Files\PKB\PKBTree</Filter>
     </ClCompile>
-    <ClCompile Include="DeclarationKeywords.cpp">
-      <Filter>Source Files\QueryParser2</Filter>
-    </ClCompile>
-    <ClCompile Include="QueryKeywords.cpp">
-      <Filter>Source Files\QueryParser2</Filter>
-    </ClCompile>
-    <ClCompile Include="QueryMethods.cpp">
-      <Filter>Source Files\QueryParser2</Filter>
-    </ClCompile>
-    <ClCompile Include="QuerySpecialCharacters.cpp">
-      <Filter>Source Files\QueryParser2</Filter>
-    </ClCompile>
     <ClCompile Include="QTokenKeys.cpp">
       <Filter>Source Files\QueryParser2\Lexer</Filter>
     </ClCompile>
@@ -484,6 +478,30 @@
     </ClCompile>
     <ClCompile Include="SourceFileManager.cpp">
       <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Keywords.cpp">
+      <Filter>Source Files\SourceParser\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files\SourceParser\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialCharacters.cpp">
+      <Filter>Source Files\SourceParser\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclarationKeywords.cpp">
+      <Filter>Source Files\QueryParser2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryKeywords.cpp">
+      <Filter>Source Files\QueryParser2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryMethods.cpp">
+      <Filter>Source Files\QueryParser2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="QuerySpecialCharacters.cpp">
+      <Filter>Source Files\QueryParser2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Spa.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
