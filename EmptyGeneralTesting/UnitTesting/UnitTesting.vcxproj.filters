@@ -25,9 +25,6 @@
     <Filter Include="Source Files\PKB">
       <UniqueIdentifier>{fbc47deb-c866-455b-85a6-b045a03ac851}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\AutoTester">
-      <UniqueIdentifier>{a02ab9b6-9608-4c36-b764-c2a66d81d224}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\SourceParser">
       <UniqueIdentifier>{48c4935c-15dc-494c-8df2-2b440ee08489}</UniqueIdentifier>
     </Filter>
@@ -133,9 +130,6 @@
     </ClCompile>
     <ClCompile Include="RangeNumberTest.cpp">
       <Filter>Source Files\helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="QueryParserTest.cpp">
-      <Filter>Source Files\AutoTester</Filter>
     </ClCompile>
     <ClCompile Include="ModifiesTest.cpp">
       <Filter>Source Files\PKB</Filter>
