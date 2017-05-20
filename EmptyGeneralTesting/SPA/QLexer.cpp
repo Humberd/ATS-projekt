@@ -13,7 +13,8 @@ QLexer::~QLexer() {
 }
 
 /*
- * Declarations doesn't allow integers, so I don't even check them, just throw an exception.
+ * Declarations don't allow solo integers (can be allowed in a variable name),
+ * so I don't even check them; just throws an exception.
  */
 vector<QLexerToken*> QLexer::parseDeclarations(string sourceDeclarations) {
 	vector<QLexerToken*> result;

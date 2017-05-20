@@ -3,6 +3,9 @@
 #include <vector>
 #include "../SPA/QLexer.h"
 #include "../SPA/QLexerException.h"
+#include "../SPA/QTokenKeys.h"
+#include "../SPA/DeclarationKeywords.h"
+#include "../SPA/QuerySpecialCharacters.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -56,8 +59,8 @@ TEST_CLASS(QLexerTest) {
 
 		for (auto instance : testList) {
 			auto pointer = [instance] {
-				QLexer::scanName(instance->input.begin(), instance->input.end());
-			};
+						QLexer::scanName(instance->input.begin(), instance->input.end());
+					};
 
 			Assert::ExpectException<QLexerException>(pointer);
 			delete instance;
@@ -112,13 +115,72 @@ TEST_CLASS(QLexerTest) {
 
 		for (auto instance : testList) {
 			auto pointer = [instance] {
-				QLexer::scanInteger(instance->input.begin(), instance->input.end());
-			};
+						QLexer::scanInteger(instance->input.begin(), instance->input.end());
+					};
 
 			Assert::ExpectException<QLexerException>(pointer);
 			delete instance;
 		}
 
 		testList.clear();
+	}
+
+	TEST_METHOD(QLexer_parseDeclaration_Valid_1) {
+		string sourceDeclarations = "procedure p;";
+
+		vector<QLexerToken*> result = QLexer::parseDeclarations(sourceDeclarations);
+
+		Assert::IsTrue(result.size() == 3);
+
+		Assert::IsTrue(result.at(0)->getKey() == QTokenKeys::DECLARATION_KEYWORD);
+		Assert::IsTrue(result.at(0)->getValue() == DeclarationKeywords::PROCEDURE);
+
+		Assert::IsTrue(result.at(1)->getKey() == QTokenKeys::NAME);
+		Assert::IsTrue(result.at(1)->getValue() == "p");
+
+		Assert::IsTrue(result.at(2)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(2)->getValue() == QuerySpecialCharacters::SEMICOLON);
+
+		for (auto item : result) {
+			delete item;
+		}
+		result.clear();
+	}
+
+	TEST_METHOD(QLexer_parseDeclaration_Valid_2) {
+		string sourceDeclarations = "while w; stmt  myStat ; if  ifstat;variable v;assign a; call baa; procedure p;";
+
+		vector<QLexerToken*> result = QLexer::parseDeclarations(sourceDeclarations);
+
+		vector<string> keywords;
+		keywords.push_back(DeclarationKeywords::WHILE);
+		keywords.push_back(DeclarationKeywords::STATEMENT);
+		keywords.push_back(DeclarationKeywords::IF);
+		keywords.push_back(DeclarationKeywords::VARIABLE);
+		keywords.push_back(DeclarationKeywords::ASSIGN);
+		keywords.push_back(DeclarationKeywords::CALL);
+		keywords.push_back(DeclarationKeywords::PROCEDURE);
+
+		vector<string> names;
+		names.push_back("w");
+		names.push_back("myStat");
+		names.push_back("ifstat");
+		names.push_back("v");
+		names.push_back("a");
+		names.push_back("baa");
+		names.push_back("p");
+
+		Assert::IsTrue(result.size() == keywords.size() * 3);
+
+		for (int i = 0; i < keywords.size(); i++) {
+			Assert::IsTrue(result.at(i * 3)->getKey() == QTokenKeys::DECLARATION_KEYWORD);
+			Assert::IsTrue(result.at(i * 3)->getValue() == keywords.at(i));
+
+			Assert::IsTrue(result.at(i * 3 + 1)->getKey() == QTokenKeys::NAME);
+			Assert::IsTrue(result.at(i * 3 + 1)->getValue() == names.at(i));
+
+			Assert::IsTrue(result.at(i * 3 + 2)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+			Assert::IsTrue(result.at(i * 3 + 2)->getValue() == QuerySpecialCharacters::SEMICOLON);
+		}
 	}
 };
