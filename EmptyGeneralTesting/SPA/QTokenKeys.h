@@ -1,5 +1,4 @@
 #pragma once
-#include <stddef.h>
 #include <string>
 
 using namespace std;
@@ -10,9 +9,10 @@ private:
 	~QTokenKeys();
 
 public:
-	static const string KEYWORD;
+	static const string DECLARATION_KEYWORD;
+	static const string QUERY_KEYWORD;
+	static const string QUERY_METHOD;
 	static const string NAME;
 	static const string INTEGER;
-	static const string OPERATOR;
 	static const string SPECIAL_CHARACTER;
 };
