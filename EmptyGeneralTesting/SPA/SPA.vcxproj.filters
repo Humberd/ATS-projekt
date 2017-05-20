@@ -180,9 +180,6 @@
     <ClInclude Include="InvalidArgumentException.h">
       <Filter>Header Files\AST\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFileManager.h">
-      <Filter>Header Files\SourceParser</Filter>
-    </ClInclude>
     <ClInclude Include="SourceFileException.h">
       <Filter>Header Files\SourceParser\Exceptions</Filter>
     </ClInclude>
@@ -297,6 +294,9 @@
     <ClInclude Include="QLexerException.h">
       <Filter>Header Files\QueryParser2\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="SourceFileManager.h">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -361,9 +361,6 @@
     </ClCompile>
     <ClCompile Include="InvalidArgumentException.cpp">
       <Filter>Source Files\AST\Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="SourceFileManager.cpp">
-      <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
     <ClCompile Include="SourceFileException.cpp">
       <Filter>Source Files\SourceParser\Exceptions</Filter>
@@ -484,6 +481,9 @@
     </ClCompile>
     <ClCompile Include="QLexer.cpp">
       <Filter>Source Files\QueryParser2\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFileManager.cpp">
+      <Filter>Source Files\helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
