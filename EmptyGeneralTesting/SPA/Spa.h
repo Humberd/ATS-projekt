@@ -7,9 +7,8 @@ class Spa {
 
 private:
 	Spa();
-
-public:
 	~Spa();
 
+public:
 	static Node* generateAstFromFile(string filePath);
 };
