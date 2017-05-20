@@ -5,6 +5,8 @@
 #include "QTokenKeys.h"
 #include <locale>
 #include "DeclarationKeywords.h"
+#include "QueryKeywords.h"
+#include "QueryMethods.h"
 
 QLexer::QLexer() {
 }
@@ -59,6 +61,47 @@ vector<QLexerToken*> QLexer::parseDeclarations(string sourceDeclarations) {
 
 vector<QLexerToken*> QLexer::parseQuery(string sourceQuery) {
 	vector<QLexerToken*> result;
+
+	auto iterator = sourceQuery.begin();
+	auto iteratorEnd = sourceQuery.end();
+
+	while (iterator != iteratorEnd) {
+		auto character = *iterator;
+
+		/*If a character is a space or a tab*/
+		if (std::isblank(character)) {
+			++iterator;
+			continue;
+		}
+		/*If a character is a special character: '*,;()\"' */
+		else if (QuerySpecialCharacters::isQuerySpecialCharacter(character)) {
+			result.push_back(new QLexerToken(QTokenKeys::SPECIAL_CHARACTER, character));
+			++iterator;
+		}
+		/*If a character is alphanumeric:
+		* Start with: a-zA-Z
+		* All next: a-zA-Z0-9
+		*/
+		else if (isalpha(character)) {
+			string name = scanName(iterator, iteratorEnd);
+
+			if (QueryMethods::isQueryMethod(name)) {
+				result.push_back(new QLexerToken(QTokenKeys::QUERY_METHOD, name));
+			} else if (QueryKeywords::isQueryKeyword(name)) {
+				result.push_back(new QLexerToken(QTokenKeys::QUERY_KEYWORD, name));
+			} else {
+				result.push_back(new QLexerToken(QTokenKeys::NAME, name));
+			}
+		}
+		/*If a character is a digit: 0-9*/
+		else if (isdigit(character)) {
+			result.push_back(new QLexerToken(QTokenKeys::INTEGER, scanInteger(iterator, iteratorEnd)));
+		}
+		/*If I can't find an appropriate symbol*/
+		else {
+			throw QLexerException("Unknown symbol: " + character);
+		}
+	}
 
 	return result;
 }

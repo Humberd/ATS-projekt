@@ -6,6 +6,8 @@
 #include "../SPA/QTokenKeys.h"
 #include "../SPA/DeclarationKeywords.h"
 #include "../SPA/QuerySpecialCharacters.h"
+#include "../SPA/QueryKeywords.h"
+#include "../SPA/QueryMethods.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -182,5 +184,81 @@ TEST_CLASS(QLexerTest) {
 			Assert::IsTrue(result.at(i * 3 + 2)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
 			Assert::IsTrue(result.at(i * 3 + 2)->getValue() == QuerySpecialCharacters::SEMICOLON);
 		}
+
+		for (auto item : result) {
+			delete item;
+		}
+		result.clear();
+	}
+
+	TEST_METHOD(QLexer_parseQuery_Valid_1) {
+		string sourceQuery = "Select ifs such that Follows(5, ifs) and Modifies(s, \"i\")";
+
+		vector<QLexerToken*> result = QLexer::parseQuery(sourceQuery);
+
+		Assert::IsTrue(result.size() == 19);
+
+		Assert::IsTrue(result.at(0)->getKey() == QTokenKeys::QUERY_KEYWORD);
+		Assert::IsTrue(result.at(0)->getValue() == QueryKeywords::SELECT);
+
+		Assert::IsTrue(result.at(1)->getKey() == QTokenKeys::NAME);
+		Assert::IsTrue(result.at(1)->getValue() == "ifs");
+
+		Assert::IsTrue(result.at(2)->getKey() == QTokenKeys::QUERY_KEYWORD);
+		Assert::IsTrue(result.at(2)->getValue() == QueryKeywords::SUCH);
+
+		Assert::IsTrue(result.at(3)->getKey() == QTokenKeys::QUERY_KEYWORD);
+		Assert::IsTrue(result.at(3)->getValue() == QueryKeywords::THAT);
+
+		Assert::IsTrue(result.at(4)->getKey() == QTokenKeys::QUERY_METHOD);
+		Assert::IsTrue(result.at(4)->getValue() == QueryMethods::FOLLOWS);
+
+		Assert::IsTrue(result.at(5)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(5)->getValue() == QuerySpecialCharacters::OPENBRACE);
+
+		Assert::IsTrue(result.at(6)->getKey() == QTokenKeys::INTEGER);
+		Assert::IsTrue(result.at(6)->getValue() == "5");
+
+		Assert::IsTrue(result.at(7)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(7)->getValue() == QuerySpecialCharacters::COMMA);
+
+		Assert::IsTrue(result.at(8)->getKey() == QTokenKeys::NAME);
+		Assert::IsTrue(result.at(8)->getValue() == "ifs");
+
+		Assert::IsTrue(result.at(9)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(9)->getValue() == QuerySpecialCharacters::CLOSEBRACE);
+
+		Assert::IsTrue(result.at(10)->getKey() == QTokenKeys::QUERY_KEYWORD);
+		Assert::IsTrue(result.at(10)->getValue() == QueryKeywords::AND);
+
+		Assert::IsTrue(result.at(11)->getKey() == QTokenKeys::QUERY_METHOD);
+		Assert::IsTrue(result.at(11)->getValue() == QueryMethods::MODIFIES);
+
+		Assert::IsTrue(result.at(12)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(12)->getValue() == QuerySpecialCharacters::OPENBRACE);
+
+		Assert::IsTrue(result.at(13)->getKey() == QTokenKeys::NAME);
+		Assert::IsTrue(result.at(13)->getValue() == "s");
+
+		Assert::IsTrue(result.at(14)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(14)->getValue() == QuerySpecialCharacters::COMMA);
+
+		Assert::IsTrue(result.at(15)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(15)->getValue() == QuerySpecialCharacters::QUOTATIONMARK);
+
+		Assert::IsTrue(result.at(16)->getKey() == QTokenKeys::NAME);
+		Assert::IsTrue(result.at(16)->getValue() == "i");
+
+		Assert::IsTrue(result.at(17)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(17)->getValue() == QuerySpecialCharacters::QUOTATIONMARK);
+
+		Assert::IsTrue(result.at(18)->getKey() == QTokenKeys::SPECIAL_CHARACTER);
+		Assert::IsTrue(result.at(18)->getValue() == QuerySpecialCharacters::CLOSEBRACE);
+
+
+		for (auto item : result) {
+			delete item;
+		}
+		result.clear();
 	}
 };
