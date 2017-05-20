@@ -211,11 +211,3 @@ string QLexer::scanInteger(string::iterator& iterator, string::iterator& endIter
 	}
 	return response;
 }
-
-string QLexer::scanAlnum(string::iterator& iterator, string::iterator& endIterator) {
-	return nullptr;
-}
-
-string QLexer::scanString(string::iterator& iterator, string::iterator& endIterator) {
-	return nullptr;
-}
