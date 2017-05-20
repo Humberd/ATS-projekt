@@ -79,6 +79,18 @@
     <Filter Include="Source Files\Constants">
       <UniqueIdentifier>{f32ed212-0f25-4314-8fb1-68398ce50b30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\QueryParser2">
+      <UniqueIdentifier>{1e6d6ff6-dbce-41dc-a0e5-201536ba7401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\Lexer">
+      <UniqueIdentifier>{9e85149d-47f0-4a1b-b277-1a7a84cefb5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2">
+      <UniqueIdentifier>{6280eb53-424b-4591-922c-9194296ccb57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\Lexer">
+      <UniqueIdentifier>{61c68cca-2afa-43ce-9e7b-2534d766b155}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -255,23 +267,23 @@
     <ClInclude Include="FromCallDeepTraverser.h">
       <Filter>Header Files\PKB\PKBTree</Filter>
     </ClInclude>
-    <ClInclude Include="Parameter.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="QTokenKeys.h">
+      <Filter>Header Files\QueryParser2\Lexer</Filter>
     </ClInclude>
-    <ClInclude Include="Part.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="QueryKeywords.h">
+      <Filter>Header Files\QueryParser2</Filter>
     </ClInclude>
-    <ClInclude Include="NextTag.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="QueryMethods.h">
+      <Filter>Header Files\QueryParser2</Filter>
     </ClInclude>
-    <ClInclude Include="ParentTag.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DeclarationKeywords.h">
+      <Filter>Header Files\QueryParser2</Filter>
     </ClInclude>
-    <ClInclude Include="UsesTag.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="QuerySpecialCharacters.h">
+      <Filter>Header Files\QueryParser2</Filter>
     </ClInclude>
-    <ClInclude Include="CallsNode.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="QLexerToken.h">
+      <Filter>Header Files\QueryParser2\Lexer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -437,20 +449,23 @@
     <ClCompile Include="FromCallDeepTraverser.cpp">
       <Filter>Source Files\PKB\PKBTree</Filter>
     </ClCompile>
-    <ClCompile Include="Parameter.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DeclarationKeywords.cpp">
+      <Filter>Source Files\QueryParser2</Filter>
     </ClCompile>
-    <ClCompile Include="Part.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="QueryKeywords.cpp">
+      <Filter>Source Files\QueryParser2</Filter>
     </ClCompile>
-    <ClCompile Include="NextTag.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="QueryMethods.cpp">
+      <Filter>Source Files\QueryParser2</Filter>
     </ClCompile>
-    <ClCompile Include="ParentTag.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="QuerySpecialCharacters.cpp">
+      <Filter>Source Files\QueryParser2</Filter>
     </ClCompile>
-    <ClCompile Include="UsesTag.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="QTokenKeys.cpp">
+      <Filter>Source Files\QueryParser2\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="QLexerToken.cpp">
+      <Filter>Source Files\QueryParser2\Lexer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
