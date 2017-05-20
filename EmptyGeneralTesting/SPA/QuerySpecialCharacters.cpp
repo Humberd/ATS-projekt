@@ -21,3 +21,7 @@ bool QuerySpecialCharacters::isQuerySpecialCharacter(string value) {
 			value == CLOSEBRACE ||
 			value == QUOTATIONMARK;
 }
+
+bool QuerySpecialCharacters::isQuerySpecialCharacter(char value) {
+	return isQuerySpecialCharacter(string(1, value));
+}

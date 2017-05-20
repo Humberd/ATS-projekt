@@ -37,6 +37,8 @@
     <ClInclude Include="ProcedureParser.h" />
     <ClInclude Include="ProgramLineEvaluator.h" />
     <ClInclude Include="ProgramParser.h" />
+    <ClInclude Include="QLexer.h" />
+    <ClInclude Include="QLexerException.h" />
     <ClInclude Include="QLexerToken.h" />
     <ClInclude Include="QueryKeywords.h" />
     <ClInclude Include="QTokenKeys.h" />
@@ -108,6 +110,8 @@
     <ClCompile Include="ProcedureParser.cpp" />
     <ClCompile Include="ProgramLineEvaluator.cpp" />
     <ClCompile Include="ProgramParser.cpp" />
+    <ClCompile Include="QLexer.cpp" />
+    <ClCompile Include="QLexerException.cpp" />
     <ClCompile Include="QLexerToken.cpp" />
     <ClCompile Include="QTokenKeys.cpp" />
     <ClCompile Include="QueryKeywords.cpp" />

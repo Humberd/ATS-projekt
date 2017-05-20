@@ -32,7 +32,7 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine, int sourceLineNumber) {
 	auto iterator = sourceLine.begin();
 	auto iteratorEnd = sourceLine.end();
 
-	while (iterator != sourceLine.end()) {
+	while (iterator != iteratorEnd) {
 		auto character = *iterator;
 
 		/*If a character is a space or a tab*/

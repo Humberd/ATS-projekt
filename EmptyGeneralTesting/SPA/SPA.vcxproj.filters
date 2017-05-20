@@ -91,6 +91,12 @@
     <Filter Include="Header Files\QueryParser2\Lexer">
       <UniqueIdentifier>{61c68cca-2afa-43ce-9e7b-2534d766b155}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\QueryParser2\Exceptions">
+      <UniqueIdentifier>{e4909be9-9e7a-4d7e-ae46-b413de181a7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\Exceptions">
+      <UniqueIdentifier>{3e96fd2a-7975-40f6-88a1-77f6005c99fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -285,6 +291,12 @@
     <ClInclude Include="QLexerToken.h">
       <Filter>Header Files\QueryParser2\Lexer</Filter>
     </ClInclude>
+    <ClInclude Include="QLexer.h">
+      <Filter>Header Files\QueryParser2\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="QLexerException.h">
+      <Filter>Header Files\QueryParser2\Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -465,6 +477,12 @@
       <Filter>Source Files\QueryParser2\Lexer</Filter>
     </ClCompile>
     <ClCompile Include="QLexerToken.cpp">
+      <Filter>Source Files\QueryParser2\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="QLexerException.cpp">
+      <Filter>Source Files\QueryParser2\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="QLexer.cpp">
       <Filter>Source Files\QueryParser2\Lexer</Filter>
     </ClCompile>
   </ItemGroup>

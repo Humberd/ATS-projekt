@@ -17,4 +17,5 @@ public:
 	static const string QUOTATIONMARK; // "
 
 	static bool isQuerySpecialCharacter(string value);
+	static bool isQuerySpecialCharacter(char value);
 };

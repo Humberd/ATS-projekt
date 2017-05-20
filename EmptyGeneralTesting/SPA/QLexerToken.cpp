@@ -8,6 +8,10 @@
 QLexerToken::QLexerToken(string key, string value): key(key), value(value) {
 }
 
+
+QLexerToken::QLexerToken(string key, char value): QLexerToken(key, string(1, value)) {
+}
+
 QLexerToken::~QLexerToken() {
 }
 

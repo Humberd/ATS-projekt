@@ -61,6 +61,12 @@
     <Filter Include="Source Files\SourceParser\ProgramLineEvaluator">
       <UniqueIdentifier>{4ff2a2e8-9180-4646-9abd-2335f81368be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\QueryParser2">
+      <UniqueIdentifier>{dec09513-3843-4a33-aee1-ab1e90a18801}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\Lexer">
+      <UniqueIdentifier>{7f7155f8-c394-4bbe-8484-53eeb2f54c93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -229,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="ProgramLineEvaluatorTest.cpp">
       <Filter>Source Files\SourceParser\ProgramLineEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="QLexerTest.cpp">
+      <Filter>Source Files\QueryParser2\Lexer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

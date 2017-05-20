@@ -10,6 +10,7 @@ private:
 
 public:
 	explicit QLexerToken(string key, string value);
+	explicit QLexerToken(string key, char value);
 	~QLexerToken();
 
 	string getKey() const;
