@@ -171,9 +171,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Queries1.txt" />
+    <Text Include="autotest-1-source.txt" />
+    <Text Include="autotest-1-queries.txt" />
     <Text Include="Queries2.txt" />
-    <Text Include="Source1.txt" />
     <Text Include="Source2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
