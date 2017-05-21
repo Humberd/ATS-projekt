@@ -15,4 +15,5 @@ public:
 
 	ReturnRequest* parse();
 	vector<QueryVariable*> parseTouple();
+	vector<QueryVariable*> parseVariable();
 };

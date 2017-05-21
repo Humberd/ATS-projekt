@@ -47,6 +47,7 @@ QueryVariable* VariableParser::parse() {
 	if (iterator != iteratorEnd &&
 		(*iterator)->isHash()) {
 		// do nothing, just skip the hash in the iterator
+		nextElement();
 	}
 
 	return queryVariable;
