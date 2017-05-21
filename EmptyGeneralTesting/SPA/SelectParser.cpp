@@ -66,8 +66,13 @@ vector<string> SelectParser::parseTouple() {
 	nextElement();
 	throwOnEOF();
 
+	if ((*iterator)->isName()) {
+		// do nothing
+	} else {
+		throw QParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
+	}
+
 	while ((*iterator)->isName()) {
-		/*I don't need to check if it's a name, because while already checked that for me*/
 		touples.push_back((*iterator)->getValue());
 		nextElement();
 		throwOnEOF();
@@ -77,8 +82,6 @@ vector<string> SelectParser::parseTouple() {
 			throwOnEOF();
 			continue;
 		} else {
-			nextElement();
-			throwOnEOF();
 			break;
 		}
 	}
