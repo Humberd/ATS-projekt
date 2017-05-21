@@ -67,6 +67,9 @@
     <Filter Include="Source Files\QueryParser2\Lexer">
       <UniqueIdentifier>{7f7155f8-c394-4bbe-8484-53eeb2f54c93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\QueryParser2\DeclarationsParser">
+      <UniqueIdentifier>{d70f4ab2-5dbf-49c8-bd08-f0080810c159}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="QLexerTest.cpp">
       <Filter>Source Files\QueryParser2\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclarationParserTest.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

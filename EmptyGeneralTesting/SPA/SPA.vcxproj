@@ -20,7 +20,11 @@
     <ClInclude Include="CallParser.h" />
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="DeclarationKeywords.h" />
+    <ClInclude Include="DeclarationParser.h" />
+    <ClInclude Include="DeclaredVariable.h" />
     <ClInclude Include="DeepTraverser.h" />
+    <ClInclude Include="DParsersRepository.h" />
+    <ClInclude Include="DParsingEntity.h" />
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="FromCallDeepTraverser.h" />
     <ClInclude Include="FromDeepTraverser.h" />
@@ -93,7 +97,11 @@
     <ClCompile Include="CallParser.cpp" />
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="DeclarationKeywords.cpp" />
+    <ClCompile Include="DeclarationParser.cpp" />
+    <ClCompile Include="DeclaredVariable.cpp" />
     <ClCompile Include="DeepTraverser.cpp" />
+    <ClCompile Include="DParsersRepository.cpp" />
+    <ClCompile Include="DParsingEntity.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
     <ClCompile Include="FromCallDeepTraverser.cpp" />
     <ClCompile Include="FromDeepTraverser.cpp" />

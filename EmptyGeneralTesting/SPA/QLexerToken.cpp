@@ -150,3 +150,7 @@ bool QLexerToken::isCloseBrace() const {
 bool QLexerToken::isQuotationMark() const {
 	return isSpecialCharacter() && value == QuerySpecialCharacters::QUOTATIONMARK;
 }
+
+string QLexerToken::toString() const {
+	return "{key: '" + key + "', value: '" + value + "}";
+}

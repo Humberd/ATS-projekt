@@ -52,4 +52,6 @@ public:
 	bool isOpenBrace() const;
 	bool isCloseBrace() const;
 	bool isQuotationMark() const;
+
+	string toString() const;
 };

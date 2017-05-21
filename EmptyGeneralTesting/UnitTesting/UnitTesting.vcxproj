@@ -184,6 +184,7 @@
     <ClCompile Include="CallNodeMock.cpp" />
     <ClCompile Include="CallParserMock.cpp" />
     <ClCompile Include="CallParserTest.cpp" />
+    <ClCompile Include="DeclarationParserTest.cpp" />
     <ClCompile Include="ExpressionParserMock.cpp" />
     <ClCompile Include="ExpressionNodeMock.cpp" />
     <ClCompile Include="ExpressionParserTest.cpp" />

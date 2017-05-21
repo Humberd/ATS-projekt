@@ -109,11 +109,17 @@
     <Filter Include="Source Files\QueryParser2\Types">
       <UniqueIdentifier>{e1f9e088-c684-48cd-b072-135c184d83cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\QueryParser2\Parser">
+    <Filter Include="Header Files\QueryParser2\QueryParser">
       <UniqueIdentifier>{ebd38acc-b46d-4da9-8e17-43fed5914bcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\QueryParser2\Parser">
+    <Filter Include="Source Files\QueryParser2\QueryParser">
       <UniqueIdentifier>{de11b4d9-e9ab-4f58-ad79-003b2f3df8f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\DeclarationsParser">
+      <UniqueIdentifier>{807b4314-66e0-4ca5-8149-96595cb5786c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\DeclarationsParser">
+      <UniqueIdentifier>{8e43c2dc-55c2-4298-80f7-7f75c02a0f2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -319,16 +325,28 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QParsersRepository.h">
-      <Filter>Header Files\QueryParser2\Parser</Filter>
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
     </ClInclude>
     <ClInclude Include="QParsingEntity.h">
-      <Filter>Header Files\QueryParser2\Parser</Filter>
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
     </ClInclude>
     <ClInclude Include="QParserException.h">
       <Filter>Header Files\QueryParser2\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="SelectParser.h">
-      <Filter>Header Files\QueryParser2\Parser</Filter>
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DParsingEntity.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DParsersRepository.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DeclarationParser.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DeclaredVariable.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -522,16 +540,28 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QParsingEntity.cpp">
-      <Filter>Source Files\QueryParser2\Parser</Filter>
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
     </ClCompile>
     <ClCompile Include="QParserException.cpp">
       <Filter>Source Files\QueryParser2\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="QParsersRepository.cpp">
-      <Filter>Source Files\QueryParser2\Parser</Filter>
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
     </ClCompile>
     <ClCompile Include="SelectParser.cpp">
-      <Filter>Source Files\QueryParser2\Parser</Filter>
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DParsersRepository.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DParsingEntity.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclarationParser.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclaredVariable.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
