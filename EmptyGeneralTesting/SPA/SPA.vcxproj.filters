@@ -121,6 +121,12 @@
     <Filter Include="Source Files\QueryParser2\DeclarationsParser">
       <UniqueIdentifier>{8e43c2dc-55c2-4298-80f7-7f75c02a0f2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\QueryParser2\QueryParser\Models">
+      <UniqueIdentifier>{4ef33ecb-3b88-40e3-93f0-d6ee5ca5aef2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\QueryParser\Models">
+      <UniqueIdentifier>{5258fc4e-bf5e-49cf-8c82-00a67be71687}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -351,6 +357,24 @@
     <ClInclude Include="DeclarationsSourceParser.h">
       <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
     </ClInclude>
+    <ClInclude Include="MethodRequest.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ParameterType.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryRequest.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ReturnRequest.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ReturnType.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -568,6 +592,18 @@
     </ClCompile>
     <ClCompile Include="DeclarationsSourceParser.cpp">
       <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodRequest.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ReturnRequest.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryRequest.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -37,6 +37,8 @@
     <ClInclude Include="LexerException.h" />
     <ClInclude Include="LexerToken.h" />
     <ClInclude Include="Operators.h" />
+    <ClInclude Include="Parameter.h" />
+    <ClInclude Include="ParameterType.h" />
     <ClInclude Include="ParsersRepository.h" />
     <ClInclude Include="ParsingEntity.h" />
     <ClInclude Include="ProcedureParser.h" />
@@ -51,7 +53,11 @@
     <ClInclude Include="QueryKeywords.h" />
     <ClInclude Include="QTokenKeys.h" />
     <ClInclude Include="QueryMethods.h" />
+    <ClInclude Include="QueryRequest.h" />
     <ClInclude Include="QuerySpecialCharacters.h" />
+    <ClInclude Include="MethodRequest.h" />
+    <ClInclude Include="ReturnRequest.h" />
+    <ClInclude Include="ReturnType.h" />
     <ClInclude Include="SelectParser.h" />
     <ClInclude Include="SourceParser.h" />
     <ClInclude Include="ParserException.h" />
@@ -116,10 +122,12 @@
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="LexerException.cpp" />
     <ClCompile Include="LexerToken.cpp" />
+    <ClCompile Include="MethodRequest.cpp" />
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Modifies.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Operators.cpp" />
+    <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="ParsersRepository.cpp" />
     <ClCompile Include="ParsingEntity.cpp" />
     <ClCompile Include="ProcedureParser.cpp" />
@@ -134,7 +142,9 @@
     <ClCompile Include="QTokenKeys.cpp" />
     <ClCompile Include="QueryKeywords.cpp" />
     <ClCompile Include="QueryMethods.cpp" />
+    <ClCompile Include="QueryRequest.cpp" />
     <ClCompile Include="QuerySpecialCharacters.cpp" />
+    <ClCompile Include="ReturnRequest.cpp" />
     <ClCompile Include="SelectParser.cpp" />
     <ClCompile Include="SourceParser.cpp" />
     <ClCompile Include="ParserException.cpp" />

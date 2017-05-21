@@ -13,8 +13,6 @@ private:
 	vector<QLexerToken*>::iterator iterator;
 	vector<QLexerToken*>::iterator iteratorEnd;
 
-
-
 public:
 	explicit DeclarationsSourceParser(vector<QLexerToken*>& tokensList);
 	~DeclarationsSourceParser();
