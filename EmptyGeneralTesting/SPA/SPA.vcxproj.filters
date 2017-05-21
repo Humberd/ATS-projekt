@@ -375,6 +375,12 @@
     <ClInclude Include="ReturnType.h">
       <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
     </ClInclude>
+    <ClInclude Include="QueryVariable.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -604,6 +610,12 @@
     </ClCompile>
     <ClCompile Include="QueryRequest.cpp">
       <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryVariable.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

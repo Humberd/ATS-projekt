@@ -4,6 +4,10 @@ ReturnRequest::ReturnRequest() {
 }
 
 ReturnRequest::~ReturnRequest() {
+	for (auto variable : variables) {
+		delete variable;
+	}
+	variables.clear();
 }
 
 ReturnType ReturnRequest::getReturnType() const {
@@ -14,19 +18,12 @@ void ReturnRequest::setReturnType(const ReturnType returnType) {
 	this->returnType = returnType;
 }
 
-string ReturnRequest::getVariableName() const {
-	return variableName;
+vector<QueryVariable*> ReturnRequest::getVariables() const {
+	return variables;
 }
 
-void ReturnRequest::setVariableName(const string variableName) {
-	this->variableName = variableName;
+void ReturnRequest::setVariables(const vector<QueryVariable*> queryVariables) {
+	variables = queryVariables;
 }
 
-vector<string> ReturnRequest::getToupleVariableNames() const {
-	return toupleVariableNames;
-}
-
-void ReturnRequest::setToupleVariableNames(const vector<string> toupleVariableNames) {
-	this->toupleVariableNames = toupleVariableNames;
-}
 

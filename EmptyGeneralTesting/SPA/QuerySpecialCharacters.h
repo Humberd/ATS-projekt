@@ -18,6 +18,8 @@ public:
 	static const string DIAMONBRACEOPEN; // <
 	static const string DIAMONDBRACECLOSE; // >
 	static const string LOWDASH; // _
+	static const string DOT; // .
+	static const string HASH; // #
 
 	static bool isQuerySpecialCharacter(string value);
 	static bool isQuerySpecialCharacter(char value);

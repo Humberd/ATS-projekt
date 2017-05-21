@@ -220,6 +220,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TokenKeyMocks.cpp" />
+    <ClCompile Include="VariableParserTest.cpp" />
     <ClCompile Include="WhileNodeMock.cpp" />
     <ClCompile Include="WhileParserMock.cpp" />
     <ClCompile Include="WhileParserTest.cpp" />

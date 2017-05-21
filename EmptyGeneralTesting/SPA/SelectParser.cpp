@@ -12,42 +12,27 @@ SelectParser::~SelectParser() {
 ReturnRequest* SelectParser::parse() {
 	ReturnRequest* returnRequest = new ReturnRequest;
 
-	throwOnEOF();
-
-	if ((*iterator)->isSelect()) {
-		// do nothing
-	} else {
-		throw QParserException(getClassName() + " - expected 'Select' keyword, but instead got: " + (*iterator)->toString());
-	}
-	nextElement();
-	throwOnEOF();
-
-	if ((*iterator)->isBoolean()) {
-		returnRequest->setReturnType(ReturnType::BOOLEAN);
-	} else if ((*iterator)->isSpecialCharacter()) {
-		returnRequest->setReturnType(ReturnType::TOUPLE_VARIABLES);
-		returnRequest->setToupleVariableNames(parseTouple());
-	} else if((*iterator)->isName()) {
-		returnRequest->setReturnType(ReturnType::VARIABLE);
-		returnRequest->setVariableName((*iterator)->getValue());
-	}
-	nextElement();
-	throwOnEOF();
-
-	if ((*iterator)->isSuch()) {
-		// do nothing
-	} else {
-		throw QParserException(getClassName() + " - expected 'such' keyword, but instead got: " + (*iterator)->toString());
-	}
-	nextElement();
-	throwOnEOF();
-
-	if ((*iterator)->isThat()) {
-		// do nothing
-	} else {
-		throw QParserException(getClassName() + " - expected 'that' keyword, but instead got: " + (*iterator)->toString());
-	}
-	nextElement();
+//	throwOnEOF();
+//
+//	if ((*iterator)->isSelect()) {
+//		// do nothing
+//	} else {
+//		throw QParserException(getClassName() + " - expected 'Select' keyword, but instead got: " + (*iterator)->toString());
+//	}
+//	nextElement();
+//	throwOnEOF();
+//
+//	if ((*iterator)->isBoolean()) {
+//		returnRequest->setReturnType(ReturnType::BOOLEAN);
+//	} else if ((*iterator)->isSpecialCharacter()) {
+//		returnRequest->setReturnType(ReturnType::TOUPLE_VARIABLES);
+//		returnRequest->setToupleVariableNames(parseTouple());
+//	} else if((*iterator)->isName()) {
+//		returnRequest->setReturnType(ReturnType::VARIABLE);
+//		returnRequest->setVariableName((*iterator)->getValue());
+//	}
+//	nextElement();
+//	throwOnEOF();
 
 	return returnRequest;
 }

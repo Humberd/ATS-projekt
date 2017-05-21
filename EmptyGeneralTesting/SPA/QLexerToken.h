@@ -55,6 +55,8 @@ public:
 	bool isDiamondOpenBrace() const;
 	bool isDiamondCloseBrace() const;
 	bool isLowDash() const;
+	bool isDot() const;
+	bool isHash() const;
 
 	string toString() const;
 };

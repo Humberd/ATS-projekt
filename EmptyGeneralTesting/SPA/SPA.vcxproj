@@ -56,6 +56,7 @@
     <ClInclude Include="QueryRequest.h" />
     <ClInclude Include="QuerySpecialCharacters.h" />
     <ClInclude Include="MethodRequest.h" />
+    <ClInclude Include="QueryVariable.h" />
     <ClInclude Include="ReturnRequest.h" />
     <ClInclude Include="ReturnType.h" />
     <ClInclude Include="SelectParser.h" />
@@ -91,6 +92,7 @@
     <ClInclude Include="ValidateException.h" />
     <ClInclude Include="VAR.h" />
     <ClInclude Include="VariableNode.h" />
+    <ClInclude Include="VariableParser.h" />
     <ClInclude Include="WhileNode.h" />
     <ClInclude Include="WhileParser.h" />
   </ItemGroup>
@@ -144,6 +146,7 @@
     <ClCompile Include="QueryMethods.cpp" />
     <ClCompile Include="QueryRequest.cpp" />
     <ClCompile Include="QuerySpecialCharacters.cpp" />
+    <ClCompile Include="QueryVariable.cpp" />
     <ClCompile Include="ReturnRequest.cpp" />
     <ClCompile Include="SelectParser.cpp" />
     <ClCompile Include="SourceParser.cpp" />
@@ -169,6 +172,7 @@
     <ClCompile Include="ValidateException.cpp" />
     <ClCompile Include="VAR.cpp" />
     <ClCompile Include="VariableNode.cpp" />
+    <ClCompile Include="VariableParser.cpp" />
     <ClCompile Include="WhileNode.cpp" />
     <ClCompile Include="WhileParser.cpp" />
   </ItemGroup>

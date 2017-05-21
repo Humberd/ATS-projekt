@@ -163,6 +163,14 @@ bool QLexerToken::isLowDash() const {
 	return isSpecialCharacter() && value == QuerySpecialCharacters::LOWDASH;
 }
 
+bool QLexerToken::isDot() const {
+	return isSpecialCharacter() && value == QuerySpecialCharacters::DOT;
+}
+
+bool QLexerToken::isHash() const {
+	return isSpecialCharacter() && value == QuerySpecialCharacters::HASH;
+}
+
 string QLexerToken::toString() const {
 	return "{key: '" + key + "', value: '" + value + "}";
 }

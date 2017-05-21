@@ -107,7 +107,6 @@ TEST_CLASS(QLexerTest) {
 		testList.push_back(new ScanTestInstance("_bar32", ""));
 		testList.push_back(new ScanTestInstance("/nbar", ""));
 		testList.push_back(new ScanTestInstance("\nbar", ""));
-		testList.push_back(new ScanTestInstance("1.2", ""));
 		testList.push_back(new ScanTestInstance("1:5", ""));
 		testList.push_back(new ScanTestInstance("456f", ""));
 		testList.push_back(new ScanTestInstance("27as 32", ""));

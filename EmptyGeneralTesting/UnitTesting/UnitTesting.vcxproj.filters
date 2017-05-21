@@ -254,6 +254,9 @@
     <ClCompile Include="SelectParserTest.cpp">
       <Filter>Source Files\QueryParser2\QueryParser</Filter>
     </ClCompile>
+    <ClCompile Include="VariableParserTest.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">
