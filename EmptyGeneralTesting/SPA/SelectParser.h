@@ -14,5 +14,5 @@ public:
 	~SelectParser();
 
 	ReturnRequest* parse();
-	vector<string> parseTouple();
+	vector<QueryVariable*> parseTouple();
 };

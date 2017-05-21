@@ -1,5 +1,6 @@
 #include "SelectParser.h"
 #include "QParserException.h"
+#include "QParsersRepository.h";
 
 SelectParser::SelectParser(QParsersRepository* parsersRepo,
                            vector<QLexerToken*>::iterator& lexerToken,
@@ -12,34 +13,34 @@ SelectParser::~SelectParser() {
 ReturnRequest* SelectParser::parse() {
 	ReturnRequest* returnRequest = new ReturnRequest;
 
-//	throwOnEOF();
-//
-//	if ((*iterator)->isSelect()) {
-//		// do nothing
-//	} else {
-//		throw QParserException(getClassName() + " - expected 'Select' keyword, but instead got: " + (*iterator)->toString());
-//	}
-//	nextElement();
-//	throwOnEOF();
-//
-//	if ((*iterator)->isBoolean()) {
-//		returnRequest->setReturnType(ReturnType::BOOLEAN);
-//	} else if ((*iterator)->isSpecialCharacter()) {
-//		returnRequest->setReturnType(ReturnType::TOUPLE_VARIABLES);
-//		returnRequest->setToupleVariableNames(parseTouple());
-//	} else if((*iterator)->isName()) {
-//		returnRequest->setReturnType(ReturnType::VARIABLE);
-//		returnRequest->setVariableName((*iterator)->getValue());
-//	}
-//	nextElement();
-//	throwOnEOF();
+	//	throwOnEOF();
+	//
+	//	if ((*iterator)->isSelect()) {
+	//		// do nothing
+	//	} else {
+	//		throw QParserException(getClassName() + " - expected 'Select' keyword, but instead got: " + (*iterator)->toString());
+	//	}
+	//	nextElement();
+	//	throwOnEOF();
+	//
+	//	if ((*iterator)->isBoolean()) {
+	//		returnRequest->setReturnType(ReturnType::BOOLEAN);
+	//	} else if ((*iterator)->isSpecialCharacter()) {
+	//		returnRequest->setReturnType(ReturnType::TOUPLE_VARIABLES);
+	//		returnRequest->setToupleVariableNames(parseTouple());
+	//	} else if((*iterator)->isName()) {
+	//		returnRequest->setReturnType(ReturnType::VARIABLE);
+	//		returnRequest->setVariableName((*iterator)->getValue());
+	//	}
+	//	nextElement();
+	//	throwOnEOF();
 
 	return returnRequest;
 }
 
 
-vector<string> SelectParser::parseTouple() {
-	vector<string> touples;
+vector<QueryVariable*> SelectParser::parseTouple() {
+	vector<QueryVariable*> touples;
 
 	throwOnEOF();
 
@@ -51,21 +52,13 @@ vector<string> SelectParser::parseTouple() {
 	nextElement();
 	throwOnEOF();
 
-	if ((*iterator)->isName()) {
-		// do nothing
-	} else {
-		throw QParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
-	}
-
-	while ((*iterator)->isName()) {
-		touples.push_back((*iterator)->getValue());
-		nextElement();
-		throwOnEOF();
+	while (iterator != iteratorEnd &&
+		(*iterator)->isName()) {
+		touples.push_back(parsersRepo->variableParser->parse());
 
 		if ((*iterator)->isComma()) {
 			nextElement();
 			throwOnEOF();
-			continue;
 		} else {
 			break;
 		}
@@ -76,7 +69,7 @@ vector<string> SelectParser::parseTouple() {
 	} else {
 		throw QParserException(getClassName() + " - expected a '>', but instead got: " + (*iterator)->toString());
 	}
-//	nextElement(); -- don't uncomment it. I left it here, to mark that you can't invoke nextElement() here
+	nextElement();
 
 	return touples;
 }
