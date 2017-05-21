@@ -173,6 +173,8 @@
   <ItemGroup>
     <Text Include="autotest-1-source.txt" />
     <Text Include="autotest-1-queries.txt" />
+    <Text Include="final-queries.txt" />
+    <Text Include="final-source.txt" />
     <Text Include="Queries2.txt" />
     <Text Include="Source2.txt" />
   </ItemGroup>

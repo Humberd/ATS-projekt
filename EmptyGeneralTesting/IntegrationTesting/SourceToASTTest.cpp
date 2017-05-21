@@ -8,7 +8,7 @@ using namespace std;
 TEST_CLASS(SourceToASTTest) {
 	TEST_METHOD(SourceToAST_AssignmentSource) {
 		try {
-			Node* rootNode = Spa::generateAstFromFile("../IntegrationTesting/Source1.txt");
+			Node* rootNode = Spa::generateAstFromFile("../IntegrationTesting/autotest-1-source.txt");
 			rootNode->prettyPrint();
 		} catch (exception& e) {
 			Logger::WriteMessage(e.what());

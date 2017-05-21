@@ -49,5 +49,11 @@
     <Text Include="autotest-1-queries.txt">
       <Filter>Resource Files\github</Filter>
     </Text>
+    <Text Include="final-queries.txt">
+      <Filter>Resource Files\github</Filter>
+    </Text>
+    <Text Include="final-source.txt">
+      <Filter>Resource Files\github</Filter>
+    </Text>
   </ItemGroup>
 </Project>
