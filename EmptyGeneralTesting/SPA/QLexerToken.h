@@ -52,6 +52,9 @@ public:
 	bool isOpenBrace() const;
 	bool isCloseBrace() const;
 	bool isQuotationMark() const;
+	bool isDiamondOpenBrace() const;
+	bool isDiamondCloseBrace() const;
+	bool isLowDash() const;
 
 	string toString() const;
 };

@@ -151,6 +151,18 @@ bool QLexerToken::isQuotationMark() const {
 	return isSpecialCharacter() && value == QuerySpecialCharacters::QUOTATIONMARK;
 }
 
+bool QLexerToken::isDiamondOpenBrace() const {
+	return isSpecialCharacter() && value == QuerySpecialCharacters::DIAMONBRACEOPEN;
+}
+
+bool QLexerToken::isDiamondCloseBrace() const {
+	return isSpecialCharacter() && value == QuerySpecialCharacters::DIAMONDBRACECLOSE;
+}
+
+bool QLexerToken::isLowDash() const {
+	return isSpecialCharacter() && value == QuerySpecialCharacters::LOWDASH;
+}
+
 string QLexerToken::toString() const {
 	return "{key: '" + key + "', value: '" + value + "}";
 }

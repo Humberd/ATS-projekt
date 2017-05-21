@@ -13,5 +13,6 @@ public:
 
 	~SelectParser();
 
-	void parse() override;
+	ReturnRequest* parse();
+	vector<string> parseTouple();
 };

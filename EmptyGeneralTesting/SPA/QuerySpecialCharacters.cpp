@@ -12,6 +12,9 @@ const string QuerySpecialCharacters::SEMICOLON = ";";
 const string QuerySpecialCharacters::OPENBRACE = "(";
 const string QuerySpecialCharacters::CLOSEBRACE = ")";
 const string QuerySpecialCharacters::QUOTATIONMARK = "\"";
+const string QuerySpecialCharacters::DIAMONBRACEOPEN = "<";
+const string QuerySpecialCharacters::DIAMONDBRACECLOSE = ">";
+const string QuerySpecialCharacters::LOWDASH = "_";
 
 bool QuerySpecialCharacters::isQuerySpecialCharacter(string value) {
 	return value == STAR ||
@@ -19,7 +22,10 @@ bool QuerySpecialCharacters::isQuerySpecialCharacter(string value) {
 			value == SEMICOLON ||
 			value == OPENBRACE ||
 			value == CLOSEBRACE ||
-			value == QUOTATIONMARK;
+			value == QUOTATIONMARK ||
+			value == DIAMONBRACEOPEN ||
+			value == DIAMONDBRACECLOSE ||
+			value == LOWDASH;
 }
 
 bool QuerySpecialCharacters::isQuerySpecialCharacter(char value) {

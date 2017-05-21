@@ -10,7 +10,7 @@ const string QueryKeywords::SELECT = "Select";
 const string QueryKeywords::SUCH = "such";
 const string QueryKeywords::THAT = "that";
 const string QueryKeywords::AND = "and";
-const string QueryKeywords::BOOLEAN = "boolean";
+const string QueryKeywords::BOOLEAN = "BOOLEAN";
 
 bool QueryKeywords::isQueryKeyword(string value) {
 	return value == SELECT ||

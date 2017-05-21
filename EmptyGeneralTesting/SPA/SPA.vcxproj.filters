@@ -606,7 +606,4 @@
       <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>

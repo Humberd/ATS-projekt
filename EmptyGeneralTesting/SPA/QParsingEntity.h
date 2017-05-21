@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "QLexerToken.h"
+#include "QueryRequest.h"
 
 using namespace std;
 
@@ -18,8 +19,6 @@ protected:
 
 public:
 	virtual ~QParsingEntity();
-
-	virtual void parse() = 0;
 
 	void nextElement() const;
 

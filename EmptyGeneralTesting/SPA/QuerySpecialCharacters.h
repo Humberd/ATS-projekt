@@ -15,6 +15,9 @@ public:
 	static const string OPENBRACE; // (
 	static const string CLOSEBRACE; // )
 	static const string QUOTATIONMARK; // "
+	static const string DIAMONBRACEOPEN; // <
+	static const string DIAMONDBRACECLOSE; // >
+	static const string LOWDASH; // _
 
 	static bool isQuerySpecialCharacter(string value);
 	static bool isQuerySpecialCharacter(char value);
