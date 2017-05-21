@@ -348,6 +348,9 @@
     <ClInclude Include="DeclaredVariable.h">
       <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
     </ClInclude>
+    <ClInclude Include="DeclarationsSourceParser.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -561,6 +564,9 @@
       <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
     </ClCompile>
     <ClCompile Include="DeclaredVariable.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclarationsSourceParser.cpp">
       <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
     </ClCompile>
   </ItemGroup>

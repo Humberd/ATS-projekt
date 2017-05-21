@@ -21,6 +21,7 @@
     <ClInclude Include="ConstantNode.h" />
     <ClInclude Include="DeclarationKeywords.h" />
     <ClInclude Include="DeclarationParser.h" />
+    <ClInclude Include="DeclarationsSourceParser.h" />
     <ClInclude Include="DeclaredVariable.h" />
     <ClInclude Include="DeepTraverser.h" />
     <ClInclude Include="DParsersRepository.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="DeclarationKeywords.cpp" />
     <ClCompile Include="DeclarationParser.cpp" />
+    <ClCompile Include="DeclarationsSourceParser.cpp" />
     <ClCompile Include="DeclaredVariable.cpp" />
     <ClCompile Include="DeepTraverser.cpp" />
     <ClCompile Include="DParsersRepository.cpp" />

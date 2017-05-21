@@ -245,6 +245,9 @@
     <ClCompile Include="DeclarationParserTest.cpp">
       <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
     </ClCompile>
+    <ClCompile Include="DeclarationsSourceParserTest.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">
