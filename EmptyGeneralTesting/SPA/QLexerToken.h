@@ -57,6 +57,7 @@ public:
 	bool isLowDash() const;
 	bool isDot() const;
 	bool isHash() const;
+	bool isEquals() const;
 
 	string toString() const;
 };

@@ -171,6 +171,10 @@ bool QLexerToken::isHash() const {
 	return isSpecialCharacter() && value == QuerySpecialCharacters::HASH;
 }
 
+bool QLexerToken::isEquals() const {
+	return isSpecialCharacter() && value == QuerySpecialCharacters::EQUALS;
+}
+
 string QLexerToken::toString() const {
 	return "{key: '" + key + "', value: '" + value + "}";
 }

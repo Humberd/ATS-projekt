@@ -20,6 +20,7 @@ public:
 	static const string LOWDASH; // _
 	static const string DOT; // .
 	static const string HASH; // #
+	static const string EQUALS; // =
 
 	static bool isQuerySpecialCharacter(string value);
 	static bool isQuerySpecialCharacter(char value);

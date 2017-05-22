@@ -119,7 +119,6 @@ string MethodParser::parseString() const {
 	} else {
 		throw QParserException(getClassName() + " - expected a closing quotation mark '\"', but instead got: " + (*iterator)->toString());
 	}
-	//	nextElement(); - not going next element!!!, because parseParameter will handle it for me
 
 	return response;
 }

@@ -17,6 +17,7 @@ const string QuerySpecialCharacters::DIAMONDBRACECLOSE = ">";
 const string QuerySpecialCharacters::LOWDASH = "_";
 const string QuerySpecialCharacters::DOT = ".";
 const string QuerySpecialCharacters::HASH = "#";
+const string QuerySpecialCharacters::EQUALS = "=";
 
 bool QuerySpecialCharacters::isQuerySpecialCharacter(string value) {
 	return value == STAR ||
@@ -29,7 +30,8 @@ bool QuerySpecialCharacters::isQuerySpecialCharacter(string value) {
 			value == DIAMONDBRACECLOSE ||
 			value == LOWDASH ||
 			value == DOT ||
-			value == HASH;
+			value == HASH ||
+			value == EQUALS;
 }
 
 bool QuerySpecialCharacters::isQuerySpecialCharacter(char value) {
