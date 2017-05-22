@@ -16,5 +16,6 @@ private:
 public:
 	explicit DeclarationsSourceParser(vector<QLexerToken*>& tokensList);
 	~DeclarationsSourceParser();
+
 	vector<DeclaredVariable*> parse() const;
 };

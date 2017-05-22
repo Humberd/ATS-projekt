@@ -10,9 +10,10 @@ DeclarationParser::DeclarationParser(DParsersRepository* parsersRepo,
 DeclarationParser::~DeclarationParser() {
 }
 
-DeclaredVariable* DeclarationParser::parse() {
+vector<DeclaredVariable*> DeclarationParser::parse() {
+	vector<DeclaredVariable*> variables;
+
 	string variableType;
-	string variableName;
 
 	throwOnEOF();
 
@@ -21,26 +22,42 @@ DeclaredVariable* DeclarationParser::parse() {
 	} else {
 		throw QParserException(getClassName() + " - expected a declaration type, but instead got: " + (*iterator)->toString());
 	}
-
 	nextElement();
 	throwOnEOF();
 
-	if ((*iterator)->isName()) {
-		variableName = (*iterator)->getValue();
-	} else {
-		throw QParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
+	while (iterator != iteratorEnd &&
+		(*iterator)->isName()) {
+		
+		if ((*iterator)->isName()) {
+			auto variable = new DeclaredVariable;
+			variable->setType(variableType);
+			variable->setName((*iterator)->getValue());
+			variables.push_back(variable);
+		} else {
+			throw QParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
+		}
+		nextElement();
+		throwOnEOF();
+
+		if ((*iterator)->isComma()) {
+			nextElement();
+			throwOnEOF();
+			continue;
+		} else {
+			break;
+		}
 	}
 
-	nextElement();
-	throwOnEOF();
+	if (variables.size() == 0) {
+		throw QParserException(getClassName() + " - expected at least one variable name after a type declaration");
+	}
 
 	if ((*iterator)->isSemicolon()) {
 		//do nothing
 	} else {
 		throw QParserException(getClassName() + " - expected a semicolon, but instead got: " + (*iterator)->toString());
 	}
-
 	nextElement();
 
-	return new DeclaredVariable(variableType, variableName);
+	return variables;
 }

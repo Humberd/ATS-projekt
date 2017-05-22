@@ -19,18 +19,20 @@ vector<DeclaredVariable*> DeclarationsSourceParser::parse() const {
 	vector<DeclaredVariable*> result;
 
 	while (iterator != iteratorEnd) {
-		auto variable = parsersRepo->declarationParser->parse();
+		auto variables = parsersRepo->declarationParser->parse();
 
-		/*Need to check if there is already a variable with the same name*/
-		auto anotherVariableWithSameName =
+		for (auto variable : variables) {
+			/*Need to check if there is already a variable with the same name*/
+			auto anotherVariableWithSameName =
 				find_if(result.begin(), result.end(), [variable](DeclaredVariable* item) {
-					        return variable->getName() == item->getName();
-				        });
+				return variable->getName() == item->getName();
+			});
 
-		if (anotherVariableWithSameName != result.end()) {
-			throw QParserException("DeclarationsSourceParser - there is already a variable with the name: " + variable->getName());
-		} else {
-			result.push_back(variable);
+			if (anotherVariableWithSameName != result.end()) {
+				throw QParserException("DeclarationsSourceParser - there is already a variable with the name: " + variable->getName());
+			} else {
+				result.push_back(variable);
+			}
 		}
 	}
 

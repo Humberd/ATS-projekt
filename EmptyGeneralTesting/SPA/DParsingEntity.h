@@ -19,7 +19,7 @@ protected:
 public:
 	virtual ~DParsingEntity();
 
-	virtual DeclaredVariable* parse() = 0;
+	virtual vector<DeclaredVariable*> parse() = 0;
 
 	void nextElement() const;
 

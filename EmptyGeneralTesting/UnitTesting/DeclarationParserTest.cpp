@@ -13,7 +13,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
 TEST_CLASS(DeclarationParserTest) {
-	TEST_METHOD(DeclarationParser_parse_Valid_testCase1) {
+	TEST_METHOD(DeclarationParser_parse_Valid_1neVariable) {
 		vector<QLexerToken*> tokensList;
 
 		tokensList.push_back(new QLexerToken(QTokenKeys::DECLARATION_KEYWORD, DeclarationKeywords::ASSIGN));
@@ -27,16 +27,51 @@ TEST_CLASS(DeclarationParserTest) {
 
 		DeclarationParser* declarationParser = new DeclarationParser(parsersRepository, iterator, iteratorEnd);
 
-		auto declaredVariable = declarationParser->parse();
+		auto declaredVariables = declarationParser->parse();
 
-		Assert::IsNotNull(declaredVariable);
-		Assert::IsTrue(declaredVariable->getType() == DeclarationKeywords::ASSIGN);
-		Assert::IsTrue(declaredVariable->getName() == "a");
+		Assert::IsTrue(declaredVariables.size() == 1);
+		Assert::IsNotNull(declaredVariables.at(0));
+		Assert::IsTrue(declaredVariables.at(0)->getType() == DeclarationKeywords::ASSIGN);
+		Assert::IsTrue(declaredVariables.at(0)->getName() == "a");
 
 		for (auto token : tokensList) {
 			delete token;
 		}
-		delete parsersRepository , declarationParser , declaredVariable;
+		delete parsersRepository , declarationParser , declaredVariables;
+	}
+
+	TEST_METHOD(DeclarationParser_parse_Valid_2Variables) {
+		vector<QLexerToken*> tokensList;
+
+		tokensList.push_back(new QLexerToken(QTokenKeys::DECLARATION_KEYWORD, DeclarationKeywords::ASSIGN));
+		tokensList.push_back(new QLexerToken(QTokenKeys::NAME, "a"));
+		tokensList.push_back(new QLexerToken(QTokenKeys::SPECIAL_CHARACTER, QuerySpecialCharacters::COMMA));
+		tokensList.push_back(new QLexerToken(QTokenKeys::NAME, "b"));
+		tokensList.push_back(new QLexerToken(QTokenKeys::SPECIAL_CHARACTER, QuerySpecialCharacters::SEMICOLON));
+
+		auto iterator = tokensList.begin();
+		auto iteratorEnd = tokensList.end();
+
+		DParsersRepository* parsersRepository = new DParsersRepository;
+
+		DeclarationParser* declarationParser = new DeclarationParser(parsersRepository, iterator, iteratorEnd);
+
+		auto declaredVariables = declarationParser->parse();
+
+		Assert::IsTrue(declaredVariables.size() == 2);
+
+		Assert::IsNotNull(declaredVariables.at(0));
+		Assert::IsTrue(declaredVariables.at(0)->getType() == DeclarationKeywords::ASSIGN);
+		Assert::IsTrue(declaredVariables.at(0)->getName() == "a");
+		
+		Assert::IsNotNull(declaredVariables.at(1));
+		Assert::IsTrue(declaredVariables.at(1)->getType() == DeclarationKeywords::ASSIGN);
+		Assert::IsTrue(declaredVariables.at(1)->getName() == "b");
+
+		for (auto token : tokensList) {
+			delete token;
+		}
+		delete parsersRepository, declarationParser, declaredVariables;
 	}
 
 	TEST_METHOD(DeclarationParser_parse_Invalid) {

@@ -11,5 +11,5 @@ public:
 
 	~DeclarationParser();
 
-	DeclaredVariable* parse() override;
+	vector<DeclaredVariable*> parse() override;
 };

@@ -9,10 +9,11 @@ private:
 	string name;
 
 public:
-	explicit DeclaredVariable(string type, string name);
+	explicit DeclaredVariable();
 	~DeclaredVariable();
 
-
 	string getType() const;
+	void setType(const string type);
 	string getName() const;
+	void setName(const string name);
 };
