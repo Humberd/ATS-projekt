@@ -1,19 +1,6 @@
 #include "Parameter.h"
 
-Parameter::Parameter(ParameterType type, string stringValue) : type(type),
-                                                               stringValue(stringValue),
-                                                               integerValue(0) {
-}
-
-Parameter::Parameter(ParameterType type, int integerValue) : type(type),
-                                                             stringValue(""),
-                                                             integerValue(integerValue) {
-}
-
-
-Parameter::Parameter(ParameterType type) : type(type),
-                                           stringValue(""),
-                                           integerValue(0) {
+Parameter::Parameter() {
 }
 
 Parameter::~Parameter() {
@@ -25,6 +12,14 @@ ParameterType Parameter::getType() const {
 
 void Parameter::setType(const ParameterType type) {
 	this->type = type;
+}
+
+string Parameter::getVariableName() const {
+	return variableName;
+}
+
+void Parameter::setVariableName(const string variableName) {
+	this->variableName = variableName;
 }
 
 string Parameter::getStringValue() const {
@@ -42,3 +37,4 @@ int Parameter::getIntegerValue() const {
 void Parameter::setIntegerValue(const int integerValue) {
 	this->integerValue = integerValue;
 }
+

@@ -194,6 +194,7 @@
     <ClCompile Include="KeywordsTest.cpp" />
     <ClCompile Include="LexerTest.cpp" />
     <ClCompile Include="LexerTokenTest.cpp" />
+    <ClCompile Include="MethodParserTest.cpp" />
     <ClCompile Include="ModifiesTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="OperatorsTest.cpp" />

@@ -36,6 +36,7 @@
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LexerException.h" />
     <ClInclude Include="LexerToken.h" />
+    <ClInclude Include="MethodParser.h" />
     <ClInclude Include="Operators.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="ParameterType.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="LexerException.cpp" />
     <ClCompile Include="LexerToken.cpp" />
+    <ClCompile Include="MethodParser.cpp" />
     <ClCompile Include="MethodRequest.cpp" />
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Modifies.cpp" />

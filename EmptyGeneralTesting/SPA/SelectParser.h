@@ -4,7 +4,6 @@
 class QParsersRepository;
 
 class SelectParser: public QParsingEntity {
-
 public:
 
 	SelectParser(QParsersRepository* parsersRepo,
