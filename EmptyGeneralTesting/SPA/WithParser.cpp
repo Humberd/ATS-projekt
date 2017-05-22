@@ -20,7 +20,6 @@ WithRequest* WithParser::parse() const {
 		throw QParserException(getClassName() + " - left side variable " + leftSide->getName() + " need to have a proprtyName");
 	}
 	withRequest->setLeftSideVariable(leftSide);
-	nextElement();
 	throwOnEOF();
 
 	if ((*iterator)->isEquals()) {
@@ -34,6 +33,7 @@ WithRequest* WithParser::parse() const {
 	if ((*iterator)->isInteger()) {
 		withRequest->setType(WithType::INTEGER);
 		withRequest->setRightSideInteger(stoi((*iterator)->getValue()));
+		nextElement();
 	} else if ((*iterator)->isName()) {
 		auto rightSide = parsersRepo->variableParser->parse();
 		if (rightSide->getPropertyName().empty()) {
@@ -44,8 +44,8 @@ WithRequest* WithParser::parse() const {
 	} else if ((*iterator)->isQuotationMark()) {
 		withRequest->setType(WithType::STRING);
 		withRequest->setRightSideString(parsersRepo->methodParser->parseString());
+		nextElement();
 	}
-	nextElement();
 
 	return withRequest;
 }
