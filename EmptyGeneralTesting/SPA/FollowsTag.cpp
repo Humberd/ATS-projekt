@@ -1,5 +1,5 @@
 #include "FollowsTag.h"
-#include "../SPA/Follows.h"
+//#include "../SPA/Follows.h"
 
 
 FollowsTag::FollowsTag(QueryParts queryParts,int which)
@@ -15,6 +15,8 @@ FollowsTag::~FollowsTag()
 
 list<string> FollowsTag::DoQuery()
 {
+	list<string> finalResult;
+	/*
 	Follows follows;
 	list<string> finalResult;
 
@@ -65,7 +67,7 @@ list<string> FollowsTag::DoQuery()
 			finalResult.push_back(to_string(var->getSTMT()));
 		}
 	}
-
+	*/
 
 
 	/*

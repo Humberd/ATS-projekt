@@ -15,7 +15,7 @@ ParentTag::~ParentTag()
 
 list<string> ParentTag::DoQuery()
 {
-	Parent parent;
+	Parent* parent;
 	list<string> finalResult;
 
 	vector<STMT*> helpOutput;

@@ -32,6 +32,7 @@ list<string> CallsTag::DoQuery()
 	}
 	if (selectItem == "boolean")
 	{
+		/*
 		PROC* p1= new PROC(_queryParts.parametersWithVector[0].Name.substr(1, _queryParts.parametersWithVector[0].Name.size()-2));
 		PROC* p2= new PROC(_queryParts.parametersWithVector[1].Name.substr(1, _queryParts.parametersWithVector[1].Name.size() - 2));
 		string par = _queryParts.parts[_which].parameteresInBracket[0] + ".";
@@ -45,6 +46,13 @@ list<string> CallsTag::DoQuery()
 		{
 			output = calls.isCalls(p2->getProc(), p1);
 		}
+		*/
+
+		bool output;
+		string pr1 = _queryParts.parts[_which].parameteresInBracket[0].substr(1, _queryParts.parts[_which].parameteresInBracket[0].size() - 2);
+		string pr2= _queryParts.parts[_which].parameteresInBracket[1].substr(1, _queryParts.parts[_which].parameteresInBracket[1].size() - 2);
+		PROC* p1 = new PROC(pr1);
+		PROC* p2 = new PROC(pr2);
 		finalResult.push_back(to_string(output));
 	}
 	else

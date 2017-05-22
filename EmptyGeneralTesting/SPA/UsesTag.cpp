@@ -17,8 +17,7 @@ list<string> UsesTag::DoQuery()
 {
 	//Uses uses;
 	list<string> finalResult;
-
-	vector<STMT*> helpOutput;
+	string type;
 	string selectItem = _queryParts.selectingItem;
 	transform(selectItem.begin(), selectItem.end(), selectItem.begin(), tolower);
 	bool InDepth = false;
@@ -32,38 +31,45 @@ list<string> UsesTag::DoQuery()
 	}
 	if (selectItem == "boolean")
 	{
-		STMT* s1;
-		STMT* s2;
-		string par = _queryParts.parts[_which].parameteresInBracket[0];
-		string par2 = _queryParts.parts[_which].parameteresInBracket[1];
-		if ((std::find_if(par.begin(), par.end(), isdigit) != par.end()) && (std::find_if(par2.begin(), par2.end(), isdigit) != par2.end()))
-		{
-			s1 = new STMT(stoi(par));
-			s2 = new STMT(stoi(par2));
-			bool output = false;
-			//next.isNext(s1, s2,InDepth);
-			finalResult.push_back(to_string(output));
-		}
+
 	}
 	else
 	{
-		STMT* s1;
-		string par = _queryParts.parts[_which].parameteresInBracket[0];
-		string par2 = _queryParts.parts[_which].parameteresInBracket[1];
-		if (std::find_if(par.begin(), par.end(), isdigit) != par.end())
+		int whichParam = 0;
+		if (_queryParts.selectingItem == _queryParts.parts[_which].parameteresInBracket[0])
 		{
-			s1 = new STMT(stoi(par));
-			//helpOutput = next.goNext(s1, InDepth);
+			whichParam = 0;
 		}
-		else if (std::find_if(par2.begin(), par2.end(), isdigit) != par2.end())
+		else if (_queryParts.selectingItem == _queryParts.parts[_which].parameteresInBracket[1])
 		{
-			s1 = new STMT(stoi(par2));
-			//helpOutput = next.goPrevious(s1, InDepth);
+			whichParam = 1;
 		}
-		for each (STMT* var in helpOutput)
+
+		for (int i = 0; i < _queryParts.ParametersList.size(); i++)
 		{
-			finalResult.push_back(to_string(var->getSTMT()));
+			if (_queryParts.ParametersList[i].Name == _queryParts.parts[_which].parameteresInBracket[whichParam])
+			{
+				type = _queryParts.ParametersList[i].Type;
+				break;
+			}
 		}
+
+		if (whichParam == 0)
+		{
+			if (type == "assign")
+			{
+				//List<ASSIGN> getUsedBy(VAR v)
+			}
+			else if (type == "stmt")
+			{
+				//List<stmt> getUsedBy(VAR v)
+			}
+			else if (type == "proc")
+			{
+				//List<proc> getUsedBy(VAR v)
+			}
+		}
+
 	}
 }
 

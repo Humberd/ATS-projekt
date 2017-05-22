@@ -194,8 +194,7 @@
     <ClCompile Include="LexerTokenTest.cpp" />
     <ClCompile Include="ModifiesTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
-    <ClCompile Include="ProcedureNodeTest.cpp" />
-    <ClCompile Include="ProgramNodeTest.cpp" />
+    <ClCompile Include="ParentTest.cpp" />
     <ClCompile Include="QueryParserTest.cpp" />
     <ClCompile Include="OperatorsTest.cpp" />
     <ClCompile Include="ParsingEntityTest.cpp" />

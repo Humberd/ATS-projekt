@@ -236,6 +236,9 @@
     <ClCompile Include="ProgramLineEvaluatorTest.cpp">
       <Filter>Source Files\SourceParser\ProgramLineEvaluator</Filter>
     </ClCompile>
+    <ClCompile Include="ParentTest.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">
