@@ -14,6 +14,7 @@ public:
 	static const string THAT;
 	static const string AND;
 	static const string BOOLEAN;
+	static const string WITH;
 
 	static bool isQueryKeyword(string value);
 };

@@ -226,6 +226,7 @@
     <ClCompile Include="WhileParserMock.cpp" />
     <ClCompile Include="WhileParserTest.cpp" />
     <ClCompile Include="UsesTest.cpp" />
+    <ClCompile Include="WithManyParserTest.cpp" />
     <ClCompile Include="WithParserTest.cpp" />
   </ItemGroup>
   <ItemGroup>

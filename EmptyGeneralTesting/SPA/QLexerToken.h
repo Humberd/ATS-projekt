@@ -36,6 +36,7 @@ public:
 	bool isThat() const;
 	bool isAnd() const;
 	bool isBoolean() const;
+	bool isWith() const;
 
 	bool isParentMethod() const;
 	bool isFollowsMethod() const;

@@ -96,6 +96,7 @@
     <ClInclude Include="VariableParser.h" />
     <ClInclude Include="WhileNode.h" />
     <ClInclude Include="WhileParser.h" />
+    <ClInclude Include="WithManyParser.h" />
     <ClInclude Include="WithParser.h" />
     <ClInclude Include="WithRequest.h" />
     <ClInclude Include="WithType.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="VariableParser.cpp" />
     <ClCompile Include="WhileNode.cpp" />
     <ClCompile Include="WhileParser.cpp" />
+    <ClCompile Include="WithManyParser.cpp" />
     <ClCompile Include="WithParser.cpp" />
     <ClCompile Include="WithRequest.cpp" />
   </ItemGroup>

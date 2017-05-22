@@ -1067,7 +1067,7 @@ none
 5000
 214 - With, Typed :: prog_line = stmt.stmt#
 stmt s; 
-Select BOOLEAN with s.stmt# = 35 and s.stmt# = 50 with s.stmt# = 40
+Select BOOLEAN with s.stmt# = 35 and s.stmt# = 50 and s.stmt# = 40
 false
 5000
 215 - With, Typed :: prog_line = stmt.stmt#

@@ -95,6 +95,10 @@ bool QLexerToken::isBoolean() const {
 	return isQueryKeyword() && value == QueryKeywords::BOOLEAN;
 }
 
+bool QLexerToken::isWith() const {
+	return isQueryKeyword() && value == QueryKeywords::WITH;
+}
+
 bool QLexerToken::isParentMethod() const {
 	return isQueryMethod() && value == QueryMethods::PARENT;
 }
