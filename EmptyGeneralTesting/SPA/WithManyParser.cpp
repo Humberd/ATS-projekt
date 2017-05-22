@@ -33,7 +33,7 @@ vector<WithRequest*> WithManyParser::parse() {
 			throwOnEOF();
 			continue;
 		} else {
-			throw QParserException(getClassName() + " - unexpected token, but instead got: " + (*iterator)->toString());
+			break;
 		}
 	}
 

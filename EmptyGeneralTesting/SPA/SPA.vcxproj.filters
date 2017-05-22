@@ -396,6 +396,9 @@
     <ClInclude Include="WithManyParser.h">
       <Filter>Header Files\QueryParser2\QueryParser</Filter>
     </ClInclude>
+    <ClInclude Include="MethodManyParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -642,6 +645,9 @@
       <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
     </ClCompile>
     <ClCompile Include="WithManyParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodManyParser.cpp">
       <Filter>Source Files\QueryParser2\QueryParser</Filter>
     </ClCompile>
   </ItemGroup>
