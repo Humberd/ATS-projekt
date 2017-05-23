@@ -16,7 +16,7 @@ QueryRequest* QuerySourceParser::parse() const {
 	throwOnEOF();
 
 	queryRequest->setReturnRequest(parsersRepo->selectParser->parse());
-	
+
 	if (iterator == iteratorEnd) {
 		return queryRequest;
 	}
@@ -24,13 +24,13 @@ QueryRequest* QuerySourceParser::parse() const {
 	if ((*iterator)->isSuch()) {
 		queryRequest->setMethodRequests(parsersRepo->methodManyParser->parse());
 
-		if ((*iterator)->isWith()) {
+		if (iterator != iteratorEnd && (*iterator)->isWith()) {
 			queryRequest->setWithRequests(parsersRepo->withManyParser->parse());
 		}
 	} else if ((*iterator)->isWith()) {
 		queryRequest->setWithRequests(parsersRepo->withManyParser->parse());
 
-		if ((*iterator)->isSuch()) {
+		if (iterator != iteratorEnd && (*iterator)->isSuch()) {
 			queryRequest->setMethodRequests(parsersRepo->methodManyParser->parse());
 		}
 	}
