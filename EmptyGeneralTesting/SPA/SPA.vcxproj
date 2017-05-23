@@ -56,6 +56,7 @@
     <ClInclude Include="QTokenKeys.h" />
     <ClInclude Include="QueryMethods.h" />
     <ClInclude Include="QueryRequest.h" />
+    <ClInclude Include="QuerySourceParser.h" />
     <ClInclude Include="QuerySpecialCharacters.h" />
     <ClInclude Include="MethodRequest.h" />
     <ClInclude Include="QueryVariable.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="QueryKeywords.cpp" />
     <ClCompile Include="QueryMethods.cpp" />
     <ClCompile Include="QueryRequest.cpp" />
+    <ClCompile Include="QuerySourceParser.cpp" />
     <ClCompile Include="QuerySpecialCharacters.cpp" />
     <ClCompile Include="QueryVariable.cpp" />
     <ClCompile Include="ReturnRequest.cpp" />

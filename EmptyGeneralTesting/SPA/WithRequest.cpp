@@ -1,9 +1,13 @@
 #include "WithRequest.h"
 
 WithRequest::WithRequest() {
+	leftSideVariable = nullptr;
+	rightSideVariable = nullptr;
 }
 
 WithRequest::~WithRequest() {
+	delete leftSideVariable;
+	delete rightSideVariable;
 }
 
 WithType WithRequest::getType() const {

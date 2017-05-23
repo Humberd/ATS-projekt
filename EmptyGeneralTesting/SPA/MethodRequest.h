@@ -15,7 +15,6 @@ public:
 	explicit MethodRequest();
 	~MethodRequest();
 
-
 	string getMethodName() const;
 	void setMethodName(const string methodName);
 	bool getGoDeep() const;

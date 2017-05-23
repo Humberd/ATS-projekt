@@ -1,9 +1,13 @@
 #include "MethodRequest.h"
 
 MethodRequest::MethodRequest() {
+	leftParam = nullptr;
+	rightParam = nullptr;
 }
 
 MethodRequest::~MethodRequest() {
+	delete leftParam;
+	delete rightParam;
 }
 
 string MethodRequest::getMethodName() const {
