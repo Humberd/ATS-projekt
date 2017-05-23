@@ -3,8 +3,13 @@
 DeclaredVariable::DeclaredVariable() {
 }
 
+
+DeclaredVariable::DeclaredVariable(string type,
+                                   string name): type(type), name(name) {
+}
+
 DeclaredVariable::~DeclaredVariable() {
-	
+
 }
 
 string DeclaredVariable::getType() const {
@@ -22,4 +27,3 @@ string DeclaredVariable::getName() const {
 void DeclaredVariable::setName(const string name) {
 	this->name = name;
 }
-

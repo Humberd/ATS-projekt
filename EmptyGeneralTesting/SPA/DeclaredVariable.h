@@ -10,6 +10,7 @@ private:
 
 public:
 	explicit DeclaredVariable();
+	explicit DeclaredVariable(string type, string name);
 	~DeclaredVariable();
 
 	string getType() const;

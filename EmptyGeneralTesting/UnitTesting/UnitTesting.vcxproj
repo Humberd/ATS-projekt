@@ -207,6 +207,7 @@
     <ClCompile Include="ProgramParserTest.cpp" />
     <ClCompile Include="QLexerTest.cpp" />
     <ClCompile Include="QuerySourceParserTest.cpp" />
+    <ClCompile Include="QueryVariablesValidatorTest.cpp" />
     <ClCompile Include="SelectParserTest.cpp" />
     <ClCompile Include="SourceParserTest.cpp" />
     <ClCompile Include="RangeNumberTest.cpp" />

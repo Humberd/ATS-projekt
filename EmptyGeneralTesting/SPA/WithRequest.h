@@ -14,7 +14,6 @@ public:
 	explicit WithRequest();
 	~WithRequest();
 
-
 	WithType getType() const;
 	void setType(const WithType type);
 	QueryVariable* getLeftSideVariable() const;

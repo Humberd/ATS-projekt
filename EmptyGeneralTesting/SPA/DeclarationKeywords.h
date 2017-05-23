@@ -17,6 +17,7 @@ public:
 	static const string STATEMENT;
 	static const string VARIABLE;
 	static const string PROCEDURE;
+	static const string CONSTANT;
 
 	static bool isDeclarationKeyword(string value);
 };

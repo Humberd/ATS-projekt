@@ -73,6 +73,9 @@
     <Filter Include="Source Files\QueryParser2\QueryParser">
       <UniqueIdentifier>{b4f31426-2809-4bf9-ab4a-da9a614b49a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\QueryEvaluator">
+      <UniqueIdentifier>{64f0ac41-6bb2-477f-9343-b3a8651d5f39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -271,6 +274,9 @@
     </ClCompile>
     <ClCompile Include="QuerySourceParserTest.cpp">
       <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryVariablesValidatorTest.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

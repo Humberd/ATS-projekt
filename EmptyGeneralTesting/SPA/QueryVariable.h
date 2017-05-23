@@ -10,6 +10,7 @@ private:
 
 public:
 	explicit QueryVariable();
+	explicit QueryVariable(string name, string propertyName);
 	~QueryVariable();
 
 

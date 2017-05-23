@@ -10,6 +10,15 @@ public:
 	explicit QueryVariablesValidator();
 	~QueryVariablesValidator();
 
-	void validate(vector<DeclaredVariable*> variables,
+	void validate(vector<DeclaredVariable*> declaredVariables,
 	              QueryRequest* queryRequest) const;
+
+	void checkIfVariablesWereDeclared(vector<DeclaredVariable*> declaredVariables,
+	                                  QueryRequest* queryRequest) const;
+	bool doesVariableExist(string varName, vector<DeclaredVariable*> declaredVariables) const;
+
+	void checkIfVariablesHaveValidProperties(vector<DeclaredVariable*> declaredVariables,
+	                                         QueryRequest* queryRequest) const;
+	bool doesPropertyExistOnType(string propertyName, string type) const;
+	string getVariableType(string varName, vector<DeclaredVariable*> declaredVariables) const;
 };

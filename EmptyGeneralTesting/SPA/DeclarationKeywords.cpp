@@ -13,6 +13,7 @@ const string DeclarationKeywords::CALL = "call";
 const string DeclarationKeywords::STATEMENT = "stmt";
 const string DeclarationKeywords::VARIABLE = "variable";
 const string DeclarationKeywords::PROCEDURE = "procedure";
+const string DeclarationKeywords::CONSTANT = "constant";
 
 bool DeclarationKeywords::isDeclarationKeyword(string value) {
 	return value == WHILE ||
@@ -21,5 +22,6 @@ bool DeclarationKeywords::isDeclarationKeyword(string value) {
 			value == CALL ||
 			value == STATEMENT ||
 			value == VARIABLE ||
-			value == PROCEDURE;
+			value == PROCEDURE ||
+			value == CONSTANT;
 }

@@ -3,6 +3,10 @@
 QueryVariable::QueryVariable() {
 }
 
+QueryVariable::QueryVariable(string name,
+                             string propertyName): name(name), propertyName(propertyName) {
+}
+
 QueryVariable::~QueryVariable() {
 }
 
@@ -21,4 +25,3 @@ string QueryVariable::getPropertyName() const {
 void QueryVariable::setPropertyName(const string propertyName) {
 	this->propertyName = propertyName;
 }
-
