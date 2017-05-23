@@ -26,6 +26,8 @@
     <ClInclude Include="DeepTraverser.h" />
     <ClInclude Include="DParsersRepository.h" />
     <ClInclude Include="DParsingEntity.h" />
+    <ClInclude Include="EvalUnit.h" />
+    <ClInclude Include="EvalUnitType.h" />
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="FromCallDeepTraverser.h" />
     <ClInclude Include="FromDeepTraverser.h" />
@@ -121,6 +123,7 @@
     <ClCompile Include="DeepTraverser.cpp" />
     <ClCompile Include="DParsersRepository.cpp" />
     <ClCompile Include="DParsingEntity.cpp" />
+    <ClCompile Include="EvalUnit.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
     <ClCompile Include="FromCallDeepTraverser.cpp" />
     <ClCompile Include="FromDeepTraverser.cpp" />
