@@ -60,6 +60,7 @@
     <ClInclude Include="QuerySpecialCharacters.h" />
     <ClInclude Include="MethodRequest.h" />
     <ClInclude Include="QueryVariable.h" />
+    <ClInclude Include="QueryVariablesValidatorException.h" />
     <ClInclude Include="ReturnRequest.h" />
     <ClInclude Include="ReturnType.h" />
     <ClInclude Include="SelectParser.h" />
@@ -96,6 +97,7 @@
     <ClInclude Include="VAR.h" />
     <ClInclude Include="VariableNode.h" />
     <ClInclude Include="VariableParser.h" />
+    <ClInclude Include="QueryVariablesValidator.h" />
     <ClInclude Include="WhileNode.h" />
     <ClInclude Include="WhileParser.h" />
     <ClInclude Include="WithManyParser.h" />
@@ -157,6 +159,8 @@
     <ClCompile Include="QuerySourceParser.cpp" />
     <ClCompile Include="QuerySpecialCharacters.cpp" />
     <ClCompile Include="QueryVariable.cpp" />
+    <ClCompile Include="QueryVariablesValidator.cpp" />
+    <ClCompile Include="QueryVariablesValidatorException.cpp" />
     <ClCompile Include="ReturnRequest.cpp" />
     <ClCompile Include="SelectParser.cpp" />
     <ClCompile Include="SourceParser.cpp" />

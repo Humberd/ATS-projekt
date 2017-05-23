@@ -127,6 +127,18 @@
     <Filter Include="Source Files\QueryParser2\QueryParser\Models">
       <UniqueIdentifier>{5258fc4e-bf5e-49cf-8c82-00a67be71687}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\QueryEvaluator">
+      <UniqueIdentifier>{91a1c47f-7047-4834-943f-2b6c3a4a36b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryEvaluator">
+      <UniqueIdentifier>{0bff3458-caf4-4fde-8b3c-b181192bc729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryEvaluator\Exceptions">
+      <UniqueIdentifier>{b2636156-0166-4186-9874-9c475c95185a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryEvaluator\Exceptions">
+      <UniqueIdentifier>{d6195f3c-cc66-4825-a296-876dcc35752a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -402,6 +414,12 @@
     <ClInclude Include="QuerySourceParser.h">
       <Filter>Header Files\QueryParser2\QueryParser</Filter>
     </ClInclude>
+    <ClInclude Include="QueryVariablesValidator.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryVariablesValidatorException.h">
+      <Filter>Header Files\QueryEvaluator\Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -655,6 +673,12 @@
     </ClCompile>
     <ClCompile Include="QuerySourceParser.cpp">
       <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryVariablesValidator.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryVariablesValidatorException.cpp">
+      <Filter>Source Files\QueryEvaluator\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
