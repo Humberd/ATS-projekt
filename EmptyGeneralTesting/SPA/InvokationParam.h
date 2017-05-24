@@ -28,4 +28,6 @@ public:
 	void setVariableName(const string variableName);
 
 	InvokationParam* copy() const;
+
+	string toString() const;
 };

@@ -5,7 +5,7 @@
 
 QueryEvaluator::QueryEvaluator(vector<DeclaredVariable*> declaredVariables,
                                QueryRequest* queryRequest): declaredVariables(declaredVariables), queryRequest(queryRequest) {
-	pkbBrigde = new PkbBrigde;
+	pkbBrigde = nullptr;
 }
 
 QueryEvaluator::~QueryEvaluator() {
@@ -20,6 +20,36 @@ QueryEvaluator::~QueryEvaluator() {
 }
 
 void QueryEvaluator::evaluate() {
+}
+
+
+MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
+	/*Parent(x,7)*/
+	if (leftParam->getState() == InvokationParamState::VARIABLE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto vectorResult = pkbBrigde->getParentOf(rightParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+	}
+	/*Parent(7,x)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VARIABLE) {
+		auto vectorResult = pkbBrigde->getChildrenOf(leftParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+	}
+	/*Parent(7,7)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto booleanResult = pkbBrigde->isElemParentOf(leftParam->getValue(), rightParam->getValue(), goDeep);
+		response->setState(ResponseState::BOOLEAN);
+		response->setBooleanResponse(booleanResult);
+	} else {
+		throw QueryEvaluatorException("parentEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
+	}
+
+
 }
 
 InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* parameter) {

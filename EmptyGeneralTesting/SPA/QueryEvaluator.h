@@ -4,6 +4,7 @@
 #include "PkbBridge.h"
 #include "QueryRequest.h"
 #include "InvokationParam.h"
+#include "MethodEvaluatorResponse.h"
 
 class QueryRequest;
 using namespace std;
@@ -24,6 +25,9 @@ public:
 	~QueryEvaluator();
 
 	void evaluate();
+
+	MethodEvaluatorResponse* parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
+
 
 	InvokationParam* changeParameterToInvokationParam(Parameter* parameter);
 

@@ -444,6 +444,15 @@
     <ClInclude Include="InvokationParam.h">
       <Filter>Header Files\QueryEvaluator\models</Filter>
     </ClInclude>
+    <ClInclude Include="ResponseState.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodEvaluatorResponse.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="PkbBridgeMockImpl.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -714,6 +723,12 @@
       <Filter>Source Files\QueryEvaluator\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="InvokationParam.cpp">
+      <Filter>Source Files\QueryEvaluator\models</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodEvaluatorResponse.cpp">
+      <Filter>Source Files\QueryEvaluator\models</Filter>
+    </ClCompile>
+    <ClCompile Include="PkbBridgeMockImpl.cpp">
       <Filter>Source Files\QueryEvaluator</Filter>
     </ClCompile>
   </ItemGroup>

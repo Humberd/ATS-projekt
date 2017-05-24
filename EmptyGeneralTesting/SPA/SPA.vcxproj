@@ -38,6 +38,7 @@
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LexerException.h" />
     <ClInclude Include="LexerToken.h" />
+    <ClInclude Include="MethodEvaluatorResponse.h" />
     <ClInclude Include="MethodManyParser.h" />
     <ClInclude Include="MethodParser.h" />
     <ClInclude Include="Operators.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="ParsersRepository.h" />
     <ClInclude Include="ParsingEntity.h" />
     <ClInclude Include="PkbBridge.h" />
+    <ClInclude Include="PkbBridgeMockImpl.h" />
     <ClInclude Include="ProcedureParser.h" />
     <ClInclude Include="ProgramLineEvaluator.h" />
     <ClInclude Include="ProgramParser.h" />
@@ -66,6 +68,7 @@
     <ClInclude Include="MethodRequest.h" />
     <ClInclude Include="QueryVariable.h" />
     <ClInclude Include="QueryVariablesValidatorException.h" />
+    <ClInclude Include="ResponseState.h" />
     <ClInclude Include="ReturnRequest.h" />
     <ClInclude Include="ReturnType.h" />
     <ClInclude Include="SelectParser.h" />
@@ -140,6 +143,7 @@
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="LexerException.cpp" />
     <ClCompile Include="LexerToken.cpp" />
+    <ClCompile Include="MethodEvaluatorResponse.cpp" />
     <ClCompile Include="MethodManyParser.cpp" />
     <ClCompile Include="MethodParser.cpp" />
     <ClCompile Include="MethodRequest.cpp" />
@@ -151,6 +155,7 @@
     <ClCompile Include="ParsersRepository.cpp" />
     <ClCompile Include="ParsingEntity.cpp" />
     <ClCompile Include="PkbBridge.cpp" />
+    <ClCompile Include="PkbBridgeMockImpl.cpp" />
     <ClCompile Include="ProcedureParser.cpp" />
     <ClCompile Include="ProgramLineEvaluator.cpp" />
     <ClCompile Include="ProgramParser.cpp" />
@@ -220,7 +225,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

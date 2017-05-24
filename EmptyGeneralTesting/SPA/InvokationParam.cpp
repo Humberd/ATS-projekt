@@ -46,3 +46,11 @@ InvokationParam* InvokationParam::copy() const {
 	copiedInstance->setValueType(this->valueType);
 	return copiedInstance;
 }
+
+
+string InvokationParam::toString() const {
+	return "InvokationParam {"
+			" value=" + value +
+			" variableName=" + variableName +
+			"}";
+}
