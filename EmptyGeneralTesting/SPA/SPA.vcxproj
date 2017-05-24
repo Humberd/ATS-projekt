@@ -92,6 +92,7 @@
     <ClInclude Include="RangeNumber.h" />
     <ClInclude Include="ReferenceNode.h" />
     <ClInclude Include="Spa.h" />
+    <ClInclude Include="SpaDataContainer.h" />
     <ClInclude Include="SpecialCharacters.h" />
     <ClInclude Include="StatementListNode.h" />
     <ClInclude Include="StatementListParser.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="SourceFileException.cpp" />
     <ClCompile Include="SourceFileManager.cpp" />
     <ClCompile Include="Spa.cpp" />
+    <ClCompile Include="SpaDataContainer.cpp" />
     <ClCompile Include="SpecialCharacters.cpp" />
     <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="StatementListParser.cpp" />

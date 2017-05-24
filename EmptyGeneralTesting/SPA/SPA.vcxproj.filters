@@ -453,6 +453,9 @@
     <ClInclude Include="PkbBridgeMockImpl.h">
       <Filter>Header Files\QueryEvaluator</Filter>
     </ClInclude>
+    <ClInclude Include="SpaDataContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -730,6 +733,9 @@
     </ClCompile>
     <ClCompile Include="PkbBridgeMockImpl.cpp">
       <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaDataContainer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
