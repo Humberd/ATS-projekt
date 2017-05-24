@@ -36,6 +36,7 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 		response->setState(ResponseState::VECTOR);
 		response->setVectorResponse(vectorResult);
 		response->setVariableName(leftParam->getVariableName());
+		response->setVariableType(leftParam->getVariableType());
 	}
 	/*Parent(7,x)*/
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
@@ -44,6 +45,7 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 		response->setState(ResponseState::VECTOR);
 		response->setVectorResponse(vectorResult);
 		response->setVariableName(rightParam->getVariableName());
+		response->setVariableType(rightParam->getVariableType());
 	}
 	/*Parent(7,7)*/
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
@@ -70,6 +72,7 @@ InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* par
 	if (parameter->getType() == ParameterType::VARIABLE) {
 		invokationParam->setState(InvokationParamState::VARIABLE);
 		invokationParam->setVariableName(parameter->getVariableName());
+		invokationParam->setVariableType(parameter->getVariableType());
 		return invokationParam;
 	}
 

@@ -38,6 +38,14 @@ void InvokationParam::setVariableName(const string variableName) {
 	this->variableName = variableName;
 }
 
+string InvokationParam::getVariableType() const {
+	return variableType;
+}
+
+void InvokationParam::setVariableType(const string variableType) {
+	this->variableType = variableType;
+}
+
 InvokationParam* InvokationParam::copy() const {
 	InvokationParam* copiedInstance = new InvokationParam;
 	copiedInstance->setVariableName(this->getVariableName());

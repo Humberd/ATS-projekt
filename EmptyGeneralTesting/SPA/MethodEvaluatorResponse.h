@@ -10,6 +10,7 @@ private:
 	vector<string> vectorResponse;
 	bool booleanResponse;
 	string variableName;
+	string variableType;
 
 public:
 	explicit MethodEvaluatorResponse();
@@ -23,4 +24,6 @@ public:
 	void setBooleanResponse(const bool booleanResponse);
 	string getVariableName() const;
 	void setVariableName(const string variableName);
+	string getVariableType() const;
+	void setVariableType(const string variableType);
 };

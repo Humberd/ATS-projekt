@@ -13,6 +13,7 @@ private:
 	InvokationParamState state;
 
 	string variableName;
+	string variableType;
 
 public:
 	explicit InvokationParam();
@@ -26,6 +27,8 @@ public:
 	void setState(const InvokationParamState state);
 	string getVariableName() const;
 	void setVariableName(const string variableName);
+	string getVariableType() const;
+	void setVariableType(const string variableType);
 
 	InvokationParam* copy() const;
 

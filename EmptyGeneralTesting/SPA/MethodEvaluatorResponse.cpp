@@ -38,3 +38,11 @@ void MethodEvaluatorResponse::setVariableName(const string variableName) {
 	this->variableName = variableName;
 }
 
+string MethodEvaluatorResponse::getVariableType() const {
+	return variableType;
+}
+
+void MethodEvaluatorResponse::setVariableType(const string variableType) {
+	this->variableType = variableType;
+}
+
