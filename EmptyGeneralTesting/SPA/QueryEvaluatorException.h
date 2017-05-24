@@ -4,6 +4,7 @@
 using namespace std;
 
 class QueryEvaluatorException: public exception {
+public:
 	explicit QueryEvaluatorException(char const* _Message);
 
 	explicit QueryEvaluatorException(string& _Message);

@@ -278,6 +278,9 @@
     <ClCompile Include="QueryVariablesValidatorTest.cpp">
       <Filter>Source Files\QueryEvaluator</Filter>
     </ClCompile>
+    <ClCompile Include="QueryEvaluatorTest.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">

@@ -3,6 +3,7 @@
 #include "DeclaredVariable.h"
 #include "PkbBridge.h"
 #include "QueryRequest.h"
+#include "InvokationParam.h"
 
 class QueryRequest;
 using namespace std;
@@ -23,5 +24,7 @@ public:
 	~QueryEvaluator();
 
 	void evaluate();
+
+	InvokationParam* changeParameterToInvokationParam(Parameter* parameter);
 
 };

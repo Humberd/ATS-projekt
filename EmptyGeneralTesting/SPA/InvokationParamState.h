@@ -2,5 +2,6 @@
 
 enum class InvokationParamState {
 	VALUE,
-	VARIABLE
+	VARIABLE,
+	ANY
 };
