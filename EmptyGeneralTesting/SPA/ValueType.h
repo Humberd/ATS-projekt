@@ -1,6 +1,6 @@
 #pragma once
 
-enum class EvalUnitType {
+enum class ValueType {
 	INTEGER,
 	STRING
 };

@@ -7,12 +7,12 @@ PkbBrigde::PkbBrigde() {
 PkbBrigde::~PkbBrigde() {
 }
 
-vector<int> PkbBrigde::getChildrenOf(int statement, bool goDeep) const {
-	vector<int> result = {8,9,10,11};
+vector<string> PkbBrigde::getChildrenOf(string statement, bool goDeep) const {
+	vector<string> result = {"8","9","10","11"};
 	return result;
 }
 
-vector<int> PkbBrigde::getParentOf(int statement, bool goDeep) const {
-	vector<int> result = {4};
+vector<string> PkbBrigde::getParentOf(string statement, bool goDeep) const {
+	vector<string> result = {"4"};
 	return result;
 }

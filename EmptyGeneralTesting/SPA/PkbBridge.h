@@ -9,6 +9,6 @@ public:
 	explicit PkbBrigde();
 	~PkbBrigde();
 
-	vector<int> getChildrenOf(int statement, bool goDeep) const;
-	vector<int> getParentOf(int statement, bool goDeep) const;
+	vector<string> getChildrenOf(string statement, bool goDeep) const;
+	vector<string> getParentOf(string statement, bool goDeep) const;
 };

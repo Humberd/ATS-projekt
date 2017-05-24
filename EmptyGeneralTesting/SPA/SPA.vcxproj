@@ -26,14 +26,14 @@
     <ClInclude Include="DeepTraverser.h" />
     <ClInclude Include="DParsersRepository.h" />
     <ClInclude Include="DParsingEntity.h" />
-    <ClInclude Include="EvalUnit.h" />
-    <ClInclude Include="EvalUnitType.h" />
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="FromCallDeepTraverser.h" />
     <ClInclude Include="FromDeepTraverser.h" />
     <ClInclude Include="GetCallsDeepTraverser.h" />
     <ClInclude Include="ExpressionParser.h" />
     <ClInclude Include="IfParser.h" />
+    <ClInclude Include="InvokationParam.h" />
+    <ClInclude Include="InvokationParamState.h" />
     <ClInclude Include="Keywords.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="LexerException.h" />
@@ -99,6 +99,7 @@
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />
     <ClInclude Include="ValidateException.h" />
+    <ClInclude Include="ValueType.h" />
     <ClInclude Include="VAR.h" />
     <ClInclude Include="VariableNode.h" />
     <ClInclude Include="VariableParser.h" />
@@ -126,7 +127,6 @@
     <ClCompile Include="DeepTraverser.cpp" />
     <ClCompile Include="DParsersRepository.cpp" />
     <ClCompile Include="DParsingEntity.cpp" />
-    <ClCompile Include="EvalUnit.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
     <ClCompile Include="FromCallDeepTraverser.cpp" />
     <ClCompile Include="FromDeepTraverser.cpp" />
@@ -135,6 +135,7 @@
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="IfParser.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
+    <ClCompile Include="InvokationParam.cpp" />
     <ClCompile Include="Keywords.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="LexerException.cpp" />

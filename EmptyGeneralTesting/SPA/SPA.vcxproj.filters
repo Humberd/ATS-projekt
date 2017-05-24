@@ -139,6 +139,12 @@
     <Filter Include="Source Files\QueryEvaluator\Exceptions">
       <UniqueIdentifier>{d6195f3c-cc66-4825-a296-876dcc35752a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\QueryEvaluator\models">
+      <UniqueIdentifier>{9cc8bf07-da21-436f-aee0-27ab86099ad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryEvaluator\models">
+      <UniqueIdentifier>{99851cb2-8712-4cee-b6f1-35b3dcfcacbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -420,12 +426,6 @@
     <ClInclude Include="QueryVariablesValidatorException.h">
       <Filter>Header Files\QueryEvaluator\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="EvalUnit.h">
-      <Filter>Header Files\QueryEvaluator</Filter>
-    </ClInclude>
-    <ClInclude Include="EvalUnitType.h">
-      <Filter>Header Files\QueryEvaluator</Filter>
-    </ClInclude>
     <ClInclude Include="QueryEvaluator.h">
       <Filter>Header Files\QueryEvaluator</Filter>
     </ClInclude>
@@ -434,6 +434,15 @@
     </ClInclude>
     <ClInclude Include="QueryEvaluatorException.h">
       <Filter>Header Files\QueryEvaluator\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ValueType.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="InvokationParamState.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="InvokationParam.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -695,9 +704,6 @@
     <ClCompile Include="QueryVariablesValidatorException.cpp">
       <Filter>Source Files\QueryEvaluator\Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="EvalUnit.cpp">
-      <Filter>Source Files\QueryEvaluator</Filter>
-    </ClCompile>
     <ClCompile Include="QueryEvaluator.cpp">
       <Filter>Source Files\QueryEvaluator</Filter>
     </ClCompile>
@@ -706,6 +712,9 @@
     </ClCompile>
     <ClCompile Include="QueryEvaluatorException.cpp">
       <Filter>Source Files\QueryEvaluator\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="InvokationParam.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

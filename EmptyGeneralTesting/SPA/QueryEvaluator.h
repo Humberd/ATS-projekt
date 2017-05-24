@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "EvalUnit.h"
 #include "DeclaredVariable.h"
 #include "PkbBridge.h"
 #include "QueryRequest.h"
@@ -10,7 +9,7 @@ using namespace std;
 
 class QueryEvaluator {
 private:
-	vector<vector<EvalUnit*>*> evalResults;
+	vector<vector<string>*> evalResults;
 	vector<string> columnVariableNames;
 
 	vector<DeclaredVariable*> declaredVariables;
@@ -24,8 +23,5 @@ public:
 	~QueryEvaluator();
 
 	void evaluate();
-
-	void evaluateMethod(MethodRequest* methodRequest);
-	void evaluateParent(MethodRequest* parentRequest);
 
 };

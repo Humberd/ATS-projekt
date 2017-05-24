@@ -16,7 +16,6 @@ public:
 	explicit Parameter();
 	~Parameter();
 
-
 	ParameterType getType() const;
 	void setType(const ParameterType type);
 	string getVariableName() const;
@@ -28,4 +27,3 @@ public:
 	int getIntegerValue() const;
 	void setIntegerValue(const int integerValue);
 };
-
