@@ -9,6 +9,7 @@ private:
 	ResponseState state;
 	vector<string> vectorResponse;
 	bool booleanResponse;
+	string variableName;
 
 public:
 	explicit MethodEvaluatorResponse();
@@ -20,4 +21,6 @@ public:
 	void setVectorResponse(const vector<string> basicStrings);
 	bool getBooleanResponse() const;
 	void setBooleanResponse(const bool booleanResponse);
+	string getVariableName() const;
+	void setVariableName(const string variableName);
 };

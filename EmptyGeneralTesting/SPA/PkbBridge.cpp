@@ -4,3 +4,5 @@
 PkbBrigde::PkbBrigde() {
 }
 
+PkbBrigde::~PkbBrigde() {
+}

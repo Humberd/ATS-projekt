@@ -4,6 +4,7 @@
 #include "../SPA/QueryEvaluator.h"
 #include "../SPA/DeclarationKeywords.h"
 #include "../SPA/QueryEvaluatorException.h"
+#include "../SPA/PkbBridgeMockImpl.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -235,5 +236,94 @@ TEST_CLASS(QueryEvaluatorTest) {
 		}
 		declaredVariables.clear();
 		delete queryEvaluator;
+	}
+
+	TEST_METHOD(QueryEvaluator_parentEvaluator_Valid_1_value_variable) {
+		PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
+
+		InvokationParam* leftParam = new InvokationParam;
+		leftParam->setState(InvokationParamState::VALUE);
+
+		InvokationParam* rightParam = new InvokationParam;
+		rightParam->setState(InvokationParamState::VARIABLE);
+		rightParam->setVariableName("foo");
+
+		QueryEvaluator* queryEvaluator = new QueryEvaluator;
+		queryEvaluator->setPkbBrigde(pkbBrigde);
+
+		MethodEvaluatorResponse* response = queryEvaluator->parentEvaluator(leftParam, rightParam, false);
+
+		Assert::IsNotNull(response);
+		Assert::IsTrue(response->getState() == ResponseState::VECTOR);
+		Assert::IsTrue(response->getVectorResponse().size() == 4);
+		Assert::IsTrue(response->getVariableName() == "foo");
+
+		delete pkbBrigde , leftParam , rightParam , queryEvaluator , response;
+	}
+
+	TEST_METHOD(QueryEvaluator_parentEvaluator_Valid_2_variable_value) {
+		PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
+
+		InvokationParam* leftParam = new InvokationParam;
+		leftParam->setState(InvokationParamState::VARIABLE);
+		leftParam->setVariableName("bar");
+
+		InvokationParam* rightParam = new InvokationParam;
+		rightParam->setState(InvokationParamState::VALUE);
+
+		QueryEvaluator* queryEvaluator = new QueryEvaluator;
+		queryEvaluator->setPkbBrigde(pkbBrigde);
+
+		MethodEvaluatorResponse* response = queryEvaluator->parentEvaluator(leftParam, rightParam, false);
+
+		Assert::IsNotNull(response);
+		Assert::IsTrue(response->getState() == ResponseState::VECTOR);
+		Assert::IsTrue(response->getVectorResponse().size() == 1);
+		Assert::IsTrue(response->getVariableName() == "bar");
+
+		delete pkbBrigde , leftParam , rightParam , queryEvaluator , response;
+	}
+
+	TEST_METHOD(QueryEvaluator_parentEvaluator_Valid_3_value_value) {
+		PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
+
+		InvokationParam* leftParam = new InvokationParam;
+		leftParam->setState(InvokationParamState::VALUE);
+
+		InvokationParam* rightParam = new InvokationParam;
+		rightParam->setState(InvokationParamState::VALUE);
+
+		QueryEvaluator* queryEvaluator = new QueryEvaluator;
+		queryEvaluator->setPkbBrigde(pkbBrigde);
+
+		MethodEvaluatorResponse* response = queryEvaluator->parentEvaluator(leftParam, rightParam, false);
+
+		Assert::IsNotNull(response);
+		Assert::IsTrue(response->getState() == ResponseState::BOOLEAN);
+		Assert::IsTrue(response->getBooleanResponse() == true);
+
+		delete pkbBrigde , leftParam , rightParam , queryEvaluator , response;
+	}
+
+	TEST_METHOD(QueryEvaluator_parentEvaluator_Invalid_1_any_value) {
+		PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
+
+		InvokationParam* leftParam = new InvokationParam;
+		leftParam->setState(InvokationParamState::ANY);
+
+		InvokationParam* rightParam = new InvokationParam;
+		rightParam->setState(InvokationParamState::VALUE);
+
+		QueryEvaluator* queryEvaluator = new QueryEvaluator;
+		queryEvaluator->setPkbBrigde(pkbBrigde);
+
+		auto pointer = [queryEvaluator, leftParam, rightParam]() {
+					queryEvaluator->parentEvaluator(leftParam, rightParam, false);
+				};
+
+		Assert::ExpectException<QueryEvaluatorException>(pointer);
+
+
+		delete pkbBrigde , leftParam , rightParam , queryEvaluator;
 	}
 };

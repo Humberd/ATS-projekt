@@ -20,6 +20,7 @@ private:
 	PkbBrigde* pkbBrigde;
 
 public:
+	explicit QueryEvaluator();
 	explicit QueryEvaluator(vector<DeclaredVariable*> declaredVariables,
 	                        QueryRequest* queryRequest);
 	~QueryEvaluator();

@@ -30,3 +30,11 @@ void MethodEvaluatorResponse::setBooleanResponse(const bool booleanResponse) {
 	this->booleanResponse = booleanResponse;
 }
 
+string MethodEvaluatorResponse::getVariableName() const {
+	return variableName;
+}
+
+void MethodEvaluatorResponse::setVariableName(const string variableName) {
+	this->variableName = variableName;
+}
+
