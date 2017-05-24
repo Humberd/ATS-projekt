@@ -1,5 +1,6 @@
 #include "QueryEvaluator.h"
 #include "QueryEvaluatorException.h"
+#include <algorithm>
 
 QueryEvaluator::QueryEvaluator(vector<DeclaredVariable*> declaredVariables,
                                QueryRequest* queryRequest): declaredVariables(declaredVariables), queryRequest(queryRequest) {
@@ -50,4 +51,96 @@ InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* par
 	}
 
 	throw QueryEvaluatorException("changeParameterToInvokationParam() - didn't pass a type check");
+}
+
+vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam) {
+	vector<InvokationParam*> params;
+
+	if (invokationParam->getState() == InvokationParamState::VALUE) {
+		params.push_back(invokationParam);
+		return params;
+	}
+
+	if (invokationParam->getState() == InvokationParamState::ANY) {
+		throw QueryEvaluatorException("Unsupported param exception: '_'");
+	}
+
+	if (invokationParam->getState() == InvokationParamState::VARIABLE) {
+		int indexOfColumnVariable = findIndexOfColumnVariableName(invokationParam->getVariableName());
+		if (indexOfColumnVariable < 0) {
+			params.push_back(invokationParam);
+			return params;
+		}
+
+//		evalResults.at(indexOfColumnVariable);
+	}
+
+	throw QueryEvaluatorException("generateParamsIncaseOfAvailableResults() shouldn't reach end of the function");
+}
+
+
+int QueryEvaluator::findIndexOfColumnVariableName(string varName) {
+	for (int i = 0; i < columnVariableNames.size(); i++) {
+		if (columnVariableNames.at(i) == varName) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+
+vector<string> QueryEvaluator::findUniqueEvalResultsFromColumn(int columnIndex) {
+	vector<string> uniqueResults;
+
+	for (vector<string>* row : evalResults) {
+		uniqueResults.push_back(row->at(columnIndex));
+	}
+
+	sort(uniqueResults.begin(), uniqueResults.end());
+	uniqueResults.erase(unique(uniqueResults.begin(), uniqueResults.end()), uniqueResults.end());
+
+	return uniqueResults;
+}
+
+
+/*--------------------------------------------------------------------*/
+vector<vector<string>*> QueryEvaluator::getEvalResults() const {
+	return evalResults;
+}
+
+void QueryEvaluator::setEvalResults(const vector<vector<string>*> basicStringses) {
+	evalResults = basicStringses;
+}
+
+vector<string> QueryEvaluator::getColumnVariableNames() const {
+	return columnVariableNames;
+}
+
+void QueryEvaluator::setColumnVariableNames(const vector<string> columnVariableNames) {
+	this->columnVariableNames = columnVariableNames;
+}
+
+vector<DeclaredVariable*> QueryEvaluator::getDeclaredVariables() const {
+	return declaredVariables;
+}
+
+void QueryEvaluator::setDeclaredVariables(const vector<DeclaredVariable*> declaredVariables) {
+	this->declaredVariables = declaredVariables;
+}
+
+QueryRequest* QueryEvaluator::getQueryRequest() const {
+	return queryRequest;
+}
+
+void QueryEvaluator::setQueryRequest(QueryRequest* const queryRequest) {
+	this->queryRequest = queryRequest;
+}
+
+PkbBrigde* QueryEvaluator::getPkbBrigde() const {
+	return pkbBrigde;
+}
+
+void QueryEvaluator::setPkbBrigde(PkbBrigde* const pkbBrigde) {
+	this->pkbBrigde = pkbBrigde;
 }

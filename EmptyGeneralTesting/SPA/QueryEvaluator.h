@@ -27,4 +27,21 @@ public:
 
 	InvokationParam* changeParameterToInvokationParam(Parameter* parameter);
 
+	vector<InvokationParam*> generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam);
+
+	int findIndexOfColumnVariableName(string varName);
+	vector<string> findUniqueEvalResultsFromColumn(int columnIndex);
+
+
+	/*-------------------------------------------------------*/
+	vector<vector<string>*> getEvalResults() const;
+	void setEvalResults(const vector<vector<string>*> basicStringses);
+	vector<string> getColumnVariableNames() const;
+	void setColumnVariableNames(const vector<string> columnVariableNames);
+	vector<DeclaredVariable*> getDeclaredVariables() const;
+	void setDeclaredVariables(const vector<DeclaredVariable*> declaredVariables);
+	QueryRequest* getQueryRequest() const;
+	void setQueryRequest(QueryRequest* const queryRequest);
+	PkbBrigde* getPkbBrigde() const;
+	void setPkbBrigde(PkbBrigde* const pkbBrigde);
 };
