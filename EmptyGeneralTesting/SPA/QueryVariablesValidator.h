@@ -21,4 +21,7 @@ public:
 	                                         QueryRequest* queryRequest) const;
 	bool doesPropertyExistOnType(string propertyName, string type) const;
 	string getVariableType(string varName, vector<DeclaredVariable*> declaredVariables) const;
+
+	void addTypesToVariablesAndParams(vector<DeclaredVariable*> declaredVariables,
+	                                  QueryRequest* queryRequest) const;
 };

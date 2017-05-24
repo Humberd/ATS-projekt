@@ -13,6 +13,7 @@ void QueryVariablesValidator::validate(vector<DeclaredVariable*> declaredVariabl
                                        QueryRequest* queryRequest) const {
 	checkIfVariablesWereDeclared(declaredVariables, queryRequest);
 	checkIfVariablesHaveValidProperties(declaredVariables, queryRequest);
+	addTypesToVariablesAndParams(declaredVariables, queryRequest);
 }
 
 
@@ -20,16 +21,16 @@ void QueryVariablesValidator::checkIfVariablesWereDeclared(vector<DeclaredVariab
                                                            QueryRequest* queryRequest) const {
 	auto returnRequest = queryRequest->getReturnRequest();
 
-	if (returnRequest->getReturnType() == ReturnType::BOOLEAN) {
-		return;
-	}
-	/*Checking every variable in a returnRequest to see if it was declared*/
-	auto returnVariables = returnRequest->getVariables();
-	for (auto variable : returnVariables) {
-		if (!doesVariableExist(variable->getName(), declaredVariables)) {
-			throw QueryVariablesValidatorException("Variable '" + variable->getName() + "' used in a returnRequest was not declared");
+	if (returnRequest->getReturnType() == ReturnType::VARIABLES) {
+		/*Checking every variable in a returnRequest to see if it was declared*/
+		auto returnVariables = returnRequest->getVariables();
+		for (auto variable : returnVariables) {
+			if (!doesVariableExist(variable->getName(), declaredVariables)) {
+				throw QueryVariablesValidatorException("Variable '" + variable->getName() + "' used in a returnRequest was not declared");
+			}
 		}
 	}
+	
 
 	/*Checking every variable in methodRequests*/
 	for (auto methodRequest : queryRequest->getMethodRequests()) {
@@ -70,16 +71,15 @@ bool QueryVariablesValidator::doesVariableExist(string varName,
 void QueryVariablesValidator::checkIfVariablesHaveValidProperties(vector<DeclaredVariable*> declaredVariables, QueryRequest* queryRequest) const {
 	auto returnRequest = queryRequest->getReturnRequest();
 
-	if (returnRequest->getReturnType() == ReturnType::BOOLEAN) {
-		return;
-	}
-	/*Checking every variable in a returnRequest to see if it was declared*/
-	auto returnVariables = returnRequest->getVariables();
-	for (auto variable : returnVariables) {
-		if (!variable->getPropertyName().empty()) {
-			string varType = getVariableType(variable->getName(), declaredVariables);
-			if (!doesPropertyExistOnType(variable->getPropertyName(), varType)) {
-				throw QueryVariablesValidatorException("PropertyName '" + variable->getPropertyName() + "' of a variable '" + variable->getName() + "' does not exist on parameterType: '"+varType+"'");
+	if (returnRequest->getReturnType() == ReturnType::VARIABLES) {
+		/*Checking every variable in a returnRequest to see if it was declared*/
+		auto returnVariables = returnRequest->getVariables();
+		for (auto variable : returnVariables) {
+			if (!variable->getPropertyName().empty()) {
+				string varType = getVariableType(variable->getName(), declaredVariables);
+				if (!doesPropertyExistOnType(variable->getPropertyName(), varType)) {
+					throw QueryVariablesValidatorException("PropertyName '" + variable->getPropertyName() + "' of a variable '" + variable->getName() + "' does not exist on parameterType: '" + varType + "'");
+				}
 			}
 		}
 	}
@@ -129,3 +129,39 @@ string QueryVariablesValidator::getVariableType(string varName,
 	return foundVariable->getType();
 }
 
+void QueryVariablesValidator::addTypesToVariablesAndParams(vector<DeclaredVariable*> declaredVariables,
+                                                           QueryRequest* queryRequest) const {
+	auto returnRequest = queryRequest->getReturnRequest();
+
+	if (returnRequest->getReturnType() == ReturnType::VARIABLES) {
+		/*Checking every variable in a returnRequest*/
+		auto returnVariables = returnRequest->getVariables();
+		for (auto variable : returnVariables) {
+			string varType = getVariableType(variable->getName(), declaredVariables);
+			variable->setType(varType);
+		}
+	}
+
+	/*Checking every variable in methodRequests*/
+	for (auto methodRequest : queryRequest->getMethodRequests()) {
+		if (methodRequest->getLeftParam()->getType() == ParameterType::VARIABLE) {
+			string varType = getVariableType(methodRequest->getLeftParam()->getVariableName(), declaredVariables);
+			methodRequest->getLeftParam()->setVariableType(varType);
+		}
+		if (methodRequest->getRightParam()->getType() == ParameterType::VARIABLE) {
+			string varType = getVariableType(methodRequest->getRightParam()->getVariableName(), declaredVariables);
+			methodRequest->getRightParam()->setVariableType(varType);
+		}
+	}
+
+	/*Checking every variable in withRequests*/
+	for (auto withRequest : queryRequest->getWithRequests()) {
+		string leftVarType = getVariableType(withRequest->getLeftSideVariable()->getName(), declaredVariables);
+		withRequest->getLeftSideVariable()->setType(leftVarType);
+
+		if (withRequest->getType() == WithType::VARIABLE) {
+			string rightVarType = getVariableType(withRequest->getRightSideVariable()->getName(), declaredVariables);
+			withRequest->getRightSideVariable()->setType(rightVarType);
+		}
+	}
+}
