@@ -12,6 +12,7 @@ SpaDataContainer* TreeAnalyzer::analyzeTree(Node* rootNode) {
 	SpaDataContainer* container = new SpaDataContainer;
 	container->rootNode = rootNode;
 	container->parentsTable = treeAnalyzer.analyzeParentsTable(rootNode);
+	container->followsTable = treeAnalyzer.analyzeFollowsTable(rootNode);
 
 	return container;
 }
@@ -71,4 +72,45 @@ void TreeAnalyzer::parentsTableAddIf(map<int, vector<int>>& result, IfNode* ifNo
 
 	}
 	result.insert_or_assign(ifNode->getProgramLineNumber(), children);
+}
+
+
+map<int, vector<int>> TreeAnalyzer::analyzeFollowsTable(Node* rootNode) const {
+	map<int, vector<int>> followsTable;
+
+	for (auto procedure : rootNode->getChildren()) {
+		followsTableStatementListWalker(followsTable, dynamic_cast<StatementListNode*>(procedure->getChild(0)));
+	}
+
+	return followsTable;
+}
+
+void TreeAnalyzer::followsTableStatementListWalker(map<int, vector<int>>& result, StatementListNode* statementListNode) const {
+	Node* previousNode = nullptr;
+
+	for (auto child : statementListNode->getChildren()) {
+		if (previousNode == nullptr) {
+			previousNode = child;
+			continue;
+		}
+		vector<int> valueVector = { child->getProgramLineNumber() };
+
+		result.insert_or_assign(previousNode->getProgramLineNumber(), valueVector);
+		previousNode = child;
+
+		followsTableCheckValidParent(result, child);
+	}
+}
+
+void TreeAnalyzer::followsTableCheckValidParent(map<int, vector<int>>& result, Node* node) const {
+	WhileNode* potentialWhileNode = dynamic_cast<WhileNode*>(node);
+	if (potentialWhileNode != nullptr) {
+		followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialWhileNode->getChild(1)));
+	} else {
+		IfNode* potentialIfNode = dynamic_cast<IfNode*>(node);
+		if (potentialIfNode != nullptr) {
+			followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(1)));
+			followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)));
+		}
+	}
 }

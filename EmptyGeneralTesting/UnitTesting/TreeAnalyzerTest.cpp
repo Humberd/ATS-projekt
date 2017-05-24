@@ -14,5 +14,6 @@ TEST_CLASS(TreeAnalyzerTest) {
 
 		SpaDataContainer* dataContainer = TreeAnalyzer::analyzeTree(rootNode);
 
+		Logger::WriteMessage("hello");
 	}
 };
