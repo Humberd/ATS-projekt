@@ -1,6 +1,7 @@
 #include "QueryEvaluator.h"
 #include "QueryEvaluatorException.h"
 #include <algorithm>
+#include "DeclarationKeywords.h"
 
 QueryEvaluator::QueryEvaluator(vector<DeclaredVariable*> declaredVariables,
                                QueryRequest* queryRequest): declaredVariables(declaredVariables), queryRequest(queryRequest) {
@@ -72,7 +73,27 @@ vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(
 			return params;
 		}
 
-//		evalResults.at(indexOfColumnVariable);
+		string variableType = findTypeOfDeclaredVariable(invokationParam->getVariableName());
+		ValueType valueType;
+		if (variableType == DeclarationKeywords::VARIABLE ||
+			variableType == DeclarationKeywords::PROCEDURE) {
+			valueType = ValueType::STRING;
+		} else {
+			valueType = ValueType::INTEGER;
+		}
+
+		vector<string> uniqueResults = findUniqueEvalResultsFromColumn(indexOfColumnVariable);
+		for (string result : uniqueResults) {
+			InvokationParam* newParam = invokationParam->copy();
+			newParam->setState(InvokationParamState::VALUE);
+			newParam->setValue(result);
+			newParam->setValueType(valueType);
+
+			params.push_back(newParam);
+		}
+		delete invokationParam;
+
+		return params;
 	}
 
 	throw QueryEvaluatorException("generateParamsIncaseOfAvailableResults() shouldn't reach end of the function");
@@ -89,6 +110,16 @@ int QueryEvaluator::findIndexOfColumnVariableName(string varName) {
 	return -1;
 }
 
+
+string QueryEvaluator::findTypeOfDeclaredVariable(string varName) {
+	for (auto declaredVariable : declaredVariables) {
+		if (declaredVariable->getName() == varName) {
+			return declaredVariable->getType();
+		}
+	}
+
+	return "";
+}
 
 vector<string> QueryEvaluator::findUniqueEvalResultsFromColumn(int columnIndex) {
 	vector<string> uniqueResults;

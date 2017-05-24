@@ -2,6 +2,8 @@
 #include <CppUnitTestAssert.h>
 #include <vector>
 #include "../SPA/QueryEvaluator.h"
+#include "../SPA/DeclarationKeywords.h"
+#include "../SPA/QueryEvaluatorException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -27,7 +29,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		delete queryEvaluator , parameter;
 	}
 
-	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_2_VARIABLE) {
+	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_Valid_2_VARIABLE) {
 		vector<DeclaredVariable*> declaredVariables;
 		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
 
@@ -47,7 +49,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		delete queryEvaluator , parameter;
 	}
 
-	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_3_INTEGER) {
+	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_Valid_3_INTEGER) {
 		vector<DeclaredVariable*> declaredVariables;
 		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
 
@@ -68,7 +70,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		delete queryEvaluator , parameter;
 	}
 
-	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_4_STRING) {
+	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_Valid_4_STRING) {
 		vector<DeclaredVariable*> declaredVariables;
 		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
 
@@ -89,7 +91,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		delete queryEvaluator , parameter;
 	}
 
-	TEST_METHOD(QueryEvaluator_findUniqueEvalResultsFromColumn_1) {
+	TEST_METHOD(QueryEvaluator_findUniqueEvalResultsFromColumn_Valid_1) {
 		vector<DeclaredVariable*> declaredVariables;
 		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
 
@@ -126,6 +128,112 @@ TEST_CLASS(QueryEvaluatorTest) {
 		for (vector<string>* evalResult : evalResults) {
 			evalResult->clear();
 		}
+		delete queryEvaluator;
+	}
+
+	TEST_METHOD(QueryEvaluator_generateParamsIncaseOfAvailableResults_Valid_1) {
+		vector<DeclaredVariable*> declaredVariables;
+		declaredVariables.push_back(new DeclaredVariable(DeclarationKeywords::ASSIGN, "a"));
+		declaredVariables.push_back(new DeclaredVariable(DeclarationKeywords::STATEMENT, "s"));
+		declaredVariables.push_back(new DeclaredVariable(DeclarationKeywords::STATEMENT, "g"));
+		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
+
+		vector<string>* row1 = new vector<string>;
+		row1->push_back("1");
+		row1->push_back("992");
+		vector<string>* row2 = new vector<string>;
+		row2->push_back("1");
+		row2->push_back("23");
+		vector<string>* row3 = new vector<string>;
+		row3->push_back("4");
+		row3->push_back("23");
+		vector<string>* row4 = new vector<string>;
+		row4->push_back("5");
+		row4->push_back("14");
+		vector<string>* row5 = new vector<string>;
+		row5->push_back("1");
+		row5->push_back("443");
+		vector<string>* row6 = new vector<string>;
+		row6->push_back("1");
+		row6->push_back("123");
+		vector<string>* row7 = new vector<string>;
+		row7->push_back("1");
+		row7->push_back("123");
+
+		vector<vector<string>*> evalResults = {
+			row1,
+			row2,
+			row3,
+			row4,
+			row5,
+			row6,
+			row7,
+		};
+		queryEvaluator->setEvalResults(evalResults);
+
+		vector<string> columnVariableNames = {"a", "s"};
+		queryEvaluator->setColumnVariableNames(columnVariableNames);
+
+		/*-----------*/
+		InvokationParam* invokationParam = new InvokationParam;
+		invokationParam->setState(InvokationParamState::ANY);
+
+		auto pointer = [invokationParam, queryEvaluator]() {
+					queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
+				};
+
+		Assert::ExpectException<QueryEvaluatorException>(pointer, wstring(L"Any type '_' was not implemented").c_str());
+		delete invokationParam;
+		/*-----------*/
+		invokationParam = new InvokationParam;
+		invokationParam->setState(InvokationParamState::VALUE);
+
+		auto res1 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
+		Assert::IsTrue(res1.size() == 1);
+		Assert::IsTrue(invokationParam == res1.at(0));
+		res1.clear();
+		delete invokationParam;
+		/*-----------*/
+		invokationParam = new InvokationParam;
+		invokationParam->setState(InvokationParamState::VARIABLE);
+		invokationParam->setVariableName("a");
+
+		auto res2 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
+		Assert::IsTrue(res2.size() == 3);
+		Assert::IsTrue(res2.at(0)->getState() == InvokationParamState::VALUE);
+		Assert::IsTrue(res2.at(0)->getValue() == "1");
+		Assert::IsTrue(res2.at(0)->getValueType() == ValueType::INTEGER);
+
+		Assert::IsTrue(res2.at(1)->getState() == InvokationParamState::VALUE);
+		Assert::IsTrue(res2.at(1)->getValue() == "4");
+		Assert::IsTrue(res2.at(1)->getValueType() == ValueType::INTEGER);
+
+		Assert::IsTrue(res2.at(2)->getState() == InvokationParamState::VALUE);
+		Assert::IsTrue(res2.at(2)->getValue() == "5");
+		Assert::IsTrue(res2.at(2)->getValueType() == ValueType::INTEGER);
+
+		for (auto res : res2) {
+			delete res;
+		}
+		res2.clear();
+		/*-----------*/
+		invokationParam = new InvokationParam;
+		invokationParam->setState(InvokationParamState::VARIABLE);
+		invokationParam->setVariableName("g");//this variable doesn't exist on evalResults
+
+		auto res3 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
+		Assert::IsTrue(res3.size() == 1);
+		Assert::IsTrue(res3.at(0) == invokationParam);
+		/*-----------*/
+
+		for (vector<string>* evalResult : evalResults) {
+			evalResult->clear();
+		}
+		evalResults.clear();
+		for (auto variable : declaredVariables) {
+			delete variable;
+		}
+		declaredVariables.clear();
 		delete queryEvaluator;
 	}
 };

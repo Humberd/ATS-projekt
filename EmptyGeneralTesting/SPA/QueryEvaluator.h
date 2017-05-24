@@ -30,6 +30,7 @@ public:
 	vector<InvokationParam*> generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam);
 
 	int findIndexOfColumnVariableName(string varName);
+	string findTypeOfDeclaredVariable(string varName);
 	vector<string> findUniqueEvalResultsFromColumn(int columnIndex);
 
 
