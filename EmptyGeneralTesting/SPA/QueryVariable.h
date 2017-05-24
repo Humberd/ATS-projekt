@@ -7,6 +7,7 @@ class QueryVariable {
 private:
 	string name;
 	string propertyName;
+	string type;
 
 public:
 	explicit QueryVariable();
@@ -18,4 +19,6 @@ public:
 	void setName(const string name);
 	string getPropertyName() const;
 	void setPropertyName(const string propertyName);
+	string getType() const;
+	void setType(const string type);
 };

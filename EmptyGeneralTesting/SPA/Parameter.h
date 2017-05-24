@@ -8,6 +8,7 @@ class Parameter {
 private:
 	ParameterType type;
 	string variableName;
+	string variableType;
 	string stringValue;
 	int integerValue;
 
@@ -20,6 +21,8 @@ public:
 	void setType(const ParameterType type);
 	string getVariableName() const;
 	void setVariableName(const string variableName);
+	string getVariableType() const;
+	void setVariableType(const string variableType);
 	string getStringValue() const;
 	void setStringValue(const string stringValue);
 	int getIntegerValue() const;

@@ -79,7 +79,7 @@ void QueryVariablesValidator::checkIfVariablesHaveValidProperties(vector<Declare
 		if (!variable->getPropertyName().empty()) {
 			string varType = getVariableType(variable->getName(), declaredVariables);
 			if (!doesPropertyExistOnType(variable->getPropertyName(), varType)) {
-				throw QueryVariablesValidatorException("PropertyName '" + variable->getPropertyName() + "' of a variable '" + variable->getName() + "' does not exist on type: '"+varType+"'");
+				throw QueryVariablesValidatorException("PropertyName '" + variable->getPropertyName() + "' of a variable '" + variable->getName() + "' does not exist on parameterType: '"+varType+"'");
 			}
 		}
 	}
@@ -89,14 +89,14 @@ void QueryVariablesValidator::checkIfVariablesHaveValidProperties(vector<Declare
 		if (!withRequest->getLeftSideVariable()->getPropertyName().empty()) {
 			string varType = getVariableType(withRequest->getLeftSideVariable()->getName(), declaredVariables);
 			if (!doesPropertyExistOnType(withRequest->getLeftSideVariable()->getPropertyName(), varType)) {
-				throw QueryVariablesValidatorException("PropertyName '" + withRequest->getLeftSideVariable()->getPropertyName() + "' of a variable '" + withRequest->getLeftSideVariable()->getName() + "' does not exist on type: '" + varType + "'");
+				throw QueryVariablesValidatorException("PropertyName '" + withRequest->getLeftSideVariable()->getPropertyName() + "' of a variable '" + withRequest->getLeftSideVariable()->getName() + "' does not exist on parameterType: '" + varType + "'");
 			}
 		}
 		if (withRequest->getType() == WithType::VARIABLE) {
 			if (!withRequest->getRightSideVariable()->getPropertyName().empty()) {
 				string varType = getVariableType(withRequest->getRightSideVariable()->getName(), declaredVariables);
 				if (!doesPropertyExistOnType(withRequest->getRightSideVariable()->getPropertyName(), varType)) {
-					throw QueryVariablesValidatorException("PropertyName '" + withRequest->getRightSideVariable()->getPropertyName() + "' of a variable '" + withRequest->getRightSideVariable()->getName() + "' does not exist on type: '" + varType + "'");
+					throw QueryVariablesValidatorException("PropertyName '" + withRequest->getRightSideVariable()->getPropertyName() + "' of a variable '" + withRequest->getRightSideVariable()->getName() + "' does not exist on parameterType: '" + varType + "'");
 				}
 			}
 		}
@@ -128,3 +128,4 @@ string QueryVariablesValidator::getVariableType(string varName,
 
 	return foundVariable->getType();
 }
+

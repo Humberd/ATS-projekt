@@ -25,3 +25,11 @@ string QueryVariable::getPropertyName() const {
 void QueryVariable::setPropertyName(const string propertyName) {
 	this->propertyName = propertyName;
 }
+
+string QueryVariable::getType() const {
+	return type;
+}
+
+void QueryVariable::setType(const string type) {
+	this->type = type;
+}

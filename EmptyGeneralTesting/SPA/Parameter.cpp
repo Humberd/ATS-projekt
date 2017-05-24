@@ -22,6 +22,14 @@ void Parameter::setVariableName(const string variableName) {
 	this->variableName = variableName;
 }
 
+string Parameter::getVariableType() const {
+	return variableType;
+}
+
+void Parameter::setVariableType(const string variableType) {
+	this->variableType = variableType;
+}
+
 string Parameter::getStringValue() const {
 	return stringValue;
 }
@@ -37,4 +45,3 @@ int Parameter::getIntegerValue() const {
 void Parameter::setIntegerValue(const int integerValue) {
 	this->integerValue = integerValue;
 }
-
