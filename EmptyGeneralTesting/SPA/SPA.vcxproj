@@ -45,6 +45,7 @@
     <ClInclude Include="ParameterType.h" />
     <ClInclude Include="ParsersRepository.h" />
     <ClInclude Include="ParsingEntity.h" />
+    <ClInclude Include="PkbBridge.h" />
     <ClInclude Include="ProcedureParser.h" />
     <ClInclude Include="ProgramLineEvaluator.h" />
     <ClInclude Include="ProgramParser.h" />
@@ -54,6 +55,8 @@
     <ClInclude Include="QParserException.h" />
     <ClInclude Include="QParsersRepository.h" />
     <ClInclude Include="QParsingEntity.h" />
+    <ClInclude Include="QueryEvaluator.h" />
+    <ClInclude Include="QueryEvaluatorException.h" />
     <ClInclude Include="QueryKeywords.h" />
     <ClInclude Include="QTokenKeys.h" />
     <ClInclude Include="QueryMethods.h" />
@@ -146,6 +149,7 @@
     <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="ParsersRepository.cpp" />
     <ClCompile Include="ParsingEntity.cpp" />
+    <ClCompile Include="PkbBridge.cpp" />
     <ClCompile Include="ProcedureParser.cpp" />
     <ClCompile Include="ProgramLineEvaluator.cpp" />
     <ClCompile Include="ProgramParser.cpp" />
@@ -156,6 +160,8 @@
     <ClCompile Include="QParsersRepository.cpp" />
     <ClCompile Include="QParsingEntity.cpp" />
     <ClCompile Include="QTokenKeys.cpp" />
+    <ClCompile Include="QueryEvaluator.cpp" />
+    <ClCompile Include="QueryEvaluatorException.cpp" />
     <ClCompile Include="QueryKeywords.cpp" />
     <ClCompile Include="QueryMethods.cpp" />
     <ClCompile Include="QueryRequest.cpp" />

@@ -426,6 +426,15 @@
     <ClInclude Include="EvalUnitType.h">
       <Filter>Header Files\QueryEvaluator</Filter>
     </ClInclude>
+    <ClInclude Include="QueryEvaluator.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="PkbBridge.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryEvaluatorException.h">
+      <Filter>Header Files\QueryEvaluator\Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -688,6 +697,15 @@
     </ClCompile>
     <ClCompile Include="EvalUnit.cpp">
       <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryEvaluator.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="PkbBridge.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryEvaluatorException.cpp">
+      <Filter>Source Files\QueryEvaluator\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
