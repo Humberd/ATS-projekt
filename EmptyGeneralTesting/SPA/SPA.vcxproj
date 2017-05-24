@@ -100,6 +100,7 @@
     <ClInclude Include="STMT.h" />
     <ClInclude Include="TimesNode.h" />
     <ClInclude Include="TokenKeys.h" />
+    <ClInclude Include="TreeAnalyzer.h" />
     <ClInclude Include="Uses.h" />
     <ClInclude Include="Modifies.h" />
     <ClInclude Include="ValidateException.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="StatementNode.cpp" />
     <ClCompile Include="STMT.cpp" />
     <ClCompile Include="TimesNode.cpp" />
+    <ClCompile Include="TreeAnalyzer.cpp" />
     <ClCompile Include="Uses.cpp" />
     <ClCompile Include="TokenKeys.cpp" />
     <ClCompile Include="ValidateException.cpp" />

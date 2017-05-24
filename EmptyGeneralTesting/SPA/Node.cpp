@@ -3,6 +3,7 @@
 #include "InvalidArgumentException.h"
 //#include <CppUnitTestLogger.h>
 #include <sstream>
+#include <CppUnitTestLogger.h>
 
 //#include <CppUnitTestLogger.h>
 
@@ -111,7 +112,7 @@ void Node::prettyPrint(int indent) {
 	}
 	ss << toString();
 
-//	Microsoft::VisualStudio::CppUnitTestFramework::Logger::WriteMessage(ss.str().c_str());
+	Microsoft::VisualStudio::CppUnitTestFramework::Logger::WriteMessage(ss.str().c_str());
 
 	for (auto child : children) {
 		child->prettyPrint(indent + 1);

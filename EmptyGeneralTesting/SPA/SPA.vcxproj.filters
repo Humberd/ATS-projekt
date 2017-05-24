@@ -145,6 +145,12 @@
     <Filter Include="Source Files\QueryEvaluator\models">
       <UniqueIdentifier>{99851cb2-8712-4cee-b6f1-35b3dcfcacbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\TreeAnalyzer">
+      <UniqueIdentifier>{95312964-983b-454a-a6fc-6f1ced875ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TreeAnalyzer">
+      <UniqueIdentifier>{6415afd1-98a1-4c67-8461-f3bbf69f1af0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -454,7 +460,10 @@
       <Filter>Header Files\QueryEvaluator</Filter>
     </ClInclude>
     <ClInclude Include="SpaDataContainer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeAnalyzer.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -735,7 +744,10 @@
       <Filter>Source Files\QueryEvaluator</Filter>
     </ClCompile>
     <ClCompile Include="SpaDataContainer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeAnalyzer.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
