@@ -20,7 +20,9 @@ public:
 
 	/*Uses*/
 	/*statements to variable names*/
-	map<int, vector<string>> usesTable;
+	map<int, vector<string>> usesStatementTable;
+	/*Procedures to variable names*/
+	map<string, vector<string>> usesProcedureTable;
 
 	/*Modifies*/
 	/*Statements to variable names*/
@@ -40,8 +42,4 @@ public:
 
 	/*A list of program procedures*/
 	vector<Node*> proceduresTable;
-
-	/*Maps a procedureName to a list of variableNames it contains*/
-	map<string, vector<string>> variablesTable;
-
 };

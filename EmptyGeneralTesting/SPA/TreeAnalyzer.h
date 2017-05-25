@@ -4,6 +4,7 @@
 #include "IfNode.h"
 #include "ProcedureNode.h"
 #include "StatementListNode.h"
+#include <set>
 
 using namespace std;
 
@@ -24,8 +25,9 @@ public:
 	void followsTableStatementListWalker(map<int, vector<int>>& result, StatementListNode* statementListNode) const;
 	void followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& result, Node* node) const;
 
-	/*todo*/
-	map<int, vector<string>> analyzeUsesTable(Node* rootNode);
+	map<string, vector<string>> analyzeCallsTable(Node* rootNode);
+	void callsTableStatementListWalker(set<string>& result, StatementListNode* statementListNode);
+	void callsTableCheckIfNodeIsContainer(set<string>& result, Node* node);
 
 	map<int, vector<Node*>> analyzeStatementTable(Node* rootNode);
 	void statementTableStatementListWalker(map<int, vector<Node*>>& result, StatementListNode* statementListNode);

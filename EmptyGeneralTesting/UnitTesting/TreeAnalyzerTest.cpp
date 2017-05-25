@@ -111,6 +111,24 @@ TEST_CLASS(TreeAnalyzerTest) {
 		Assert::IsTrue(dynamic_cast<ProcedureNode*>(proceduresTable.at(1))->getName() == "Earth");
 		Assert::IsTrue(dynamic_cast<ProcedureNode*>(proceduresTable.at(2))->getName() == "Moon");
 		Assert::IsTrue(dynamic_cast<ProcedureNode*>(proceduresTable.at(3))->getName() == "Sun");
+	}
 
+	TEST_METHOD(TreeAnalyzer_analyzeCallsTable) {
+		TreeAnalyzer treeAnalyzer;
+
+		map<string, vector<string>> callsTable = treeAnalyzer.analyzeCallsTable(rootNode);
+
+		Assert::IsTrue(callsTable.size() == 4);
+		Assert::IsTrue(callsTable.at("Planet").size() == 3);
+		Assert::IsTrue(callsTable.at("Planet").at(0) == "Earth");
+		Assert::IsTrue(callsTable.at("Planet").at(1) == "Moon");
+		Assert::IsTrue(callsTable.at("Planet").at(2) == "Sun");
+
+		Assert::IsTrue(callsTable.at("Earth").size() == 1);
+		Assert::IsTrue(callsTable.at("Earth").at(0) == "Sun");
+
+		Assert::IsTrue(callsTable.at("Moon").size() == 0);
+
+		Assert::IsTrue(callsTable.at("Sun").size() == 0);
 	}
 };

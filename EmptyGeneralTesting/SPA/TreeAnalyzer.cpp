@@ -1,4 +1,5 @@
 #include "TreeAnalyzer.h"
+#include "CallNode.h"
 
 TreeAnalyzer::TreeAnalyzer() {
 }
@@ -137,13 +138,49 @@ void TreeAnalyzer::followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& r
 	}
 }
 
-/*todo*/
-map<int, vector<string>> TreeAnalyzer::analyzeUsesTable(Node* rootNode) {
-	map<int, vector<string>> usesTable;
 
-	return usesTable;
+map<string, vector<string>> TreeAnalyzer::analyzeCallsTable(Node* rootNode) {
+	map<string, vector<string>> callsTable;
+
+	for (auto procedure : rootNode->getChildren()) {
+		set<string> result;
+		callsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(procedure->getChild(0)));
+		
+		ProcedureNode* procedureNode = dynamic_cast<ProcedureNode*>(procedure);
+		vector<string> vecResult(result.size());
+		vecResult.assign(result.begin(), result.end());
+
+		callsTable.insert_or_assign(procedureNode->getName(), vecResult);
+	}
+
+	return callsTable;
 }
 
+void TreeAnalyzer::callsTableStatementListWalker(set<string>& result, StatementListNode* statementListNode) {
+	for (auto child : statementListNode->getChildren()) {
+		CallNode* potentialCallNode = dynamic_cast<CallNode*>(child);
+		if (potentialCallNode != nullptr) {
+			result.insert(potentialCallNode->getProcedureName());
+		} else {
+			callsTableCheckIfNodeIsContainer(result, child);
+		}
+	}
+}
+
+void TreeAnalyzer::callsTableCheckIfNodeIsContainer(set<string>& result, Node* node) {
+	WhileNode* potentialWhileNode = dynamic_cast<WhileNode*>(node);
+	if (potentialWhileNode != nullptr) {
+		callsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialWhileNode->getChild(1)));
+		return;
+	}
+
+	IfNode* potentialIfNode = dynamic_cast<IfNode*>(node);
+	if (potentialIfNode != nullptr) {
+		callsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(1)));
+		callsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)));
+		return;
+	}
+}
 
 map<int, vector<Node*>> TreeAnalyzer::analyzeStatementTable(Node* rootNode) {
 	map<int, vector<Node*>> statementTable;
