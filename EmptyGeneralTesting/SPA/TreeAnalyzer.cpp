@@ -15,6 +15,7 @@ SpaDataContainer* TreeAnalyzer::analyzeTree(Node* rootNode) {
 	container->followsTable = treeAnalyzer.analyzeFollowsTable(rootNode);
 
 	container->statementTable = treeAnalyzer.analyzeStatementTable(rootNode);
+	container->proceduresTable = treeAnalyzer.analyzeProceduresTable(rootNode);
 	return container;
 }
 
@@ -154,7 +155,6 @@ map<int, vector<Node*>> TreeAnalyzer::analyzeStatementTable(Node* rootNode) {
 	return statementTable;
 }
 
-
 void TreeAnalyzer::statementTableStatementListWalker(map<int, vector<Node*>>& result, StatementListNode* statementListNode) {
 	for (auto child : statementListNode->getChildren()) {
 		vector<Node*> results = { child };
@@ -176,4 +176,15 @@ void TreeAnalyzer::statementTableCheckIfNodeIsContainer(map<int, vector<Node*>>&
 		statementTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)));
 		return;
 	}
+}
+
+
+vector<Node*> TreeAnalyzer::analyzeProceduresTable(Node* rootNode) {
+	vector<Node*> proceduresTable;
+
+	for (auto procedure : rootNode->getChildren()) {
+		proceduresTable.push_back(procedure);
+	}
+
+	return proceduresTable;
 }

@@ -100,4 +100,17 @@ TEST_CLASS(TreeAnalyzerTest) {
 		this->checkEquality(followsTable.at(30));
 		this->checkEquality(followsTable.at(31));
 	}
+	
+	TEST_METHOD(TreeAnalyzer_analyzeProceduresTable) {
+		TreeAnalyzer treeAnalyzer;
+
+		vector<Node*> proceduresTable = treeAnalyzer.analyzeProceduresTable(rootNode);
+
+		Assert::IsTrue(proceduresTable.size() == 4);
+		Assert::IsTrue(dynamic_cast<ProcedureNode*>(proceduresTable.at(0))->getName() == "Planet");
+		Assert::IsTrue(dynamic_cast<ProcedureNode*>(proceduresTable.at(1))->getName() == "Earth");
+		Assert::IsTrue(dynamic_cast<ProcedureNode*>(proceduresTable.at(2))->getName() == "Moon");
+		Assert::IsTrue(dynamic_cast<ProcedureNode*>(proceduresTable.at(3))->getName() == "Sun");
+
+	}
 };

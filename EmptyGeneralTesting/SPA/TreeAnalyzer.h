@@ -30,4 +30,6 @@ public:
 	map<int, vector<Node*>> analyzeStatementTable(Node* rootNode);
 	void statementTableStatementListWalker(map<int, vector<Node*>>& result, StatementListNode* statementListNode);
 	void statementTableCheckIfNodeIsContainer(map<int, vector<Node*>>& result, Node* node);
+
+	vector<Node*> analyzeProceduresTable(Node* rootNode);
 };
