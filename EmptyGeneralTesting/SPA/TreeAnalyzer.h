@@ -14,13 +14,13 @@ public:
 
 	static SpaDataContainer* analyzeTree(Node* rootNode);
 
-	map<int, vector<int>> analyzeParentsTable(Node* rootNode) const;
+	map<int, vector<int>> analyzeParentsTable(Node* rootNode);
 	void parentsTableProcedureWalker(map<int, vector<int>>& result, ProcedureNode* procedureNode) const;
 	void parentsTableCheckValidParent(map<int, vector<int>>& result, Node* node) const;
 	void parentsTableAddWhile(map<int, vector<int>>& result, WhileNode* whileNode) const;
 	void parentsTableAddIf(map<int, vector<int>>& result, IfNode* ifNode) const;
 
-	map<int, vector<int>> analyzeFollowsTable(Node* rootNode) const;
+	map<int, vector<int>> analyzeFollowsTable(Node* rootNode);
 	void followsTableStatementListWalker(map<int, vector<int>>& result, StatementListNode* statementListNode) const;
-	void followsTableCheckValidParent(map<int, vector<int>>& result, Node* node) const;
+	void followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& result, Node* node) const;
 };

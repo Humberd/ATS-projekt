@@ -17,7 +17,7 @@ SpaDataContainer* TreeAnalyzer::analyzeTree(Node* rootNode) {
 	return container;
 }
 
-map<int, vector<int>> TreeAnalyzer::analyzeParentsTable(Node* rootNode) const {
+map<int, vector<int>> TreeAnalyzer::analyzeParentsTable(Node* rootNode) {
 	map<int, vector<int>> parentsTable;
 
 	for (auto procedure : rootNode->getChildren()) {
@@ -75,7 +75,7 @@ void TreeAnalyzer::parentsTableAddIf(map<int, vector<int>>& result, IfNode* ifNo
 }
 
 
-map<int, vector<int>> TreeAnalyzer::analyzeFollowsTable(Node* rootNode) const {
+map<int, vector<int>> TreeAnalyzer::analyzeFollowsTable(Node* rootNode) {
 	map<int, vector<int>> followsTable;
 
 	for (auto procedure : rootNode->getChildren()) {
@@ -86,31 +86,51 @@ map<int, vector<int>> TreeAnalyzer::analyzeFollowsTable(Node* rootNode) const {
 }
 
 void TreeAnalyzer::followsTableStatementListWalker(map<int, vector<int>>& result, StatementListNode* statementListNode) const {
-	Node* previousNode = nullptr;
+	
 
-	for (auto child : statementListNode->getChildren()) {
-		if (previousNode == nullptr) {
-			previousNode = child;
-			continue;
-		}
-		vector<int> valueVector = { child->getProgramLineNumber() };
-
-		result.insert_or_assign(previousNode->getProgramLineNumber(), valueVector);
-		previousNode = child;
-
-		followsTableCheckValidParent(result, child);
+	if (statementListNode->getChildren().size() == 1) {
+		followsTableCheckIfNodeIsValidParent(result, statementListNode->getChild(0));
+		vector<int> lastValueVector = {};
+		result.insert_or_assign(statementListNode->getChild(0)->getProgramLineNumber(), lastValueVector);
+		return;
 	}
+
+	if (statementListNode->getChildren().size() > 1) {
+		Node* previousNode = nullptr;
+
+		for (auto child : statementListNode->getChildren()) {
+			if (previousNode == nullptr) {
+				previousNode = child;
+				followsTableCheckIfNodeIsValidParent(result, child);
+				continue;
+			}
+
+			vector<int> valueVector = { child->getProgramLineNumber() };
+
+			result.insert_or_assign(previousNode->getProgramLineNumber(), valueVector);
+			previousNode = child;
+
+			followsTableCheckIfNodeIsValidParent(result, child);
+		}
+
+		vector<int> lastValueVector = {};
+		result.insert_or_assign(previousNode->getProgramLineNumber(), lastValueVector);
+	}
+
+	
 }
 
-void TreeAnalyzer::followsTableCheckValidParent(map<int, vector<int>>& result, Node* node) const {
+void TreeAnalyzer::followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& result, Node* node) const {
 	WhileNode* potentialWhileNode = dynamic_cast<WhileNode*>(node);
 	if (potentialWhileNode != nullptr) {
 		followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialWhileNode->getChild(1)));
-	} else {
-		IfNode* potentialIfNode = dynamic_cast<IfNode*>(node);
-		if (potentialIfNode != nullptr) {
-			followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(1)));
-			followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)));
-		}
+		return;
+	}
+
+	IfNode* potentialIfNode = dynamic_cast<IfNode*>(node);
+	if (potentialIfNode != nullptr) {
+		followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(1)));
+		followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)));
+		return;
 	}
 }
