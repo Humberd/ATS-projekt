@@ -1,5 +1,7 @@
 #include "TreeAnalyzer.h"
 #include "CallNode.h"
+#include "AssignNode.h"
+#include "VariableNode.h"
 
 TreeAnalyzer::TreeAnalyzer() {
 }
@@ -14,6 +16,9 @@ SpaDataContainer* TreeAnalyzer::analyzeTree(Node* rootNode) {
 	container->rootNode = rootNode;
 	container->parentsTable = treeAnalyzer.analyzeParentsTable(rootNode);
 	container->followsTable = treeAnalyzer.analyzeFollowsTable(rootNode);
+	MultiMapResult* modifiesTableResults = treeAnalyzer.analyzeModifiesTable(rootNode);
+	container->modifiesStatementTable = modifiesTableResults->statementMap;
+	container->modifiesProcedureTable = modifiesTableResults->procedureMap;
 
 	container->callsTable = treeAnalyzer.analyzeCallsTable(rootNode);
 
@@ -91,7 +96,7 @@ map<int, vector<int>> TreeAnalyzer::analyzeFollowsTable(Node* rootNode) {
 }
 
 void TreeAnalyzer::followsTableStatementListWalker(map<int, vector<int>>& result, StatementListNode* statementListNode) const {
-	
+
 
 	if (statementListNode->getChildren().size() == 1) {
 		followsTableCheckIfNodeIsValidParent(result, statementListNode->getChild(0));
@@ -110,7 +115,7 @@ void TreeAnalyzer::followsTableStatementListWalker(map<int, vector<int>>& result
 				continue;
 			}
 
-			vector<int> valueVector = { child->getProgramLineNumber() };
+			vector<int> valueVector = {child->getProgramLineNumber()};
 
 			result.insert_or_assign(previousNode->getProgramLineNumber(), valueVector);
 			previousNode = child;
@@ -122,7 +127,7 @@ void TreeAnalyzer::followsTableStatementListWalker(map<int, vector<int>>& result
 		result.insert_or_assign(previousNode->getProgramLineNumber(), lastValueVector);
 	}
 
-	
+
 }
 
 void TreeAnalyzer::followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& result, Node* node) const {
@@ -141,13 +146,106 @@ void TreeAnalyzer::followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& r
 }
 
 
+MultiMapResult* TreeAnalyzer::analyzeModifiesTable(Node* rootNode) {
+	map<int, vector<string>> modifiesStatementTable;
+	map<string, vector<string>> modifiesProcedureTable;
+
+	vector<vector<InjectRequest*>> injectRequestsCollection;
+
+	for (auto procedure : rootNode->getChildren()) {
+		ProcedureNode* procedureNode = dynamic_cast<ProcedureNode*>(procedure);
+		set<string> result;
+		vector<InjectRequest*> injectRequests;
+		modifiesTableStatementListWalker(modifiesStatementTable, result, dynamic_cast<StatementListNode*>(procedure->getChild(0)), injectRequests);
+		vector<string> vecResult(result.begin(), result.end());
+		modifiesProcedureTable.insert_or_assign(procedureNode->getName(), vecResult);
+		for (auto injectRequest : injectRequests) {
+			injectRequest->injectToProcedure = procedureNode->getName();
+		}
+		injectRequestsCollection.push_back(injectRequests);
+	}
+
+
+	MultiMapResult* multiMapResult = new MultiMapResult;
+	multiMapResult->procedureMap = modifiesProcedureTable;
+	multiMapResult->statementMap = modifiesStatementTable;
+	multiMapResult->injectRequestsCollection = injectRequestsCollection;
+
+	return multiMapResult;
+}
+
+void TreeAnalyzer::modifiesTableStatementListWalker(map<int, vector<string>>& globalResult,
+                                                    set<string>& parentResult,
+                                                    StatementListNode* statementListNode,
+                                                    vector<InjectRequest*>& parentInjectRequests) {
+	for (auto statementNode : statementListNode->getChildren()) {
+		modifiesTableNodeChecker(globalResult, parentResult, statementNode, parentInjectRequests);
+	}
+}
+
+/*todo zamienic getSourceLineNumber na getProgramLineNumber*/
+void TreeAnalyzer::modifiesTableNodeChecker(map<int, vector<string>>& globalResult,
+                                            set<string>& parentResult,
+                                            Node* node,
+                                            vector<InjectRequest*>& parentInjectRequests) {
+	AssignNode* potentialAssignNode = dynamic_cast<AssignNode*>(node);
+	if (potentialAssignNode != nullptr) {
+		VariableNode* variableNode = dynamic_cast<VariableNode*>(potentialAssignNode->getChild(0));
+		vector<string> result = {variableNode->getName()};
+		globalResult.insert_or_assign(potentialAssignNode->getSourceLineNumber(), result);
+		parentResult.insert(result.begin(), result.end());
+		return;
+	}
+
+	WhileNode* potentialWhileNode = dynamic_cast<WhileNode*>(node);
+	if (potentialWhileNode != nullptr) {
+		VariableNode* variableNode = dynamic_cast<VariableNode*>(potentialWhileNode->getChild(0));
+		set<string> result = {variableNode->getName()};
+		vector<InjectRequest*> locInjectRequests;
+		modifiesTableStatementListWalker(globalResult, result, dynamic_cast<StatementListNode*>(potentialWhileNode->getChild(1)), locInjectRequests);
+		vector<string> vecResult(result.begin(), result.end());
+		globalResult.insert_or_assign(potentialWhileNode->getSourceLineNumber(), vecResult);
+		parentResult.insert(result.begin(), result.end());
+		for (auto injectRequest : locInjectRequests) {
+			injectRequest->injectToStatements.push_back(potentialWhileNode->getSourceLineNumber());
+			parentInjectRequests.push_back(injectRequest);
+		}
+		return;
+	}
+
+	IfNode* potentialIfNode = dynamic_cast<IfNode*>(node);
+	if (potentialIfNode != nullptr) {
+		VariableNode* variableNode = dynamic_cast<VariableNode*>(potentialIfNode->getChild(0));
+		set<string> result = {variableNode->getName()};
+		vector<InjectRequest*> locInjectRequests;
+		modifiesTableStatementListWalker(globalResult, result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(1)), locInjectRequests);
+		modifiesTableStatementListWalker(globalResult, result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)), locInjectRequests);
+		vector<string> vecResult(result.begin(), result.end());
+		globalResult.insert_or_assign(potentialIfNode->getSourceLineNumber(), vecResult);
+		parentResult.insert(result.begin(), result.end());
+		for (auto injectRequest : locInjectRequests) {
+			injectRequest->injectToStatements.push_back(potentialIfNode->getSourceLineNumber());
+			parentInjectRequests.push_back(injectRequest);
+		}
+		return;
+	}
+
+	CallNode* potentialCallNode = dynamic_cast<CallNode*>(node);
+	if (potentialCallNode != nullptr) {
+		InjectRequest* injectRequest = new InjectRequest;
+		injectRequest->callProcedure = potentialCallNode->getProcedureName();
+		parentInjectRequests.push_back(injectRequest);
+		return;
+	}
+}
+
 map<string, vector<string>> TreeAnalyzer::analyzeCallsTable(Node* rootNode) {
 	map<string, vector<string>> callsTable;
 
 	for (auto procedure : rootNode->getChildren()) {
 		set<string> result;
 		callsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(procedure->getChild(0)));
-		
+
 		ProcedureNode* procedureNode = dynamic_cast<ProcedureNode*>(procedure);
 		vector<string> vecResult(result.begin(), result.end());
 
@@ -156,6 +254,7 @@ map<string, vector<string>> TreeAnalyzer::analyzeCallsTable(Node* rootNode) {
 
 	return callsTable;
 }
+
 
 void TreeAnalyzer::callsTableStatementListWalker(set<string>& result, StatementListNode* statementListNode) {
 	for (auto child : statementListNode->getChildren()) {
@@ -195,7 +294,7 @@ map<int, vector<Node*>> TreeAnalyzer::analyzeStatementTable(Node* rootNode) {
 
 void TreeAnalyzer::statementTableStatementListWalker(map<int, vector<Node*>>& result, StatementListNode* statementListNode) {
 	for (auto child : statementListNode->getChildren()) {
-		vector<Node*> results = { child };
+		vector<Node*> results = {child};
 		result.insert_or_assign(child->getProgramLineNumber(), results);
 		statementTableCheckIfNodeIsContainer(result, child);
 	}

@@ -131,4 +131,12 @@ TEST_CLASS(TreeAnalyzerTest) {
 
 		Assert::IsTrue(callsTable.at("Sun").size() == 0);
 	}
+
+	TEST_METHOD(TreeAnalyzer_analyzeModifiesTable) {
+		TreeAnalyzer treeAnalyzer;
+
+		MultiMapResult* multiMapResults = treeAnalyzer.analyzeModifiesTable(rootNode);
+
+		delete multiMapResults;
+	}
 };

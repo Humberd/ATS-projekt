@@ -26,7 +26,7 @@ public:
 
 	/*Modifies*/
 	/*Statements to variable names*/
-	map<int, vector<int>> modifiesStatementTable;
+	map<int, vector<string>> modifiesStatementTable;
 	/*Procedures to variable names*/
 	map<string, vector<string>> modifiesProcedureTable;
 

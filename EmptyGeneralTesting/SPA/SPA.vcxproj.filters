@@ -465,6 +465,12 @@
     <ClInclude Include="TreeAnalyzer.h">
       <Filter>Header Files\TreeAnalyzer</Filter>
     </ClInclude>
+    <ClInclude Include="MultiMapResult.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
+    <ClInclude Include="InjectRequest.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -747,6 +753,12 @@
       <Filter>Source Files\TreeAnalyzer</Filter>
     </ClCompile>
     <ClCompile Include="TreeAnalyzer.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiMapResult.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="InjectRequest.cpp">
       <Filter>Source Files\TreeAnalyzer</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,6 +5,8 @@
 #include "ProcedureNode.h"
 #include "StatementListNode.h"
 #include <set>
+#include "MultiMapResult.h"
+#include "InjectRequest.h"
 
 using namespace std;
 
@@ -24,6 +26,16 @@ public:
 	map<int, vector<int>> analyzeFollowsTable(Node* rootNode);
 	void followsTableStatementListWalker(map<int, vector<int>>& result, StatementListNode* statementListNode) const;
 	void followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& result, Node* node) const;
+
+	MultiMapResult* analyzeModifiesTable(Node* rootNode);
+	void modifiesTableStatementListWalker(map<int, vector<string>>& globalResult,
+	                                      set<string>& parentResult,
+	                                      StatementListNode* statementListNode,
+	                                      vector<InjectRequest*>& parentInjectRequest);
+	void modifiesTableNodeChecker(map<int, vector<string>>& globalResult,
+	                              set<string>& parentResult,
+	                              Node* node,
+	                              vector<InjectRequest*>& parentInjectRequests);
 
 	map<string, vector<string>> analyzeCallsTable(Node* rootNode);
 	void callsTableStatementListWalker(set<string>& result, StatementListNode* statementListNode);
