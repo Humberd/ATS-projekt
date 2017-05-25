@@ -15,6 +15,8 @@ SpaDataContainer* TreeAnalyzer::analyzeTree(Node* rootNode) {
 	container->parentsTable = treeAnalyzer.analyzeParentsTable(rootNode);
 	container->followsTable = treeAnalyzer.analyzeFollowsTable(rootNode);
 
+	container->callsTable = treeAnalyzer.analyzeCallsTable(rootNode);
+
 	container->statementTable = treeAnalyzer.analyzeStatementTable(rootNode);
 	container->proceduresTable = treeAnalyzer.analyzeProceduresTable(rootNode);
 	return container;
