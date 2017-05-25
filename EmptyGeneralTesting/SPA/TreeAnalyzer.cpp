@@ -147,8 +147,7 @@ map<string, vector<string>> TreeAnalyzer::analyzeCallsTable(Node* rootNode) {
 		callsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(procedure->getChild(0)));
 		
 		ProcedureNode* procedureNode = dynamic_cast<ProcedureNode*>(procedure);
-		vector<string> vecResult(result.size());
-		vecResult.assign(result.begin(), result.end());
+		vector<string> vecResult(result.begin(), result.end());
 
 		callsTable.insert_or_assign(procedureNode->getName(), vecResult);
 	}
