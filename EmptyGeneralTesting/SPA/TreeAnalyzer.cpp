@@ -14,6 +14,7 @@ SpaDataContainer* TreeAnalyzer::analyzeTree(Node* rootNode) {
 	container->parentsTable = treeAnalyzer.analyzeParentsTable(rootNode);
 	container->followsTable = treeAnalyzer.analyzeFollowsTable(rootNode);
 
+	container->statementTable = treeAnalyzer.analyzeStatementTable(rootNode);
 	return container;
 }
 
@@ -131,6 +132,48 @@ void TreeAnalyzer::followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& r
 	if (potentialIfNode != nullptr) {
 		followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(1)));
 		followsTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)));
+		return;
+	}
+}
+
+/*todo*/
+map<int, vector<string>> TreeAnalyzer::analyzeUsesTable(Node* rootNode) {
+	map<int, vector<string>> usesTable;
+
+	return usesTable;
+}
+
+
+map<int, vector<Node*>> TreeAnalyzer::analyzeStatementTable(Node* rootNode) {
+	map<int, vector<Node*>> statementTable;
+
+	for (auto procedure : rootNode->getChildren()) {
+		statementTableStatementListWalker(statementTable, dynamic_cast<StatementListNode*>(procedure->getChild(0)));
+	}
+
+	return statementTable;
+}
+
+
+void TreeAnalyzer::statementTableStatementListWalker(map<int, vector<Node*>>& result, StatementListNode* statementListNode) {
+	for (auto child : statementListNode->getChildren()) {
+		vector<Node*> results = { child };
+		result.insert_or_assign(child->getProgramLineNumber(), results);
+		statementTableCheckIfNodeIsContainer(result, child);
+	}
+}
+
+void TreeAnalyzer::statementTableCheckIfNodeIsContainer(map<int, vector<Node*>>& result, Node* node) {
+	WhileNode* potentialWhileNode = dynamic_cast<WhileNode*>(node);
+	if (potentialWhileNode != nullptr) {
+		statementTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialWhileNode->getChild(1)));
+		return;
+	}
+
+	IfNode* potentialIfNode = dynamic_cast<IfNode*>(node);
+	if (potentialIfNode != nullptr) {
+		statementTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(1)));
+		statementTableStatementListWalker(result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)));
 		return;
 	}
 }

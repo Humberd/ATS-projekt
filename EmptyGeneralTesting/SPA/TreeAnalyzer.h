@@ -23,4 +23,11 @@ public:
 	map<int, vector<int>> analyzeFollowsTable(Node* rootNode);
 	void followsTableStatementListWalker(map<int, vector<int>>& result, StatementListNode* statementListNode) const;
 	void followsTableCheckIfNodeIsValidParent(map<int, vector<int>>& result, Node* node) const;
+
+	/*todo*/
+	map<int, vector<string>> analyzeUsesTable(Node* rootNode);
+
+	map<int, vector<Node*>> analyzeStatementTable(Node* rootNode);
+	void statementTableStatementListWalker(map<int, vector<Node*>>& result, StatementListNode* statementListNode);
+	void statementTableCheckIfNodeIsContainer(map<int, vector<Node*>>& result, Node* node);
 };
