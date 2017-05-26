@@ -22,7 +22,7 @@
     <ProjectGuid>{09AD1D74-2D3C-42AE-B4E0-52A792A27E60}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>IntegrationTesting</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -171,9 +171,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Queries1.txt" />
+    <Text Include="autotest-1-source.txt" />
+    <Text Include="autotest-1-queries.txt" />
+    <Text Include="final-queries.txt" />
+    <Text Include="final-source.txt" />
     <Text Include="Queries2.txt" />
-    <Text Include="Source1.txt" />
     <Text Include="Source2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

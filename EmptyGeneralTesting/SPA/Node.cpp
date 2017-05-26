@@ -1,8 +1,12 @@
 #include "Node.h"
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
-#include <CppUnitTestLogger.h>
+//#include <CppUnitTestLogger.h>
 #include <sstream>
+#include <CppUnitTestLogger.h>
+
+//#include <CppUnitTestLogger.h>
+
 
 using namespace std;
 

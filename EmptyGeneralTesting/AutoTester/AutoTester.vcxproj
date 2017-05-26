@@ -14,7 +14,7 @@
     <ProjectGuid>{20A7FBF3-D972-4220-A6AA-960484999FBB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>AutoTester</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -88,6 +88,11 @@
   <ItemGroup>
     <ClInclude Include="source\AbstractWrapper.h" />
     <ClInclude Include="source\TestWrapper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPA\SPA.vcxproj">
+      <Project>{dc21a1ea-d2c6-4d14-a2b4-e025b64bde81}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

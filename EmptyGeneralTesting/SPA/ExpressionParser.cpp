@@ -1,6 +1,6 @@
 #include "ExpressionParser.h"
 #include "ExpressionNode.h"
-#include <CppUnitTestLogger.h>
+//#include <CppUnitTestLogger.h>
 #include "ParserException.h"
 #include "VariableNode.h"
 #include "ConstantNode.h"
