@@ -2,6 +2,8 @@
 #include "CallNode.h"
 #include "AssignNode.h"
 #include "VariableNode.h"
+#include <algorithm>
+#include "TreeAnalyzerException.h"
 
 TreeAnalyzer::TreeAnalyzer() {
 }
@@ -163,12 +165,77 @@ MultiMapResult* TreeAnalyzer::analyzeModifiesTable(Node* rootNode) {
 		injectRequestsCollection.push_back(localInjectContainer);
 	}
 
+	injectMissingCalls(modifiesStatementTable, modifiesProcedureTable, injectRequestsCollection);
 
 	MultiMapResult* multiMapResult = new MultiMapResult;
 	multiMapResult->procedureMap = modifiesProcedureTable;
 	multiMapResult->statementMap = modifiesStatementTable;
 
 	return multiMapResult;
+}
+
+
+void TreeAnalyzer::injectMissingCalls(map<int, vector<string>>& statementTable,
+                                      map<string, vector<string>>& procedureTable,
+                                      vector<InjectRequestsContainer*>& injectRequestsCollection) {
+	if (injectRequestsCollection.size() == 0) {
+		return;
+	}
+	auto fulfilledRequestIterator = findFulfilledRequest(injectRequestsCollection);
+	if (fulfilledRequestIterator == injectRequestsCollection.end()) {
+		throw TreeAnalyzerException("modifiesTable -> injectMissingCalls -> injectRequestsCollection is greater then 0. Cannot find InjectRequestsContainer that has injectRequests with size 0");
+	}
+
+	InjectRequestsContainer* fulfilledRequest = *fulfilledRequestIterator;
+
+	for (signed i = 0; i < injectRequestsCollection.size(); i++) {
+		auto requestsContainer = injectRequestsCollection.at(i);
+
+		if (requestsContainer->injectRequests.size() == 0) {
+			continue;
+		}
+
+		for (signed int j = 0; j < requestsContainer->injectRequests.size(); j++) {
+			auto injectRequest = requestsContainer->injectRequests.at(j);
+
+			if (injectRequest->callProcedure == fulfilledRequest->procedureName) {
+
+				/*Inject fullFilledRequestDeps to all the statements*/
+				for (auto injectToStatement : injectRequest->injectToStatements) {
+					set<string> previousStatementDependencies(statementTable.at(injectToStatement).begin(), statementTable.at(injectToStatement).end());
+					previousStatementDependencies.insert(procedureTable.at(fulfilledRequest->procedureName).begin(), procedureTable.at(fulfilledRequest->procedureName).end());
+					vector<string> newStatementDependencies(previousStatementDependencies.begin(), previousStatementDependencies.end());
+					statementTable.insert_or_assign(injectToStatement, newStatementDependencies);
+				}
+
+				/*Inject fulfilledRequestDeps to a procedure*/
+				set<string> previousProcedureDependencies(procedureTable.at(requestsContainer->procedureName).begin(), procedureTable.at(requestsContainer->procedureName).end());
+				previousProcedureDependencies.insert(procedureTable.at(fulfilledRequest->procedureName).begin(), procedureTable.at(fulfilledRequest->procedureName).end());
+				vector<string> newProcedureDependencies(previousProcedureDependencies.begin(), previousProcedureDependencies.end());
+				procedureTable.insert_or_assign(requestsContainer->procedureName, newProcedureDependencies);
+
+				requestsContainer->injectRequests.erase(requestsContainer->injectRequests.begin() + j);
+				j--;
+			}
+		}
+	}
+
+	injectRequestsCollection.erase(remove_if(injectRequestsCollection.begin(), injectRequestsCollection.end(),
+	                                         [fulfilledRequest](InjectRequestsContainer* item) {
+		                                         return item->procedureName == fulfilledRequest->procedureName;
+	                                         }));
+
+
+	injectMissingCalls(statementTable, procedureTable, injectRequestsCollection);
+}
+
+vector<InjectRequestsContainer*>::iterator TreeAnalyzer::findFulfilledRequest(vector<InjectRequestsContainer*>& injectRequestsCollection) {
+	auto fulfilledRequest = find_if(injectRequestsCollection.begin(), injectRequestsCollection.end(),
+	                                [](InjectRequestsContainer* item) {
+		                                return item->injectRequests.size() == 0;
+	                                });
+
+	return fulfilledRequest;
 }
 
 void TreeAnalyzer::modifiesTableStatementListWalker(map<int, vector<string>>& globalResult,
@@ -233,7 +300,11 @@ void TreeAnalyzer::modifiesTableNodeChecker(map<int, vector<string>>& globalResu
 	if (potentialCallNode != nullptr) {
 		InjectRequest* injectRequest = new InjectRequest;
 		injectRequest->callProcedure = potentialCallNode->getProcedureName();
+		injectRequest->injectToStatements.push_back(potentialCallNode->getSourceLineNumber());
 		parentRequestsContainer->injectRequests.push_back(injectRequest);
+
+		vector<string> vecResult;
+		globalResult.insert_or_assign(potentialCallNode->getSourceLineNumber(), vecResult);
 		return;
 	}
 }

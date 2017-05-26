@@ -37,6 +37,10 @@ public:
 	                              set<string>& parentResult,
 	                              Node* node,
 	                              InjectRequestsContainer* injectRequestsContainer);
+	void injectMissingCalls(map<int, vector<string>>& statementTable,
+	                        map<string, vector<string>>& procedureTable,
+	                        vector<InjectRequestsContainer*>& injectRequestsCollection);
+	vector<InjectRequestsContainer*>::iterator findFulfilledRequest(vector<InjectRequestsContainer*>& injectRequestsCollection);
 
 	map<string, vector<string>> analyzeCallsTable(Node* rootNode);
 	void callsTableStatementListWalker(set<string>& result, StatementListNode* statementListNode);

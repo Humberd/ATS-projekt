@@ -137,6 +137,37 @@ TEST_CLASS(TreeAnalyzerTest) {
 
 		MultiMapResult* multiMapResults = treeAnalyzer.analyzeModifiesTable(rootNode);
 
+		Assert::IsNotNull(multiMapResults);
+		auto& procedureMap = multiMapResults->procedureMap;
+
+		Assert::IsTrue(procedureMap.at("Moon").size() == 3); //Moon(a,x,y)
+		Assert::IsTrue(procedureMap.at("Moon").at(0) == "a");
+		Assert::IsTrue(procedureMap.at("Moon").at(1) == "x");
+		Assert::IsTrue(procedureMap.at("Moon").at(2) == "y");
+
+		Assert::IsTrue(procedureMap.at("Sun").size() == 4); //Sun(t,x,y,z)
+		Assert::IsTrue(procedureMap.at("Sun").at(0) == "t");
+		Assert::IsTrue(procedureMap.at("Sun").at(1) == "x");
+		Assert::IsTrue(procedureMap.at("Sun").at(2) == "y");
+		Assert::IsTrue(procedureMap.at("Sun").at(3) == "z");
+
+		Assert::IsTrue(procedureMap.at("Earth").size() == 5); //d,t,x + Sun(t,x,y,z) = Earth(d,t,x,y,z)
+		Assert::IsTrue(procedureMap.at("Earth").at(0) == "d");
+		Assert::IsTrue(procedureMap.at("Earth").at(1) == "t");
+		Assert::IsTrue(procedureMap.at("Earth").at(2) == "x");
+		Assert::IsTrue(procedureMap.at("Earth").at(3) == "y");
+		Assert::IsTrue(procedureMap.at("Earth").at(4) == "z");
+
+		Assert::IsTrue(procedureMap.at("Planet").size() == 7); //a,d,m,x,y,z + Sun(t,x,y,z) + Earth(d,t,x,y,z) + Moon(a,x,y) = Planet(a,d,m,t,x,y,z)
+		Assert::IsTrue(procedureMap.at("Planet").at(0) == "a");
+		Assert::IsTrue(procedureMap.at("Planet").at(1) == "d");
+		Assert::IsTrue(procedureMap.at("Planet").at(2) == "m");
+		Assert::IsTrue(procedureMap.at("Planet").at(3) == "t");
+		Assert::IsTrue(procedureMap.at("Planet").at(4) == "x");
+		Assert::IsTrue(procedureMap.at("Planet").at(5) == "y");
+		Assert::IsTrue(procedureMap.at("Planet").at(6) == "z");
+
+
 		delete multiMapResults;
 	}
 };
