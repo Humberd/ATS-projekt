@@ -471,6 +471,9 @@
     <ClInclude Include="InjectRequest.h">
       <Filter>Header Files\TreeAnalyzer</Filter>
     </ClInclude>
+    <ClInclude Include="InjectRequestsContainer.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -759,6 +762,9 @@
       <Filter>Source Files\TreeAnalyzer</Filter>
     </ClCompile>
     <ClCompile Include="InjectRequest.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="InjectRequestsContainer.cpp">
       <Filter>Source Files\TreeAnalyzer</Filter>
     </ClCompile>
   </ItemGroup>

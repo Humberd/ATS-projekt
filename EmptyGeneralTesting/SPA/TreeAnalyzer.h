@@ -7,6 +7,7 @@
 #include <set>
 #include "MultiMapResult.h"
 #include "InjectRequest.h"
+#include "InjectRequestsContainer.h"
 
 using namespace std;
 
@@ -31,11 +32,11 @@ public:
 	void modifiesTableStatementListWalker(map<int, vector<string>>& globalResult,
 	                                      set<string>& parentResult,
 	                                      StatementListNode* statementListNode,
-	                                      vector<InjectRequest*>& parentInjectRequest);
+	                                      InjectRequestsContainer* injectRequestsContainer);
 	void modifiesTableNodeChecker(map<int, vector<string>>& globalResult,
 	                              set<string>& parentResult,
 	                              Node* node,
-	                              vector<InjectRequest*>& parentInjectRequests);
+	                              InjectRequestsContainer* injectRequestsContainer);
 
 	map<string, vector<string>> analyzeCallsTable(Node* rootNode);
 	void callsTableStatementListWalker(set<string>& result, StatementListNode* statementListNode);

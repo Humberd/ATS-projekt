@@ -33,6 +33,7 @@
     <ClInclude Include="ExpressionParser.h" />
     <ClInclude Include="IfParser.h" />
     <ClInclude Include="InjectRequest.h" />
+    <ClInclude Include="InjectRequestsContainer.h" />
     <ClInclude Include="InvokationParam.h" />
     <ClInclude Include="InvokationParamState.h" />
     <ClInclude Include="Keywords.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="IfNode.cpp" />
     <ClCompile Include="IfParser.cpp" />
     <ClCompile Include="InjectRequest.cpp" />
+    <ClCompile Include="InjectRequestsContainer.cpp" />
     <ClCompile Include="InvalidArgumentException.cpp" />
     <ClCompile Include="InvokationParam.cpp" />
     <ClCompile Include="Keywords.cpp" />
