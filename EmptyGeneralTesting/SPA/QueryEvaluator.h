@@ -27,6 +27,7 @@ public:
 
 	void evaluate();
 
+	void evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 	MethodEvaluatorResponse* parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 
 

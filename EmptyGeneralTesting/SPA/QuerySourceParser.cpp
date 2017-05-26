@@ -41,3 +41,24 @@ QueryRequest* QuerySourceParser::parse() const {
 
 	return queryRequest;
 }
+
+QueryRequest* QuerySourceParser::cleanParse(vector<QLexerToken*>& tokens) {
+	auto iterator = tokens.begin();
+	auto iteratorEnd = tokens.end();
+
+	QParsersRepository* repo = new QParsersRepository;
+	repo->selectParser = new SelectParser(repo, iterator, iteratorEnd);
+	repo->methodManyParser = new MethodManyParser(repo, iterator, iteratorEnd);
+	repo->methodParser = new MethodParser(repo, iterator, iteratorEnd);
+	repo->variableParser = new VariableParser(repo, iterator, iteratorEnd);
+	repo->withManyParser = new WithManyParser(repo, iterator, iteratorEnd);
+	repo->withParser = new WithParser(repo, iterator, iteratorEnd);
+
+	QuerySourceParser* querySourceParser = new QuerySourceParser(repo, iterator, iteratorEnd);
+
+	auto result = querySourceParser->parse();
+
+	delete repo, querySourceParser;
+
+	return result;
+}

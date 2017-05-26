@@ -2,6 +2,8 @@
 #include "QueryEvaluatorException.h"
 #include <algorithm>
 #include "DeclarationKeywords.h"
+#include "QueryKeywords.h"
+#include "QueryMethods.h"
 
 QueryEvaluator::QueryEvaluator() {
 	pkbBrigde = nullptr;
@@ -24,8 +26,31 @@ QueryEvaluator::~QueryEvaluator() {
 }
 
 void QueryEvaluator::evaluate() {
+	for (auto methodRequest : queryRequest->getMethodRequests()) {
+		InvokationParam* initialLeftParam = changeParameterToInvokationParam(methodRequest->getLeftParam());
+		InvokationParam* initialRightParam = changeParameterToInvokationParam(methodRequest->getRightParam());
+
+		auto leftParams = generateParamsIncaseOfAvailableResults(initialLeftParam);
+		auto rightParams = generateParamsIncaseOfAvailableResults(initialRightParam);
+
+		for (auto leftParam : leftParams) {
+			for (auto rightParam: rightParams) {
+				evaluateMethod(methodRequest->getMethodName(), leftParam, rightParam, methodRequest->getGoDeep());
+			}
+		}
+	}
 }
 
+
+void QueryEvaluator::evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response;
+	if (methodName == QueryMethods::PARENT) {
+		parentEvaluator(leftParam, rightParam, goDeep);
+	} else {
+		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
+	}
+
+}
 
 MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
 	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
