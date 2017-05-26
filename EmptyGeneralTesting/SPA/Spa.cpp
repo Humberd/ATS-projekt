@@ -3,6 +3,7 @@
 #include "Lexer.h"
 #include "SourceParser.h"
 #include "ProgramLineEvaluator.h"
+#include "TreeAnalyzer.h"
 
 Spa::Spa() {
 }
@@ -46,4 +47,8 @@ Node* Spa::generateAstFromFile(string filePath) {
 
 
 	return rootNode;
+}
+
+SpaDataContainer* Spa::generateHelperTables(Node* rootNode) {
+	return TreeAnalyzer::analyzeTree(rootNode);
 }
