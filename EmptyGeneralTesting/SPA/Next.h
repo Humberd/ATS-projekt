@@ -1,15 +1,24 @@
 #include <vector>
 #include "STMT.h"
-
+#include <map>
 using namespace std;
 
 class Next {
 
-	//map<int, vector<STMT*>> nextMap;
+public:
+	Next(map<int, vector<int>> _affectsMap);
+	vector<STMT*> goNext(STMT* a, bool goDeep);
+	vector<STMT*> goPrevious(STMT* a, bool goDeep);
+	bool isNext(Next* a1, STMT* a2, bool goDeep);
+	static Next *getInstance(map<int, vector<int>> _affectsMap);
+private:
+	static Next *instance;
+	map<int, vector<int>> affectsMap;
+	vector<STMT*> goNextWithoutDeep(STMT* a);
+	vector<STMT*> goNextWithDeep(STMT* a);
+	vector<STMT*> goNextByWithDeep(STMT* a);
+	vector<STMT*> goNextByWithoutDeep(STMT* a);
+	bool isNextWithoutDeep(STMT* a1, STMT* a2);
+	bool isNextWithDeep(STMT* a1, STMT* a2);
 
-	public:
-		void setNext(STMT s1, STMT s2);
-		vector<STMT> goNext(STMT s1, bool goDeep);
-		vector<STMT> goPrevious(STMT s, bool goDeep);
-		bool isNext(STMT s1, STMT s2, bool goDeep);
 };

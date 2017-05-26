@@ -82,6 +82,7 @@
     <ClInclude Include="WhileParser.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Affects.cpp" />
     <ClCompile Include="ASSIGN.cpp" />
     <ClCompile Include="AffectsTag.cpp" />
     <ClCompile Include="Calls.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="ConstantNode.cpp" />
     <ClCompile Include="DeepTraverser.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
+    <ClCompile Include="Follows.cpp" />
     <ClCompile Include="FromCallDeepTraverser.cpp" />
     <ClCompile Include="FollowsTag.cpp" />
     <ClCompile Include="FromDeepTraverser.cpp" />
@@ -107,6 +109,7 @@
     <ClCompile Include="LexerException.cpp" />
     <ClCompile Include="LexerToken.cpp" />
     <ClCompile Include="MinusNode.cpp" />
+    <ClCompile Include="Next.cpp" />
     <ClCompile Include="NextTag.cpp" />
     <ClCompile Include="Modifies.cpp" />
     <ClCompile Include="Node.cpp" />

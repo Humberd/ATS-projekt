@@ -17,6 +17,8 @@ AffectsTag::~AffectsTag()
 
 list<string> AffectsTag::DoQuery()
 {
+	list<string> finalResult;
+	/*
 	Affects affects;
 	list<string> finalResult;
 	vector<ASSIGN*> helpOutput;
@@ -67,6 +69,7 @@ list<string> AffectsTag::DoQuery()
 		}
 		
 	}
+	*/
 	/*
 	if (_queryParts.parameteresInBracket.size() == 2 && _queryParts.selectingItem != "boolean")
 	{

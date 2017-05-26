@@ -15,6 +15,8 @@ NextTag::~NextTag()
 
 list<string> NextTag::DoQuery()
 {
+	list<string> finalResult;
+	/*
 	Next next;
 	list<string> finalResult;
 
@@ -65,4 +67,6 @@ list<string> NextTag::DoQuery()
 			finalResult.push_back(to_string(var->getSTMT()));
 		}
 	}
+	*/
+	return finalResult;
 }
