@@ -15,7 +15,7 @@ using namespace std;
 TEST_CLASS(QueryEvaluatorTest) {
 	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_1_ANY) {
 		vector<DeclaredVariable*> declaredVariables;
-		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
+		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr, nullptr);
 
 		Parameter* parameter = new Parameter;
 		parameter->setType(ParameterType::ANY);
@@ -35,7 +35,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 
 	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_Valid_2_VARIABLE) {
 		vector<DeclaredVariable*> declaredVariables;
-		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
+		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr, nullptr);
 
 		Parameter* parameter = new Parameter;
 		parameter->setType(ParameterType::VARIABLE);
@@ -55,7 +55,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 
 	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_Valid_3_INTEGER) {
 		vector<DeclaredVariable*> declaredVariables;
-		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
+		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr, nullptr);
 
 		Parameter* parameter = new Parameter;
 		parameter->setType(ParameterType::INTEGER);
@@ -76,7 +76,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 
 	TEST_METHOD(QueryEvaluator_changeParameterToInvokationParam_Valid_4_STRING) {
 		vector<DeclaredVariable*> declaredVariables;
-		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
+		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr, nullptr);
 
 		Parameter* parameter = new Parameter;
 		parameter->setType(ParameterType::STRING);
@@ -97,7 +97,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 
 	TEST_METHOD(QueryEvaluator_findUniqueEvalResultsFromColumn_Valid_1) {
 		vector<DeclaredVariable*> declaredVariables;
-		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
+		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr, nullptr);
 
 		vector<string>* row1 = new vector<string>;
 		row1->push_back("1");
@@ -140,7 +140,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		declaredVariables.push_back(new DeclaredVariable(DeclarationKeywords::ASSIGN, "a"));
 		declaredVariables.push_back(new DeclaredVariable(DeclarationKeywords::STATEMENT, "s"));
 		declaredVariables.push_back(new DeclaredVariable(DeclarationKeywords::STATEMENT, "g"));
-		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr);
+		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, nullptr, nullptr);
 
 		vector<string>* row1 = new vector<string>;
 		row1->push_back("1");
@@ -330,22 +330,28 @@ TEST_CLASS(QueryEvaluatorTest) {
 		delete pkbBrigde , leftParam , rightParam , queryEvaluator;
 	}
 
-//	TEST_METHOD(QueryEvaluator_TESTMORE) {
-//		string queryDeclarations = "call c;";
-//		string query = "Select c such that Parent(4, c)";
-//
-//		vector<QLexerToken*> queryDeclarationsTokens = QLexer::parseDeclarations(queryDeclarations);
-//		vector<QLexerToken*> queryTokens = QLexer::parseQuery(query);
-//
-//		DeclarationsSourceParser declarationsSourceParser(queryDeclarationsTokens);
-//		
-//		vector<DeclaredVariable*> declaredVariables = declarationsSourceParser.parse();
-//		QueryRequest* queryRequest = QuerySourceParser::cleanParse(queryTokens);
-//
-//		PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
-//		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, queryRequest);
-//		queryEvaluator->setPkbBrigde(pkbBrigde);
-//		queryEvaluator->evaluate();
-//	}
+	TEST_METHOD(QueryEvaluator_TESTMORE) {
+		string queryDeclarations = "call c;";
+		string query = "Select c such that Parent(4, c)";
+
+		vector<QLexerToken*> queryDeclarationsTokens = QLexer::parseDeclarations(queryDeclarations);
+		vector<QLexerToken*> queryTokens = QLexer::parseQuery(query);
+
+		DeclarationsSourceParser declarationsSourceParser(queryDeclarationsTokens);
+
+		vector<DeclaredVariable*> declaredVariables = declarationsSourceParser.parse();
+		QueryRequest* queryRequest = QuerySourceParser::cleanParse(queryTokens);
+
+		PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
+		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, queryRequest, nullptr);
+		queryEvaluator->setPkbBrigde(pkbBrigde);
+		queryEvaluator->evaluate();
+
+		Assert::IsTrue(queryEvaluator->getEvalResults().size() == 4);
+		Assert::IsTrue(queryEvaluator->getEvalResults().at(0)->at(0) == "8");
+		Assert::IsTrue(queryEvaluator->getEvalResults().at(1)->at(0) == "9");
+		Assert::IsTrue(queryEvaluator->getEvalResults().at(2)->at(0) == "10");
+		Assert::IsTrue(queryEvaluator->getEvalResults().at(3)->at(0) == "11");
+	}
 
 };

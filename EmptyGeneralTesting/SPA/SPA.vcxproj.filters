@@ -483,6 +483,9 @@
     <ClInclude Include="TreeAnalyzerException.h">
       <Filter>Header Files\TreeAnalyzer\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="StatementsFilter.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -778,6 +781,9 @@
     </ClCompile>
     <ClCompile Include="TreeAnalyzerException.cpp">
       <Filter>Source Files\TreeAnalyzer\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementsFilter.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

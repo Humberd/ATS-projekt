@@ -6,10 +6,12 @@
 
 QueryEvaluator::QueryEvaluator() {
 	pkbBrigde = nullptr;
+	spaDataContainer = nullptr;
 }
 
 QueryEvaluator::QueryEvaluator(vector<DeclaredVariable*> declaredVariables,
-                               QueryRequest* queryRequest): declaredVariables(declaredVariables), queryRequest(queryRequest) {
+                               QueryRequest* queryRequest,
+                               SpaDataContainer* spaDataContainer): declaredVariables(declaredVariables), queryRequest(queryRequest), spaDataContainer(spaDataContainer) {
 	pkbBrigde = nullptr;
 }
 
@@ -36,9 +38,24 @@ void QueryEvaluator::evaluate() {
 
 		for (auto leftParam : leftParams) {
 			for (auto rightParam: rightParams) {
-				responses.push_back(evaluateMethod(methodRequest->getMethodName(), leftParam, rightParam, methodRequest->getGoDeep()));
+				MethodEvaluatorResponse* response = evaluateMethod(methodRequest->getMethodName(), leftParam, rightParam, methodRequest->getGoDeep());
+				if (response->getState() == ResponseState::VECTOR && spaDataContainer != nullptr) {
+					response->setVectorResponse(StatementsFilter::filter(response->getVectorResponse(),
+					                                                     findTypeOfDeclaredVariable(response->getVariableName()), spaDataContainer));
+				}
+				responses.push_back(response);
 			}
 		}
+
+		vector<vector<string>*> newEvalResults;
+		changeResultsStateBasedOnResponses(responses, evalResults, newEvalResults, booleanResult, columnVariableNames);
+
+		for (auto res : evalResults) {
+			delete res;
+		}
+		evalResults.clear();
+		evalResults = newEvalResults;
+
 
 		for (auto response : responses) {
 			delete response;
@@ -47,6 +64,12 @@ void QueryEvaluator::evaluate() {
 	}
 }
 
+
+vector<vector<string>> QueryEvaluator::evaluateReturn() {
+	vector<vector<string>> response;
+
+	return response;
+}
 
 MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
 	MethodEvaluatorResponse* response = nullptr;
@@ -66,7 +89,7 @@ void QueryEvaluator::changeResultsStateBasedOnResponses(vector<MethodEvaluatorRe
                                                         bool& booleanResult,
                                                         vector<string>& columnVariableNames) {
 	if (responses.size() == 0) {
-		throw QueryEvaluatorException("changeResultsStateBasedOnResponses() - responses are empty!");
+		throw QueryEvaluatorException("changeResultsStateBasedOnResponses() - responses should containt at least 1 item, but instead are empty!");
 	}
 
 	columnVariableNames.push_back(responses.at(0)->getVariableName());
@@ -90,7 +113,7 @@ void QueryEvaluator::changeVectorResultsBasedOnResponses(MethodEvaluatorResponse
                                                          int insertToColumnIdex) {
 	/*First insert to eval results*/
 	if (insertToColumnIdex < 0) {
-		if (oldState.size() != 0 ) {
+		if (oldState.size() != 0) {
 			throw QueryEvaluatorException("changeVectorResultsBasedOnResponses() - insertToColumnIdex is less than 0. This means it should be the first column to inject, but unfortunately oldState is not empty. OldState size: " + to_string(oldState.size()));
 		}
 		for (string singleResponse : response->getVectorResponse()) {
@@ -321,4 +344,12 @@ bool QueryEvaluator::getBooleanResult() const {
 
 void QueryEvaluator::setBooleanResult(const bool booleanResult) {
 	this->booleanResult = booleanResult;
+}
+
+SpaDataContainer* QueryEvaluator::getSpaDataContainer() const {
+	return spaDataContainer;
+}
+
+void QueryEvaluator::setSpaDataContainer(SpaDataContainer* const spaDataContainer) {
+	this->spaDataContainer = spaDataContainer;
 }

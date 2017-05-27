@@ -5,6 +5,8 @@
 #include "QueryRequest.h"
 #include "InvokationParam.h"
 #include "MethodEvaluatorResponse.h"
+#include "SpaDataContainer.h"
+#include "StatementsFilter.h"
 
 class QueryRequest;
 using namespace std;
@@ -19,14 +21,17 @@ private:
 	QueryRequest* queryRequest;
 
 	PkbBrigde* pkbBrigde;
+	SpaDataContainer* spaDataContainer;
 
 public:
 	explicit QueryEvaluator();
 	explicit QueryEvaluator(vector<DeclaredVariable*> declaredVariables,
-	                        QueryRequest* queryRequest);
+	                        QueryRequest* queryRequest,
+	                        SpaDataContainer* spaDataContainer);
 	~QueryEvaluator();
 
 	void evaluate();
+	vector<vector<string>> evaluateReturn();
 
 	MethodEvaluatorResponse* evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 	MethodEvaluatorResponse* parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
@@ -43,7 +48,6 @@ public:
 
 
 	InvokationParam* changeParameterToInvokationParam(Parameter* parameter);
-
 	vector<InvokationParam*> generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam);
 
 	int findIndexOfColumnVariableName(string varName);
@@ -65,4 +69,6 @@ public:
 	void setPkbBrigde(PkbBrigde* const pkbBrigde);
 	bool getBooleanResult() const;
 	void setBooleanResult(const bool booleanResult);
+	SpaDataContainer* getSpaDataContainer() const;
+	void setSpaDataContainer(SpaDataContainer* const spaDataContainer);
 };

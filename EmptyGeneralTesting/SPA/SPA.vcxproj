@@ -100,6 +100,7 @@
     <ClInclude Include="StatementListNode.h" />
     <ClInclude Include="StatementListParser.h" />
     <ClInclude Include="StatementNode.h" />
+    <ClInclude Include="StatementsFilter.h" />
     <ClInclude Include="STMT.h" />
     <ClInclude Include="TimesNode.h" />
     <ClInclude Include="TokenKeys.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="StatementListNode.cpp" />
     <ClCompile Include="StatementListParser.cpp" />
     <ClCompile Include="StatementNode.cpp" />
+    <ClCompile Include="StatementsFilter.cpp" />
     <ClCompile Include="STMT.cpp" />
     <ClCompile Include="TimesNode.cpp" />
     <ClCompile Include="TreeAnalyzer.cpp" />
