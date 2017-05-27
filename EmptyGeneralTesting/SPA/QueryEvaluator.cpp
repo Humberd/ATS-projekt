@@ -86,6 +86,9 @@ void QueryEvaluator::changeVectorResultsBasedOnResponses(MethodEvaluatorResponse
                                                          int insertToColumnIdex) {
 	/*First insert to eval results*/
 	if (insertToColumnIdex < 0) {
+		if (oldState.size() != 0 ) {
+			throw QueryEvaluatorException("changeVectorResultsBasedOnResponses() - insertToColumnIdex is less than 0. This means it should be the first column to inject, but unfortunately oldState is not empty. OldState size: " + to_string(oldState.size()));
+		}
 		for (string singleResponse : response->getVectorResponse()) {
 			vector<string>* newRow = new vector<string>();
 			newRow->push_back(singleResponse);

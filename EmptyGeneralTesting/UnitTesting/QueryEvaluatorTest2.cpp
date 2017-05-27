@@ -4,6 +4,7 @@
 #include "../SPA/QueryEvaluator.h"
 #include "../SPA/DeclarationKeywords.h"
 #include "../SPA/PkbBridgeMockImpl.h"
+#include "../SPA/QueryEvaluatorException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
@@ -147,5 +148,26 @@ TEST_CLASS(QueryEvaluatorTest2) {
 		Assert::IsTrue(columnVariableNames.size() == 2);
 		Assert::IsTrue(columnVariableNames.at(0) == "s");
 		Assert::IsTrue(columnVariableNames.at(1) == "a");
+	}
+
+	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_7_vectorResponseWithExistingResultsButInsertToColumnNameDoesntMatch) {
+		MethodEvaluatorResponse* response1 = new MethodEvaluatorResponse;
+		response1->setState(ResponseState::VECTOR);
+		response1->setVariableName("a");
+		response1->setVariableType("assign");
+		response1->setInsertToColumnName("c"); //wants to insert to column c, but declared columnVariableNames has only "s"
+		response1->setInsertToColumnValue("1");
+		vector<string> vectorResponse = {"8","9","10","11"};
+		response1->setVectorResponse(vectorResponse);
+		responses.push_back(response1);
+
+		columnVariableNames.push_back("s");
+		oldState.push_back(new vector<string>{"1"});
+
+		auto pointer = [this]() {
+					queryEvaluator->changeResultsStateBasedOnResponses(responses, oldState, newState, booleanResult, columnVariableNames);
+				};
+
+		Assert::ExpectException<QueryEvaluatorException>(pointer);
 	}
 };
