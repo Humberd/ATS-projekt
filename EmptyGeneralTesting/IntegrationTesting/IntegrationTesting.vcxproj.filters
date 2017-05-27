@@ -55,5 +55,8 @@
     <Text Include="final-source.txt">
       <Filter>Resource Files\github</Filter>
     </Text>
+    <Text Include="NextTest.txt">
+      <Filter>Resource Files\Assignment</Filter>
+    </Text>
   </ItemGroup>
 </Project>

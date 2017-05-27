@@ -159,15 +159,12 @@
     <ClCompile Include="MethodRequest.cpp" />
     <ClCompile Include="MinusNode.cpp" />
     <ClCompile Include="Next.cpp" />
-    <ClCompile Include="NextTag.cpp" />
     <ClCompile Include="Modifies.cpp" />
     <ClCompile Include="MultiMapResult.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Operators.cpp" />
     <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="Parent.cpp" />
-    <ClCompile Include="ParentTag.cpp" />
-    <ClCompile Include="Part.cpp" />
     <ClCompile Include="Operators.cpp" />
     <ClCompile Include="ParsersRepository.cpp" />
     <ClCompile Include="ParsingEntity.cpp" />
@@ -231,7 +228,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DC21A1EA-D2C6-4D14-A2B4-E025B64BDE81}</ProjectGuid>
     <RootNamespace>SPA</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
