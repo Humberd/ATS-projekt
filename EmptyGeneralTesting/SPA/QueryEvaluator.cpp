@@ -83,7 +83,13 @@ vector<vector<string>> QueryEvaluator::evaluateReturn() {
 
 		for (auto queryVariable : returnRequest->getVariables()) {
 			if (findIndexOfColumnVariableName(queryVariable->getName()) < 0) {
-				auto nodes = StatementsFilter::getNodesWithType(findTypeOfDeclaredVariable(queryVariable->getName()), spaDataContainer);
+				string varType = findTypeOfDeclaredVariable(queryVariable->getName());
+				auto nodes = StatementsFilter::getNodesWithType(varType, spaDataContainer);
+
+				if (queryVariable->getPropertyName() != "") {
+					nodes = StatementsFilter::getPropertyValues(varType, queryVariable->getPropertyName(), spaDataContainer, nodes);
+				}
+
 				response.resize(nodes.size());
 				for (unsigned int nodeIndex = 0; nodeIndex < nodes.size(); nodeIndex++) {
 					response[nodeIndex].push_back(nodes.at(nodeIndex));

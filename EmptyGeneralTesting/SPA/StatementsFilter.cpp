@@ -11,6 +11,7 @@
 #include "WhileNode.h"
 #include "QueryEvaluatorException.h"
 #include <set>
+#include <algorithm>
 
 StatementsFilter::StatementsFilter() {
 }
@@ -87,7 +88,51 @@ vector<string> StatementsFilter::getNodesWithType(string type, SpaDataContainer*
 			newStatements.push_back(stmt);
 		}
 	}
+
 	return newStatements;
+}
+
+
+vector<string> StatementsFilter::getPropertyValues(string type, string propertyName, SpaDataContainer* spaDataContainer, vector<string>& resulsts) {
+	if (type == DeclarationKeywords::CALL) {
+		if (propertyName != "procName") {
+			throw QueryEvaluatorException("getPropertyValues() - call accepts only a propety name: 'procName', but instead got: " + propertyName);
+		}
+		return getCallPropertyValues(spaDataContainer, resulsts);
+	}
+
+	if (type == DeclarationKeywords::PROCEDURE) {
+		if (propertyName != "procName") {
+			throw QueryEvaluatorException("getPropertyValues() - procedure accepts only a propety name: 'procName', but instead got: " + propertyName);
+		}
+		return resulsts;
+	}
+
+	return vector<string>();
+}
+
+
+vector<string> StatementsFilter::getCallPropertyValues(SpaDataContainer* spaDataContainer, vector<string>& resulsts) {
+	set<string> newStatements;
+	auto iteratorEnd = resulsts.end();
+	for (auto statatement : spaDataContainer->statementTable) {
+		auto desiredNode = statatement.second.at(0);
+		CallNode* potentialCallNode = dynamic_cast<CallNode*>(desiredNode);
+
+		if (potentialCallNode != nullptr) {
+			string lineNumber = to_string(statatement.first);
+			auto iterator = find_if(resulsts.begin(), resulsts.end(), [lineNumber](string item) {
+				                        return item == lineNumber;
+			                        });
+
+			if (iterator != iteratorEnd) {
+				newStatements.insert(potentialCallNode->getProcedureName());
+			}
+		}
+	}
+	vector<string> vecNewStatements(newStatements.begin(), newStatements.end());
+
+	return vecNewStatements;
 }
 
 

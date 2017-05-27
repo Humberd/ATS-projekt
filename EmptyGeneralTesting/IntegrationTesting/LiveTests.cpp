@@ -82,27 +82,27 @@ TEST_CLASS(LiveTests) {
 		expectedResult = "1,2,3,5,8";
 	}
 
-	TEST_METHOD(Test_11) {
-		declaredVariables = "call c;";
-		expresssion = "Select c.procName";
-		expectedResult = "a,d,q";
-	}
-
-	TEST_METHOD(Test_12) {
-		declaredVariables = "call c;";
-		expresssion = "Select c.procName";
-		expectedResult = "a,d,q";
-	}
-
-	TEST_METHOD(Test_13) {
-		declaredVariables = "call c;";
-		expresssion = "Select c.procName";
-		expectedResult = "a,d,q";
-	}
-
-	TEST_METHOD(Test_14) {
-		declaredVariables = "call c;";
-		expresssion = "Select c.procName";
-		expectedResult = "a,d,q";
-	}
+//	TEST_METHOD(Test_11) {
+//		declaredVariables = "call c;";
+//		expresssion = "Select c.procName";
+//		expectedResult = "a,d,q";
+//	}
+//
+//	TEST_METHOD(Test_12) {
+//		declaredVariables = "call c;";
+//		expresssion = "Select c.procName";
+//		expectedResult = "a,d,q";
+//	}
+//
+//	TEST_METHOD(Test_13) {
+//		declaredVariables = "call c;";
+//		expresssion = "Select c.procName";
+//		expectedResult = "a,d,q";
+//	}
+//
+//	TEST_METHOD(Test_14) {
+//		declaredVariables = "call c;";
+//		expresssion = "Select c.procName";
+//		expectedResult = "a,d,q";
+//	}
 };
