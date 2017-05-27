@@ -118,7 +118,7 @@ TEST_CLASS(QueryEvaluatorTest2) {
 		Assert::IsTrue(columnVariableNames.at(0) == "a");
 	}
 
-	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_6_vectorResponseWithExistingResults) {
+	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_6_vectorResponseWithExistingResultsIn1ColumnWIth1Row) {
 		MethodEvaluatorResponse* response1 = new MethodEvaluatorResponse;
 		response1->setState(ResponseState::VECTOR);
 		response1->setVariableName("a");
@@ -150,7 +150,7 @@ TEST_CLASS(QueryEvaluatorTest2) {
 		Assert::IsTrue(columnVariableNames.at(1) == "a");
 	}
 
-	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_7_vectorResponseWith2ExistingResultsIn1Column) {
+	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_7_vectorResponseWith2ExistingResultsIn1ColumnWith2Rows) {
 		MethodEvaluatorResponse* response1 = new MethodEvaluatorResponse;
 		response1->setState(ResponseState::VECTOR);
 		response1->setVariableName("a");
@@ -183,7 +183,7 @@ TEST_CLASS(QueryEvaluatorTest2) {
 		Assert::IsTrue(columnVariableNames.at(1) == "a");
 	}
 
-	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_7_vectorResponseWith2ExistingResultsIn2Columns) {
+	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_7_vectorResponseWith2ExistingResultsIn2ColumnsWith2Rows) {
 		MethodEvaluatorResponse* response1 = new MethodEvaluatorResponse;
 		response1->setState(ResponseState::VECTOR);
 		response1->setVariableName("a");
@@ -282,6 +282,35 @@ TEST_CLASS(QueryEvaluatorTest2) {
 		response2->setVectorResponse(vector<string>{"6"});
 		responses.push_back(response2);
 
+		queryEvaluator->changeResultsStateBasedOnResponses(responses, oldState, newState, booleanResult, columnVariableNames);
+
+		Assert::IsTrue(oldState.size() == 0);
+		Assert::IsTrue(newState.size() == 3);
+		Assert::IsTrue(newState.at(0)->at(0) == "8");
+		Assert::IsTrue(newState.at(1)->at(0) == "9");
+		Assert::IsTrue(newState.at(2)->at(0) == "6");
+		Assert::IsTrue(columnVariableNames.size() == 1);
+		Assert::IsTrue(columnVariableNames.at(0) == "a");
+	}
+
+	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_10_vector2ResponsesWithExistingResultsIn1ColumnWith2Rows) {
+		MethodEvaluatorResponse* response1 = new MethodEvaluatorResponse;
+		response1->setState(ResponseState::VECTOR);
+		response1->setVariableName("a");
+		response1->setVariableType("assign");
+		response1->setInsertToColumnName("s");
+		response1->setInsertToColumnValue("1");
+		response1->setVectorResponse(vector<string>{"8", "9"});
+		responses.push_back(response1);
+		MethodEvaluatorResponse* response2 = new MethodEvaluatorResponse;
+		response2->setState(ResponseState::VECTOR);
+		response2->setVariableName("a");
+		response2->setVariableType("assign");
+		response2->setInsertToColumnName("s");
+		response2->setInsertToColumnValue("2");
+		response2->setVectorResponse(vector<string>{"6"});
+		responses.push_back(response2);
+
 		columnVariableNames.push_back("s");
 		oldState.push_back(new vector<string>{"1"});
 		oldState.push_back(new vector<string>{"2"});
@@ -299,5 +328,59 @@ TEST_CLASS(QueryEvaluatorTest2) {
 		Assert::IsTrue(columnVariableNames.size() == 2);
 		Assert::IsTrue(columnVariableNames.at(0) == "s");
 		Assert::IsTrue(columnVariableNames.at(1) == "a");
+	}
+
+	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_11_vector2ResponsesWithExistingResultsIn2ColumnsWith2Rows) {
+		MethodEvaluatorResponse* response1 = new MethodEvaluatorResponse;
+		response1->setState(ResponseState::VECTOR);
+		response1->setVariableName("a");
+		response1->setVariableType("assign");
+		response1->setInsertToColumnName("s");
+		response1->setInsertToColumnValue("1");
+		response1->setVectorResponse(vector<string>{"8", "9"});
+		responses.push_back(response1);
+		MethodEvaluatorResponse* response2 = new MethodEvaluatorResponse;
+		response2->setState(ResponseState::VECTOR);
+		response2->setVariableName("a");
+		response2->setVariableType("assign");
+		response2->setInsertToColumnName("s");
+		response2->setInsertToColumnValue("2");
+		response2->setVectorResponse(vector<string>{"6"});
+		responses.push_back(response2);
+
+		columnVariableNames.push_back("s");
+		columnVariableNames.push_back("c");
+		oldState.push_back(new vector<string>{"1","55"});
+		oldState.push_back(new vector<string>{"1","23"});
+		oldState.push_back(new vector<string>{"2","88"});
+
+		queryEvaluator->changeResultsStateBasedOnResponses(responses, oldState, newState, booleanResult, columnVariableNames);
+
+		Assert::IsTrue(oldState.size() == 3);
+		Assert::IsTrue(newState.size() == 5);
+		Assert::IsTrue(newState.at(0)->at(0) == "1");
+		Assert::IsTrue(newState.at(0)->at(1) == "55");
+		Assert::IsTrue(newState.at(0)->at(2) == "8");
+
+		Assert::IsTrue(newState.at(1)->at(0) == "1");
+		Assert::IsTrue(newState.at(1)->at(1) == "23");
+		Assert::IsTrue(newState.at(1)->at(2) == "8");
+
+		Assert::IsTrue(newState.at(2)->at(0) == "1");
+		Assert::IsTrue(newState.at(2)->at(1) == "55");
+		Assert::IsTrue(newState.at(2)->at(2) == "9");
+
+		Assert::IsTrue(newState.at(3)->at(0) == "1");
+		Assert::IsTrue(newState.at(3)->at(1) == "23");
+		Assert::IsTrue(newState.at(3)->at(2) == "9");
+
+		Assert::IsTrue(newState.at(4)->at(0) == "2");
+		Assert::IsTrue(newState.at(4)->at(1) == "88");
+		Assert::IsTrue(newState.at(4)->at(2) == "6");
+
+		Assert::IsTrue(columnVariableNames.size() == 3);
+		Assert::IsTrue(columnVariableNames.at(0) == "s");
+		Assert::IsTrue(columnVariableNames.at(1) == "c");
+		Assert::IsTrue(columnVariableNames.at(2) == "a");
 	}
 };
