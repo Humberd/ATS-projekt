@@ -30,6 +30,9 @@ list<string> ResponseParser::parse(vector<vector<string>> originalResponse) {
 }
 
 string ResponseParser::parseForTestingPurposes(list<string>& responseList) {
+	if (responseList.size() == 0) {
+		return "none";
+	}
 	string response = "";
 	bool first = true;
 	for (auto item : responseList) {
