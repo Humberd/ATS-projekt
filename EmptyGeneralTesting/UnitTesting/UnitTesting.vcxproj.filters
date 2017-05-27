@@ -248,6 +248,12 @@
     <ClCompile Include="ProgramLineEvaluatorTest.cpp">
       <Filter>Source Files\SourceParser\ProgramLineEvaluator</Filter>
     </ClCompile>
+    <ClCompile Include="ParentTest.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowsTest.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
     <ClCompile Include="QLexerTest.cpp">
       <Filter>Source Files\QueryParser2\Lexer</Filter>
     </ClCompile>
