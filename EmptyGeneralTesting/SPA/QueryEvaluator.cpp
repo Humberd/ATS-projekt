@@ -68,6 +68,22 @@ void QueryEvaluator::evaluate() {
 vector<vector<string>> QueryEvaluator::evaluateReturn() {
 	vector<vector<string>> response;
 
+	ReturnRequest* returnRequest = this->queryRequest->getReturnRequest();
+
+	if (returnRequest->getReturnType() == ReturnType::BOOLEAN) {
+		//somehow return booleanResult
+	}
+	
+	if (returnRequest->getReturnType() == ReturnType::VARIABLES) {
+		for (auto queryVariable : returnRequest->getVariables()) {
+			if (findIndexOfColumnVariableName(queryVariable->getName()) < 0) {
+				
+			}
+		}
+	}
+
+
+	StatementsFilter::getNodesWithType("stmt", spaDataContainer);
 	return response;
 }
 

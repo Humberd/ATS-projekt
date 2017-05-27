@@ -10,4 +10,6 @@ public:
 	~StatementsFilter();
 
 	static vector<string> filter(vector<string>& statements, string type, SpaDataContainer* spaDataContainer);
+
+	static vector<string> getNodesWithType(string type, SpaDataContainer* spaDataContainer);
 };

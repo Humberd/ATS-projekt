@@ -52,3 +52,40 @@ vector<string> StatementsFilter::filter(vector<string>& statements, string type,
 	}
 	return newStatements;
 }
+
+
+vector<string> StatementsFilter::getNodesWithType(string type, SpaDataContainer* spaDataContainer) {
+	vector<string> newStatements;
+	for (auto statatement : spaDataContainer->statementTable) {
+		string stmt = to_string(statatement.first);
+		auto desredNode = statatement.second.at(0);
+		if (type == DeclarationKeywords::STATEMENT &&
+			dynamic_cast<StatementNode*>(desredNode) != nullptr) {
+			newStatements.push_back(stmt);
+		} else if (type == DeclarationKeywords::ASSIGN &&
+			dynamic_cast<AssignNode*>(desredNode) != nullptr) {
+			newStatements.push_back(stmt);
+		} else if (type == DeclarationKeywords::CALL &&
+			dynamic_cast<CallNode*>(desredNode) != nullptr) {
+			newStatements.push_back(stmt);
+		} else if (type == DeclarationKeywords::IF &&
+			dynamic_cast<IfNode*>(desredNode) != nullptr) {
+			newStatements.push_back(stmt);
+		} else if (type == DeclarationKeywords::CONSTANT &&
+			dynamic_cast<ConstantNode*>(desredNode) != nullptr) {
+			newStatements.push_back(stmt);
+		} else if (type == DeclarationKeywords::PROCEDURE &&
+			dynamic_cast<ProcedureNode*>(desredNode) != nullptr) {
+			newStatements.push_back(stmt);
+		} else if (type == DeclarationKeywords::VARIABLE &&
+			dynamic_cast<VariableNode*>(desredNode) != nullptr) {
+			newStatements.push_back(stmt);
+		} else if (type == DeclarationKeywords::WHILE &&
+			dynamic_cast<WhileNode*>(desredNode) != nullptr) {
+			newStatements.push_back(stmt);
+		} else {
+			throw QueryEvaluatorException("StatementsFilter::filter() - unknown type: " + stmt);
+		}
+	}
+	return newStatements;
+}
