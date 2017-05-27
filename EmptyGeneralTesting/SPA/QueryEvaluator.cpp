@@ -2,7 +2,6 @@
 #include "QueryEvaluatorException.h"
 #include <algorithm>
 #include "DeclarationKeywords.h"
-#include "QueryKeywords.h"
 #include "QueryMethods.h"
 
 QueryEvaluator::QueryEvaluator() {
@@ -43,11 +42,27 @@ void QueryEvaluator::evaluate() {
 
 
 void QueryEvaluator::evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
-	MethodEvaluatorResponse* response;
+	MethodEvaluatorResponse* response = nullptr;
 	if (methodName == QueryMethods::PARENT) {
-		parentEvaluator(leftParam, rightParam, goDeep);
+		response = parentEvaluator(leftParam, rightParam, goDeep);
 	} else {
 		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
+	}
+
+	methodResponseManager(response);
+
+	delete response;
+}
+
+
+void QueryEvaluator::methodResponseManager(MethodEvaluatorResponse* response) {
+	if (response->getState() == ResponseState::BOOLEAN) {
+		booleanResult = booleanResult & response->getBooleanResponse();
+		return;
+	}
+
+	if (response->getState() == ResponseState::VECTOR) {
+		
 	}
 
 }
@@ -91,6 +106,8 @@ InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* par
 	/*Param is type ANY (_)*/
 	if (parameter->getType() == ParameterType::ANY) {
 		invokationParam->setState(InvokationParamState::ANY);
+		invokationParam->setVariableName(parameter->getVariableName());
+		invokationParam->setVariableType(parameter->getVariableType());
 		return invokationParam;
 	}
 
@@ -105,6 +122,8 @@ InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* par
 		invokationParam->setState(InvokationParamState::VALUE);
 		invokationParam->setValueType(ValueType::INTEGER);
 		invokationParam->setValue(to_string(parameter->getIntegerValue()));
+		invokationParam->setVariableName(parameter->getVariableName());
+		invokationParam->setVariableType(parameter->getVariableType());
 		return invokationParam;
 	}
 
@@ -112,6 +131,8 @@ InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* par
 		invokationParam->setState(InvokationParamState::VALUE);
 		invokationParam->setValueType(ValueType::STRING);
 		invokationParam->setValue(parameter->getStringValue());
+		invokationParam->setVariableName(parameter->getVariableName());
+		invokationParam->setVariableType(parameter->getVariableType());
 		return invokationParam;
 	}
 
@@ -238,4 +259,12 @@ PkbBrigde* QueryEvaluator::getPkbBrigde() const {
 
 void QueryEvaluator::setPkbBrigde(PkbBrigde* const pkbBrigde) {
 	this->pkbBrigde = pkbBrigde;
+}
+
+bool QueryEvaluator::getBooleanResult() const {
+	return booleanResult;
+}
+
+void QueryEvaluator::setBooleanResult(const bool booleanResult) {
+	this->booleanResult = booleanResult;
 }

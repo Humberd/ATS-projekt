@@ -12,6 +12,7 @@ using namespace std;
 class QueryEvaluator {
 private:
 	vector<vector<string>*> evalResults;
+	bool booleanResult;
 	vector<string> columnVariableNames;
 
 	vector<DeclaredVariable*> declaredVariables;
@@ -28,8 +29,9 @@ public:
 	void evaluate();
 
 	void evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
+	void methodResponseManager(MethodEvaluatorResponse* response);
+	
 	MethodEvaluatorResponse* parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
-
 
 	InvokationParam* changeParameterToInvokationParam(Parameter* parameter);
 
@@ -51,4 +53,6 @@ public:
 	void setQueryRequest(QueryRequest* const queryRequest);
 	PkbBrigde* getPkbBrigde() const;
 	void setPkbBrigde(PkbBrigde* const pkbBrigde);
+	bool getBooleanResult() const;
+	void setBooleanResult(const bool booleanResult);
 };

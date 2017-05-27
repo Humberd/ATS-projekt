@@ -28,7 +28,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		Assert::IsNotNull(invokationParam);
 		Assert::IsTrue(invokationParam->getState() == InvokationParamState::ANY);
 		Assert::IsTrue(invokationParam->getValue() == "");
-		Assert::IsTrue(invokationParam->getVariableName() == "");
+		Assert::IsTrue(invokationParam->getVariableName() == "myVarName");
 
 		delete queryEvaluator , parameter;
 	}
@@ -69,7 +69,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		Assert::IsTrue(invokationParam->getState() == InvokationParamState::VALUE);
 		Assert::IsTrue(invokationParam->getValue() == "15");
 		Assert::IsTrue(invokationParam->getValueType() == ValueType::INTEGER);
-		Assert::IsTrue(invokationParam->getVariableName() == "");
+		Assert::IsTrue(invokationParam->getVariableName() == "myVarName");
 
 		delete queryEvaluator , parameter;
 	}
@@ -90,7 +90,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		Assert::IsTrue(invokationParam->getState() == InvokationParamState::VALUE);
 		Assert::IsTrue(invokationParam->getValue() == "foobar");
 		Assert::IsTrue(invokationParam->getValueType() == ValueType::STRING);
-		Assert::IsTrue(invokationParam->getVariableName() == "");
+		Assert::IsTrue(invokationParam->getVariableName() == "myVarName");
 
 		delete queryEvaluator , parameter;
 	}
