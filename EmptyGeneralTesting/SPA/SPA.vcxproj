@@ -71,6 +71,7 @@
     <ClInclude Include="MethodRequest.h" />
     <ClInclude Include="QueryVariable.h" />
     <ClInclude Include="QueryVariablesValidatorException.h" />
+    <ClInclude Include="ResponseParser.h" />
     <ClInclude Include="ResponseState.h" />
     <ClInclude Include="ReturnRequest.h" />
     <ClInclude Include="ReturnType.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="QueryVariable.cpp" />
     <ClCompile Include="QueryVariablesValidator.cpp" />
     <ClCompile Include="QueryVariablesValidatorException.cpp" />
+    <ClCompile Include="ResponseParser.cpp" />
     <ClCompile Include="ReturnRequest.cpp" />
     <ClCompile Include="SelectParser.cpp" />
     <ClCompile Include="SourceParser.cpp" />

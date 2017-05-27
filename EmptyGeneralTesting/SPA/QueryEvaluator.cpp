@@ -71,13 +71,24 @@ vector<vector<string>> QueryEvaluator::evaluateReturn() {
 	ReturnRequest* returnRequest = this->queryRequest->getReturnRequest();
 
 	if (returnRequest->getReturnType() == ReturnType::BOOLEAN) {
-		//somehow return booleanResult
+		if (booleanResult) {
+			response[0].push_back("true");
+		} else {
+			response[0].push_back("false");
+		}
+		return response;
 	}
-	
+
 	if (returnRequest->getReturnType() == ReturnType::VARIABLES) {
+
 		for (auto queryVariable : returnRequest->getVariables()) {
 			if (findIndexOfColumnVariableName(queryVariable->getName()) < 0) {
-				
+				auto nodes = StatementsFilter::getNodesWithType(findTypeOfDeclaredVariable(queryVariable->getName()), spaDataContainer);
+				response.resize(nodes.size());
+				for (unsigned int nodeIndex = 0; nodeIndex < nodes.size(); nodeIndex++) {
+					response[nodeIndex].push_back(nodes.at(nodeIndex));
+				}
+				return response;
 			}
 		}
 	}
