@@ -6,11 +6,14 @@ using namespace std;
 
 class MethodEvaluatorResponse {
 private:
+	bool booleanResponse;
 	ResponseState state;
 	vector<string> vectorResponse;
-	bool booleanResponse;
 	string variableName;
 	string variableType;
+
+	string insertToColumnName;
+	string insertToColumnValue;
 
 public:
 	explicit MethodEvaluatorResponse();
@@ -26,4 +29,8 @@ public:
 	void setVariableName(const string variableName);
 	string getVariableType() const;
 	void setVariableType(const string variableType);
+	string getInsertToColumnName() const;
+	void setInsertToColumnName(const string insertToColumnName);
+	string getInsertToColumnValue() const;
+	void setInsertToColumnValue(const string insertToColumnValue);
 };

@@ -287,6 +287,9 @@
     <ClCompile Include="TreeAnalyzerTest.cpp">
       <Filter>Source Files\TreeAnalyzer</Filter>
     </ClCompile>
+    <ClCompile Include="QueryEvaluatorTest2.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">
