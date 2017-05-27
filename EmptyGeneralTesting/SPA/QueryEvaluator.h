@@ -35,6 +35,7 @@ public:
 
 	MethodEvaluatorResponse* evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 	MethodEvaluatorResponse* parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
+	MethodEvaluatorResponse* followsEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 
 	void changeResultsStateBasedOnResponses(vector<MethodEvaluatorResponse*>& responses,
 	                                        vector<vector<string>*>& oldState,

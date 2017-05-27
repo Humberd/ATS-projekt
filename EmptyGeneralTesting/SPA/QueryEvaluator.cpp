@@ -108,9 +108,12 @@ MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, Invok
 	MethodEvaluatorResponse* response = nullptr;
 	if (methodName == QueryMethods::PARENT) {
 		response = parentEvaluator(leftParam, rightParam, goDeep);
+	} else if (methodName == QueryMethods::FOLLOWS) {
+		response = followsEvaluator(leftParam, rightParam, goDeep);
 	} else {
 		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
 	}
+
 
 	return response;
 }
@@ -201,6 +204,44 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 		response->setBooleanResponse(booleanResult);
 	} else {
 		throw QueryEvaluatorException("parentEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
+	}
+
+	return response;
+}
+
+
+MethodEvaluatorResponse* QueryEvaluator::followsEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
+	/*Parent(x,7)*/
+	if (leftParam->getState() == InvokationParamState::VARIABLE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto vectorResult = pkbBrigde->getFollowedBy(rightParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(leftParam->getVariableName());
+		response->setVariableType(leftParam->getVariableType());
+		response->setInsertToColumnName(rightParam->getVariableType());
+		response->setInsertToColumnValue(rightParam->getValue());
+	}
+	/*Parent(7,x)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VARIABLE) {
+		auto vectorResult = pkbBrigde->getPrevious(leftParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(rightParam->getVariableName());
+		response->setVariableType(rightParam->getVariableType());
+		response->setInsertToColumnName(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getVariableName());
+	}
+	/*Parent(7,7)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto booleanResult = pkbBrigde->isElemFollowing(leftParam->getValue(), rightParam->getValue(), goDeep);
+		response->setState(ResponseState::BOOLEAN);
+		response->setBooleanResponse(booleanResult);
+	} else {
+		throw QueryEvaluatorException("followsEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
 	}
 
 	return response;

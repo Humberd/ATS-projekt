@@ -82,27 +82,39 @@ TEST_CLASS(LiveTests) {
 		expectedResult = "1,2,3,5,8";
 	}
 
-//	TEST_METHOD(Test_11) {
-//		declaredVariables = "call c;";
-//		expresssion = "Select c.procName";
-//		expectedResult = "a,d,q";
-//	}
-//
-//	TEST_METHOD(Test_12) {
-//		declaredVariables = "call c;";
-//		expresssion = "Select c.procName";
-//		expectedResult = "a,d,q";
-//	}
-//
-//	TEST_METHOD(Test_13) {
-//		declaredVariables = "call c;";
-//		expresssion = "Select c.procName";
-//		expectedResult = "a,d,q";
-//	}
-//
-//	TEST_METHOD(Test_14) {
-//		declaredVariables = "call c;";
-//		expresssion = "Select c.procName";
-//		expectedResult = "a,d,q";
+	TEST_METHOD(Test_11) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Parent(s, 11)";
+		expectedResult = "4";
+	}
+
+	TEST_METHOD(Test_12) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Parent(15, s)";
+		expectedResult = "16,17,18,45";
+	}
+
+	TEST_METHOD(Test_13) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Parent(4, a)";
+		expectedResult = "8,9,11";
+	}
+
+	TEST_METHOD(Test_14) {
+		declaredVariables = "call c;";
+		expresssion = "Select c such that Parent(4, c)";
+		expectedResult = "10";
+	}
+
+	TEST_METHOD(Test_15) {
+		declaredVariables = "constant c;";
+		expresssion = "Select c";
+		expectedResult = "1,2,3,5,8";
+	}
+
+//	TEST_METHOD(Test_171) {
+//		declaredVariables = "assign a; stmt s;";
+//		expresssion = "Select s with a.stmt# = s.stmt#";
+//		expectedResult = "1,2,6,7,8,9,11,13,14,16,17,19,20,22,23,24,25,27,28,30,31,32,35,37,38,39,40,42,43,44,45,46,47,49,53,54,55,58,59,60,61,62,66,67,68,70,72,73,74";
 //	}
 };
