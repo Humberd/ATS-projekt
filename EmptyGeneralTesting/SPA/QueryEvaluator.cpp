@@ -32,16 +32,23 @@ void QueryEvaluator::evaluate() {
 		auto leftParams = generateParamsIncaseOfAvailableResults(initialLeftParam);
 		auto rightParams = generateParamsIncaseOfAvailableResults(initialRightParam);
 
+		vector<MethodEvaluatorResponse*> responses;
+
 		for (auto leftParam : leftParams) {
 			for (auto rightParam: rightParams) {
-				evaluateMethod(methodRequest->getMethodName(), leftParam, rightParam, methodRequest->getGoDeep());
+				responses.push_back(evaluateMethod(methodRequest->getMethodName(), leftParam, rightParam, methodRequest->getGoDeep()));
 			}
 		}
+
+		for (auto response : responses) {
+			delete response;
+		}
+		responses.clear();
 	}
 }
 
 
-void QueryEvaluator::evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
 	MethodEvaluatorResponse* response = nullptr;
 	if (methodName == QueryMethods::PARENT) {
 		response = parentEvaluator(leftParam, rightParam, goDeep);
@@ -49,22 +56,54 @@ void QueryEvaluator::evaluateMethod(string methodName, InvokationParam* leftPara
 		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
 	}
 
-	methodResponseManager(response);
-
-	delete response;
+	return response;
 }
 
 
-void QueryEvaluator::methodResponseManager(MethodEvaluatorResponse* response) {
-	if (response->getState() == ResponseState::BOOLEAN) {
-		booleanResult = booleanResult & response->getBooleanResponse();
+void QueryEvaluator::changeResultsStateBasedOnResponses(vector<MethodEvaluatorResponse*>& responses,
+                                                        vector<vector<string>*>& oldState,
+                                                        vector<vector<string>*>& newState,
+                                                        bool& booleanResult,
+                                                        vector<string>& columnVariableNames) {
+	for (auto response : responses) {
+		if (response->getState() == ResponseState::BOOLEAN) {
+			booleanResult = booleanResult & response->getBooleanResponse();
+			continue;
+		}
+
+		if (response->getState() == ResponseState::VECTOR) {
+			int insertToColumnIdex = findIndexOfColumnVariableName(response->getInsertToColumnName(), columnVariableNames);
+			columnVariableNames.push_back(response->getVariableName());
+			changeVectorResultsBasedOnResponses(response, oldState, newState, insertToColumnIdex);
+		}
+	}
+}
+
+
+void QueryEvaluator::changeVectorResultsBasedOnResponses(MethodEvaluatorResponse* response,
+                                                         vector<vector<string>*>& oldState,
+                                                         vector<vector<string>*>& newState,
+                                                         int insertToColumnIdex) {
+	/*First insert to eval results*/
+	if (insertToColumnIdex < 0) {
+		for (string singleResponse : response->getVectorResponse()) {
+			vector<string>* newRow = new vector<string>();
+			newRow->push_back(singleResponse);
+			newState.push_back(newRow);
+		}
 		return;
 	}
 
-	if (response->getState() == ResponseState::VECTOR) {
-		
-	}
 
+	for (string singleResponse : response->getVectorResponse()) {
+		for (auto oldRow : oldState) {
+			if (oldRow->at(insertToColumnIdex) == response->getInsertToColumnValue()) {
+				vector<string>* newRow = new vector<string>(oldRow->begin(), oldRow->end());
+				newRow->push_back(singleResponse);
+				newState.push_back(newRow);
+			}
+		}
+	}
 }
 
 MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
@@ -77,6 +116,8 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 		response->setVectorResponse(vectorResult);
 		response->setVariableName(leftParam->getVariableName());
 		response->setVariableType(leftParam->getVariableType());
+		response->setInsertToColumnName(rightParam->getVariableType());
+		response->setInsertToColumnValue(rightParam->getValue());
 	}
 	/*Parent(7,x)*/
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
@@ -86,6 +127,8 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 		response->setVectorResponse(vectorResult);
 		response->setVariableName(rightParam->getVariableName());
 		response->setVariableType(rightParam->getVariableType());
+		response->setInsertToColumnName(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getVariableName());
 	}
 	/*Parent(7,7)*/
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
@@ -186,15 +229,19 @@ vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(
 
 
 int QueryEvaluator::findIndexOfColumnVariableName(string varName) {
-	for (int i = 0; i < columnVariableNames.size(); i++) {
-		if (columnVariableNames.at(i) == varName) {
+	return findIndexOfColumnVariableName(varName, columnVariableNames);
+}
+
+
+int QueryEvaluator::findIndexOfColumnVariableName(string varName, vector<string>& arr) {
+	for (int i = 0; i < arr.size(); i++) {
+		if (arr.at(i) == varName) {
 			return i;
 		}
 	}
 
 	return -1;
 }
-
 
 string QueryEvaluator::findTypeOfDeclaredVariable(string varName) {
 	for (auto declaredVariable : declaredVariables) {

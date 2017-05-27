@@ -330,21 +330,22 @@ TEST_CLASS(QueryEvaluatorTest) {
 		delete pkbBrigde , leftParam , rightParam , queryEvaluator;
 	}
 
-	TEST_METHOD(QueryEvaluator_TESTMORE) {
-		string queryDeclarations = "call c;";
-		string query = "Select c such that Parent(4, c)";
+//	TEST_METHOD(QueryEvaluator_TESTMORE) {
+//		string queryDeclarations = "call c;";
+//		string query = "Select c such that Parent(4, c)";
+//
+//		vector<QLexerToken*> queryDeclarationsTokens = QLexer::parseDeclarations(queryDeclarations);
+//		vector<QLexerToken*> queryTokens = QLexer::parseQuery(query);
+//
+//		DeclarationsSourceParser declarationsSourceParser(queryDeclarationsTokens);
+//		
+//		vector<DeclaredVariable*> declaredVariables = declarationsSourceParser.parse();
+//		QueryRequest* queryRequest = QuerySourceParser::cleanParse(queryTokens);
+//
+//		PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
+//		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, queryRequest);
+//		queryEvaluator->setPkbBrigde(pkbBrigde);
+//		queryEvaluator->evaluate();
+//	}
 
-		vector<QLexerToken*> queryDeclarationsTokens = QLexer::parseDeclarations(queryDeclarations);
-		vector<QLexerToken*> queryTokens = QLexer::parseQuery(query);
-
-		DeclarationsSourceParser declarationsSourceParser(queryDeclarationsTokens);
-		
-		vector<DeclaredVariable*> declaredVariables = declarationsSourceParser.parse();
-		QueryRequest* queryRequest = QuerySourceParser::cleanParse(queryTokens);
-
-		PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
-		QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, queryRequest);
-		queryEvaluator->setPkbBrigde(pkbBrigde);
-		queryEvaluator->evaluate();
-	}
 };

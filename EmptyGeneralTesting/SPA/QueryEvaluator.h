@@ -28,16 +28,26 @@ public:
 
 	void evaluate();
 
-	void evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
-	void methodResponseManager(MethodEvaluatorResponse* response);
-	
+	MethodEvaluatorResponse* evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 	MethodEvaluatorResponse* parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
+
+	void changeResultsStateBasedOnResponses(vector<MethodEvaluatorResponse*>& responses,
+	                                        vector<vector<string>*>& oldState,
+	                                        vector<vector<string>*>& newState,
+	                                        bool& booleanResult,
+	                                        vector<string>& columnVariableNames);
+	void changeVectorResultsBasedOnResponses(MethodEvaluatorResponse* response,
+	                                         vector<vector<string>*>& oldState,
+	                                         vector<vector<string>*>& newState,
+	                                         int insertToColumnIdex);
+
 
 	InvokationParam* changeParameterToInvokationParam(Parameter* parameter);
 
 	vector<InvokationParam*> generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam);
 
 	int findIndexOfColumnVariableName(string varName);
+	int findIndexOfColumnVariableName(string varName, vector<string>& arr);
 	string findTypeOfDeclaredVariable(string varName);
 	vector<string> findUniqueEvalResultsFromColumn(int columnIndex);
 
