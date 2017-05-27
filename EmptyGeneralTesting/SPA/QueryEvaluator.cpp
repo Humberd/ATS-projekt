@@ -65,6 +65,11 @@ void QueryEvaluator::changeResultsStateBasedOnResponses(vector<MethodEvaluatorRe
                                                         vector<vector<string>*>& newState,
                                                         bool& booleanResult,
                                                         vector<string>& columnVariableNames) {
+	if (responses.size() == 0) {
+		throw QueryEvaluatorException("changeResultsStateBasedOnResponses() - responses are empty!");
+	}
+
+	columnVariableNames.push_back(responses.at(0)->getVariableName());
 	for (auto response : responses) {
 		if (response->getState() == ResponseState::BOOLEAN) {
 			booleanResult = booleanResult & response->getBooleanResponse();
@@ -73,7 +78,6 @@ void QueryEvaluator::changeResultsStateBasedOnResponses(vector<MethodEvaluatorRe
 
 		if (response->getState() == ResponseState::VECTOR) {
 			int insertToColumnIdex = findIndexOfColumnVariableName(response->getInsertToColumnName(), columnVariableNames);
-			columnVariableNames.push_back(response->getVariableName());
 			changeVectorResultsBasedOnResponses(response, oldState, newState, insertToColumnIdex);
 		}
 	}
