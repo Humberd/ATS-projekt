@@ -340,6 +340,105 @@ TEST_CLASS(LiveTests) {
 		expectedResult = "false";
 	}
 
+	TEST_METHOD(Test_55) {
+		declaredVariables = "variable v;";
+		expresssion = "Select v such that Modifies(6,v)";
+		expectedResult = "m";
+	}
+
+	TEST_METHOD(Test_56) {
+		declaredVariables = "variable v;";
+		expresssion = "Select v.varName such that Modifies(12,v)";
+		expectedResult = "a,b,c,e,i,k,m,x,y";
+	}
+
+	TEST_METHOD(Test_57) {
+		declaredVariables = "procedure p;";
+		expresssion = "Select p such that Modifies(p,\"e\")";
+		expectedResult = "a,p,q";
+	}
+
+	TEST_METHOD(Test_58) {
+		declaredVariables = "call c;";
+		expresssion = "Select c such that Modifies(c,_)";
+		expectedResult = "3,10,36,50,56";
+	}
+
+	TEST_METHOD(Test_59) {
+		declaredVariables = "procedure p;";
+		expresssion = "Select BOOLEAN such that Modifies(p,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_60) {
+		declaredVariables = "stmt s; variable v;";
+		expresssion = "Select s such that Modifies(s,v)";
+		expectedResult = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74";
+	}
+
+	TEST_METHOD(Test_61) {
+		declaredVariables = "procedure p; variable v;";
+		expresssion = "Select p such that Modifies(p,v)";
+		expectedResult = "a,d,p,q";
+	}
+
+	TEST_METHOD(Test_62) {
+		declaredVariables = "variable v;";
+		expresssion = "Select v such that Modifies(\"p\",v)";
+		expectedResult = "a,b,c,e,i,k,m,x,y";
+	}
+
+	TEST_METHOD(Test_63) {
+		declaredVariables = "call c;";
+		expresssion = "Select c.procName such that Modifies(\"q\",_)";
+		expectedResult = "a,d,q";
+	}
+
+	TEST_METHOD(Test_64) {
+		declaredVariables = "prog_line n;";
+		expresssion = "Select n such that Modifies(\"q\",\"x\")";
+		expectedResult = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74";
+	}
+
+	TEST_METHOD(Test_65) {
+		declaredVariables = "";
+		expresssion = "Select BOOLEAN such that Modifies(14,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_66) {
+		declaredVariables = "";
+		expresssion = "Select BOOLEAN such that Modifies(18,\"b\")";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_67) {
+		declaredVariables = "prog_line n;";
+		expresssion = "Select BOOLEAN such that Modifies(\"q\",\"x\")";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_68) {
+		declaredVariables = "prog_line n;";
+		expresssion = "Select BOOLEAN such that Modifies(n,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_69) {
+		declaredVariables = "prog_line n;";
+		expresssion = "Select BOOLEAN such that Modifies(42,\"x\")";
+		expectedResult = "false";
+	}
+
+	TEST_METHOD(Test_70) {
+		declaredVariables = "";
+		expresssion = "Select BOOLEAN such that Modifies(36,\"k\")";
+		expectedResult = "true";
+	}
+
+
+
+
 	//	TEST_METHOD(Test_171) {
 	//		declaredVariables = "assign a; stmt s;";
 	//		expresssion = "Select s with a.stmt# = s.stmt#";

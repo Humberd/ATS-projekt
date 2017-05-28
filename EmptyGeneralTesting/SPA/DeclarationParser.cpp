@@ -1,6 +1,7 @@
 #include "DeclarationParser.h"
 #include "DParsersRepository.h"
 #include "QParserException.h"
+#include "DeclarationKeywords.h"
 
 DeclarationParser::DeclarationParser(DParsersRepository* parsersRepo,
                                      vector<QLexerToken*>::iterator& iterator,
@@ -19,6 +20,21 @@ vector<DeclaredVariable*> DeclarationParser::parse() {
 
 	if ((*iterator)->isDeclarationKeyword()) {
 		variableType = (*iterator)->getValue();
+	} else if ((*iterator)->getValue() == "prog") {
+		nextElement();
+		throwOnEOF();
+		if ((*iterator)->getValue() == "_") {
+			// do nothing
+		} else {
+			throw QParserException(getClassName() + " - expected a '_', but instead got: " + (*iterator)->toString());
+		}
+		nextElement();
+		throwOnEOF();
+		if ((*iterator)->getValue() == "line") {
+			variableType = DeclarationKeywords::STATEMENT;
+		} else {
+			throw QParserException(getClassName() + " - expected a 'line' keyword, but instead got: " + (*iterator)->toString());
+		}
 	} else {
 		throw QParserException(getClassName() + " - expected a declaration type, but instead got: " + (*iterator)->toString());
 	}
@@ -27,7 +43,7 @@ vector<DeclaredVariable*> DeclarationParser::parse() {
 
 	while (iterator != iteratorEnd &&
 		(*iterator)->isName()) {
-		
+
 		if ((*iterator)->isName()) {
 			auto variable = new DeclaredVariable;
 			variable->setType(variableType);

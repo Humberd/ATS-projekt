@@ -301,13 +301,15 @@ MethodEvaluatorResponse* QueryEvaluator::modifiesEvaluator(InvokationParam* left
 	else if (leftParam->getState() == InvokationParamState::VARIABLE &&
 		rightParam->getState() == InvokationParamState::VALUE) {
 		vector<string> vectorResult;
-		/*Modifies(stat,"a")*/
-		if (leftParam->getValueType() == ValueType::INTEGER) {
-			vectorResult = pkbBrigde->getStatementsThatModifies(rightParam->getValue());
-		}
+		
+		string varType = findTypeOfDeclaredVariable(leftParam->getVariableName());
 		/*Modifies(proc,"a")*/
-		else {
+		if (varType == DeclarationKeywords::PROCEDURE) {
 			vectorResult = pkbBrigde->getProceduresThatModifies(rightParam->getValue());
+		}
+		/*Modifies(stat,"a")*/
+		else {
+			vectorResult = pkbBrigde->getStatementsThatModifies(rightParam->getValue());
 		}
 
 		response->setState(ResponseState::VECTOR);

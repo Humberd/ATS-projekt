@@ -38,6 +38,7 @@ string ResponseParser::parseForTestingPurposes(list<string>& responseList) {
 				return firstItem < secondItem;
 			}
 		});
+	responseList.unique();
 
 	if (responseList.size() == 0) {
 		return "none";
