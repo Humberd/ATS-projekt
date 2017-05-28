@@ -4,7 +4,7 @@ PkbBridgeImpl::PkbBridgeImpl(SpaDataContainer* spaDataContainer) {
 	parentApi = new Parent(spaDataContainer->parentsTable, spaDataContainer->statementTable);
 	followsApi = new Follows(spaDataContainer->followsTable);
 	modifiesApi = new Modifies(spaDataContainer->modifiesStatementTable, spaDataContainer->modifiesProcedureTable);
-	usesApi = new Uses();
+	usesApi = new Uses(spaDataContainer->usesStatementTable, spaDataContainer->usesProcedureTable);
 	callsApi = new Calls(spaDataContainer->callsTable);
 }
 
