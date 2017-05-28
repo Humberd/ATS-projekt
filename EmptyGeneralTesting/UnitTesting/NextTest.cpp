@@ -42,6 +42,10 @@ TEST_CLASS(NextTest) {
 		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
 		auto sss = container->statementTable;
 		Next* next = new Next(container->statementTable);
-		bool a = next->isNext(new STMT(1), new STMT(2), false);
+		bool a = next->isNext(new STMT(1), new STMT(2), false); //true
+		bool b = next->isNext(new STMT(1), new STMT(3), false); //false 
+		bool c = next->isNext(new STMT(2), new STMT(3), false); // true
+		bool d = next->isNext(new STMT(5), new STMT(6), false); // true
+		bool r = next->isNext(new STMT(1), new STMT(3), false);
 	}
 };
