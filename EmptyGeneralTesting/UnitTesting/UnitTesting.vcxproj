@@ -22,7 +22,7 @@
     <ProjectGuid>{74CA3A41-F84C-4C47-B882-5EBF60895525}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>UnitTesting</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -189,6 +189,7 @@
     <ClCompile Include="ExpressionParserMock.cpp" />
     <ClCompile Include="ExpressionNodeMock.cpp" />
     <ClCompile Include="ExpressionParserTest.cpp" />
+    <ClCompile Include="FollowsTest.cpp" />
     <ClCompile Include="IfNodeMock.cpp" />
     <ClCompile Include="IfParserMock.cpp" />
     <ClCompile Include="KeywordsTest.cpp" />
@@ -197,7 +198,9 @@
     <ClCompile Include="MethodManyParserTest.cpp" />
     <ClCompile Include="MethodParserTest.cpp" />
     <ClCompile Include="ModifiesTest.cpp" />
+    <ClCompile Include="NextTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
+    <ClCompile Include="ParentTest.cpp" />
     <ClCompile Include="OperatorsTest.cpp" />
     <ClCompile Include="ParsingEntityTest.cpp" />
     <ClCompile Include="ProcedureNodeMock.cpp" />

@@ -680,6 +680,18 @@
     <ClCompile Include="Spa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Parent.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Affects.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Next.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Follows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="QParsingEntity.cpp">
       <Filter>Source Files\QueryParser2\QueryParser</Filter>
     </ClCompile>
@@ -790,6 +802,9 @@
     </ClCompile>
     <ClCompile Include="ResponseParser.cpp">
       <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
