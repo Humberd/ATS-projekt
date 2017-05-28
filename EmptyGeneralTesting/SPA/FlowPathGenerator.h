@@ -12,7 +12,7 @@ public:
 
 	/*Each NodeFlowWrapper has a procedure as a starting node*/
 	static void generateFlowPath(SpaDataContainer* spaDataContainer);
-	static void flowStatementList(NodeFlowWrapper* parentFlowWrapper, Node* statementListNode, map<int, NodeFlowWrapper*>& globalTable);
-	static NodeFlowWrapper* flowSingleStatement(NodeFlowWrapper* parentFlowWrapper, Node* currentNode, map<int, NodeFlowWrapper*>& globalTable);
+	static vector<NodeFlowWrapper*> flowStatementList(vector<NodeFlowWrapper*>& parentFlowWrappers, Node* statementListNode, map<int, NodeFlowWrapper*>& globalTable);
+	static vector<NodeFlowWrapper*> flowSingleStatement(vector<NodeFlowWrapper*>& parentFlowWrappers, Node* currentNode, map<int, NodeFlowWrapper*>& globalTable);
 
 };

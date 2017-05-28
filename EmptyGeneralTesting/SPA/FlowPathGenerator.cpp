@@ -15,9 +15,9 @@ void FlowPathGenerator::generateFlowPath(SpaDataContainer* spaDataContainer) {
 	map<int, NodeFlowWrapper*> flowWrappersTable;
 
 	for (auto procedureNode : spaDataContainer->proceduresTable) {
-		NodeFlowWrapper* nodeFlowWrapper = new NodeFlowWrapper(procedureNode);
+		vector<NodeFlowWrapper*> nodeFlowWrapper{new NodeFlowWrapper(procedureNode)};
 		flowStatementList(nodeFlowWrapper, procedureNode->getChild(0), flowWrappersTable);
-		proceduresFlowWrappers.push_back(nodeFlowWrapper);
+		proceduresFlowWrappers.insert(proceduresFlowWrappers.end(), nodeFlowWrapper.begin(), nodeFlowWrapper.end());
 	}
 
 	spaDataContainer->proceduresFlowWrappers = proceduresFlowWrappers;
@@ -25,43 +25,54 @@ void FlowPathGenerator::generateFlowPath(SpaDataContainer* spaDataContainer) {
 
 }
 
-void FlowPathGenerator::flowStatementList(NodeFlowWrapper* parentFlowWrapper, Node* statementListNode, map<int, NodeFlowWrapper*>& globalTable) {
-	NodeFlowWrapper* currentParentWrapper = parentFlowWrapper;
+vector<NodeFlowWrapper*> FlowPathGenerator::flowStatementList(vector<NodeFlowWrapper*>& parentFlowWrappers, Node* statementListNode, map<int, NodeFlowWrapper*>& globalTable) {
+	vector<NodeFlowWrapper*> currentParentWrappers = parentFlowWrappers;
 	for (auto childNode : statementListNode->getChildren()) {
-		currentParentWrapper = flowSingleStatement(currentParentWrapper, childNode, globalTable);
+		currentParentWrappers = flowSingleStatement(currentParentWrappers, childNode, globalTable);
 	}
 
 	/*If while loop, then make it loop*/
-	if (dynamic_cast<WhileNode*>(parentFlowWrapper->getNode()) != nullptr) {
-		parentFlowWrapper->addPathIntoNode(currentParentWrapper);
-		currentParentWrapper->addPathOutOfNode(parentFlowWrapper);
+	for (auto parentFlowWrapper : parentFlowWrappers) {
+		if (dynamic_cast<WhileNode*>(parentFlowWrapper->getNode()) != nullptr) {
+			for (auto currentParentWrapper : currentParentWrappers) {
+				parentFlowWrapper->addPathIntoNode(currentParentWrapper);
+				currentParentWrapper->addPathOutOfNode(parentFlowWrapper);
+			}
+		}
 	}
+
+	return currentParentWrappers;
 }
 
-NodeFlowWrapper* FlowPathGenerator::flowSingleStatement(NodeFlowWrapper* parentFlowWrapper, Node* currentNode, map<int, NodeFlowWrapper*>& globalTable) {
+vector<NodeFlowWrapper*> FlowPathGenerator::flowSingleStatement(vector<NodeFlowWrapper*>& parentFlowWrappers, Node* currentNode, map<int, NodeFlowWrapper*>& globalTable) {
 	NodeFlowWrapper* nodeFlowWrapper = new NodeFlowWrapper(currentNode);
-	parentFlowWrapper->addPathOutOfNode(nodeFlowWrapper);
-	nodeFlowWrapper->addPathIntoNode(parentFlowWrapper);
-
 	globalTable.insert_or_assign(currentNode->getProgramLineNumber(), nodeFlowWrapper);
 
+	for (auto parentFlowWrapper : parentFlowWrappers) {
+		parentFlowWrapper->addPathOutOfNode(nodeFlowWrapper);
+		nodeFlowWrapper->addPathIntoNode(parentFlowWrapper);
+	}
+
+	vector<NodeFlowWrapper*> newParrentWrappers{nodeFlowWrapper};
 	if (dynamic_cast<AssignNode*>(currentNode) != nullptr) {
-		return nodeFlowWrapper;
+		return newParrentWrappers;
 	}
 
 	if (dynamic_cast<CallNode*>(currentNode) != nullptr) {
-		return nodeFlowWrapper;
+		return newParrentWrappers;
 	}
 
 	if (dynamic_cast<WhileNode*>(currentNode) != nullptr) {
-		flowStatementList(nodeFlowWrapper, currentNode->getChild(1), globalTable);
-		return nodeFlowWrapper;
+		flowStatementList(newParrentWrappers, currentNode->getChild(1), globalTable);
+		return newParrentWrappers;
 	}
 
 	if (dynamic_cast<IfNode*>(currentNode) != nullptr) {
-		flowStatementList(nodeFlowWrapper, currentNode->getChild(1), globalTable);
-		flowStatementList(nodeFlowWrapper, currentNode->getChild(2), globalTable);
-		return nodeFlowWrapper;
+		auto thenCallbacks = flowStatementList(newParrentWrappers, currentNode->getChild(1), globalTable);
+		auto elseCallbacks = flowStatementList(newParrentWrappers, currentNode->getChild(2), globalTable);
+		newParrentWrappers.clear();
+		newParrentWrappers.insert(newParrentWrappers.end(), thenCallbacks.begin(), thenCallbacks.end());
+		newParrentWrappers.insert(newParrentWrappers.end(), elseCallbacks.begin(), elseCallbacks.end());
+		return newParrentWrappers;
 	}
 }
-

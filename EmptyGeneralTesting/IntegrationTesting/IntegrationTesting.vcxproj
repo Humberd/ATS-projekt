@@ -177,6 +177,7 @@
     <Text Include="final-queries.txt" />
     <Text Include="final-source.txt" />
     <Text Include="FlowPath.txt" />
+    <Text Include="NestedFlowPath.txt" />
     <Text Include="NextTest.txt" />
     <Text Include="Queries2.txt" />
     <Text Include="Source2.txt" />

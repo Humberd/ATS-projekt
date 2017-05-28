@@ -1,0 +1,6 @@
+procedure Second {
+	while i {
+		if x then {
+			x = 5;}
+		else {
+			y = x * 3;}}}
