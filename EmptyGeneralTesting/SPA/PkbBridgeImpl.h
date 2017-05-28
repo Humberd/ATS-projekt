@@ -4,11 +4,13 @@
 #include "Parent.h"
 #include "Follows.h"
 #include "Modifies.h"
+#include "Uses.h"
 
 class PkbBridgeImpl: public PkbBrigde {
 	Parent* parentApi;
 	Follows* followsApi;
 	Modifies* modifiesApi;
+	Uses* usesApi;
 
 public:
 	explicit PkbBridgeImpl(SpaDataContainer* spaDataContainer);
@@ -27,4 +29,11 @@ public:
 	vector<string> getVariableThatIsModifiedByProcedure(string procedure) const override;
 	bool isStatementModifyingVariable(string statement, string variable) const override;
 	bool isProceduretModifyingVariable(string procedure, string variable) const override;
+
+	vector<string> getVariablesUsedByStatement(string statement) const override;
+	vector<string> getVariablesUsedByProcedure(string procedure) const override;
+	vector<string> getStatementsThatUses(string variable) const override;
+	vector<string> getProceduresThatUses(string variable) const override;
+	bool isStatementUsingVariable(string statement, string variable) const override;
+	bool isProcedureUsingVariable(string procedure, string variable) const override;
 };

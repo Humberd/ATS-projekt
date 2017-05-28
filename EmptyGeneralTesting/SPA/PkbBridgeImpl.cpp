@@ -4,6 +4,7 @@ PkbBridgeImpl::PkbBridgeImpl(SpaDataContainer* spaDataContainer) {
 	parentApi = new Parent(spaDataContainer->parentsTable, spaDataContainer->statementTable);
 	followsApi = new Follows(spaDataContainer->followsTable);
 	modifiesApi = new Modifies(spaDataContainer->modifiesStatementTable, spaDataContainer->modifiesProcedureTable);
+//	usesApi = new Uses();
 }
 
 PkbBridgeImpl::~PkbBridgeImpl() {
@@ -69,4 +70,32 @@ bool PkbBridgeImpl::isStatementModifyingVariable(string statement, string variab
 
 bool PkbBridgeImpl::isProceduretModifyingVariable(string procedure, string variable) const {
 	return modifiesApi->isModifies(procedure, parseStringToVar(variable));
+}
+
+vector<string> PkbBridgeImpl::getVariablesUsedByStatement(string statement) const {
+	vector<VAR*> rawResponse = usesApi->getUses(parseStringToStmt(statement));
+	return parseVariablesToStrings(rawResponse);
+}
+
+vector<string> PkbBridgeImpl::getVariablesUsedByProcedure(string procedure) const {
+	vector<VAR*> rawResponse = usesApi->getUses(parceStringToProc(procedure));
+	return parseVariablesToStrings(rawResponse);
+}
+
+vector<string> PkbBridgeImpl::getStatementsThatUses(string variable) const {
+	vector<STMT*> rawResponse = usesApi->getUsesBySTMT(parseStringToVar(variable));
+	return parseStmtsToStrings(rawResponse);
+}
+
+vector<string> PkbBridgeImpl::getProceduresThatUses(string variable) const {
+	vector<PROC*> rawResponse = usesApi->getUsesByPROC(parseStringToVar(variable));
+	return parseProceduresToStrings(rawResponse);
+}
+
+bool PkbBridgeImpl::isStatementUsingVariable(string statement, string variable) const {
+	return usesApi->isUsed(parseStringToStmt(statement), parseStringToVar(variable));
+}
+
+bool PkbBridgeImpl::isProcedureUsingVariable(string procedure, string variable) const {
+	return usesApi->isUsed(parceStringToProc(procedure), parseStringToVar(variable));
 }

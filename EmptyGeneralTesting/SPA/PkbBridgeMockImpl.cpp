@@ -54,3 +54,27 @@ bool PkbBridgeMockImpl::isStatementModifyingVariable(string statement, string va
 bool PkbBridgeMockImpl::isProceduretModifyingVariable(string procedure, string variable) const {
 	return true;
 }
+
+vector<string> PkbBridgeMockImpl::getVariablesUsedByStatement(string statement) const {
+	return vector<string>{"f"};
+}
+
+vector<string> PkbBridgeMockImpl::getVariablesUsedByProcedure(string procedure) const {
+	return vector<string>{"f","g"};
+}
+
+vector<string> PkbBridgeMockImpl::getStatementsThatUses(string variable) const {
+	return vector<string>{"2"};
+}
+
+vector<string> PkbBridgeMockImpl::getProceduresThatUses(string variable) const {
+	return vector<string>{"Earth"};
+}
+
+bool PkbBridgeMockImpl::isStatementUsingVariable(string statement, string variable) const {
+	return true;
+}
+
+bool PkbBridgeMockImpl::isProcedureUsingVariable(string procedure, string variable) const {
+	return true;
+}

@@ -27,6 +27,13 @@ public:
 	virtual bool isStatementModifyingVariable(string statement, string variable) const = 0;
 	virtual bool isProceduretModifyingVariable(string procedure, string variable) const = 0;
 
+	virtual vector<string> getVariablesUsedByStatement(string statement) const = 0;
+	virtual vector<string> getVariablesUsedByProcedure(string procedure) const = 0;
+	virtual vector<string> getStatementsThatUses(string variable) const = 0;
+	virtual vector<string> getProceduresThatUses(string variable) const = 0;
+	virtual bool isStatementUsingVariable(string statement, string variable) const = 0;
+	virtual bool isProcedureUsingVariable(string procedure, string variable) const = 0;
+
 	STMT* parseStringToStmt(string statement) const;
 	VAR* parseStringToVar(string variable) const;
 	PROC* parceStringToProc(string procedure) const;

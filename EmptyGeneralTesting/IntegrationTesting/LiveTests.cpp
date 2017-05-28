@@ -22,6 +22,7 @@ TEST_CLASS(LiveTests) {
 		Assert::IsTrue(parsedResult == expectedResult, wstring(parsedResult.begin(), parsedResult.end()).c_str());
 	}
 
+	/*---------------ALL---------------*/
 	TEST_METHOD(Test_1) {
 		declaredVariables = "variable v;";
 		expresssion = "Select v";
@@ -75,7 +76,7 @@ TEST_CLASS(LiveTests) {
 		expresssion = "Select c.procName";
 		expectedResult = "a,d,q";
 	}
-
+	/*---------------PARENT------------------*/
 	TEST_METHOD(Test_10) {
 		declaredVariables = "constant c;";
 		expresssion = "Select c";
@@ -315,7 +316,7 @@ TEST_CLASS(LiveTests) {
 		expresssion = "Select BOOLEAN such that Follows*(foo,foo)";
 		expectedResult = "false";
 	}
-
+	/*--------------------MODIFIES----------------------*/
 	TEST_METHOD(Test_51) {
 		declaredVariables = "variable v;";
 		expresssion = "Select v such that Modifies(11,v)";
@@ -436,6 +437,24 @@ TEST_CLASS(LiveTests) {
 		expectedResult = "true";
 	}
 
+	/*---------------USES-------------------*/
+	TEST_METHOD(Test_71) {
+		declaredVariables = "variable v;";
+		expresssion = "Select v such that Uses(11,v)";
+		expectedResult = "b,x";
+	}
+
+	TEST_METHOD(Test_72) {
+		declaredVariables = "";
+		expresssion = "Select BOOLEAN such that Modifies(36,\"k\")";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_73) {
+		declaredVariables = "";
+		expresssion = "Select BOOLEAN such that Modifies(36,\"k\")";
+		expectedResult = "true";
+	}
 
 
 

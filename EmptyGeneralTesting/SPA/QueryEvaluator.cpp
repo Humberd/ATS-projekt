@@ -136,6 +136,8 @@ MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, Invok
 		response = followsEvaluator(leftParam, rightParam, goDeep);
 	} else if (methodName == QueryMethods::MODIFIES) {
 		response = modifiesEvaluator(leftParam, rightParam, goDeep);
+	} else if (methodName == QueryMethods::USES) {
+		response = modifiesEvaluator(leftParam, rightParam, goDeep);
 	} else {
 		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
 	}
@@ -301,7 +303,7 @@ MethodEvaluatorResponse* QueryEvaluator::modifiesEvaluator(InvokationParam* left
 	else if (leftParam->getState() == InvokationParamState::VARIABLE &&
 		rightParam->getState() == InvokationParamState::VALUE) {
 		vector<string> vectorResult;
-		
+
 		string varType = findTypeOfDeclaredVariable(leftParam->getVariableName());
 		/*Modifies(proc,"a")*/
 		if (varType == DeclarationKeywords::PROCEDURE) {
@@ -335,7 +337,73 @@ MethodEvaluatorResponse* QueryEvaluator::modifiesEvaluator(InvokationParam* left
 		response->setState(ResponseState::BOOLEAN);
 		response->setBooleanResponse(booleanResult);
 	} else {
-		throw QueryEvaluatorException("followsEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
+		throw QueryEvaluatorException("modifiesEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
+	}
+
+	return response;
+}
+
+
+MethodEvaluatorResponse* QueryEvaluator::usesEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
+	/*Uses(7,x) || Uses("Earth",x)*/
+	if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VARIABLE) {
+		vector<string> vectorResult;
+		/*Uses(7,x)*/
+		if (leftParam->getValueType() == ValueType::INTEGER) {
+			vectorResult = pkbBrigde->getVariablesUsedByStatement(leftParam->getValue());
+		}
+		/*Uses("Earth",x)*/
+		else {
+			vectorResult = pkbBrigde->getVariablesUsedByProcedure(leftParam->getValue());
+		}
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(rightParam->getVariableName());
+		response->setVariableType(rightParam->getVariableType());
+		response->setInsertToColumnName(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getValue());
+	}
+	/*Uses(stat,"a") || Uses(proc,"a")*/
+	else if (leftParam->getState() == InvokationParamState::VARIABLE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		vector<string> vectorResult;
+
+		string varType = findTypeOfDeclaredVariable(leftParam->getVariableName());
+		/*Uses(proc,"a")*/
+		if (varType == DeclarationKeywords::PROCEDURE) {
+			vectorResult = pkbBrigde->getProceduresThatUses(rightParam->getValue());
+		}
+		/*Uses(stat,"a")*/
+		else {
+			vectorResult = pkbBrigde->getStatementsThatUses(rightParam->getValue());
+		}
+
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(leftParam->getVariableName());
+		response->setVariableType(leftParam->getVariableType());
+		response->setInsertToColumnName(rightParam->getVariableName());
+		response->setInsertToColumnValue(rightParam->getValue());
+	}
+
+	/*Uses("procName","x") || Uses(4, "x")*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		bool booleanResult;
+		/*Uses("procName","x")*/
+		if (leftParam->getValueType() == ValueType::STRING) {
+			booleanResult = pkbBrigde->isProcedureUsingVariable(leftParam->getValue(), rightParam->getValue());
+		}
+		/*Uses(4, "x")*/
+		else {
+			booleanResult = pkbBrigde->isStatementUsingVariable(leftParam->getValue(), rightParam->getValue());
+		}
+		response->setState(ResponseState::BOOLEAN);
+		response->setBooleanResponse(booleanResult);
+	} else {
+		throw QueryEvaluatorException("usesEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
 	}
 
 	return response;
@@ -389,7 +457,7 @@ vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(
 	}
 
 	if (invokationParam->getState() == InvokationParamState::ANY) {
-		if (method == QueryMethods::MODIFIES) {
+		if (method == QueryMethods::MODIFIES || method == QueryMethods::USES) {
 			if (paramNumber == 1) {
 				for (auto variable : StatementsFilter::getAllVariables(spaDataContainer)) {
 					InvokationParam* param = invokationParam->copy();
