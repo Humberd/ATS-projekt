@@ -36,21 +36,10 @@ vector<string> StatementsFilter::filter(vector<string>& statements, string type,
 		} else if (type == DeclarationKeywords::IF &&
 			dynamic_cast<IfNode*>(desredNode) != nullptr) {
 			newStatements.push_back(stmt);
-		} else if (type == DeclarationKeywords::CONSTANT &&
-			dynamic_cast<ConstantNode*>(desredNode) != nullptr) {
-			newStatements.push_back(stmt);
-		} else if (type == DeclarationKeywords::PROCEDURE &&
-			dynamic_cast<ProcedureNode*>(desredNode) != nullptr) {
-			newStatements.push_back(stmt);
-		} else if (type == DeclarationKeywords::VARIABLE &&
-			dynamic_cast<VariableNode*>(desredNode) != nullptr) {
-			newStatements.push_back(stmt);
 		} else if (type == DeclarationKeywords::WHILE &&
 			dynamic_cast<WhileNode*>(desredNode) != nullptr) {
 			newStatements.push_back(stmt);
-		} else {
-			throw QueryEvaluatorException("StatementsFilter::filter() - unknown type: " + stmt);
-		}
+		} 
 	}
 	return newStatements;
 }

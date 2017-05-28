@@ -50,6 +50,7 @@
     <ClInclude Include="ParsersRepository.h" />
     <ClInclude Include="ParsingEntity.h" />
     <ClInclude Include="PkbBridge.h" />
+    <ClInclude Include="PkbBridgeImpl.h" />
     <ClInclude Include="PkbBridgeMockImpl.h" />
     <ClInclude Include="ProcedureParser.h" />
     <ClInclude Include="ProgramLineEvaluator.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="ParsersRepository.cpp" />
     <ClCompile Include="ParsingEntity.cpp" />
     <ClCompile Include="PkbBridge.cpp" />
+    <ClCompile Include="PkbBridgeImpl.cpp" />
     <ClCompile Include="PkbBridgeMockImpl.cpp" />
     <ClCompile Include="ProcedureParser.cpp" />
     <ClCompile Include="ProgramLineEvaluator.cpp" />
@@ -232,7 +234,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DC21A1EA-D2C6-4D14-A2B4-E025B64BDE81}</ProjectGuid>
     <RootNamespace>SPA</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

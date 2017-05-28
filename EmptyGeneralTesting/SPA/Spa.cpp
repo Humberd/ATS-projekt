@@ -11,6 +11,7 @@
 #include "QueryEvaluator.h"
 #include "PkbBridgeMockImpl.h"
 #include "ResponseParser.h"
+#include "PkbBridgeImpl.h"
 
 Spa::Spa() {
 }
@@ -70,7 +71,7 @@ list<string> Spa::evaluateExpression(string declarationVariables, string query, 
 	vector<DeclaredVariable*> declaredVariables = declarationsSourceParser.parse();
 	QueryRequest* queryRequest = QuerySourceParser::cleanParse(queryTokens);
 
-	PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
+	PkbBrigde* pkbBrigde = new PkbBridgeImpl(spaDataContainer);
 	QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, queryRequest, spaDataContainer);
 	queryEvaluator->setPkbBrigde(pkbBrigde);
 	queryEvaluator->evaluate();

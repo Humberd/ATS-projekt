@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "STMT.h"
 
 using namespace std;
 
@@ -16,4 +17,9 @@ public:
 	virtual vector<string> getFollowedBy(string statement, bool goDeep) const = 0;
 	virtual vector<string> getPrevious(string statement, bool goDeep) const = 0;
 	virtual bool isElemFollowing(string first, string next, bool goDeep) const = 0;
+
+
+	STMT* parseStringToStmt(string statement) const;
+	vector<string> parseStmtsToStrings(vector<STMT*>& statements) const;
+
 };

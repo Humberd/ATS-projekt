@@ -81,6 +81,8 @@ vector<vector<string>> QueryEvaluator::evaluateReturn() {
 
 	if (returnRequest->getReturnType() == ReturnType::VARIABLES) {
 
+		vector<int> returnColumnIndexes;
+
 		for (auto queryVariable : returnRequest->getVariables()) {
 			if (findIndexOfColumnVariableName(queryVariable->getName()) < 0) {
 				string varType = findTypeOfDeclaredVariable(queryVariable->getName());
@@ -95,7 +97,18 @@ vector<vector<string>> QueryEvaluator::evaluateReturn() {
 					response[nodeIndex].push_back(nodes.at(nodeIndex));
 				}
 				return response;
+			} else {
+				returnColumnIndexes.push_back(findIndexOfColumnVariableName(queryVariable->getName()));
 			}
+		}
+
+		for (auto row : evalResults) {
+			vector<string> outputRow;
+			for (auto index : returnColumnIndexes) {
+				outputRow.push_back(row->at(index));
+			}
+
+			response.push_back(outputRow);
 		}
 	}
 

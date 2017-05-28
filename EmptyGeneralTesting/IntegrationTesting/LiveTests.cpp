@@ -19,7 +19,7 @@ TEST_CLASS(LiveTests) {
 		list<string> result = Spa::evaluateExpression(declaredVariables, expresssion, spaDataContainer);
 		string parsedResult = ResponseParser::parseForTestingPurposes(result);
 
-		Assert::IsTrue(parsedResult == expectedResult);
+		Assert::IsTrue(parsedResult == expectedResult, wstring(parsedResult.begin(), parsedResult.end()).c_str());
 	}
 
 	TEST_METHOD(Test_1) {
@@ -107,14 +107,44 @@ TEST_CLASS(LiveTests) {
 	}
 
 	TEST_METHOD(Test_15) {
-		declaredVariables = "constant c;";
-		expresssion = "Select c";
-		expectedResult = "1,2,3,5,8";
+		declaredVariables = "if i;";
+		expresssion = "Select i such that Parent(4, i)";
+		expectedResult = "none";
 	}
 
-//	TEST_METHOD(Test_171) {
-//		declaredVariables = "assign a; stmt s;";
-//		expresssion = "Select s with a.stmt# = s.stmt#";
-//		expectedResult = "1,2,6,7,8,9,11,13,14,16,17,19,20,22,23,24,25,27,28,30,31,32,35,37,38,39,40,42,43,44,45,46,47,49,53,54,55,58,59,60,61,62,66,67,68,70,72,73,74";
-//	}
+	TEST_METHOD(Test_16) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Parent*(s, 28)";
+		expectedResult = "26,21,18,15,12";
+	}
+
+	TEST_METHOD(Test_17) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Parent*(12, a)";
+		expectedResult = "13,14,16,17,19,20,22,23,24,25,27,28,30,31,32,35,37,38,39,40,42,43,44,45,46,47,49";
+	}
+
+	TEST_METHOD(Test_18) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Parent*(s, 5)";
+		expectedResult = "4";
+	}
+
+	TEST_METHOD(Test_19) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Parent*(8, s)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_20) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Parent*(s, 1)";
+		expectedResult = "none";
+	}
+
+	//	TEST_METHOD(Test_171) {
+	//		declaredVariables = "assign a; stmt s;";
+	//		expresssion = "Select s with a.stmt# = s.stmt#";
+	//		expectedResult = "1,2,6,7,8,9,11,13,14,16,17,19,20,22,23,24,25,27,28,30,31,32,35,37,38,39,40,42,43,44,45,46,47,49,53,54,55,58,59,60,61,62,66,67,68,70,72,73,74";
+	//	}
 };

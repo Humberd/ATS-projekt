@@ -23,8 +23,11 @@ class Parent
 		Node* mainNode;
 		vector<STMT*> getParentWithoutDeep(STMT* s);
 		vector<STMT*> getParentWithDeep(STMT* s);
+		void getParentWithDeepSingle(int childLine, vector<STMT*>& response);
 		vector<STMT*> getParentOfWithoutDeep(STMT* s);
 		vector<STMT*> getParentOfWithDeep(STMT* s);
+		void getParentOfWithDeepSingle(int childLine, vector<STMT*>& response);
+
 		map<int,vector<int>> parentMap;
 		map<int, vector<Node*>> statementTable;
 		bool isParentWithoutDeep(STMT* s1, STMT* s2);

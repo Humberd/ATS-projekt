@@ -1,8 +1,8 @@
 #include "Parent.h"
-Parent *Parent::instance = 0;
+#include <set>
+Parent* Parent::instance = 0;
 
-Parent::Parent(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable)
-{
+Parent::Parent(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable) {
 	this->statementTable = stmtTable;
 	this->parentMap = intTable;
 	/*
@@ -39,160 +39,138 @@ Parent::Parent(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable
 		rootNode->validate();
 		evaluator->evaluate(rootNode);
 		mainNode = rootNode;
-	}
-	catch (exception& e) {
+	} catch (exception& e) {
 	}
 
 }
 
 
-
-vector<STMT*> Parent::getParent(STMT* s, bool goDeep)
-{
+vector<STMT*> Parent::getParent(STMT* s, bool goDeep) {
 	vector<STMT*> output;
-	if (goDeep == false)
-	{
+	if (goDeep == false) {
 		output = getParentWithoutDeep(s);
-	}
-	else
-	{
+	} else {
 		output = getParentWithDeep(s);
 	}
 	return output;
 }
 
-vector<STMT*> Parent::getParentOf(STMT* s, bool goDeep)
-{
+vector<STMT*> Parent::getParentOf(STMT* s, bool goDeep) {
 	vector<STMT*> output;
-	if (goDeep == false)
-	{
+	if (goDeep == false) {
 		output = getParentOfWithoutDeep(s);
-	}
-	else
-	{
+	} else {
 		output = getParentOfWithDeep(s);
 	}
 	return output;
 }
 
-bool Parent::isParent(STMT* s1, STMT* s2, bool goDeep)
-{
+bool Parent::isParent(STMT* s1, STMT* s2, bool goDeep) {
 	bool output = false;
-	if (goDeep == false)
-	{
-		output = isParentWithoutDeep(s1,s2);
-	}
-	else
-	{
-		output = isParentWithDeep(s1,s2);
+	if (goDeep == false) {
+		output = isParentWithoutDeep(s1, s2);
+	} else {
+		output = isParentWithDeep(s1, s2);
 	}
 	return output;
 }
 
-Parent * Parent::getInstance(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable)
-{
+Parent* Parent::getInstance(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable) {
 	if (!instance) {
-		instance = new Parent(intTable,stmtTable);
+		instance = new Parent(intTable, stmtTable);
 	}
 
 	return instance;
 }
 
 
-
-vector<STMT*> Parent::getParentWithoutDeep(STMT* s)
-{
+vector<STMT*> Parent::getParentWithoutDeep(STMT* s) {
 	vector<STMT*> result;
 
-	if (statementTable.find(s->getSTMT()) == statementTable.end())
-	{
+	vector<int> children = parentMap.at(s->getSTMT());
+
+	for (auto child : children) {
+		result.push_back(new STMT(child));
 	}
-	else 
-	{
-		if (statementTable[s->getSTMT()].size() > 0)
-		{
-			Node* line = statementTable[s->getSTMT()].at(0);
-			Node* parent = line->getParent();
-			result.push_back(new STMT (parent->getProgramLineNumber()));
-		}		
-	}
+
+	delete s;
+
+	return result;
+
+}
+
+
+vector<STMT*> Parent::getParentWithDeep(STMT* s) {
+	vector<STMT*> result;
+
+	getParentWithDeepSingle(s->getSTMT(), result);
+
+	delete s;
+
 	return result;
 }
 
 
-vector<STMT*> Parent::getParentWithDeep(STMT* s)
-{
-	vector<STMT*> result;
-	if (statementTable.find(s->getSTMT()) == statementTable.end())
-	{
+void Parent::getParentWithDeepSingle(int childLine, vector<STMT*>& response) {
+	vector<int> children;
+	try {
+		children = parentMap.at(childLine);
+	} catch (out_of_range&) {
+		return;
 	}
-	else
-	{
-		int which = s->getSTMT();
-		while (true)
-		{
-			if (which < 0)
-				break;
-			Node* parent = statementTable[which].at(0)->getParent();
-			if (parent == nullptr)
-				break;
-			else
-			{
-				STMT s1 = parent->getProgramLineNumber();
-				result.push_back(new STMT(s1));
-				which = s1.getSTMT();
+
+	for (auto child : children) {
+		response.push_back(new STMT(child));
+		getParentWithDeepSingle(child, response);
+	}
+}
+
+vector<STMT*> Parent::getParentOfWithoutDeep(STMT* s) {
+	vector<STMT*> result;
+
+	for (auto entrySet : parentMap) {
+		for (auto child : entrySet.second) {
+			if (child == s->getSTMT()) {
+				result.push_back(new STMT(entrySet.first));
+				return result;
 			}
 		}
 	}
+
+	delete s;
+	return result;
+}
+
+vector<STMT*> Parent::getParentOfWithDeep(STMT* s) {
+	vector<STMT*> result;
+
+	getParentOfWithDeepSingle(s->getSTMT(), result);
+
+	delete s;
+
 	return result;
 }
 
 
-vector<STMT*> Parent::getParentOfWithoutDeep(STMT* s)
-{
-	vector<STMT*> result;
-	if (parentMap.find(s->getSTMT()) == parentMap.end()) {
-	}
-	else {
-		for (int i = 0; i < parentMap[s->getSTMT()].size(); i++)
-		{
-			STMT s1 = parentMap[s->getSTMT()].at(i);
-			result.push_back(new STMT(s1));
-		}
-	}
-	return result;
-}
-
-vector<STMT*> Parent::getParentOfWithDeep(STMT* s)
-{
-	vector<STMT*> result;
-	vector<int> help;
-	if (parentMap.find(s->getSTMT()) == parentMap.end()) {
-	}
-	else {
-		help.push_back(s->getSTMT());
-		for (int j = 0; j < help.size(); j++)
-		{
-			for (int i = 0; i < parentMap[help[j]].size(); i++)
-			{
-				help.push_back(parentMap[help[j]].at(i));
-				STMT s1 = parentMap[help[j]].at(i);
-				result.push_back(new STMT(s1));
+void Parent::getParentOfWithDeepSingle(int childLine, vector<STMT*>& response) {
+	for (auto entrySet : parentMap) {
+		for (auto child : entrySet.second) {
+			if (child == childLine) {
+				response.push_back(new STMT(entrySet.first));
+				getParentOfWithDeepSingle(entrySet.first, response);
+				return;
 			}
 		}
 	}
-	return result;
+
 }
 
-bool Parent::isParentWithoutDeep(STMT* s1, STMT* s2)
-{
+bool Parent::isParentWithoutDeep(STMT* s1, STMT* s2) {
 	bool result = false;;
 	if (parentMap.find(s1->getSTMT()) == parentMap.end()) {
-	}
-	else {
+	} else {
 		vector<int> children = parentMap[s1->getSTMT()];
-		if ((find(children.begin(), children.end(), s2->getSTMT()) != children.end()))
-		{
+		if ((find(children.begin(), children.end(), s2->getSTMT()) != children.end())) {
 			result = true;
 		}
 	}
@@ -200,42 +178,34 @@ bool Parent::isParentWithoutDeep(STMT* s1, STMT* s2)
 }
 
 
-bool Parent::isParentWithDeep(STMT* s1, STMT* s2)
-{
+bool Parent::isParentWithDeep(STMT* s1, STMT* s2) {
 	bool result = false;;
-	vector<STMT*> children  = getParentOfWithDeep(s1);
+	vector<STMT*> children = getParentOfWithDeep(s1);
 	vector<int> help;
-	for (int i = 0; i < children.size(); i++)
-	{
+	for (int i = 0; i < children.size(); i++) {
 		help.push_back(children.at(i)->getSTMT());
 	}
-	if ((find(help.begin(), help.end(), s2->getSTMT()) != help.end()))
-	{
+	if ((find(help.begin(), help.end(), s2->getSTMT()) != help.end())) {
 		result = true;
 	}
 	return result;
 }
 
 
-void Parent::FillParentTable()
-{
+void Parent::FillParentTable() {
 	vector<Node*> allNodes = mainNode->getChildren();
 
-	for (int i = 0; i < allNodes.size(); i++)
-	{
+	for (int i = 0; i < allNodes.size(); i++) {
 		vector<Node*> helpNodes = allNodes[i]->getChildren();
-		for (int j = 0; j < helpNodes.size(); j++)
-		{
+		for (int j = 0; j < helpNodes.size(); j++) {
 			allNodes.push_back(helpNodes[j]);
 		}
 	}
 	vector<vector<Node*>> parentTableHelp(allNodes.size() + 1);
 
-	for (int i = 0; i < allNodes.size(); i++)
-	{
+	for (int i = 0; i < allNodes.size(); i++) {
 		int lineNumber = allNodes[i]->getProgramLineNumber();
-		if (lineNumber < 0)
-			continue;
+		if (lineNumber < 0) continue;
 		vector<Node*> vec = parentTableHelp.at(lineNumber);
 		vec.push_back(allNodes[i]);
 		parentTableHelp[lineNumber] = vec;
@@ -244,6 +214,5 @@ void Parent::FillParentTable()
 	this->parentTable = parentTableHelp;
 }
 
-void Parent::setParent(STMT s1, STMT s2)
-{
+void Parent::setParent(STMT s1, STMT s2) {
 }
