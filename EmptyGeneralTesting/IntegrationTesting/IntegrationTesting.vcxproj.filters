@@ -61,5 +61,8 @@
     <Text Include="NextTest.txt">
       <Filter>Resource Files\Assignment</Filter>
     </Text>
+    <Text Include="FlowPath.txt">
+      <Filter>Resource Files\Assignment</Filter>
+    </Text>
   </ItemGroup>
 </Project>

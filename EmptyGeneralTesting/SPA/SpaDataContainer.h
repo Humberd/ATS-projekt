@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include "Node.h"
+#include "NodeFlowWrapper.h"
 
 using namespace std;
 
@@ -42,4 +43,14 @@ public:
 
 	/*A list of program procedures*/
 	vector<Node*> proceduresTable;
+
+	/*..........................................*/
+	/*FLOW GRAPHS*/
+	
+	/*Every NodeFlowWrapper is a procedure with one outNode*/
+	vector<NodeFlowWrapper*> proceduresFlowWrappers;
+
+	/*It maps programLineNumber to a specific NodeFlowWrapper*/
+	map<int, NodeFlowWrapper*> flowWrappersTable;
+
 };

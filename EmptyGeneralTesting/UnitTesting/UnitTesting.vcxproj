@@ -199,6 +199,7 @@
     <ClCompile Include="MethodParserTest.cpp" />
     <ClCompile Include="ModifiesTest.cpp" />
     <ClCompile Include="NextTest.cpp" />
+    <ClCompile Include="NodeFlowPathTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="ParentTest.cpp" />
     <ClCompile Include="OperatorsTest.cpp" />

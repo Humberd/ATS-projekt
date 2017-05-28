@@ -27,6 +27,7 @@
     <ClInclude Include="DParsersRepository.h" />
     <ClInclude Include="DParsingEntity.h" />
     <ClInclude Include="ExpressionNode.h" />
+    <ClInclude Include="FlowPathGenerator.h" />
     <ClInclude Include="FromCallDeepTraverser.h" />
     <ClInclude Include="FromDeepTraverser.h" />
     <ClInclude Include="GetCallsDeepTraverser.h" />
@@ -44,6 +45,7 @@
     <ClInclude Include="MethodManyParser.h" />
     <ClInclude Include="MethodParser.h" />
     <ClInclude Include="MultiMapResult.h" />
+    <ClInclude Include="NodeFlowWrapper.h" />
     <ClInclude Include="Operators.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="ParameterType.h" />
@@ -141,6 +143,7 @@
     <ClCompile Include="DParsersRepository.cpp" />
     <ClCompile Include="DParsingEntity.cpp" />
     <ClCompile Include="ExpressionNode.cpp" />
+    <ClCompile Include="FlowPathGenerator.cpp" />
     <ClCompile Include="Follows.cpp" />
     <ClCompile Include="FromCallDeepTraverser.cpp" />
     <ClCompile Include="FromDeepTraverser.cpp" />
@@ -165,6 +168,7 @@
     <ClCompile Include="Modifies.cpp" />
     <ClCompile Include="MultiMapResult.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="NodeFlowWrapper.cpp" />
     <ClCompile Include="Operators.cpp" />
     <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="Parent.cpp" />

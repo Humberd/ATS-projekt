@@ -157,6 +157,12 @@
     <Filter Include="Source Files\TreeAnalyzer\Exceptions">
       <UniqueIdentifier>{0f984a7c-d2a8-4055-9894-3b6be842afb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\NodeFlowPath">
+      <UniqueIdentifier>{8fba5012-5d2b-46c1-b2c3-1cb12fd8ebfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NodeFlowPath">
+      <UniqueIdentifier>{6b963b38-5c1b-4f8b-a852-5a7871b71f1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Affects.h">
@@ -492,6 +498,12 @@
     <ClInclude Include="PkbBridgeImpl.h">
       <Filter>Header Files\QueryEvaluator</Filter>
     </ClInclude>
+    <ClInclude Include="FlowPathGenerator.h">
+      <Filter>Header Files\NodeFlowPath</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeFlowWrapper.h">
+      <Filter>Header Files\NodeFlowPath</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
@@ -820,6 +832,12 @@
     </ClCompile>
     <ClCompile Include="Operators.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeFlowWrapper.cpp">
+      <Filter>Source Files\NodeFlowPath</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowPathGenerator.cpp">
+      <Filter>Source Files\NodeFlowPath</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -79,6 +79,9 @@
     <Filter Include="Source Files\TreeAnalyzer">
       <UniqueIdentifier>{246b1e10-c5db-4f01-901b-b46e89793289}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\NodeFlowPath">
+      <UniqueIdentifier>{126b8794-5e09-48f5-be35-17dcc56320f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -298,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="QueryEvaluatorTest2.cpp">
       <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeFlowPathTest.cpp">
+      <Filter>Source Files\NodeFlowPath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
