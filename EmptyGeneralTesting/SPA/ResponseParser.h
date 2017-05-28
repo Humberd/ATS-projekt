@@ -1,6 +1,8 @@
 #pragma once
 #include <list>
 #include <vector>
+#include <algorithm>
+#include <locale>
 
 using namespace std;
 
@@ -12,4 +14,5 @@ public:
 	static list<string> parse(vector<vector<string>> originalResponse);
 
 	static string parseForTestingPurposes(list<string>& responseList);
+	
 };

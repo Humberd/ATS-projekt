@@ -1,4 +1,5 @@
 #include "ResponseParser.h"
+#include <algorithm>
 
 ResponseParser::ResponseParser() {
 }
@@ -30,6 +31,14 @@ list<string> ResponseParser::parse(vector<vector<string>> originalResponse) {
 }
 
 string ResponseParser::parseForTestingPurposes(list<string>& responseList) {
+	responseList.sort([](string& firstItem, string& secondItem) {
+			try {
+				return stoi(firstItem) < stoi(secondItem);
+			} catch(exception&) {
+				return false;
+			}
+		});
+
 	if (responseList.size() == 0) {
 		return "none";
 	}

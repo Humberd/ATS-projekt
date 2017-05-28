@@ -115,7 +115,7 @@ TEST_CLASS(LiveTests) {
 	TEST_METHOD(Test_16) {
 		declaredVariables = "stmt s;";
 		expresssion = "Select s such that Parent*(s, 28)";
-		expectedResult = "26,21,18,15,12";
+		expectedResult = "12,15,18,21,26";
 	}
 
 	TEST_METHOD(Test_17) {
@@ -201,7 +201,120 @@ TEST_CLASS(LiveTests) {
 		expresssion = "Select BOOLEAN such that Parent(foo,foo)";
 		expectedResult = "false";
 	}
+	/*-----------FOLLOWS--------------*/
+	TEST_METHOD(Test_31) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Follows(s, 11)";
+		expectedResult = "10";
+	}
+	TEST_METHOD(Test_32) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Follows(15, s)";
+		expectedResult = "46";
+	}
+	TEST_METHOD(Test_33) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Follows(57, a)";
+		expectedResult = "61";
+	}
+	TEST_METHOD(Test_34) {
+		declaredVariables = "call c;";
+		expresssion = "Select c such that Follows(55, c)";
+		expectedResult = "56";
+	}
+	TEST_METHOD(Test_35) {
+		declaredVariables = "if i;";
+		expresssion = "Select i such that Follows(62, i)";
+		expectedResult = "63";
+	}
+	TEST_METHOD(Test_36) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Follows*(s, 26)";
+		expectedResult = "22,23,24,25";
+	}
+	TEST_METHOD(Test_37) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Follows*(16, a)";
+		expectedResult = "17,45";
+	}
 
+	TEST_METHOD(Test_38) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Follows*(s, 12)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_39) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Follows*(50, s)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_40) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Follows*(s, 54)";
+		expectedResult = "53";
+	}
+
+	TEST_METHOD(Test_41) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select BOOLEAN such that Follows(s,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_42) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select BOOLEAN such that Follows*(s,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_43) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Follows(_,foo)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_44) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Follows*(_,foo)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_45) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Follows(_,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_46) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Follows(14,46)";
+		expectedResult = "false";
+	}
+
+	TEST_METHOD(Test_47) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Follows(15,46)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_48) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Follows*(13,46)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_49) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Follows*(foo,foo)";
+		expectedResult = "false";
+	}
+
+	TEST_METHOD(Test_50) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Follows*(foo,foo)";
+		expectedResult = "false";
+	}
 
 	//	TEST_METHOD(Test_171) {
 	//		declaredVariables = "assign a; stmt s;";
