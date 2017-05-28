@@ -201,7 +201,6 @@
     <ClCompile Include="NextTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
     <ClCompile Include="ParentTest.cpp" />
-    <ClCompile Include="QueryParserTest.cpp" />
     <ClCompile Include="OperatorsTest.cpp" />
     <ClCompile Include="ParsingEntityTest.cpp" />
     <ClCompile Include="ProcedureNodeMock.cpp" />

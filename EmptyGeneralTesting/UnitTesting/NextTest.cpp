@@ -31,7 +31,7 @@ TEST_CLASS(NextTest) {
 	}
 
 	TEST_METHOD_INITIALIZE(Init) {
-		rootNode = Spa::generateAstFromFile("../IntegrationTesting/NextTest.txt");
+		rootNode = Spa::generateAstFromFile("../IntegrationTesting/Source2.txt");
 	}
 
 	TEST_METHOD_CLEANUP(Cleanup) {
@@ -40,6 +40,8 @@ TEST_CLASS(NextTest) {
 
 	TEST_METHOD(isNextTest) {
 		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+		auto sss = container->statementTable;
 		Next* next = new Next(container->statementTable);
+		bool a = next->isNext(new STMT(1), new STMT(2), false);
 	}
 };

@@ -1,5 +1,7 @@
 #include "Next.h"
 
+Next *Next::instance = 0;
+
 Next::Next(map<int, vector<Node*>> statementTable)
 {
 	this->statementTable = statementTable;

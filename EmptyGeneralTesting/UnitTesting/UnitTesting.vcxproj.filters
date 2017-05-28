@@ -293,9 +293,6 @@
     <ClCompile Include="TreeAnalyzerTest.cpp">
       <Filter>Source Files\TreeAnalyzer</Filter>
     </ClCompile>
-    <ClCompile Include="QueryParserTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NextTest.cpp">
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
