@@ -137,7 +137,7 @@ MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, Invok
 	} else if (methodName == QueryMethods::MODIFIES) {
 		response = modifiesEvaluator(leftParam, rightParam, goDeep);
 	} else if (methodName == QueryMethods::USES) {
-		response = modifiesEvaluator(leftParam, rightParam, goDeep);
+		response = usesEvaluator(leftParam, rightParam, goDeep);
 	} else {
 		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
 	}
