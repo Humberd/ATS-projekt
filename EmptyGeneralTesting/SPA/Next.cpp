@@ -60,6 +60,11 @@ vector<STMT*> Next::goNextByWithoutDeep(STMT * s)
 
 bool Next::isNextDeep(STMT * s1, STMT * s2)
 {
+	vector<Node*> s1Node = this->statementTable.at(s1->getSTMT());
+	vector<Node*> s2Node = this->statementTable.at(s2->getSTMT());
+	vector<Node*> imHere;
+	if (getNext2Deep(s1Node.front(), s2Node.front(), imHere) != nullptr) return true;
+
 	return false;
 }
 
@@ -68,16 +73,26 @@ bool Next::isNext(STMT * s1, STMT * s2)
 	vector<Node*> s1Node = this->statementTable.at(s1->getSTMT());
 	vector<Node*> s2Node = this->statementTable.at(s2->getSTMT());
 
-	if (dynamic_cast<WhileNode*>(s1Node.front())) {
-		return inWhileNodeSearch(dynamic_cast<WhileNode*>(s1Node.front()), s2Node.front());
+	Node* aa = getNext2(s1Node.front(), s1Node.front(), s2Node.front());
+
+	if (aa != nullptr && aa->getProgramLineNumber() == s2Node.front()->getProgramLineNumber()) {
+		return true;
 	}
-	else if (dynamic_cast<IfNode*>(s1Node.front())) {
-		return inIfNodeSearch(dynamic_cast<IfNode*>(s1Node.front()), s2Node.front());
+	else
+	{
+		return false;
 	}
-	else {
-		return inProcedureSearch(s1Node.front(), s2Node.front());
-			//s1Node.front()->getProgramLineNumber() + 1 == s2Node.front()->getProgramLineNumber();
-	}	
+
+	//if (dynamic_cast<WhileNode*>(s1Node.front())) {
+	//	return inWhileNodeSearch(dynamic_cast<WhileNode*>(s1Node.front()), s2Node.front());
+	//}
+	//else if (dynamic_cast<IfNode*>(s1Node.front())) {
+	//	return inIfNodeSearch(dynamic_cast<IfNode*>(s1Node.front()), s2Node.front());
+	//}
+	//else {
+	//	return inProcedureSearch(s1Node.front(), s2Node.front());
+	//		//s1Node.front()->getProgramLineNumber() + 1 == s2Node.front()->getProgramLineNumber();
+	//}	
 }
 
 bool Next::inIfNodeSearch(IfNode * ifNode, Node * nextNode)
@@ -172,25 +187,190 @@ Node * Next::getNext2(Node * startNode, Node * s1, Node * s2)
 {
 	vector<Node*> children;
 
-	if (dynamic_cast<StatementListNode*>(startNode->getParent())) {
+	if (dynamic_cast<StatementListNode*>(startNode->getParent()) && dynamic_cast<ProcedureNode*>(startNode->getParent()->getParent()) == nullptr) {
 		if (dynamic_cast<WhileNode*>(startNode->getParent()->getParent())) {
+			for (auto child : startNode->getParent()->getParent()->getChildren()) {
+				if (dynamic_cast<StatementListNode*>(child)) {
+					auto stmtNode = dynamic_cast<StatementListNode*>(child);
 
+					if (stmtNode->getChildren().back()->getProgramLineNumber() == s1->getProgramLineNumber()) //sprawdzam czy wyrazenie jest ostatnie w stmt list
+					{
+						return child->getParent();
+					}
+
+					for (int i = 0; i < stmtNode->getChildren().size(); i++) {
+						if (stmtNode->getChildren()[i]->getProgramLineNumber() == s1->getProgramLineNumber() && i + 1 <= stmtNode->getChildren().size() - 1) {
+							return stmtNode->getChildren()[i + 1];
+						}
+					}
+				}
+			}
 		}
 
 		if (dynamic_cast<IfNode*>(startNode->getParent()->getParent())) {
 			children = startNode->getParent()->getChildren(); //pobranie wszystkich linni znajdujacych sie w if
 
-			children.back()->getProgramLineNumber() == s1->getProgramLineNumber(); //sprawdzam czy wyrazenie jest ostatnie w stmt list
-			for (int i = 0; i < children.size(); i++) {
-				if (children[i]->getProgramLineNumber() == s1->getProgramLineNumber() && i + 1 <= children.size() - 1) {
-					return children[i + 1];
+			for (auto child : startNode->getParent()->getParent()->getChildren()) {
+				if (dynamic_cast<StatementListNode*>(child)) {
+					auto stmtNode = dynamic_cast<StatementListNode*>(child);
+
+					if (stmtNode->getChildren().back()->getProgramLineNumber() == s1->getProgramLineNumber()) //sprawdzam czy wyrazenie jest ostatnie w stmt list
+					{
+						return getNext2(startNode->getParent()->getParent(), startNode->getParent()->getParent(), s2);
+					}
+
+					for (int i = 0; i < stmtNode->getChildren().size(); i++) {
+						if (stmtNode->getChildren()[i]->getProgramLineNumber() == s1->getProgramLineNumber() && i + 1 <= stmtNode->getChildren().size() - 1) {
+							return stmtNode->getChildren()[i + 1];
+						}
+					}
 				}
+			}
+		}
+	}
+	else
+	{
+		if (dynamic_cast<IfNode*>(startNode))
+		{
+			children = startNode->getChildren();
+
+			for (auto child : children) {
+				if (dynamic_cast<StatementListNode*>(child)) {
+					auto stmtNode = dynamic_cast<StatementListNode*>(child);
+
+					for (int i = 0; i < stmtNode->getChildren().size(); i++) {
+						if (stmtNode->getChildren()[i]->getProgramLineNumber() == s2->getProgramLineNumber()) {
+							return s2;
+						}
+					}
+				}
+			}
+
+			return nullptr;
+		}
+
+			for (int i = 0; i < startNode->getParent()->getChildren().size(); i++) {
+				if (startNode->getParent()->getChildren()[i]->getProgramLineNumber() == s1->getProgramLineNumber() && i + 1 <= startNode->getParent()->getChildren().size() - 1) {
+					return startNode->getParent()->getChildren()[i + 1];
+				}
+			}
+		
+	}
+
+
+
+	return nullptr;
+}
+
+Node * Next::getNext2Deep(Node * startNode, Node * s2, vector<Node*>& imHere)
+{
+	bool omg = false;
+	int counter = 0;
+
+	for (Node* node : imHere) {
+		if (node->getProgramLineNumber() == startNode->getProgramLineNumber()) {
+			omg = true;
+			counter++;
+		}
+	}
+
+	if (dynamic_cast<StatementListNode*>(startNode->getParent()) && dynamic_cast<ProcedureNode*>(startNode->getParent()->getParent()) == nullptr && omg == false) {
+		if (dynamic_cast<WhileNode*>(startNode->getParent()->getParent())) {
+			for (auto child : startNode->getParent()->getParent()->getChildren()) {
+				if (dynamic_cast<StatementListNode*>(child)) {
+					auto stmtNode = dynamic_cast<StatementListNode*>(child);
+
+					for (Node* child : stmtNode->getChildren()) {
+
+						if (child->getProgramLineNumber() == s2->getProgramLineNumber()) {
+							return s2;
+						}
+
+						if (dynamic_cast<WhileNode*>(child) || dynamic_cast<IfNode*>(child)) {
+							imHere.push_back(child);
+							getNext2Deep(child, s2, imHere);
+						}
+					}
+				}
+			}
+			return getNext2Deep(startNode->getParent()->getParent(), s2, imHere);
+		}
+
+		if (dynamic_cast<IfNode*>(startNode->getParent()->getParent())) {
+			for (auto child : startNode->getParent()->getParent()->getChildren()) {
+				if (dynamic_cast<StatementListNode*>(child)) {
+					auto stmtNode = dynamic_cast<StatementListNode*>(child);
+
+					for (Node* child : stmtNode->getChildren()) {
+
+						if (child->getProgramLineNumber() == s2->getProgramLineNumber()) {
+							return s2;
+						}
+
+						if (dynamic_cast<WhileNode*>(child) || dynamic_cast<IfNode*>(child)) {
+							imHere.push_back(child);
+							getNext2Deep(child, s2, imHere);
+						}
+					}
+				}
+			}
+
+			return getNext2Deep(startNode->getParent()->getParent(), s2, imHere);
+		}
+	}
+	else if (counter < 20)
+	{
+		if (dynamic_cast<IfNode*>(startNode))
+		{
+			for (auto child : startNode->getChildren()) {
+				if (dynamic_cast<StatementListNode*>(child)) {
+					auto stmtNode = dynamic_cast<StatementListNode*>(child);
+
+					for (int i = 0; i < stmtNode->getChildren().size(); i++) {
+						if (stmtNode->getChildren()[i]->getProgramLineNumber() == s2->getProgramLineNumber()) {
+							return s2;
+						}
+					}
+
+					if (dynamic_cast<WhileNode*>(child) || dynamic_cast<IfNode*>(child)) {
+						imHere.push_back(child);
+						return getNext2Deep(child, s2, imHere);
+					}
+				}
+			}
+		}
+
+		if (dynamic_cast<WhileNode*>(startNode)) {
+			for (auto child : startNode->getChildren()) {
+				if (dynamic_cast<StatementListNode*>(child)) {
+					auto stmtNode = dynamic_cast<StatementListNode*>(child);
+
+					for (Node* child : stmtNode->getChildren()) {
+
+						if (child->getProgramLineNumber() == s2->getProgramLineNumber()) {
+							return s2;
+						}
+
+						if (dynamic_cast<WhileNode*>(child) || dynamic_cast<IfNode*>(child)) {
+							imHere.push_back(child);
+							return getNext2Deep(child, s2, imHere);
+						}
+					}
+				}
+			}
+		}
+
+		for (int i = 0; i < startNode->getParent()->getChildren().size(); i++) {
+			if (startNode->getParent()->getChildren()[i]->getProgramLineNumber() == s2->getProgramLineNumber() && i + 1 <= startNode->getParent()->getChildren().size() - 1) {
+				return s2;
+			}
+
+			if (dynamic_cast<WhileNode*>(startNode->getParent()->getChildren()[i]) || dynamic_cast<IfNode*>(startNode->getParent()->getChildren()[i])) {
+				imHere.push_back(startNode->getParent()->getChildren()[i]);
+				return getNext2Deep(startNode->getParent()->getChildren()[i], s2, imHere);
 			}
 		}
 	}
 
 	return nullptr;
 }
-
-
-

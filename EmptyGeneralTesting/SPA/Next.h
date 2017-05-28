@@ -29,4 +29,5 @@ private:
 	bool inProcedureSearch(Node* firstNode, Node* secondNode);
 	Node* getNext(Node* node);
 	Node* getNext2(Node* startNode, Node* s1, Node* s2);
+	Node * getNext2Deep(Node * startNode, Node * s2, vector<Node*>& imHere);
 };
