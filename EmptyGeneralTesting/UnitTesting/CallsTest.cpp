@@ -1,11 +1,22 @@
 #include "stdafx.h"
 #include <CppUnitTest.h>
 #include "../SPA/Calls.h"
+#include "../SPA/Node.h"
+#include "../SPA/Spa.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
 TEST_CLASS(CallsTest) {
+	Node* rootNode = nullptr;
+
+	TEST_METHOD_INITIALIZE(Init) {
+		rootNode = Spa::generateAstFromFile("../IntegrationTesting/NextTest.txt");
+	}
+
+	TEST_METHOD_CLEANUP(Cleanup) {
+		delete rootNode;
+	}
 	//TEST_METHOD(Calls_getCallsDeep) {
 	//	Calls* calls = new Calls;
 	//	calls->setCalls(new PROC("1"), new PROC("2"));
@@ -65,7 +76,9 @@ TEST_CLASS(CallsTest) {
 //	}
 //
 	TEST_METHOD(setCalls) {
-		Calls *calls = new Calls();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Calls *calls = new Calls(container->callsTable);
 		
 		PROC* p = new PROC("1");
 		PROC* q = new PROC("2");
@@ -78,7 +91,9 @@ TEST_CLASS(CallsTest) {
 	}
 
 	TEST_METHOD(getCalls) {
-		Calls *calls = new Calls;
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Calls *calls = new Calls(container->callsTable);
 
 		PROC* p0 = new PROC("1");
 		PROC* p1 = new PROC("5");
@@ -114,7 +129,9 @@ TEST_CLASS(CallsTest) {
 
 	
 		TEST_METHOD(getCallsFrom) {
-			Calls *calls = new Calls();
+			SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+			Calls *calls = new Calls(container->callsTable);
 	
 			PROC* p0 = new PROC("1");
 			PROC* p1 = new PROC("2");
@@ -144,7 +161,9 @@ TEST_CLASS(CallsTest) {
 		}
 
 		TEST_METHOD(getCallsFromDeep) {
-			Calls *calls = new Calls;
+			SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+			Calls *calls = new Calls(container->callsTable);
 
 			PROC* p0 = new PROC("1");
 			PROC* p1 = new PROC("2");

@@ -1,14 +1,27 @@
 #include "stdafx.h"
 #include <CppUnitTest.h>
 #include "../SPA/Modifies.h"
+#include "../SPA/Node.h"
+#include "../SPA/Spa.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
 TEST_CLASS(ModifiesTest) {
+	Node* rootNode = nullptr;
+
+	TEST_METHOD_INITIALIZE(Init) {
+		rootNode = Spa::generateAstFromFile("../IntegrationTesting/NextTest.txt");
+	}
+
+	TEST_METHOD_CLEANUP(Cleanup) {
+		delete rootNode;
+	}
 
 	TEST_METHOD(Modifies_setModifiesSTMT_Test) {
-		auto modifies = new Modifies();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+		
+		auto modifies = new Modifies(container->modifiesStatementTable, container->modifiesProcedureTable);
 		
 		modifies->setModifies(new STMT(1), new VAR("a"));
 		modifies->setModifies(new STMT(1), new VAR("b"));
@@ -25,7 +38,9 @@ TEST_CLASS(ModifiesTest) {
 	}
 
 	TEST_METHOD(Modifies_setModifiesPROC_Test) {
-		auto modifies = new Modifies();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		auto modifies = new Modifies(container->modifiesStatementTable, container->modifiesProcedureTable);
 
 		modifies->setModifies(new PROC("p1"), new VAR("a"));
 		modifies->setModifies(new PROC("p1"), new VAR("b"));
@@ -42,7 +57,9 @@ TEST_CLASS(ModifiesTest) {
 	}
 
 	TEST_METHOD(Modifies_getModifiesSTMT_Test) {
-		auto modifies = new Modifies();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		auto modifies = new Modifies(container->modifiesStatementTable, container->modifiesProcedureTable);
 
 		modifies->setModifies(new STMT(1), new VAR("a"));
 		modifies->setModifies(new STMT(1), new VAR("b"));
@@ -64,7 +81,9 @@ TEST_CLASS(ModifiesTest) {
 	}
 
 	TEST_METHOD(Modifies_getModifiesPROC_Test) {
-		auto modifies = new Modifies();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		auto modifies = new Modifies(container->modifiesStatementTable, container->modifiesProcedureTable);
 
 		modifies->setModifies(new PROC("p1"), new VAR("a"));
 		modifies->setModifies(new PROC("p1"), new VAR("b"));
@@ -86,7 +105,9 @@ TEST_CLASS(ModifiesTest) {
 	}
 
 	TEST_METHOD(Modifies_getModifiesBySTMT_Test) {
-		auto modifies = new Modifies();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		auto modifies = new Modifies(container->modifiesStatementTable, container->modifiesProcedureTable);
 
 		modifies->setModifies(new STMT(1), new VAR("a"));
 		modifies->setModifies(new STMT(1), new VAR("b"));
@@ -108,7 +129,9 @@ TEST_CLASS(ModifiesTest) {
 	}
 
 	TEST_METHOD(Modifies_getModifiesByPROC_Test) {
-		auto modifies = new Modifies();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		auto modifies = new Modifies(container->modifiesStatementTable, container->modifiesProcedureTable);
 
 		modifies->setModifies(new PROC("p1"), new VAR("a"));
 		modifies->setModifies(new PROC("p1"), new VAR("b"));
@@ -130,7 +153,9 @@ TEST_CLASS(ModifiesTest) {
 	}
 
 	TEST_METHOD(Modifies_isModifiesSTMT_Test) {
-		auto modifies = new Modifies();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		auto modifies = new Modifies(container->modifiesStatementTable, container->modifiesProcedureTable);
 
 		modifies->setModifies(new STMT(1), new VAR("a"));
 		modifies->setModifies(new STMT(1), new VAR("b"));
@@ -152,7 +177,9 @@ TEST_CLASS(ModifiesTest) {
 	}
 
 	TEST_METHOD(Modifies_isModifiesPROC_Test) {
-		auto modifies = new Modifies();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		auto modifies = new Modifies(container->modifiesStatementTable, container->modifiesProcedureTable);
 
 		modifies->setModifies(new PROC("p1"), new VAR("a"));
 		modifies->setModifies(new PROC("p1"), new VAR("b"));
