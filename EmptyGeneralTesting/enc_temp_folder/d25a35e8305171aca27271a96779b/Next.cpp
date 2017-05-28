@@ -178,9 +178,8 @@ Node * Next::getNext2(Node * startNode, Node * s1, Node * s2)
 		}
 
 		if (dynamic_cast<IfNode*>(startNode->getParent()->getParent())) {
-			children = startNode->getParent()->getChildren(); //pobranie wszystkich linni znajdujacych sie w if
+			children = startNode->getChildren(); //pobranie wszystkich linni znajdujacych sie w if
 
-			children.back()->getProgramLineNumber() == s1->getProgramLineNumber(); //sprawdzam czy wyrazenie jest ostatnie w stmt list
 			for (int i = 0; i < children.size(); i++) {
 				if (children[i]->getProgramLineNumber() == s1->getProgramLineNumber() && i + 1 <= children.size() - 1) {
 					return children[i + 1];

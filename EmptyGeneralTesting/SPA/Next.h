@@ -28,4 +28,5 @@ private:
 	bool inWhileNodeSearch(WhileNode* whileNode, Node* nextNode);
 	bool inProcedureSearch(Node* firstNode, Node* secondNode);
 	Node* getNext(Node* node);
+	Node* getNext2(Node* startNode, Node* s1, Node* s2);
 };
