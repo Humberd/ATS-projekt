@@ -558,6 +558,120 @@ TEST_CLASS(LiveTests) {
 		expectedResult = "true";
 	}
 	/*--------------NEXT-------------------*/
+	TEST_METHOD(Test_91) {
+		declaredVariables = "stmt s; ";
+		expresssion = "Select s such that Next(s, 11)";
+		expectedResult = "10";
+	}
+
+	TEST_METHOD(Test_92) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Next(15, s)";
+		expectedResult = "16,46";
+	}
+
+	TEST_METHOD(Test_93) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Next(57, a)";
+		expectedResult = "58,59";
+	}
+	TEST_METHOD(Test_94) {
+		declaredVariables = "call c;";
+		expresssion = "Select c such that Next(55, c)";
+		expectedResult = "56";
+	}
+
+	TEST_METHOD(Test_95) {
+		declaredVariables = "if i;";
+		expresssion = "Select i such that Next(62, i)";
+		expectedResult = "63";
+	}
+
+	TEST_METHOD(Test_96) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Next*(s, 26)";
+		expectedResult = "12,13,14,15,16,17,19,20,18,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45";
+	}
+
+	TEST_METHOD(Test_97) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Next*(16, a)";
+		expectedResult = "16,17,19,20,22,23,24,25,27,28,30,31,32,35,37,38,39,40,42,43,44,45,46";
+	}
+
+	TEST_METHOD(Test_98) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Next*(s, 12)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_99) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Next*(50, s)";
+		expectedResult = "48,49,50";
+	}
+	TEST_METHOD(Test_100) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select s such that Next*(s, 54)";
+		expectedResult = "51,52,53,54";
+	}
+	TEST_METHOD(Test_101) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select BOOLEAN such that Next(s,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_102) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select BOOLEAN such that Next*(s,_)";
+		expectedResult = "true";
+	}
+	TEST_METHOD(Test_103) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Next(_,foo)";
+		expectedResult = "true";
+	}
+	TEST_METHOD(Test_104) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Next*(_,foo)";
+		expectedResult = "true";
+	}
+	TEST_METHOD(Test_105) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Next(_,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_106) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Next(14,46)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_107) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Next(15,46)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_108) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Next*(1,74)";
+		expectedResult = "false";
+	}
+
+	TEST_METHOD(Test_109) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Next*(foo,foo)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_110) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Next(foo,foo)";
+		expectedResult = "false";
+	}
+
 	/*--------------AFFECTS----------------*/
 	TEST_METHOD(Test_111) {
 		declaredVariables = "assign a;";
