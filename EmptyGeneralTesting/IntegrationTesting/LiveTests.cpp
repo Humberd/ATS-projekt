@@ -558,7 +558,186 @@ TEST_CLASS(LiveTests) {
 		expectedResult = "true";
 	}
 	/*--------------NEXT-------------------*/
+	/*--------------AFFECTS----------------*/
+	TEST_METHOD(Test_111) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (6, a)";
+		expectedResult = "6,7,8";
+	}
 
+	TEST_METHOD(Test_112) {
+		declaredVariables = "assign a; ";
+		expresssion = "Select a such that Affects (55, a)";
+		expectedResult = "58,59,60";
+	}
+
+	TEST_METHOD(Test_113) {
+		declaredVariables = "assign a; ";
+		expresssion = "Select a such that Affects (14,_)";
+		expectedResult = "1,2,6,7,8,9,11,13,14,16,17,19,20,22,23,24,25,27,28,30,31,32,35,37,38,39,40,42,43,44,45,46,47,49,53,54,55,58,59,60,61,62,66,67,68,70,72,73,74";
+	}
+
+	TEST_METHOD(Test_114) {
+		declaredVariables = "assign a; ";
+		expresssion = "Select BOOLEAN such that Affects (17, 49)";
+		expectedResult = "false";
+	}
+
+	TEST_METHOD(Test_115) {
+		declaredVariables = "assign a; ";
+		expresssion = "Select a such that Affects (23, 1)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_116) {
+		declaredVariables = "assign a; ";
+		expresssion = "Select a such that Affects (23, a)";
+		expectedResult = "16,19,22,24,27,28,32,45";
+	}
+
+	TEST_METHOD(Test_117) {
+		declaredVariables = "assign a;";
+		expresssion = "Select BOOLEAN such that Affects (62,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_118) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects* (23, a)";
+		expectedResult = "16,19,22,24,27,28,32,45,25,31,46,17,20,38,39,23,35,42,44,43";
+	}
+
+	TEST_METHOD(Test_119) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects* (53, a)";
+		expectedResult = "54,55,58,59,60,61";
+	}
+
+	TEST_METHOD(Test_120) {
+		declaredVariables = "assign a;";
+		expresssion = "Select BOOLEAN such that Affects* (_,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_121) {
+		declaredVariables = "assign ASSIGN;";
+		expresssion = "Select ASSIGN such that Affects* (ASSIGN, 32)";
+		expectedResult = "13,14,16,17,20,23,24,25,27,28,30,32,37,3940,43";
+	}
+
+	TEST_METHOD(Test_122) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects* (17, a)";
+		expectedResult = "16,17,19,20,22,27,31,32,35,38,39,42,43,44,45,46";
+	}
+
+	TEST_METHOD(Test_123) {
+		declaredVariables = "assign a;";
+		expresssion = "Select BOOLEAN such that Affects (9, 11)";
+		expectedResult = "false";
+	}
+
+	TEST_METHOD(Test_124) {
+		declaredVariables = "if i;";
+		expresssion = "Select i.stmt# such that Affects (13, 16)";
+		expectedResult = "4,12,18,29,33,34,57,63,64,65,71";
+	}
+
+	TEST_METHOD(Test_125) {
+		declaredVariables = "assign a;";
+		expresssion = "Select BOOLEAN such that Affects (17, 19)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_126) {
+		declaredVariables = "assign a;";
+		expresssion = "Select BOOLEAN such that Affects (20, 27)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_127) {
+		declaredVariables = "assign a;";
+		expresssion = "Select BOOLEAN such that Affects (_,58)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_128) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (a, 13)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_129) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (a, 72)";
+		expectedResult = "72";
+	}
+
+	TEST_METHOD(Test_130) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (a, 27)";
+		expectedResult = "27,28,23,20";
+	}
+
+	TEST_METHOD(Test_131) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (a, 45)";
+		expectedResult = "13,17,20,23,27,28,37,39";
+	}
+
+	TEST_METHOD(Test_132) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (a, 54)";
+		expectedResult = "53";
+	}
+
+	TEST_METHOD(Test_133) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (a, 68)";
+		expectedResult = "62";
+	}
+
+	TEST_METHOD(Test_134) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (6, a)";
+		expectedResult = "6,7,8";
+	}
+
+	TEST_METHOD(Test_135) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (11, a)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_136) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (24, a)";
+		expectedResult = "16,23,25";
+	}
+
+	TEST_METHOD(Test_137) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (30, a)";
+		expectedResult = "24";
+	}
+
+	TEST_METHOD(Test_138) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (74, a)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_139) {
+		declaredVariables = "assign a;";
+		expresssion = "Select a such that Affects (58, a)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_140) {
+		declaredVariables = "assign a;";
+		expresssion = "Select c.value such that Affects (a,a)";
+		expectedResult = "1,2,3,5,8";
+	}
 
 
 
