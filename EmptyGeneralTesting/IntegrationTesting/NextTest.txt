@@ -1,41 +1,18 @@
-procedure Planet {
-  x = 8;
-  z = x + 4;
-  m = x * 4;
-  d = x * z + 6;
-  call Sun;
-  a = x + z * a;
-  call Moon;
-  y = a * x + z;
-  if m then {
-    y = a + z;
-    while t {
-      y = y + x;
-      x = x - 1; }
-    z = x + a; }
-   else {
-    z = x + a;
-    call Moon;
-    m = m + 6; }
-  call Earth; }
+ procedure Second {
+  x = 0;
+  i = 5;
+  while i {
+    x = x + 2 * y;
+    call Third;
+    i = i - 1; }
+  if x then {
+   x = x + 1; }
+  else {
+   z = 1; }
+  z = z + x + i;
+  y = z + 2;
+  x = x * y + z; }
 
-procedure Earth {
-  while t {
-    x = d + 5 * y + z;
-    call Sun;
-    t = t - 1; }
-  d = x + d; }
-
-procedure Moon {
-  if a then {
-    x = x * a; }
-   else {
-    x = x + a; }
-  y = x + 2; }
-
-procedure Sun {
-  while y {
-    if t then {
-      z = x + 30; }
-     else {
-      x = x * y + d + y * a; } } }
+  procedure Third {
+  
+  }

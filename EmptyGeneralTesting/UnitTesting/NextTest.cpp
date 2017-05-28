@@ -31,7 +31,7 @@ TEST_CLASS(NextTest) {
 	}
 
 	TEST_METHOD_INITIALIZE(Init) {
-		rootNode = Spa::generateAstFromFile("../IntegrationTesting/Source2.txt");
+		rootNode = Spa::generateAstFromFile("../IntegrationTesting/NextTest.txt");
 	}
 
 	TEST_METHOD_CLEANUP(Cleanup) {
