@@ -4,7 +4,11 @@
   while i {
     x = x + 2 * y;
     call Third;
-    i = i - 1; }
+    i = i - 1; 
+	if x then {
+		x = x + 1; }
+	else {
+		z = 1; }}
   if x then {
    x = x + 1; }
   else {

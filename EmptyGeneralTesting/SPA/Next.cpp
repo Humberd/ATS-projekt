@@ -5,6 +5,7 @@
 #include "StatementListNode.h"
 #include "CallNode.h"
 #include "VariableNode.h"
+#include "ProcedureNode.h"
 
 Next *Next::instance = 0;
 
@@ -68,17 +69,18 @@ bool Next::isNext(STMT * s1, STMT * s2)
 	vector<Node*> s2Node = this->statementTable.at(s2->getSTMT());
 
 	if (dynamic_cast<WhileNode*>(s1Node.front())) {
-		return false;
+		return inWhileNodeSearch(dynamic_cast<WhileNode*>(s1Node.front()), s2Node.front());
 	}
 	else if (dynamic_cast<IfNode*>(s1Node.front())) {
-		return inIfNode(dynamic_cast<IfNode*>(s1Node.front()), s2Node.front());
+		return inIfNodeSearch(dynamic_cast<IfNode*>(s1Node.front()), s2Node.front());
 	}
 	else {
-		return s1Node.front()->getProgramLineNumber() + 1 == s2Node.front()->getProgramLineNumber();
+		return inProcedureSearch(s1Node.front(), s2Node.front());
+			//s1Node.front()->getProgramLineNumber() + 1 == s2Node.front()->getProgramLineNumber();
 	}	
 }
 
-bool Next::inIfNode(IfNode * ifNode, Node * nextNode)
+bool Next::inIfNodeSearch(IfNode * ifNode, Node * nextNode)
 {
 	for (auto child : ifNode->getChildren()) {
 		if (dynamic_cast<StatementListNode*>(child)) {
@@ -88,7 +90,7 @@ bool Next::inIfNode(IfNode * ifNode, Node * nextNode)
 				if (stmtChild->getProgramLineNumber() == nextNode->getProgramLineNumber()) {
 					return true;
 				}
-			}
+			}		
 		}
 		else 
 		{
@@ -99,6 +101,63 @@ bool Next::inIfNode(IfNode * ifNode, Node * nextNode)
 	}
 
 	return false;
+}
+
+bool Next::inWhileNodeSearch(WhileNode * whileNode, Node * nextNode)
+{
+	StatementListNode* whileStatement = dynamic_cast<StatementListNode*>(whileNode->getChild(1));
+	Node* firstWhileNode = whileStatement->getChildren().front();
+	
+	if (whileNode->getProgramLineNumber() + 1 == nextNode->getProgramLineNumber() ||
+		whileNode->getProgramLineNumber() + 1 == firstWhileNode->getProgramLineNumber()) {
+		return true;
+	}
+
+	return false;
+}
+
+bool Next::inProcedureSearch(Node * firstNode, Node * secondNode)
+{
+
+	if (dynamic_cast<StatementListNode*>(firstNode->getParent()) && dynamic_cast<ProcedureNode*>(firstNode->getParent()->getParent()) == nullptr) {
+		//sprawdzamy czy nie jest on ostatnim elementem steytemntListy
+		StatementListNode* stmtNode = dynamic_cast<StatementListNode*>(firstNode->getParent());
+
+		//first jest ostatni w stmtList
+		if (stmtNode->getChildren().back()->getProgramLineNumber() == firstNode->getProgramLineNumber()) {
+			if (dynamic_cast<WhileNode*>(firstNode->getParent()->getParent())) {
+				WhileNode* currentWhileNode = dynamic_cast<WhileNode*>(firstNode->getParent()->getParent());
+				return currentWhileNode->getProgramLineNumber() == secondNode->getProgramLineNumber();
+			}
+			else if (dynamic_cast<IfNode*>(firstNode->getParent()->getParent()))
+			{
+				IfNode* currentIfNode = dynamic_cast<IfNode*>(firstNode->getParent()->getParent());
+				Node* nexttt = getNext(secondNode);
+				Node* nesad = getNext(firstNode);
+				return getNext(currentIfNode)->getProgramLineNumber() == secondNode->getProgramLineNumber();
+			}
+		}
+		else
+		{
+			return firstNode->getProgramLineNumber() + 1 == secondNode->getProgramLineNumber();
+		}
+	}
+
+	return firstNode->getProgramLineNumber() + 1 == secondNode->getProgramLineNumber();
+}
+
+Node * Next::getNext(Node * node)
+{
+	Node* parent = node->getParent();
+	vector<Node*> children = parent->getChildren();
+
+	for (int i = 0; i < children.size(); i++) {
+		if (children[i]->getProgramLineNumber() == node->getProgramLineNumber() && i+1 <= children.size() - 1) {
+			return children[i + 1];
+		}
+	}
+
+	return node;
 }
 
 
