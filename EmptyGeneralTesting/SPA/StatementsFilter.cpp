@@ -20,6 +20,27 @@ StatementsFilter::~StatementsFilter() {
 }
 
 vector<string> StatementsFilter::filter(vector<string>& statements, string type, SpaDataContainer* spaDataContainer) {
+	if (type == DeclarationKeywords::VARIABLE || type == DeclarationKeywords::PROCEDURE) {
+		vector<string> newStatements;
+		vector<string> allItems;
+		if (type == DeclarationKeywords::VARIABLE) {
+			allItems = getAllVariables(spaDataContainer);
+		} else if (type == DeclarationKeywords::PROCEDURE) {
+			allItems = getAllProcedures(spaDataContainer);
+		}
+
+		for (auto stmt : statements) {
+			if (any_of(allItems.begin(), allItems.end(), [stmt](string item) {
+				           return item == stmt;
+			           })) {
+				newStatements.push_back(stmt);
+			}
+		}
+
+
+		return newStatements;
+	}
+
 	vector<string> newStatements;
 	for (auto stmt : statements) {
 		auto nodes = spaDataContainer->statementTable.at(stoi(stmt));
@@ -39,7 +60,7 @@ vector<string> StatementsFilter::filter(vector<string>& statements, string type,
 		} else if (type == DeclarationKeywords::WHILE &&
 			dynamic_cast<WhileNode*>(desredNode) != nullptr) {
 			newStatements.push_back(stmt);
-		} 
+		}
 	}
 	return newStatements;
 }

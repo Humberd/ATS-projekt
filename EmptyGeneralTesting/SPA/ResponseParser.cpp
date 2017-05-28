@@ -35,7 +35,7 @@ string ResponseParser::parseForTestingPurposes(list<string>& responseList) {
 			try {
 				return stoi(firstItem) < stoi(secondItem);
 			} catch(exception&) {
-				return false;
+				return firstItem < secondItem;
 			}
 		});
 

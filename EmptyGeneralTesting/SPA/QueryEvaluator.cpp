@@ -37,8 +37,8 @@ void QueryEvaluator::evaluate() {
 			continue;
 		}
 
-		auto leftParams = generateParamsIncaseOfAvailableResults(initialLeftParam);
-		auto rightParams = generateParamsIncaseOfAvailableResults(initialRightParam);
+		auto leftParams = generateParamsIncaseOfAvailableResults(initialLeftParam, methodRequest->getMethodName(), 0);
+		auto rightParams = generateParamsIncaseOfAvailableResults(initialRightParam, methodRequest->getMethodName(), 1);
 
 		vector<MethodEvaluatorResponse*> responses;
 
@@ -130,10 +130,11 @@ MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, Invok
 		response = parentEvaluator(leftParam, rightParam, goDeep);
 	} else if (methodName == QueryMethods::FOLLOWS) {
 		response = followsEvaluator(leftParam, rightParam, goDeep);
+	} else if (methodName == QueryMethods::MODIFIES) {
+		response = modifiesEvaluator(leftParam, rightParam, goDeep);
 	} else {
 		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
 	}
-
 
 	return response;
 }
@@ -214,7 +215,7 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 		response->setVariableName(rightParam->getVariableName());
 		response->setVariableType(rightParam->getVariableType());
 		response->setInsertToColumnName(leftParam->getVariableName());
-		response->setInsertToColumnValue(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getValue());
 	}
 	/*Parent(7,7)*/
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
@@ -252,12 +253,75 @@ MethodEvaluatorResponse* QueryEvaluator::followsEvaluator(InvokationParam* leftP
 		response->setVariableName(rightParam->getVariableName());
 		response->setVariableType(rightParam->getVariableType());
 		response->setInsertToColumnName(leftParam->getVariableName());
-		response->setInsertToColumnValue(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getValue());
 	}
 	/*Parent(7,7)*/
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
 		rightParam->getState() == InvokationParamState::VALUE) {
 		auto booleanResult = pkbBrigde->isElemFollowing(leftParam->getValue(), rightParam->getValue(), goDeep);
+		response->setState(ResponseState::BOOLEAN);
+		response->setBooleanResponse(booleanResult);
+	} else {
+		throw QueryEvaluatorException("followsEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
+	}
+
+	return response;
+}
+
+MethodEvaluatorResponse* QueryEvaluator::modifiesEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
+	/*Modifies(7,x) || Modifies("Earth",x)*/
+	if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VARIABLE) {
+		vector<string> vectorResult;
+		/*Modifies(7,x)*/
+		if (leftParam->getValueType() == ValueType::INTEGER) {
+			vectorResult = pkbBrigde->getVariableThatIsModifiedByStatement(leftParam->getValue());
+		}
+		/*Modifies("Earth",x)*/
+		else {
+			vectorResult = pkbBrigde->getVariableThatIsModifiedByProcedure(leftParam->getValue());
+		}
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(rightParam->getVariableName());
+		response->setVariableType(rightParam->getVariableType());
+		response->setInsertToColumnName(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getValue());
+	}
+	/*Modifies(stat,"a") || Modifies(proc,"a")*/
+	else if (leftParam->getState() == InvokationParamState::VARIABLE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		vector<string> vectorResult;
+		/*Modifies(stat,"a")*/
+		if (leftParam->getValueType() == ValueType::INTEGER) {
+			vectorResult = pkbBrigde->getStatementsThatModifies(rightParam->getValue());
+		}
+		/*Modifies(proc,"a")*/
+		else {
+			vectorResult = pkbBrigde->getProceduresThatModifies(rightParam->getValue());
+		}
+
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(leftParam->getVariableName());
+		response->setVariableType(leftParam->getVariableType());
+		response->setInsertToColumnName(rightParam->getVariableName());
+		response->setInsertToColumnValue(rightParam->getValue());
+	}
+
+	/*Modifies("procName","x") || Modifies(4, "x")*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		bool booleanResult;
+		/*Modifies("procName","x")*/
+		if (leftParam->getValueType() == ValueType::STRING) {
+			booleanResult = pkbBrigde->isProceduretModifyingVariable(leftParam->getValue(), rightParam->getValue());
+		}
+		/*Modifies(4, "x")*/
+		else {
+			booleanResult = pkbBrigde->isStatementModifyingVariable(leftParam->getValue(), rightParam->getValue());
+		}
 		response->setState(ResponseState::BOOLEAN);
 		response->setBooleanResponse(booleanResult);
 	} else {
@@ -306,7 +370,7 @@ InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* par
 	throw QueryEvaluatorException("changeParameterToInvokationParam() - didn't pass a type check");
 }
 
-vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam) {
+vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam, string method, int paramNumber) {
 	vector<InvokationParam*> params;
 
 	if (invokationParam->getState() == InvokationParamState::VALUE) {
@@ -315,16 +379,51 @@ vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(
 	}
 
 	if (invokationParam->getState() == InvokationParamState::ANY) {
-		for (auto entrySet : spaDataContainer->statementTable) {
-			InvokationParam* param = invokationParam->copy();
-			param->setState(InvokationParamState::VALUE);
-			param->setValueType(ValueType::INTEGER);
-			param->setValue(to_string(entrySet.first));
-			params.push_back(param);
-		}
-		delete invokationParam;
+		if (method == QueryMethods::MODIFIES) {
+			if (paramNumber == 1) {
+				for (auto variable : StatementsFilter::getAllVariables(spaDataContainer)) {
+					InvokationParam* param = invokationParam->copy();
+					param->setState(InvokationParamState::VALUE);
+					param->setValueType(ValueType::STRING);
+					param->setValue(variable);
+					params.push_back(param);
+				}
+				delete invokationParam;
 
-		return params;
+				return params;
+			} else if (paramNumber == 0) {
+				for (auto entrySet : spaDataContainer->statementTable) {
+					InvokationParam* param = invokationParam->copy();
+					param->setState(InvokationParamState::VALUE);
+					param->setValueType(ValueType::INTEGER);
+					param->setValue(to_string(entrySet.first));
+					params.push_back(param);
+				}
+				for (auto procedure : StatementsFilter::getAllProcedures(spaDataContainer)) {
+					InvokationParam* param = invokationParam->copy();
+					param->setState(InvokationParamState::VALUE);
+					param->setValueType(ValueType::STRING);
+					param->setValue(procedure);
+					params.push_back(param);
+				}
+
+				delete invokationParam;
+
+				return params;
+			}
+
+		} else {
+			for (auto entrySet : spaDataContainer->statementTable) {
+				InvokationParam* param = invokationParam->copy();
+				param->setState(InvokationParamState::VALUE);
+				param->setValueType(ValueType::INTEGER);
+				param->setValue(to_string(entrySet.first));
+				params.push_back(param);
+			}
+			delete invokationParam;
+
+			return params;
+		}
 	}
 
 	if (invokationParam->getState() == InvokationParamState::VARIABLE) {

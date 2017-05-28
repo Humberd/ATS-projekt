@@ -435,8 +435,7 @@ void TreeAnalyzer::modifiesTableNodeChecker(map<int, vector<string>>& globalResu
 
 	WhileNode* potentialWhileNode = dynamic_cast<WhileNode*>(node);
 	if (potentialWhileNode != nullptr) {
-		VariableNode* variableNode = dynamic_cast<VariableNode*>(potentialWhileNode->getChild(0));
-		set<string> result = {variableNode->getName()};
+		set<string> result;
 		InjectRequestsContainer* localInjectContainer = new InjectRequestsContainer;
 		modifiesTableStatementListWalker(globalResult, result, dynamic_cast<StatementListNode*>(potentialWhileNode->getChild(1)), localInjectContainer);
 		vector<string> vecResult(result.begin(), result.end());
@@ -452,8 +451,7 @@ void TreeAnalyzer::modifiesTableNodeChecker(map<int, vector<string>>& globalResu
 
 	IfNode* potentialIfNode = dynamic_cast<IfNode*>(node);
 	if (potentialIfNode != nullptr) {
-		VariableNode* variableNode = dynamic_cast<VariableNode*>(potentialIfNode->getChild(0));
-		set<string> result = {variableNode->getName()};
+		set<string> result;
 		InjectRequestsContainer* localInjectContainer = new InjectRequestsContainer;
 		modifiesTableStatementListWalker(globalResult, result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(1)), localInjectContainer);
 		modifiesTableStatementListWalker(globalResult, result, dynamic_cast<StatementListNode*>(potentialIfNode->getChild(2)), localInjectContainer);

@@ -192,7 +192,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		InvokationParam* invokationParam = new InvokationParam;
 		invokationParam->setState(InvokationParamState::VALUE);
 
-		auto res1 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
+		auto res1 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam,"",0);
 		Assert::IsTrue(res1.size() == 1);
 		Assert::IsTrue(invokationParam == res1.at(0));
 		res1.clear();
@@ -202,7 +202,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		invokationParam->setState(InvokationParamState::VARIABLE);
 		invokationParam->setVariableName("a");
 
-		auto res2 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
+		auto res2 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam,"",0);
 		Assert::IsTrue(res2.size() == 3);
 		Assert::IsTrue(res2.at(0)->getState() == InvokationParamState::VALUE);
 		Assert::IsTrue(res2.at(0)->getValue() == "1");
@@ -225,7 +225,7 @@ TEST_CLASS(QueryEvaluatorTest) {
 		invokationParam->setState(InvokationParamState::VARIABLE);
 		invokationParam->setVariableName("g");//this variable doesn't exist on evalResults
 
-		auto res3 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
+		auto res3 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam,"",0);
 		Assert::IsTrue(res3.size() == 1);
 		Assert::IsTrue(res3.at(0) == invokationParam);
 		/*-----------*/

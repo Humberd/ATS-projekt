@@ -36,6 +36,7 @@ public:
 	MethodEvaluatorResponse* evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 	MethodEvaluatorResponse* parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 	MethodEvaluatorResponse* followsEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
+	MethodEvaluatorResponse* modifiesEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 
 	void changeResultsStateBasedOnResponses(vector<MethodEvaluatorResponse*>& responses,
 	                                        vector<vector<string>*>& oldState,
@@ -49,7 +50,7 @@ public:
 
 
 	InvokationParam* changeParameterToInvokationParam(Parameter* parameter);
-	vector<InvokationParam*> generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam);
+	vector<InvokationParam*> generateParamsIncaseOfAvailableResults(InvokationParam* invokationParam, string method, int paramNumber);
 
 	int findIndexOfColumnVariableName(string varName);
 	int findIndexOfColumnVariableName(string varName, vector<string>& arr);

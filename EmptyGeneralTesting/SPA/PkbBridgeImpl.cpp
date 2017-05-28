@@ -3,11 +3,13 @@
 PkbBridgeImpl::PkbBridgeImpl(SpaDataContainer* spaDataContainer) {
 	parentApi = new Parent(spaDataContainer->parentsTable, spaDataContainer->statementTable);
 	followsApi = new Follows(spaDataContainer->followsTable);
+	modifiesApi = new Modifies(spaDataContainer->modifiesStatementTable, spaDataContainer->modifiesProcedureTable);
 }
 
 PkbBridgeImpl::~PkbBridgeImpl() {
 	delete parentApi;
 	delete followsApi;
+	delete modifiesApi;
 }
 
 vector<string> PkbBridgeImpl::getChildrenOf(string statement, bool goDeep) const {
@@ -38,4 +40,33 @@ vector<string> PkbBridgeImpl::getPrevious(string statement, bool goDeep) const {
 bool PkbBridgeImpl::isElemFollowing(string first, string next, bool goDeep) const {
 	bool response = followsApi->isFollows(parseStringToStmt(first), parseStringToStmt(next), goDeep);
 	return response;
+}
+
+vector<string> PkbBridgeImpl::getStatementsThatModifies(string variable) const {
+	vector<STMT*> rawResponse = modifiesApi->getModifiesSTMT(parseStringToVar(variable));
+	return parseStmtsToStrings(rawResponse);
+
+}
+
+vector<string> PkbBridgeImpl::getProceduresThatModifies(string variable) const {
+	vector<PROC*> rawResponse = modifiesApi->getModifiesPROC(parseStringToVar(variable));
+	return parseProceduresToStrings(rawResponse);
+}
+
+vector<string> PkbBridgeImpl::getVariableThatIsModifiedByStatement(string statement) const {
+	vector<VAR*> rawResponse = modifiesApi->getModifiesBy(parseStringToStmt(statement));
+	return parseVariablesToStrings(rawResponse);
+}
+
+vector<string> PkbBridgeImpl::getVariableThatIsModifiedByProcedure(string procedure) const {
+	vector<VAR*> rawResponse = modifiesApi->getModifiesBy(parceStringToProc(procedure));
+	return parseVariablesToStrings(rawResponse);
+}
+
+bool PkbBridgeImpl::isStatementModifyingVariable(string statement, string variable) const {
+	return modifiesApi->isModifies(stoi(statement), parseStringToVar(variable));
+}
+
+bool PkbBridgeImpl::isProceduretModifyingVariable(string procedure, string variable) const {
+	return modifiesApi->isModifies(procedure, parseStringToVar(variable));
 }

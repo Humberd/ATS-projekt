@@ -30,3 +30,27 @@ vector<string> PkbBridgeMockImpl::getPrevious(string statement, bool goDeep) con
 bool PkbBridgeMockImpl::isElemFollowing(string first, string next, bool goDeep) const {
 	return true;
 }
+
+vector<string> PkbBridgeMockImpl::getStatementsThatModifies(string variable) const {
+	return vector<string>{"4"};
+}
+
+vector<string> PkbBridgeMockImpl::getProceduresThatModifies(string variable) const {
+	return vector<string>{"v,x,y"};
+}
+
+vector<string> PkbBridgeMockImpl::getVariableThatIsModifiedByStatement(string statement) const {
+	return vector<string>{"e"};
+}
+
+vector<string> PkbBridgeMockImpl::getVariableThatIsModifiedByProcedure(string procedure) const {
+	return vector<string>{"f"};
+}
+
+bool PkbBridgeMockImpl::isStatementModifyingVariable(string statement, string variable) const {
+	return true;
+}
+
+bool PkbBridgeMockImpl::isProceduretModifyingVariable(string procedure, string variable) const {
+	return true;
+}

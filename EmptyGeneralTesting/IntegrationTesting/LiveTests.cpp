@@ -316,6 +316,30 @@ TEST_CLASS(LiveTests) {
 		expectedResult = "false";
 	}
 
+	TEST_METHOD(Test_51) {
+		declaredVariables = "variable v;";
+		expresssion = "Select v such that Modifies(11,v)";
+		expectedResult = "y";
+	}
+
+	TEST_METHOD(Test_52) {
+		declaredVariables = "variable v;";
+		expresssion = "Select v such that Modifies(21,v)";
+		expectedResult = "a,b,c,e,x";
+	}
+
+	TEST_METHOD(Test_53) {
+		declaredVariables = "";
+		expresssion = "Select BOOLEAN such that Modifies(12,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_54) {
+		declaredVariables = "";
+		expresssion = "Select BOOLEAN such that Modifies(13,\"y\")";
+		expectedResult = "false";
+	}
+
 	//	TEST_METHOD(Test_171) {
 	//		declaredVariables = "assign a; stmt s;";
 	//		expresssion = "Select s with a.stmt# = s.stmt#";
