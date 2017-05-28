@@ -2,17 +2,36 @@
 
 Uses *Uses::instance = 0;
 
-Uses * Uses::getInstance()
+Uses * Uses::getInstance(map<int, vector<string>> usesStatementTable, map<string, vector<string>> usesProcedureTable)
 {
 	if (!instance) {
-		instance = new Uses();
+		instance = new Uses(usesStatementTable, usesProcedureTable);
 	}
 
 	return instance;
 }
 
-Uses::Uses()
+Uses::Uses(map<int, vector<string>> usesStatementTable, map<string, vector<string>> usesProcedureTable)
 {
+	for (map<string, vector<string>>::const_iterator it = usesProcedureTable.begin(); it != usesProcedureTable.end(); ++it) {
+		vector<VAR*> tmp;
+
+		for (string value : usesProcedureTable.at(it->first)) {
+			tmp.push_back(new VAR(value));
+		}
+
+		this->usesPROC.insert(pair<string, vector<VAR*>>(it->first, tmp));
+	}
+
+	for (map<int, vector<string>>::const_iterator it = usesStatementTable.begin(); it != usesStatementTable.end(); ++it) {
+		vector<VAR*> tmp;
+
+		for (string value : usesStatementTable.at(it->first)) {
+			tmp.push_back(new VAR(value));
+		}
+
+		this->usesSTMT.insert(pair<int, vector<VAR*>>(it->first, tmp));
+	}
 }
 
 Uses::~Uses()

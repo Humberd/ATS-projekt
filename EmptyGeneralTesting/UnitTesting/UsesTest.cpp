@@ -1,17 +1,31 @@
 #include "stdafx.h"
 #include <CppUnitTest.h>
 #include "../SPA/Uses.h"
+#include "../SPA/Node.h"
+#include "../SPA/Spa.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
 
 TEST_CLASS(UsesTest) {
+	Node* rootNode = nullptr;
+
+	TEST_METHOD_INITIALIZE(Init) {
+		rootNode = Spa::generateAstFromFile("../IntegrationTesting/NextTest.txt");
+	}
+
+	TEST_METHOD_CLEANUP(Cleanup) {
+		delete rootNode;
+	}
+
 	//typedef string PROC;
 	//typedef int STMT;
 	//typedef string VAR;
 	//typedef int ASSIGN;
 	TEST_METHOD(Uses_getUsesASSIGN_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 
 		uses->setUses(new ASSIGN(1), new VAR("a"));
 		uses->setUses(new ASSIGN(1), new VAR("b"));
@@ -31,7 +45,9 @@ TEST_CLASS(UsesTest) {
 	}
 
 	TEST_METHOD(Uses_getUsesSTMT_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 		
 		uses->setUses(new STMT(1), new VAR("a"));
 		uses->setUses(new STMT(1), new VAR("b"));
@@ -51,7 +67,9 @@ TEST_CLASS(UsesTest) {
 	}
 
 	TEST_METHOD(Uses_getUsesPROC_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 
 		uses->setUses(new PROC("1"), new VAR("a"));
 		uses->setUses(new PROC("1"), new VAR("b"));
@@ -71,7 +89,9 @@ TEST_CLASS(UsesTest) {
 	}
 
 	TEST_METHOD(Uses_getUsedByASSIGN_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 
 		uses->setUses(new ASSIGN(1), new VAR("a"));
 		uses->setUses(new ASSIGN(1), new VAR("b"));
@@ -90,7 +110,9 @@ TEST_CLASS(UsesTest) {
 	}
 
 	TEST_METHOD(Uses_getUsesBySTMT_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 
 		uses->setUses(new STMT(1), new VAR("a"));
 		uses->setUses(new STMT(1), new VAR("b"));
@@ -109,7 +131,9 @@ TEST_CLASS(UsesTest) {
 	}
 
 	TEST_METHOD(Uses_getUsesByPROC_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 
 		uses->setUses(new PROC("1"), new VAR("a"));
 		uses->setUses(new PROC("1"), new VAR("b"));
@@ -128,15 +152,21 @@ TEST_CLASS(UsesTest) {
 	}
 
 	TEST_METHOD(Uses_isUsedASSIGN_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 	}
 
 	TEST_METHOD(Uses_isUsedSTMT_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 	}
 
 	TEST_METHOD(Uses_isUsedPROC_Test) {
-		Uses *uses = new Uses();
+		SpaDataContainer* container = Spa::generateHelperTables(rootNode);
+
+		Uses *uses = new Uses(container->usesStatementTable, container->usesProcedureTable);
 	}
 
 };
