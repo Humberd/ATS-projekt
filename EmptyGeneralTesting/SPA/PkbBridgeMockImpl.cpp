@@ -78,3 +78,16 @@ bool PkbBridgeMockImpl::isStatementUsingVariable(string statement, string variab
 bool PkbBridgeMockImpl::isProcedureUsingVariable(string procedure, string variable) const {
 	return true;
 }
+
+
+vector<string> PkbBridgeMockImpl::getProceduresThatAreCalledBy(string procedure, bool doDeep) const {
+	return vector<string>{"Earth"};
+}
+
+vector<string> PkbBridgeMockImpl::getProceduresThatCalls(string procedure, bool goDeep) const {
+	return vector<string>{"Earth"};
+}
+
+bool PkbBridgeMockImpl::isProcedureCalling(string procedureCalling, string procedureCalled, bool goDeep) const {
+	return true;
+}

@@ -28,4 +28,8 @@ public:
 	vector<string> getProceduresThatUses(string variable) const override;
 	bool isStatementUsingVariable(string statement, string variable) const override;
 	bool isProcedureUsingVariable(string procedure, string variable) const override;
+
+	vector<string> getProceduresThatAreCalledBy(string procedure, bool doDeep) const override;
+	vector<string> getProceduresThatCalls(string procedure, bool goDeep) const override;
+	bool isProcedureCalling(string procedureCalling, string procedureCalled, bool goDeep) const override;
 };

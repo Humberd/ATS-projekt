@@ -34,6 +34,10 @@ public:
 	virtual bool isStatementUsingVariable(string statement, string variable) const = 0;
 	virtual bool isProcedureUsingVariable(string procedure, string variable) const = 0;
 
+	virtual vector<string> getProceduresThatAreCalledBy(string procedure, bool doDeep) const = 0;
+	virtual vector<string> getProceduresThatCalls(string procedure, bool goDeep) const = 0;
+	virtual bool isProcedureCalling(string procedureCalling, string procedureCalled, bool goDeep) const = 0;
+
 	STMT* parseStringToStmt(string statement) const;
 	VAR* parseStringToVar(string variable) const;
 	PROC* parceStringToProc(string procedure) const;

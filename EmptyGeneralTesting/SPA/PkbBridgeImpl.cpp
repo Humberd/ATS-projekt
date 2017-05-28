@@ -4,13 +4,16 @@ PkbBridgeImpl::PkbBridgeImpl(SpaDataContainer* spaDataContainer) {
 	parentApi = new Parent(spaDataContainer->parentsTable, spaDataContainer->statementTable);
 	followsApi = new Follows(spaDataContainer->followsTable);
 	modifiesApi = new Modifies(spaDataContainer->modifiesStatementTable, spaDataContainer->modifiesProcedureTable);
-//	usesApi = new Uses();
+	usesApi = new Uses();
+	callsApi = new Calls(spaDataContainer->callsTable);
 }
 
 PkbBridgeImpl::~PkbBridgeImpl() {
 	delete parentApi;
 	delete followsApi;
 	delete modifiesApi;
+	delete usesApi;
+	delete callsApi;
 }
 
 vector<string> PkbBridgeImpl::getChildrenOf(string statement, bool goDeep) const {
@@ -98,4 +101,18 @@ bool PkbBridgeImpl::isStatementUsingVariable(string statement, string variable) 
 
 bool PkbBridgeImpl::isProcedureUsingVariable(string procedure, string variable) const {
 	return usesApi->isUsed(parceStringToProc(procedure), parseStringToVar(variable));
+}
+
+vector<string> PkbBridgeImpl::getProceduresThatAreCalledBy(string procedure, bool doDeep) const {
+	vector<PROC*> rawResponse = callsApi->getCalls(parceStringToProc(procedure), doDeep);
+	return parseProceduresToStrings(rawResponse);
+}
+
+vector<string> PkbBridgeImpl::getProceduresThatCalls(string procedure, bool goDeep) const {
+	vector<PROC*> rawResponse = callsApi->getCallsFrom(parceStringToProc(procedure), goDeep);
+	return parseProceduresToStrings(rawResponse);
+}
+
+bool PkbBridgeImpl::isProcedureCalling(string procedureCalling, string procedureCalled, bool goDeep) const {
+	return callsApi->isCalls(procedureCalling, parceStringToProc(procedureCalled));
 }

@@ -138,6 +138,8 @@ MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, Invok
 		response = modifiesEvaluator(leftParam, rightParam, goDeep);
 	} else if (methodName == QueryMethods::USES) {
 		response = usesEvaluator(leftParam, rightParam, goDeep);
+	} else if (methodName == QueryMethods::CALLS) {
+		response = callsEvaluator(leftParam, rightParam, goDeep);
 	} else {
 		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
 	}
@@ -343,7 +345,6 @@ MethodEvaluatorResponse* QueryEvaluator::modifiesEvaluator(InvokationParam* left
 	return response;
 }
 
-
 MethodEvaluatorResponse* QueryEvaluator::usesEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
 	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
 	/*Uses(7,x) || Uses("Earth",x)*/
@@ -404,6 +405,43 @@ MethodEvaluatorResponse* QueryEvaluator::usesEvaluator(InvokationParam* leftPara
 		response->setBooleanResponse(booleanResult);
 	} else {
 		throw QueryEvaluatorException("usesEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
+	}
+
+	return response;
+}
+
+MethodEvaluatorResponse* QueryEvaluator::callsEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
+	/*Calls(x,"Earth")*/
+	if (leftParam->getState() == InvokationParamState::VARIABLE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto vectorResult = pkbBrigde->getProceduresThatAreCalledBy(rightParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(leftParam->getVariableName());
+		response->setVariableType(leftParam->getVariableType());
+		response->setInsertToColumnName(rightParam->getVariableType());
+		response->setInsertToColumnValue(rightParam->getValue());
+	}
+	/*Calls("Earth", x)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VARIABLE) {
+		auto vectorResult = pkbBrigde->getProceduresThatCalls(leftParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(rightParam->getVariableName());
+		response->setVariableType(rightParam->getVariableType());
+		response->setInsertToColumnName(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getValue());
+	}
+	/*Parent("Earth","Planet")*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto booleanResult = pkbBrigde->isProcedureCalling(leftParam->getValue(), rightParam->getValue(), goDeep);
+		response->setState(ResponseState::BOOLEAN);
+		response->setBooleanResponse(booleanResult);
+	} else {
+		throw QueryEvaluatorException("parentEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
 	}
 
 	return response;
