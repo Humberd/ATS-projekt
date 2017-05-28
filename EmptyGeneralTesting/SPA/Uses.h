@@ -18,8 +18,8 @@ private:
 	static Uses *instance;
 
 public:
-	static Uses *getInstance();
-	Uses();
+	static Uses *getInstance(map<int, vector<string>> usesStatementTable, map<string, vector<string>> usesProcedureTable);
+	Uses(map<int, vector<string>> usesStatementTable, map<string, vector<string>> usesProcedureTable);
 	~Uses();
 	void setUses(ASSIGN* a, VAR* v);
 	void setUses(STMT* s, VAR* v);
