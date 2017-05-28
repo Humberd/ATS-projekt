@@ -78,7 +78,7 @@ TEST_CLASS(QueryEvaluatorTest2) {
 
 		queryEvaluator->changeResultsStateBasedOnResponses(responses, oldState, newState, booleanResult, columnVariableNames);
 
-		Assert::IsFalse(booleanResult);
+		Assert::IsTrue(booleanResult);
 	}
 
 	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_4_OneTrueOneFalseBooleanResponse) {
@@ -93,7 +93,7 @@ TEST_CLASS(QueryEvaluatorTest2) {
 
 		queryEvaluator->changeResultsStateBasedOnResponses(responses, oldState, newState, booleanResult, columnVariableNames);
 
-		Assert::IsFalse(booleanResult);
+		Assert::IsTrue(booleanResult);
 	}
 
 	TEST_METHOD(QueryEvaluator_changeResultsStateBasedOnResponses_Valid_5_vectorResponse) {

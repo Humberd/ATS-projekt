@@ -33,7 +33,7 @@ void QueryEvaluator::evaluate() {
 
 		if (initialLeftParam->getState() == InvokationParamState::ANY &&
 			initialRightParam->getState() == InvokationParamState::ANY) {
-			booleanResult = booleanResult & true;
+			booleanResponses.push_back(true);
 			continue;
 		}
 
@@ -54,13 +54,15 @@ void QueryEvaluator::evaluate() {
 		}
 
 		vector<vector<string>*> newEvalResults;
-		changeResultsStateBasedOnResponses(responses, evalResults, newEvalResults, booleanResult, columnVariableNames);
+		bool newBooleanResponse = true;
+		changeResultsStateBasedOnResponses(responses, evalResults, newEvalResults, newBooleanResponse, columnVariableNames);
 
 		for (auto res : evalResults) {
 			delete res;
 		}
 		evalResults.clear();
 		evalResults = newEvalResults;
+		booleanResponses.push_back(newBooleanResponse);
 
 
 		for (auto response : responses) {
@@ -78,7 +80,9 @@ vector<vector<string>> QueryEvaluator::evaluateReturn() {
 
 	if (returnRequest->getReturnType() == ReturnType::BOOLEAN) {
 		response.resize(1);
-		if (booleanResult) {
+		if (all_of(booleanResponses.begin(), booleanResponses.end(), [](bool boolResp) {
+			           return boolResp == true;
+		           })) {
 			response[0].push_back("true");
 		} else {
 			response[0].push_back("false");
@@ -149,10 +153,11 @@ void QueryEvaluator::changeResultsStateBasedOnResponses(vector<MethodEvaluatorRe
 		throw QueryEvaluatorException("changeResultsStateBasedOnResponses() - responses should containt at least 1 item, but instead are empty!");
 	}
 
+	bool localResult = false;
 	columnVariableNames.push_back(responses.at(0)->getVariableName());
 	for (auto response : responses) {
 		if (response->getState() == ResponseState::BOOLEAN) {
-			booleanResult = booleanResult & response->getBooleanResponse();
+			localResult |= response->getBooleanResponse();
 			continue;
 		}
 
@@ -160,6 +165,9 @@ void QueryEvaluator::changeResultsStateBasedOnResponses(vector<MethodEvaluatorRe
 			int insertToColumnIdex = findIndexOfColumnVariableName(response->getInsertToColumnName(), columnVariableNames);
 			changeVectorResultsBasedOnResponses(response, oldState, newState, insertToColumnIdex);
 		}
+	}
+	if (responses.at(0)->getState() == ResponseState::BOOLEAN) {
+		booleanResult &= localResult;
 	}
 }
 
@@ -540,13 +548,6 @@ void QueryEvaluator::setPkbBrigde(PkbBrigde* const pkbBrigde) {
 	this->pkbBrigde = pkbBrigde;
 }
 
-bool QueryEvaluator::getBooleanResult() const {
-	return booleanResult;
-}
-
-void QueryEvaluator::setBooleanResult(const bool booleanResult) {
-	this->booleanResult = booleanResult;
-}
 
 SpaDataContainer* QueryEvaluator::getSpaDataContainer() const {
 	return spaDataContainer;
@@ -554,4 +555,12 @@ SpaDataContainer* QueryEvaluator::getSpaDataContainer() const {
 
 void QueryEvaluator::setSpaDataContainer(SpaDataContainer* const spaDataContainer) {
 	this->spaDataContainer = spaDataContainer;
+}
+
+vector<bool> QueryEvaluator::getBooleanResponses() const {
+	return booleanResponses;
+}
+
+void QueryEvaluator::setBooleanResponses(const vector<bool> booleanResponses) {
+	this->booleanResponses = booleanResponses;
 }

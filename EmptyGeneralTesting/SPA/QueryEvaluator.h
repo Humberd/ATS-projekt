@@ -14,7 +14,7 @@ using namespace std;
 class QueryEvaluator {
 private:
 	vector<vector<string>*> evalResults;
-	bool booleanResult;
+	vector<bool> booleanResponses;
 	vector<string> columnVariableNames;
 
 	vector<DeclaredVariable*> declaredVariables;
@@ -69,8 +69,8 @@ public:
 	void setQueryRequest(QueryRequest* const queryRequest);
 	PkbBrigde* getPkbBrigde() const;
 	void setPkbBrigde(PkbBrigde* const pkbBrigde);
-	bool getBooleanResult() const;
-	void setBooleanResult(const bool booleanResult);
 	SpaDataContainer* getSpaDataContainer() const;
 	void setSpaDataContainer(SpaDataContainer* const spaDataContainer);
+	vector<bool> getBooleanResponses() const;
+	void setBooleanResponses(const vector<bool> booleanResponses);
 };
