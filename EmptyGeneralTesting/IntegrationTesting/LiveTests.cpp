@@ -142,6 +142,67 @@ TEST_CLASS(LiveTests) {
 		expectedResult = "none";
 	}
 
+	TEST_METHOD(Test_21) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select BOOLEAN such that Parent(s,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_22) {
+		declaredVariables = "stmt s;";
+		expresssion = "Select BOOLEAN such that Parent*(s,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_23) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Parent(_,foo)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_24) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Parent*(_,foo)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_25) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Parent(_,_)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_26) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Parent(1,9)";
+		expectedResult = "false";
+	}
+
+	TEST_METHOD(Test_27) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Parent(63,66)";
+		expectedResult = "false";
+	}
+
+	TEST_METHOD(Test_28) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Parent*(63,66)";
+		expectedResult = "true";
+	}
+
+	TEST_METHOD(Test_29) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select foo such that Parent*(foo,foo)";
+		expectedResult = "none";
+	}
+
+	TEST_METHOD(Test_30) {
+		declaredVariables = "stmt foo;";
+		expresssion = "Select BOOLEAN such that Parent(foo,foo)";
+		expectedResult = "false";
+	}
+
+
 	//	TEST_METHOD(Test_171) {
 	//		declaredVariables = "assign a; stmt s;";
 	//		expresssion = "Select s with a.stmt# = s.stmt#";

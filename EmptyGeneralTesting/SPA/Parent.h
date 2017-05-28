@@ -8,30 +8,27 @@
 #include <map>
 using namespace std;
 
-class Parent
-{
-	public:
-		Parent(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable);
-		void setParent(STMT s1, STMT s2);
-		vector<STMT*> getParent(STMT* s, bool goDeep);
-		vector<STMT*> getParentOf(STMT* s, bool goDeep);
-		bool isParent(STMT* s1, STMT* s2, bool goDeep);
-		static Parent *getInstance( map<int,vector<int>> intTable ,map<int,vector<Node*>> stmtTable );
-	private:
-		static Parent *instance;
-		vector<vector<Node*>> parentTable;
-		Node* mainNode;
-		vector<STMT*> getParentWithoutDeep(STMT* s);
-		vector<STMT*> getParentWithDeep(STMT* s);
-		void getParentWithDeepSingle(int childLine, vector<STMT*>& response);
-		vector<STMT*> getParentOfWithoutDeep(STMT* s);
-		vector<STMT*> getParentOfWithDeep(STMT* s);
-		void getParentOfWithDeepSingle(int childLine, vector<STMT*>& response);
+class Parent {
+public:
+	Parent(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable);
+	vector<STMT*> getParent(STMT* s, bool goDeep);
+	vector<STMT*> getParentOf(STMT* s, bool goDeep);
+	bool isParent(STMT* s1, STMT* s2, bool goDeep);
+	static Parent* getInstance(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable);
+private:
+	static Parent* instance;
+	vector<vector<Node*>> parentTable;
+	Node* mainNode;
+	vector<STMT*> getParentWithoutDeep(STMT* s);
+	vector<STMT*> getParentWithDeep(STMT* s);
+	void getParentWithDeepSingle(int childLine, vector<STMT*>& response);
+	vector<STMT*> getParentOfWithoutDeep(STMT* s);
+	vector<STMT*> getParentOfWithDeep(STMT* s);
+	void getParentOfWithDeepSingle(int childLine, vector<STMT*>& response);
 
-		map<int,vector<int>> parentMap;
-		map<int, vector<Node*>> statementTable;
-		bool isParentWithoutDeep(STMT* s1, STMT* s2);
-		bool isParentWithDeep(STMT* s1, STMT* s2);
-		void FillParentTable();
-		
+	map<int, vector<int>> parentMap;
+	map<int, vector<Node*>> statementTable;
+	bool isParentWithoutDeep(STMT* s1, STMT* s2);
+	bool isParentWithDeep(STMT* s1, STMT* s2);
+	void isParentWithDeepSingle(int parentLine, int childLine, bool& result);
 };

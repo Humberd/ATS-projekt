@@ -178,18 +178,18 @@ TEST_CLASS(QueryEvaluatorTest) {
 		vector<string> columnVariableNames = {"a", "s"};
 		queryEvaluator->setColumnVariableNames(columnVariableNames);
 
+//		/*-----------*/
+//		InvokationParam* invokationParam = new InvokationParam;
+//		invokationParam->setState(InvokationParamState::ANY);
+//
+//		auto pointer = [invokationParam, queryEvaluator]() {
+//					queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
+//				};
+//
+//		Assert::ExpectException<QueryEvaluatorException>(pointer, wstring(L"Any type '_' was not implemented").c_str());
+//		delete invokationParam;
 		/*-----------*/
 		InvokationParam* invokationParam = new InvokationParam;
-		invokationParam->setState(InvokationParamState::ANY);
-
-		auto pointer = [invokationParam, queryEvaluator]() {
-					queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);
-				};
-
-		Assert::ExpectException<QueryEvaluatorException>(pointer, wstring(L"Any type '_' was not implemented").c_str());
-		delete invokationParam;
-		/*-----------*/
-		invokationParam = new InvokationParam;
 		invokationParam->setState(InvokationParamState::VALUE);
 
 		auto res1 = queryEvaluator->generateParamsIncaseOfAvailableResults(invokationParam);

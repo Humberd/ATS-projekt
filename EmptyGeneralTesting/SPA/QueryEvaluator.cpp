@@ -31,6 +31,12 @@ void QueryEvaluator::evaluate() {
 		InvokationParam* initialLeftParam = changeParameterToInvokationParam(methodRequest->getLeftParam());
 		InvokationParam* initialRightParam = changeParameterToInvokationParam(methodRequest->getRightParam());
 
+		if (initialLeftParam->getState() == InvokationParamState::ANY &&
+			initialRightParam->getState() == InvokationParamState::ANY) {
+			booleanResult = booleanResult & true;
+			continue;
+		}
+
 		auto leftParams = generateParamsIncaseOfAvailableResults(initialLeftParam);
 		auto rightParams = generateParamsIncaseOfAvailableResults(initialRightParam);
 
@@ -71,6 +77,7 @@ vector<vector<string>> QueryEvaluator::evaluateReturn() {
 	ReturnRequest* returnRequest = this->queryRequest->getReturnRequest();
 
 	if (returnRequest->getReturnType() == ReturnType::BOOLEAN) {
+		response.resize(1);
 		if (booleanResult) {
 			response[0].push_back("true");
 		} else {
@@ -308,7 +315,16 @@ vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(
 	}
 
 	if (invokationParam->getState() == InvokationParamState::ANY) {
-		throw QueryEvaluatorException("Unsupported param exception: '_'");
+		for (auto entrySet : spaDataContainer->statementTable) {
+			InvokationParam* param = invokationParam->copy();
+			param->setState(InvokationParamState::VALUE);
+			param->setValueType(ValueType::INTEGER);
+			param->setValue(to_string(entrySet.first));
+			params.push_back(param);
+		}
+		delete invokationParam;
+
+		return params;
 	}
 
 	if (invokationParam->getState() == InvokationParamState::VARIABLE) {

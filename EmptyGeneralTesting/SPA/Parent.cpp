@@ -87,7 +87,12 @@ Parent* Parent::getInstance(map<int, vector<int>> intTable, map<int, vector<Node
 vector<STMT*> Parent::getParentWithoutDeep(STMT* s) {
 	vector<STMT*> result;
 
-	vector<int> children = parentMap.at(s->getSTMT());
+	vector<int> children;
+	try {
+		children = parentMap.at(s->getSTMT());
+	} catch (out_of_range&) {
+		return result;
+	}
 
 	for (auto child : children) {
 		result.push_back(new STMT(child));
@@ -166,53 +171,51 @@ void Parent::getParentOfWithDeepSingle(int childLine, vector<STMT*>& response) {
 }
 
 bool Parent::isParentWithoutDeep(STMT* s1, STMT* s2) {
-	bool result = false;;
-	if (parentMap.find(s1->getSTMT()) == parentMap.end()) {
-	} else {
-		vector<int> children = parentMap[s1->getSTMT()];
-		if ((find(children.begin(), children.end(), s2->getSTMT()) != children.end())) {
-			result = true;
-		}
+	vector<int> children;
+	try {
+		children = parentMap.at(s1->getSTMT());
+	} catch (out_of_range&) {
+		return false;
 	}
+
+	bool result = any_of(children.begin(), children.end(),
+	                     [s2](int child) {
+		                     return child == s2->getSTMT();
+	                     });
+
+	delete s1 , s2;
+
 	return result;
 }
 
 
 bool Parent::isParentWithDeep(STMT* s1, STMT* s2) {
-	bool result = false;;
-	vector<STMT*> children = getParentOfWithDeep(s1);
-	vector<int> help;
-	for (int i = 0; i < children.size(); i++) {
-		help.push_back(children.at(i)->getSTMT());
-	}
-	if ((find(help.begin(), help.end(), s2->getSTMT()) != help.end())) {
-		result = true;
-	}
+	bool result = false;
+
+	isParentWithDeepSingle(s1->getSTMT(), s2->getSTMT(), result);
+
 	return result;
 }
 
+void Parent::isParentWithDeepSingle(int parentLine, int childLine, bool& result) {
+	vector<int> children;
+	try {
+		children = parentMap.at(parentLine);
+	} catch (out_of_range&) {
+		result |= false;
+		return;
+	}
 
-void Parent::FillParentTable() {
-	vector<Node*> allNodes = mainNode->getChildren();
-
-	for (int i = 0; i < allNodes.size(); i++) {
-		vector<Node*> helpNodes = allNodes[i]->getChildren();
-		for (int j = 0; j < helpNodes.size(); j++) {
-			allNodes.push_back(helpNodes[j]);
+	for (auto childNumber : children) {
+		if (childNumber == childLine) {
+			result = true;
+			return;
 		}
-	}
-	vector<vector<Node*>> parentTableHelp(allNodes.size() + 1);
 
-	for (int i = 0; i < allNodes.size(); i++) {
-		int lineNumber = allNodes[i]->getProgramLineNumber();
-		if (lineNumber < 0) continue;
-		vector<Node*> vec = parentTableHelp.at(lineNumber);
-		vec.push_back(allNodes[i]);
-		parentTableHelp[lineNumber] = vec;
-		statementTable[lineNumber] = vec;
-	}
-	this->parentTable = parentTableHelp;
-}
+		if (result == true) {
+			return;
+		}
 
-void Parent::setParent(STMT s1, STMT s2) {
+		isParentWithDeepSingle(childNumber, childLine, result);
+	}
 }
