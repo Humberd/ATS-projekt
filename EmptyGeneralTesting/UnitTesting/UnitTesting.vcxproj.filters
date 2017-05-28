@@ -296,6 +296,9 @@
     <ClCompile Include="NextTest.cpp">
       <Filter>Source Files\PKB</Filter>
     </ClCompile>
+    <ClCompile Include="QueryEvaluatorTest2.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt">

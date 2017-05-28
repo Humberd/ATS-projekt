@@ -4,6 +4,13 @@
 #include "SourceParser.h"
 #include "ProgramLineEvaluator.h"
 #include "TreeAnalyzer.h"
+#include "QLexer.h"
+#include "QuerySourceParser.h"
+#include "DeclaredVariable.h"
+#include "DeclarationsSourceParser.h"
+#include "QueryEvaluator.h"
+#include "PkbBridgeMockImpl.h"
+#include "ResponseParser.h"
 
 Spa::Spa() {
 }
@@ -51,4 +58,37 @@ Node* Spa::generateAstFromFile(string filePath) {
 
 SpaDataContainer* Spa::generateHelperTables(Node* rootNode) {
 	return TreeAnalyzer::analyzeTree(rootNode);
+}
+
+
+list<string> Spa::evaluateExpression(string declarationVariables, string query, SpaDataContainer* spaDataContainer) {
+	vector<QLexerToken*> queryDeclarationsTokens = QLexer::parseDeclarations(declarationVariables);
+	vector<QLexerToken*> queryTokens = QLexer::parseQuery(query);
+
+	DeclarationsSourceParser declarationsSourceParser(queryDeclarationsTokens);
+
+	vector<DeclaredVariable*> declaredVariables = declarationsSourceParser.parse();
+	QueryRequest* queryRequest = QuerySourceParser::cleanParse(queryTokens);
+
+	PkbBrigde* pkbBrigde = new PkbBridgeMockImpl;
+	QueryEvaluator* queryEvaluator = new QueryEvaluator(declaredVariables, queryRequest, spaDataContainer);
+	queryEvaluator->setPkbBrigde(pkbBrigde);
+	queryEvaluator->evaluate();
+	vector<vector<string>> response =queryEvaluator->evaluateReturn();
+
+	list<string> parsedResponse = ResponseParser::parse(response);
+
+
+	for (auto token : queryDeclarationsTokens) {
+		delete token;
+	}
+	for (auto token : queryTokens) {
+		delete token;
+	}
+	for (auto var : declaredVariables) {
+		delete var;
+	}
+	delete queryRequest , pkbBrigde , queryEvaluator;
+
+	return parsedResponse;
 }

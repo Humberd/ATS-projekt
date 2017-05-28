@@ -2,13 +2,16 @@
 #include "QueryEvaluatorException.h"
 #include <algorithm>
 #include "DeclarationKeywords.h"
+#include "QueryMethods.h"
 
 QueryEvaluator::QueryEvaluator() {
 	pkbBrigde = nullptr;
+	spaDataContainer = nullptr;
 }
 
 QueryEvaluator::QueryEvaluator(vector<DeclaredVariable*> declaredVariables,
-                               QueryRequest* queryRequest): declaredVariables(declaredVariables), queryRequest(queryRequest) {
+                               QueryRequest* queryRequest,
+                               SpaDataContainer* spaDataContainer): declaredVariables(declaredVariables), queryRequest(queryRequest), spaDataContainer(spaDataContainer) {
 	pkbBrigde = nullptr;
 }
 
@@ -24,8 +27,150 @@ QueryEvaluator::~QueryEvaluator() {
 }
 
 void QueryEvaluator::evaluate() {
+	for (auto methodRequest : queryRequest->getMethodRequests()) {
+		InvokationParam* initialLeftParam = changeParameterToInvokationParam(methodRequest->getLeftParam());
+		InvokationParam* initialRightParam = changeParameterToInvokationParam(methodRequest->getRightParam());
+
+		auto leftParams = generateParamsIncaseOfAvailableResults(initialLeftParam);
+		auto rightParams = generateParamsIncaseOfAvailableResults(initialRightParam);
+
+		vector<MethodEvaluatorResponse*> responses;
+
+		for (auto leftParam : leftParams) {
+			for (auto rightParam: rightParams) {
+				MethodEvaluatorResponse* response = evaluateMethod(methodRequest->getMethodName(), leftParam, rightParam, methodRequest->getGoDeep());
+				if (response->getState() == ResponseState::VECTOR && spaDataContainer != nullptr) {
+					response->setVectorResponse(StatementsFilter::filter(response->getVectorResponse(),
+					                                                     findTypeOfDeclaredVariable(response->getVariableName()), spaDataContainer));
+				}
+				responses.push_back(response);
+			}
+		}
+
+		vector<vector<string>*> newEvalResults;
+		changeResultsStateBasedOnResponses(responses, evalResults, newEvalResults, booleanResult, columnVariableNames);
+
+		for (auto res : evalResults) {
+			delete res;
+		}
+		evalResults.clear();
+		evalResults = newEvalResults;
+
+
+		for (auto response : responses) {
+			delete response;
+		}
+		responses.clear();
+	}
 }
 
+
+vector<vector<string>> QueryEvaluator::evaluateReturn() {
+	vector<vector<string>> response;
+
+	ReturnRequest* returnRequest = this->queryRequest->getReturnRequest();
+
+	if (returnRequest->getReturnType() == ReturnType::BOOLEAN) {
+		if (booleanResult) {
+			response[0].push_back("true");
+		} else {
+			response[0].push_back("false");
+		}
+		return response;
+	}
+
+	if (returnRequest->getReturnType() == ReturnType::VARIABLES) {
+
+		for (auto queryVariable : returnRequest->getVariables()) {
+			if (findIndexOfColumnVariableName(queryVariable->getName()) < 0) {
+				string varType = findTypeOfDeclaredVariable(queryVariable->getName());
+				auto nodes = StatementsFilter::getNodesWithType(varType, spaDataContainer);
+
+				if (queryVariable->getPropertyName() != "") {
+					nodes = StatementsFilter::getPropertyValues(varType, queryVariable->getPropertyName(), spaDataContainer, nodes);
+				}
+
+				response.resize(nodes.size());
+				for (unsigned int nodeIndex = 0; nodeIndex < nodes.size(); nodeIndex++) {
+					response[nodeIndex].push_back(nodes.at(nodeIndex));
+				}
+				return response;
+			}
+		}
+	}
+
+
+	StatementsFilter::getNodesWithType("stmt", spaDataContainer);
+	return response;
+}
+
+MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response = nullptr;
+	if (methodName == QueryMethods::PARENT) {
+		response = parentEvaluator(leftParam, rightParam, goDeep);
+	} else if (methodName == QueryMethods::FOLLOWS) {
+		response = followsEvaluator(leftParam, rightParam, goDeep);
+	} else {
+		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
+	}
+
+
+	return response;
+}
+
+
+void QueryEvaluator::changeResultsStateBasedOnResponses(vector<MethodEvaluatorResponse*>& responses,
+                                                        vector<vector<string>*>& oldState,
+                                                        vector<vector<string>*>& newState,
+                                                        bool& booleanResult,
+                                                        vector<string>& columnVariableNames) {
+	if (responses.size() == 0) {
+		throw QueryEvaluatorException("changeResultsStateBasedOnResponses() - responses should containt at least 1 item, but instead are empty!");
+	}
+
+	columnVariableNames.push_back(responses.at(0)->getVariableName());
+	for (auto response : responses) {
+		if (response->getState() == ResponseState::BOOLEAN) {
+			booleanResult = booleanResult & response->getBooleanResponse();
+			continue;
+		}
+
+		if (response->getState() == ResponseState::VECTOR) {
+			int insertToColumnIdex = findIndexOfColumnVariableName(response->getInsertToColumnName(), columnVariableNames);
+			changeVectorResultsBasedOnResponses(response, oldState, newState, insertToColumnIdex);
+		}
+	}
+}
+
+
+void QueryEvaluator::changeVectorResultsBasedOnResponses(MethodEvaluatorResponse* response,
+                                                         vector<vector<string>*>& oldState,
+                                                         vector<vector<string>*>& newState,
+                                                         int insertToColumnIdex) {
+	/*First insert to eval results*/
+	if (insertToColumnIdex < 0) {
+		if (oldState.size() != 0) {
+			throw QueryEvaluatorException("changeVectorResultsBasedOnResponses() - insertToColumnIdex is less than 0. This means it should be the first column to inject, but unfortunately oldState is not empty. OldState size: " + to_string(oldState.size()));
+		}
+		for (string singleResponse : response->getVectorResponse()) {
+			vector<string>* newRow = new vector<string>();
+			newRow->push_back(singleResponse);
+			newState.push_back(newRow);
+		}
+		return;
+	}
+
+
+	for (string singleResponse : response->getVectorResponse()) {
+		for (auto oldRow : oldState) {
+			if (oldRow->at(insertToColumnIdex) == response->getInsertToColumnValue()) {
+				vector<string>* newRow = new vector<string>(oldRow->begin(), oldRow->end());
+				newRow->push_back(singleResponse);
+				newState.push_back(newRow);
+			}
+		}
+	}
+}
 
 MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
 	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
@@ -37,6 +182,8 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 		response->setVectorResponse(vectorResult);
 		response->setVariableName(leftParam->getVariableName());
 		response->setVariableType(leftParam->getVariableType());
+		response->setInsertToColumnName(rightParam->getVariableType());
+		response->setInsertToColumnValue(rightParam->getValue());
 	}
 	/*Parent(7,x)*/
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
@@ -46,6 +193,8 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 		response->setVectorResponse(vectorResult);
 		response->setVariableName(rightParam->getVariableName());
 		response->setVariableType(rightParam->getVariableType());
+		response->setInsertToColumnName(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getVariableName());
 	}
 	/*Parent(7,7)*/
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
@@ -60,12 +209,52 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 	return response;
 }
 
+
+MethodEvaluatorResponse* QueryEvaluator::followsEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
+	/*Parent(x,7)*/
+	if (leftParam->getState() == InvokationParamState::VARIABLE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto vectorResult = pkbBrigde->getFollowedBy(rightParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(leftParam->getVariableName());
+		response->setVariableType(leftParam->getVariableType());
+		response->setInsertToColumnName(rightParam->getVariableType());
+		response->setInsertToColumnValue(rightParam->getValue());
+	}
+	/*Parent(7,x)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VARIABLE) {
+		auto vectorResult = pkbBrigde->getPrevious(leftParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(rightParam->getVariableName());
+		response->setVariableType(rightParam->getVariableType());
+		response->setInsertToColumnName(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getVariableName());
+	}
+	/*Parent(7,7)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto booleanResult = pkbBrigde->isElemFollowing(leftParam->getValue(), rightParam->getValue(), goDeep);
+		response->setState(ResponseState::BOOLEAN);
+		response->setBooleanResponse(booleanResult);
+	} else {
+		throw QueryEvaluatorException("followsEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
+	}
+
+	return response;
+}
+
 InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* parameter) {
 	InvokationParam* invokationParam = new InvokationParam;
 
 	/*Param is type ANY (_)*/
 	if (parameter->getType() == ParameterType::ANY) {
 		invokationParam->setState(InvokationParamState::ANY);
+		invokationParam->setVariableName(parameter->getVariableName());
+		invokationParam->setVariableType(parameter->getVariableType());
 		return invokationParam;
 	}
 
@@ -80,6 +269,8 @@ InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* par
 		invokationParam->setState(InvokationParamState::VALUE);
 		invokationParam->setValueType(ValueType::INTEGER);
 		invokationParam->setValue(to_string(parameter->getIntegerValue()));
+		invokationParam->setVariableName(parameter->getVariableName());
+		invokationParam->setVariableType(parameter->getVariableType());
 		return invokationParam;
 	}
 
@@ -87,6 +278,8 @@ InvokationParam* QueryEvaluator::changeParameterToInvokationParam(Parameter* par
 		invokationParam->setState(InvokationParamState::VALUE);
 		invokationParam->setValueType(ValueType::STRING);
 		invokationParam->setValue(parameter->getStringValue());
+		invokationParam->setVariableName(parameter->getVariableName());
+		invokationParam->setVariableType(parameter->getVariableType());
 		return invokationParam;
 	}
 
@@ -140,15 +333,19 @@ vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(
 
 
 int QueryEvaluator::findIndexOfColumnVariableName(string varName) {
-	for (int i = 0; i < columnVariableNames.size(); i++) {
-		if (columnVariableNames.at(i) == varName) {
+	return findIndexOfColumnVariableName(varName, columnVariableNames);
+}
+
+
+int QueryEvaluator::findIndexOfColumnVariableName(string varName, vector<string>& arr) {
+	for (int i = 0; i < arr.size(); i++) {
+		if (arr.at(i) == varName) {
 			return i;
 		}
 	}
 
 	return -1;
 }
-
 
 string QueryEvaluator::findTypeOfDeclaredVariable(string varName) {
 	for (auto declaredVariable : declaredVariables) {
@@ -213,4 +410,20 @@ PkbBrigde* QueryEvaluator::getPkbBrigde() const {
 
 void QueryEvaluator::setPkbBrigde(PkbBrigde* const pkbBrigde) {
 	this->pkbBrigde = pkbBrigde;
+}
+
+bool QueryEvaluator::getBooleanResult() const {
+	return booleanResult;
+}
+
+void QueryEvaluator::setBooleanResult(const bool booleanResult) {
+	this->booleanResult = booleanResult;
+}
+
+SpaDataContainer* QueryEvaluator::getSpaDataContainer() const {
+	return spaDataContainer;
+}
+
+void QueryEvaluator::setSpaDataContainer(SpaDataContainer* const spaDataContainer) {
+	this->spaDataContainer = spaDataContainer;
 }

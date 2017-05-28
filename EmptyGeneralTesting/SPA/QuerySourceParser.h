@@ -12,4 +12,6 @@ public:
 	~QuerySourceParser();
 
 	QueryRequest* parse() const;
+
+	static QueryRequest* cleanParse(vector<QLexerToken*>& tokens);
 };

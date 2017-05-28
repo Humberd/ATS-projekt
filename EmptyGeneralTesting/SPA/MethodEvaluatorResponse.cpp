@@ -46,3 +46,19 @@ void MethodEvaluatorResponse::setVariableType(const string variableType) {
 	this->variableType = variableType;
 }
 
+string MethodEvaluatorResponse::getInsertToColumnName() const {
+	return insertToColumnName;
+}
+
+void MethodEvaluatorResponse::setInsertToColumnName(const string insertToColumnName) {
+	this->insertToColumnName = insertToColumnName;
+}
+
+string MethodEvaluatorResponse::getInsertToColumnValue() const {
+	return insertToColumnValue;
+}
+
+void MethodEvaluatorResponse::setInsertToColumnValue(const string insertToColumnValue) {
+	this->insertToColumnValue = insertToColumnValue;
+}
+
