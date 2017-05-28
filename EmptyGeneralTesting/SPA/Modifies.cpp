@@ -2,17 +2,37 @@
 
 Modifies *Modifies::instance = 0;
 
-Modifies * Modifies::getInstance()
+Modifies * Modifies::getInstance(map<int, vector<string>> modifiesStatementTable, map<string, vector<string>> modifiesProcedureTable)
 {
 	if (!instance) {
-		instance = new Modifies();
+		instance = new Modifies(modifiesStatementTable, modifiesProcedureTable);
 	}
 
 	return instance;
 }
 
-Modifies::Modifies()
+Modifies::Modifies(map<int, vector<string>> modifiesStatementTable, map<string, vector<string>> modifiesProcedureTable)
 {
+
+	for (map<string, vector<string>>::const_iterator it = modifiesProcedureTable.begin(); it != modifiesProcedureTable.end(); ++it) {
+		vector<VAR*> tmp;
+
+		for (string value : modifiesProcedureTable.at(it->first)) {
+			tmp.push_back(new VAR(value));
+		}
+
+		this->modifiesPROC.insert(pair<string, vector<VAR*>>(it->first, tmp));
+	}
+
+	for (map<int, vector<string>>::const_iterator it = modifiesStatementTable.begin(); it != modifiesStatementTable.end(); ++it) {
+		vector<VAR*> tmp;
+
+		for (string value : modifiesStatementTable.at(it->first)) {
+			tmp.push_back(new VAR(value));
+		}
+
+		this->modifiesSTMT.insert(pair<int, vector<VAR*>>(it->first, tmp));
+	}
 }
 
 Modifies::~Modifies()

@@ -17,8 +17,8 @@ private:
 	vector<PROC*> getCallsDeepFrom(PROC* p);
 
 public:
-	static Calls *getInstance();
-	Calls();
+	static Calls *getInstance(map<string, vector<string>> callsTable);
+	Calls(map<string, vector<string>> callsTable);
 	~Calls();
 	void setCalls(PROC* p, PROC* q);
 	vector<PROC*> getCalls(PROC* p, bool goDeep);	

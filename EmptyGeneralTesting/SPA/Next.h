@@ -1,7 +1,9 @@
 #include <vector>
 #include "STMT.h"
 #include <map>
+#include "IfNode.h"
 #include "Node.h"
+
 using namespace std;
 
 class Next {
@@ -21,5 +23,6 @@ private:
 	vector<STMT*> goNextByWithoutDeep(STMT* s);
 	bool isNextDeep(STMT* s1, STMT* s2);
 	bool isNext(STMT* s1, STMT* s2);
+	bool inIfNode(IfNode* ifNode, Node* nextNode);
 
 };
