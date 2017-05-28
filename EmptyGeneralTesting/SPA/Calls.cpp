@@ -6,9 +6,18 @@
 
 Calls *Calls::instance = 0;
 
-Calls::Calls()
+Calls::Calls(map<string, vector<string>> callsTable)
 {
-	//callsTable = new map<string, vector<PROC*>>();
+
+	for (map<string, vector<string>>::const_iterator it = callsTable.begin(); it != callsTable.end(); ++it) {
+		vector<PROC*> tmp;
+
+		for (string value : callsTable.at(it->first)) {			
+			tmp.push_back(new PROC(value));
+		}
+
+		this->callsTable.insert(pair<string, vector<PROC*>>(it->first, tmp));
+	}
 }
 
 Calls::~Calls()
@@ -68,10 +77,10 @@ vector<PROC*> Calls::getCallsDeepFrom(PROC* p)
 	return resultVec;
 }
 
-Calls *Calls::getInstance()
+Calls *Calls::getInstance(map<string, vector<string>> callsTable)
 {
 	if (!instance) {
-		instance = new Calls();
+		instance = new Calls(callsTable);
 	}
 
 	return instance;

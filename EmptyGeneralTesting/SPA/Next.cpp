@@ -1,4 +1,10 @@
 #include "Next.h"
+#include "AssignNode.h"
+#include "WhileNode.h"
+#include "IfNode.h"
+#include "StatementListNode.h"
+#include "CallNode.h"
+#include "VariableNode.h"
 
 Next *Next::instance = 0;
 
@@ -58,5 +64,42 @@ bool Next::isNextDeep(STMT * s1, STMT * s2)
 
 bool Next::isNext(STMT * s1, STMT * s2)
 {
+	vector<Node*> s1Node = this->statementTable.at(s1->getSTMT());
+	vector<Node*> s2Node = this->statementTable.at(s2->getSTMT());
+
+	if (dynamic_cast<WhileNode*>(s1Node.front())) {
+		return false;
+	}
+	else if (dynamic_cast<IfNode*>(s1Node.front())) {
+		return inIfNode(dynamic_cast<IfNode*>(s1Node.front()), s2Node.front());
+	}
+	else {
+		return s1Node.front()->getProgramLineNumber() + 1 == s2Node.front()->getProgramLineNumber();
+	}	
+}
+
+bool Next::inIfNode(IfNode * ifNode, Node * nextNode)
+{
+	for (auto child : ifNode->getChildren()) {
+		if (dynamic_cast<StatementListNode*>(child)) {
+			auto stmtNode = dynamic_cast<StatementListNode*>(child);
+			
+			for (auto stmtChild : stmtNode->getChildren()) {
+				if (stmtChild->getProgramLineNumber() == nextNode->getProgramLineNumber()) {
+					return true;
+				}
+			}
+		}
+		else 
+		{
+			if (child->getProgramLineNumber() == nextNode->getProgramLineNumber()) {
+				return true;
+			}
+		}
+	}
+
 	return false;
 }
+
+
+

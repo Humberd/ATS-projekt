@@ -15,8 +15,8 @@ private:
 	static Modifies *instance;
 
 public:
-	static Modifies *getInstance();
-	Modifies();
+	static Modifies *getInstance(map<int, vector<string>> modifiesStatementTable, map<string, vector<string>> modifiesProcedureTable);
+	Modifies(map<int, vector<string>> modifiesStatementTable, map<string, vector<string>> modifiesProcedureTable);
 	~Modifies();
 	void setModifies(STMT* s, VAR* v);
 	void setModifies(PROC* p, VAR* v);

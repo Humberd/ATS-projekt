@@ -14,5 +14,6 @@
   x = x * y + z; }
 
   procedure Third {
-  
+	x = 0;
+	i = 5;
   }
