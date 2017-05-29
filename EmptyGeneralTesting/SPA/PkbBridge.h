@@ -3,6 +3,7 @@
 #include "STMT.h"
 #include "VAR.h"
 #include "PROC.h"
+#include "ASSIGN.h"
 
 using namespace std;
 
@@ -42,11 +43,17 @@ public:
 	virtual vector<string> getBeforeStatements(string statement, bool goDeep) const = 0;
 	virtual bool isStatmentBeforeNext(string statementBefore, string statementNext, bool goDeep) const = 0;
 
+	virtual vector<string> getAffectedStatements(string statement, bool goDeep) const = 0;
+	virtual vector<string> getAffectedStatementsBy(string statement, bool goDeep) const = 0;
+	virtual bool isStatmentAffectedBy(string statementBefore, string statementNext, bool goDeep) const = 0;
+
 	STMT* parseStringToStmt(string statement) const;
 	VAR* parseStringToVar(string variable) const;
 	PROC* parceStringToProc(string procedure) const;
+	ASSIGN* parseStringToAssign(string assign) const;
 
 	vector<string> parseStmtsToStrings(vector<STMT*>& statements) const;
 	vector<string> parseProceduresToStrings(vector<PROC*>& procedures) const;
 	vector<string> parseVariablesToStrings(vector<VAR*>& variables) const;
+	vector<string> parseAssignsToStrings(vector<ASSIGN*>& assigns) const;
 };

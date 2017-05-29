@@ -1,5 +1,3 @@
-278
-cat: All Category
 1 - All :: All variables?
 variable v;
 Select v

@@ -7,6 +7,7 @@
 #include "Uses.h"
 #include "Calls.h"
 #include "Next.h"
+#include "Affects.h"
 
 class PkbBridgeImpl: public PkbBrigde {
 	Parent* parentApi;
@@ -15,6 +16,7 @@ class PkbBridgeImpl: public PkbBrigde {
 	Uses* usesApi;
 	Next* nextApi;
 	Calls* callsApi;
+	Affects* affectsApi;
 
 public:
 	explicit PkbBridgeImpl(SpaDataContainer* spaDataContainer);
@@ -48,4 +50,8 @@ public:
 	vector<string> getNextStatements(string statement, bool goDeep) const override;
 	vector<string> getBeforeStatements(string statement, bool goDeep) const override;
 	bool isStatmentBeforeNext(string statementBefore, string statementNext, bool goDeep) const override;
+
+	vector<string> getAffectedStatements(string statement, bool goDeep) const override;
+	vector<string> getAffectedStatementsBy(string statement, bool goDeep) const override;
+	bool isStatmentAffectedBy(string statementBefore, string statementNext, bool goDeep) const override;
 };

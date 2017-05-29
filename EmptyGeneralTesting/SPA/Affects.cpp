@@ -1,73 +1,70 @@
 #include "Affects.h"
+#include "AssignNode.h"
+#include "VariableNode.h"
 
-Affects::Affects(map<int, vector<int>> _affectsMap)
-{
-	this->affectsMap = _affectsMap;
+
+Affects::Affects(SpaDataContainer* spaDataContainer, PkbBrigde* pkbBridge): spaDataContainer(spaDataContainer),pkbBridge(pkbBridge) {
 }
 
-vector<ASSIGN*> Affects::getAffects(ASSIGN * a, bool goDeep)
-{
-	return vector<ASSIGN*>();
-}
-
-vector<ASSIGN*> Affects::getAffectsBy(ASSIGN * a, bool goDeep)
-{
-	return vector<ASSIGN*>();
-}
-
-bool Affects::ifAffects(ASSIGN * a1, ASSIGN * a2, bool goDeep)
-{
-	return false;
-}
-
-Affects * Affects::getInstance(map<int, vector<int>> _affectsMap)
-{
-	if (!instance) {
-		instance = new Affects(_affectsMap);
+vector<ASSIGN*> Affects::getAffects(ASSIGN* a, bool goDeep) {
+	if (goDeep) {
+		return getAffectsWithDeep(a);
+	} else {
+		return getAffectsWithoutDeep(a);
 	}
-	return instance;
 }
 
-vector<ASSIGN*> Affects::getAffectsWithoutDeep(ASSIGN * a)
-{
+vector<ASSIGN*> Affects::getAffectsBy(ASSIGN* a, bool goDeep) {
+	if (goDeep) {
+		return getAffectsByWithDeep(a);
+	} else {
+		return getAffectsByWithoutDeep(a);
+	}
+}
+
+bool Affects::ifAffects(ASSIGN* a1, ASSIGN* a2, bool goDeep) {
+	if (goDeep) {
+		return ifAffectsWithDeep(a1, a2);
+	} else {
+		return ifAffectsWithoutDeep(a1, a2);
+	}
+}
+
+
+vector<ASSIGN*> Affects::getAffectsWithoutDeep(ASSIGN* a) {
 	vector<ASSIGN*> result;
-	if (!(affectsMap.find(a->getASSIGN()) == affectsMap.end()))
-	{
-		for (int i = 0; i < affectsMap[a->getASSIGN()].size(); i++)
-		{
-			ASSIGN* as = new ASSIGN(affectsMap[a->getASSIGN()].at(i));
-			result.push_back(as);
-		}
-	}
+//	string varName;
+
+//	Node* startingNode = this->spaDataContainer->statementTable.at(a->getASSIGN()).at(0);
+//	if (dynamic_cast<AssignNode*>(startingNode) != nullptr) {
+//		varName = (dynamic_cast<VariableNode*>(startingNode->getChild(0))->getName());
+//	} else {
+//		return result;
+//	}
+//	vector<string> flowPaths = pkbBridge->getNextStatements(to_string(a->getASSIGN()), true);
+
 	return result;
 }
 
-vector<ASSIGN*> Affects::getAffectsWithDeep(ASSIGN * a)
-{
-
+vector<ASSIGN*> Affects::getAffectsWithDeep(ASSIGN* a) {
 	vector<ASSIGN*> result;
 
 
 	return vector<ASSIGN*>();
 }
 
-vector<ASSIGN*> Affects::getAffectsByWithDeep(ASSIGN * a)
-{
+vector<ASSIGN*> Affects::getAffectsByWithDeep(ASSIGN* a) {
 	return vector<ASSIGN*>();
 }
 
-vector<ASSIGN*> Affects::getAffectsByWithoutDeep(ASSIGN * a)
-{
+vector<ASSIGN*> Affects::getAffectsByWithoutDeep(ASSIGN* a) {
 	return vector<ASSIGN*>();
 }
 
-bool Affects::ifAffectsWithoutDeep(ASSIGN * a1, ASSIGN * a2)
-{
+bool Affects::ifAffectsWithoutDeep(ASSIGN* a1, ASSIGN* a2) {
 	return false;
 }
 
-bool Affects::ifAffectsWithDeep(ASSIGN * a1, ASSIGN * a2)
-{
+bool Affects::ifAffectsWithDeep(ASSIGN* a1, ASSIGN* a2) {
 	return false;
 }
-

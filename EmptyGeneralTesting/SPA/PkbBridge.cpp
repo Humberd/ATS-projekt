@@ -20,6 +20,10 @@ PROC* PkbBrigde::parceStringToProc(string procedure) const {
 	return new PROC(procedure);
 }
 
+ASSIGN* PkbBrigde::parseStringToAssign(string assign) const {
+	return new ASSIGN(stoi(assign));
+}
+
 vector<string> PkbBrigde::parseStmtsToStrings(vector<STMT*>& statements) const {
 	vector<string> parsedResponse;
 
@@ -47,6 +51,17 @@ vector<string> PkbBrigde::parseVariablesToStrings(vector<VAR*>& variables) const
 
 	for (auto var : variables) {
 		parsedResponse.push_back(var->getVAR());
+		delete var;
+	}
+
+	return parsedResponse;
+}
+
+vector<string> PkbBrigde::parseAssignsToStrings(vector<ASSIGN*>& assigns) const {
+	vector<string> parsedResponse;
+
+	for (auto var : assigns) {
+		parsedResponse.push_back(to_string(var->getASSIGN()));
 		delete var;
 	}
 

@@ -792,7 +792,7 @@ TEST_CLASS(LiveTests) {
 	TEST_METHOD(Test_130) {
 		declaredVariables = "assign a;";
 		expresssion = "Select a such that Affects (a, 27)";
-		expectedResult = "27,28,23,20";
+		expectedResult = "20,23,27,28";
 	}
 
 	TEST_METHOD(Test_131) {

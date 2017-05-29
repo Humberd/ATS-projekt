@@ -7,6 +7,7 @@ PkbBridgeImpl::PkbBridgeImpl(SpaDataContainer* spaDataContainer) {
 	usesApi = new Uses(spaDataContainer->usesStatementTable, spaDataContainer->usesProcedureTable);
 	nextApi = new Next(spaDataContainer);
 	callsApi = new Calls(spaDataContainer->callsTable);
+	affectsApi = new Affects(spaDataContainer, this);
 }
 
 PkbBridgeImpl::~PkbBridgeImpl() {
@@ -16,6 +17,7 @@ PkbBridgeImpl::~PkbBridgeImpl() {
 	delete usesApi;
 	delete nextApi;
 	delete callsApi;
+	delete affectsApi;
 }
 
 vector<string> PkbBridgeImpl::getChildrenOf(string statement, bool goDeep) const {
@@ -131,4 +133,18 @@ vector<string> PkbBridgeImpl::getBeforeStatements(string statement, bool goDeep)
 
 bool PkbBridgeImpl::isStatmentBeforeNext(string statementBefore, string statementNext, bool goDeep) const {
 	return nextApi->isNext(parseStringToStmt(statementBefore), parseStringToStmt(statementNext), goDeep);
+}
+
+vector<string> PkbBridgeImpl::getAffectedStatements(string statement, bool goDeep) const {
+	vector<ASSIGN*> rawResponse = affectsApi->getAffects(parseStringToAssign(statement), goDeep);
+	return parseAssignsToStrings(rawResponse);
+}
+
+vector<string> PkbBridgeImpl::getAffectedStatementsBy(string statement, bool goDeep) const {
+	vector<ASSIGN*> rawResponse = affectsApi->getAffectsBy(parseStringToAssign(statement), goDeep);
+	return parseAssignsToStrings(rawResponse);
+}
+
+bool PkbBridgeImpl::isStatmentAffectedBy(string statementBefore, string statementNext, bool goDeep) const {
+	return affectsApi->ifAffects(parseStringToAssign(statementBefore), parseStringToAssign(statementNext), goDeep);
 }

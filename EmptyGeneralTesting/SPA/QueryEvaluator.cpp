@@ -142,6 +142,8 @@ MethodEvaluatorResponse* QueryEvaluator::evaluateMethod(string methodName, Invok
 		response = callsEvaluator(leftParam, rightParam, goDeep);
 	} else if (methodName == QueryMethods::NEXT) {
 		response = nextEvaluator(leftParam, rightParam, goDeep);
+	} else if (methodName == QueryMethods::AFFECTS) {
+		response = affectsEvaluator(leftParam, rightParam, goDeep);
 	} else {
 		throw QueryEvaluatorException("evaluateMethod() - unsupported methodName: " + methodName);
 	}
@@ -243,7 +245,6 @@ MethodEvaluatorResponse* QueryEvaluator::parentEvaluator(InvokationParam* leftPa
 
 	return response;
 }
-
 
 MethodEvaluatorResponse* QueryEvaluator::followsEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
 	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
@@ -449,7 +450,6 @@ MethodEvaluatorResponse* QueryEvaluator::callsEvaluator(InvokationParam* leftPar
 	return response;
 }
 
-
 MethodEvaluatorResponse* QueryEvaluator::nextEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
 	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
 	/*Next(x,4)*/
@@ -478,6 +478,43 @@ MethodEvaluatorResponse* QueryEvaluator::nextEvaluator(InvokationParam* leftPara
 	else if (leftParam->getState() == InvokationParamState::VALUE &&
 		rightParam->getState() == InvokationParamState::VALUE) {
 		auto booleanResult = pkbBrigde->isStatmentBeforeNext(leftParam->getValue(), rightParam->getValue(), goDeep);
+		response->setState(ResponseState::BOOLEAN);
+		response->setBooleanResponse(booleanResult);
+	} else {
+		throw QueryEvaluatorException("parentEvaluator - params are neither: (7, x) or (x, 7) or (7, 7), but instead are" + leftParam->toString() + " " + rightParam->toString());
+	}
+
+	return response;
+}
+
+MethodEvaluatorResponse* QueryEvaluator::affectsEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep) {
+	MethodEvaluatorResponse* response = new MethodEvaluatorResponse;
+	/*Next(x,4)*/
+	if (leftParam->getState() == InvokationParamState::VARIABLE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto vectorResult = pkbBrigde->getAffectedStatements(rightParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(leftParam->getVariableName());
+		response->setVariableType(leftParam->getVariableType());
+		response->setInsertToColumnName(rightParam->getVariableType());
+		response->setInsertToColumnValue(rightParam->getValue());
+	}
+	/*Next(4, x)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VARIABLE) {
+		auto vectorResult = pkbBrigde->getAffectedStatementsBy(leftParam->getValue(), goDeep);
+		response->setState(ResponseState::VECTOR);
+		response->setVectorResponse(vectorResult);
+		response->setVariableName(rightParam->getVariableName());
+		response->setVariableType(rightParam->getVariableType());
+		response->setInsertToColumnName(leftParam->getVariableName());
+		response->setInsertToColumnValue(leftParam->getValue());
+	}
+	/*Next(4,4)*/
+	else if (leftParam->getState() == InvokationParamState::VALUE &&
+		rightParam->getState() == InvokationParamState::VALUE) {
+		auto booleanResult = pkbBrigde->isStatmentAffectedBy(leftParam->getValue(), rightParam->getValue(), goDeep);
 		response->setState(ResponseState::BOOLEAN);
 		response->setBooleanResponse(booleanResult);
 	} else {
@@ -535,7 +572,18 @@ vector<InvokationParam*> QueryEvaluator::generateParamsIncaseOfAvailableResults(
 	}
 
 	if (invokationParam->getState() == InvokationParamState::ANY) {
-		if (method == QueryMethods::MODIFIES || method == QueryMethods::USES) {
+		if (method == QueryMethods::CALLS) {
+			for (auto procedure : StatementsFilter::getAllProcedures(spaDataContainer)) {
+				InvokationParam* param = invokationParam->copy();
+				param->setState(InvokationParamState::VALUE);
+				param->setValueType(ValueType::STRING);
+				param->setValue(procedure);
+				params.push_back(param);
+			}
+			delete invokationParam;
+
+			return params;
+		} else if (method == QueryMethods::MODIFIES || method == QueryMethods::USES) {
 			if (paramNumber == 1) {
 				for (auto variable : StatementsFilter::getAllVariables(spaDataContainer)) {
 					InvokationParam* param = invokationParam->copy();
