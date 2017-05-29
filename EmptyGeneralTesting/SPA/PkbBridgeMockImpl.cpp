@@ -91,3 +91,15 @@ vector<string> PkbBridgeMockImpl::getProceduresThatCalls(string procedure, bool 
 bool PkbBridgeMockImpl::isProcedureCalling(string procedureCalling, string procedureCalled, bool goDeep) const {
 	return true;
 }
+
+vector<string> PkbBridgeMockImpl::getNextStatements(string statement, bool goDeep) const {
+	return vector<string>{"1"};
+}
+
+vector<string> PkbBridgeMockImpl::getBeforeStatements(string statement, bool goDeep) const {
+	return vector<string>{"1"};
+}
+
+bool PkbBridgeMockImpl::isStatmentBeforeNext(string statementBefore, string statementNext, bool goDeep) const {
+	return true;
+}

@@ -38,6 +38,10 @@ public:
 	virtual vector<string> getProceduresThatCalls(string procedure, bool goDeep) const = 0;
 	virtual bool isProcedureCalling(string procedureCalling, string procedureCalled, bool goDeep) const = 0;
 
+	virtual vector<string> getNextStatements(string statement, bool goDeep) const = 0;
+	virtual vector<string> getBeforeStatements(string statement, bool goDeep) const = 0;
+	virtual bool isStatmentBeforeNext(string statementBefore, string statementNext, bool goDeep) const = 0;
+
 	STMT* parseStringToStmt(string statement) const;
 	VAR* parseStringToVar(string variable) const;
 	PROC* parceStringToProc(string procedure) const;

@@ -590,7 +590,7 @@ TEST_CLASS(LiveTests) {
 	TEST_METHOD(Test_96) {
 		declaredVariables = "stmt s;";
 		expresssion = "Select s such that Next*(s, 26)";
-		expectedResult = "12,13,14,15,16,17,19,20,18,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45";
+		expectedResult = "12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45";
 	}
 
 	TEST_METHOD(Test_97) {
@@ -610,11 +610,13 @@ TEST_CLASS(LiveTests) {
 		expresssion = "Select s such that Next*(50, s)";
 		expectedResult = "48,49,50";
 	}
+
 	TEST_METHOD(Test_100) {
 		declaredVariables = "stmt s;";
 		expresssion = "Select s such that Next*(s, 54)";
 		expectedResult = "51,52,53,54";
 	}
+
 	TEST_METHOD(Test_101) {
 		declaredVariables = "stmt s;";
 		expresssion = "Select BOOLEAN such that Next(s,_)";
@@ -645,7 +647,7 @@ TEST_CLASS(LiveTests) {
 	TEST_METHOD(Test_106) {
 		declaredVariables = "stmt foo;";
 		expresssion = "Select BOOLEAN such that Next(14,46)";
-		expectedResult = "true";
+		expectedResult = "false";
 	}
 
 	TEST_METHOD(Test_107) {

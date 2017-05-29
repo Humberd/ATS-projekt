@@ -39,6 +39,8 @@ public:
 	MethodEvaluatorResponse* modifiesEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 	MethodEvaluatorResponse* usesEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
 	MethodEvaluatorResponse* callsEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
+	MethodEvaluatorResponse* nextEvaluator(InvokationParam* leftParam, InvokationParam* rightParam, bool goDeep);
+
 
 	void changeResultsStateBasedOnResponses(vector<MethodEvaluatorResponse*>& responses,
 	                                        vector<vector<string>*>& oldState,

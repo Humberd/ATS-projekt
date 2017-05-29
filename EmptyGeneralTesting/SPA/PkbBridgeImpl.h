@@ -6,12 +6,14 @@
 #include "Modifies.h"
 #include "Uses.h"
 #include "Calls.h"
+#include "Next.h"
 
 class PkbBridgeImpl: public PkbBrigde {
 	Parent* parentApi;
 	Follows* followsApi;
 	Modifies* modifiesApi;
 	Uses* usesApi;
+	Next* nextApi;
 	Calls* callsApi;
 
 public:
@@ -42,4 +44,8 @@ public:
 	vector<string> getProceduresThatAreCalledBy(string procedure, bool doDeep) const override;
 	vector<string> getProceduresThatCalls(string procedure, bool goDeep) const override;
 	bool isProcedureCalling(string procedureCalling, string procedureCalled, bool goDeep) const override;
+
+	vector<string> getNextStatements(string statement, bool goDeep) const override;
+	vector<string> getBeforeStatements(string statement, bool goDeep) const override;
+	bool isStatmentBeforeNext(string statementBefore, string statementNext, bool goDeep) const override;
 };

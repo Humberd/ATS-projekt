@@ -12,6 +12,7 @@
 #include "PkbBridgeMockImpl.h"
 #include "ResponseParser.h"
 #include "PkbBridgeImpl.h"
+#include "FlowPathGenerator.h"
 
 Spa::Spa() {
 }
@@ -58,7 +59,9 @@ Node* Spa::generateAstFromFile(string filePath) {
 }
 
 SpaDataContainer* Spa::generateHelperTables(Node* rootNode) {
-	return TreeAnalyzer::analyzeTree(rootNode);
+	SpaDataContainer* spaDataContainer = TreeAnalyzer::analyzeTree(rootNode);
+	FlowPathGenerator::generateFlowPath(spaDataContainer);
+	return spaDataContainer;
 }
 
 

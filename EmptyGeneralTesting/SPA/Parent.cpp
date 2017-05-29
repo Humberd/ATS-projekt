@@ -156,7 +156,6 @@ vector<STMT*> Parent::getParentOfWithDeep(STMT* s) {
 	return result;
 }
 
-
 void Parent::getParentOfWithDeepSingle(int childLine, vector<STMT*>& response) {
 	for (auto entrySet : parentMap) {
 		for (auto child : entrySet.second) {
@@ -169,6 +168,7 @@ void Parent::getParentOfWithDeepSingle(int childLine, vector<STMT*>& response) {
 	}
 
 }
+
 
 bool Parent::isParentWithoutDeep(STMT* s1, STMT* s2) {
 	vector<int> children;
@@ -187,7 +187,6 @@ bool Parent::isParentWithoutDeep(STMT* s1, STMT* s2) {
 
 	return result;
 }
-
 
 bool Parent::isParentWithDeep(STMT* s1, STMT* s2) {
 	bool result = false;

@@ -5,6 +5,7 @@ PkbBridgeImpl::PkbBridgeImpl(SpaDataContainer* spaDataContainer) {
 	followsApi = new Follows(spaDataContainer->followsTable);
 	modifiesApi = new Modifies(spaDataContainer->modifiesStatementTable, spaDataContainer->modifiesProcedureTable);
 	usesApi = new Uses(spaDataContainer->usesStatementTable, spaDataContainer->usesProcedureTable);
+	nextApi = new Next(spaDataContainer);
 	callsApi = new Calls(spaDataContainer->callsTable);
 }
 
@@ -13,6 +14,7 @@ PkbBridgeImpl::~PkbBridgeImpl() {
 	delete followsApi;
 	delete modifiesApi;
 	delete usesApi;
+	delete nextApi;
 	delete callsApi;
 }
 
@@ -115,4 +117,18 @@ vector<string> PkbBridgeImpl::getProceduresThatCalls(string procedure, bool goDe
 
 bool PkbBridgeImpl::isProcedureCalling(string procedureCalling, string procedureCalled, bool goDeep) const {
 	return callsApi->isCalls(procedureCalling, parceStringToProc(procedureCalled));
+}
+
+vector<string> PkbBridgeImpl::getNextStatements(string statement, bool goDeep) const {
+	vector<STMT*> rawResponse = nextApi->goNext(parseStringToStmt(statement), goDeep);
+	return parseStmtsToStrings(rawResponse);
+}
+
+vector<string> PkbBridgeImpl::getBeforeStatements(string statement, bool goDeep) const {
+	vector<STMT*> rawResponse = nextApi->goBefore(parseStringToStmt(statement), goDeep);
+	return parseStmtsToStrings(rawResponse);
+}
+
+bool PkbBridgeImpl::isStatmentBeforeNext(string statementBefore, string statementNext, bool goDeep) const {
+	return nextApi->isNext(parseStringToStmt(statementBefore), parseStringToStmt(statementNext), goDeep);
 }
