@@ -12,7 +12,7 @@ procedure Planet {
     while t {
       y = y + x;
       x = x - 1; }
-      z = x + a; }
+    z = x + a; }
    else {
     z = x + a;
     call Moon;

@@ -5,7 +5,7 @@
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
 
-WhileNode::WhileNode(int lineNumber) : StatementNode(lineNumber, new RangeNumber(2, 2)) {
+WhileNode::WhileNode(int sourceLineNumber) : StatementNode(sourceLineNumber, new RangeNumber(2, 2)) {
 }
 
 WhileNode::~WhileNode() {

@@ -1,6 +1,7 @@
 #include "ExpressionNode.h"
 
-ExpressionNode::ExpressionNode(int lineNumber, RangeNumber* rangeOfRequiredChildNodes) :Node(lineNumber, rangeOfRequiredChildNodes) {
+ExpressionNode::ExpressionNode(int sourceLineNumber,
+                               RangeNumber* rangeOfRequiredChildNodes) : Node(sourceLineNumber, rangeOfRequiredChildNodes) {
 }
 
 ExpressionNode::~ExpressionNode() {

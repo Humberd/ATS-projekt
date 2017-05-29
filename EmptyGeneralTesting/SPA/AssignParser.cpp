@@ -19,8 +19,8 @@ Node* AssignParser::parse() {
 	throwOnEOF();
 
 	if ((*iterator)->isName()) {
-		leftExpr = new VariableNode((*iterator)->getFileLineNumber(), (*iterator)->getValue());
-		assignNode = new AssignNode((*iterator)->getFileLineNumber());
+		leftExpr = new VariableNode((*iterator)->getSourceLineNumber(), (*iterator)->getValue());
+		assignNode = new AssignNode((*iterator)->getSourceLineNumber());
 	} else {
 		throw ParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
 	}

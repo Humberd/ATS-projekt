@@ -162,6 +162,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LiveTests.cpp" />
     <ClCompile Include="SourceToASTTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -171,9 +172,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Queries1.txt" />
+    <Text Include="autotest-1-source.txt" />
+    <Text Include="autotest-1-queries.txt" />
+    <Text Include="final-queries.txt" />
+    <Text Include="final-source.txt" />
+    <Text Include="FlowPath.txt" />
+    <Text Include="NestedFlowPath.txt" />
+    <Text Include="NextTest.txt" />
     <Text Include="Queries2.txt" />
-    <Text Include="Source1.txt" />
     <Text Include="Source2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

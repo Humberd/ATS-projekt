@@ -3,7 +3,7 @@
 
 class IfNodeMock : public StatementNode {
 public:
-	explicit IfNodeMock(int lineNumber);
+	explicit IfNodeMock(int sourceLineNumber);
 	~IfNodeMock();
 
 	void addChild(Node* child) override;

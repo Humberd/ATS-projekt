@@ -11,7 +11,8 @@ using namespace std;
 class MockNode : public Node {
 
 public:
-	explicit MockNode(int lineNumber, RangeNumber* rangeOfRequiredChildNodes) : Node(lineNumber, rangeOfRequiredChildNodes) {
+	explicit MockNode(int sourceLineNumber,
+	                  RangeNumber* rangeOfRequiredChildNodes) : Node(sourceLineNumber, rangeOfRequiredChildNodes) {
 	}
 
 	~MockNode() override {
@@ -24,11 +25,11 @@ public:
 
 TEST_CLASS(NodeTest) {
 	TEST_METHOD(Node_initialize_noChildren_noParent) {
-		auto mockNode = new MockNode(1, new RangeNumber(1, 3));
+		auto mockNode = new MockNode(2, new RangeNumber(1, 3));
 
 		Assert::IsTrue(0 == mockNode->getChildren().size());
 		Assert::IsNull(mockNode->getParent());
-		Assert::IsTrue(1 == mockNode->getLineNumber());
+		Assert::IsTrue(2 == mockNode->getSourceLineNumber());
 
 		delete mockNode;
 	}
@@ -56,7 +57,7 @@ TEST_CLASS(NodeTest) {
 
 		Assert::ExpectException<exception>(pointer);
 
-		delete mockNode, child1, child2;
+		delete mockNode , child1 , child2;
 	}
 
 	TEST_METHOD(Node_getParent_setParent) {
@@ -69,7 +70,7 @@ TEST_CLASS(NodeTest) {
 
 		Assert::IsNotNull(mockNode->getParent());
 
-		delete mockNode, parentNode;
+		delete mockNode , parentNode;
 	}
 
 	TEST_METHOD(Node_validate_Valid) {
@@ -80,7 +81,7 @@ TEST_CLASS(NodeTest) {
 
 		parentNode->validate();
 
-		delete parentNode, childNode;
+		delete parentNode , childNode;
 	}
 
 	TEST_METHOD(Node_validate_InvalidSelf) {
@@ -107,7 +108,7 @@ TEST_CLASS(NodeTest) {
 
 		Assert::ExpectException<ValidateException>(pointer);
 
-		delete parentNode, childNode;
+		delete parentNode , childNode;
 	}
 
 	TEST_METHOD(Node_validate_LoopCatchSelf) {
@@ -137,6 +138,6 @@ TEST_CLASS(NodeTest) {
 
 		Assert::ExpectException<ValidateException>(pointer);
 
-		delete parentNode, childNode;
+		delete parentNode , childNode;
 	}
 };

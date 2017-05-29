@@ -26,13 +26,13 @@ vector<LexerToken*> Lexer::parse(vector<string>& sourceLines) {
 }
 
 
-vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
+vector<LexerToken*> Lexer::parseLine(string sourceLine, int sourceLineNumber) {
 	vector<LexerToken*> result;
 
 	auto iterator = sourceLine.begin();
 	auto iteratorEnd = sourceLine.end();
 
-	while (iterator != sourceLine.end()) {
+	while (iterator != iteratorEnd) {
 		auto character = *iterator;
 
 		/*If a character is a space or a tab*/
@@ -42,12 +42,12 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
 		}
 		/*If a character is a special character: "{}=;" */
 		else if (SpecialCharacters::isSpecialCharacter(character)) {
-			result.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, character, fileLineNumber));
+			result.push_back(new LexerToken(TokenKeys::SPECIAL_CHARACTER, character, sourceLineNumber));
 			++iterator;
 		}
 		/*If a character is an operator: "+-*" */
 		else if (Operators::isOperator(character)) {
-			result.push_back(new LexerToken(TokenKeys::OPERATOR, character, fileLineNumber));
+			result.push_back(new LexerToken(TokenKeys::OPERATOR, character, sourceLineNumber));
 			++iterator;
 		}
 		/*If a character is alphanumeric:
@@ -58,14 +58,14 @@ vector<LexerToken*> Lexer::parseLine(string sourceLine, int fileLineNumber) {
 			string name = scanName(iterator, iteratorEnd);
 
 			if (Keywords::isKeyword(name)) {
-				result.push_back(new LexerToken(TokenKeys::KEYWORD, name, fileLineNumber));
+				result.push_back(new LexerToken(TokenKeys::KEYWORD, name, sourceLineNumber));
 			} else {
-				result.push_back(new LexerToken(TokenKeys::NAME, name, fileLineNumber));
+				result.push_back(new LexerToken(TokenKeys::NAME, name, sourceLineNumber));
 			}
 		}
 		/*If a character is a digit: 0-9*/
 		else if (std::isdigit(character)) {
-			result.push_back(new LexerToken(TokenKeys::INTEGER, scanInteger(iterator, iteratorEnd), fileLineNumber));
+			result.push_back(new LexerToken(TokenKeys::INTEGER, scanInteger(iterator, iteratorEnd), sourceLineNumber));
 		}
 		/*If I can't find an appropriate symbol*/
 		else {

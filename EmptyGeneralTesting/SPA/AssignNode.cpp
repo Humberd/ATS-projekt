@@ -6,7 +6,7 @@
 #include "InvalidArgumentException.h"
 
 
-AssignNode::AssignNode(int lineNumber) : StatementNode(lineNumber, new RangeNumber(2, 2)) {
+AssignNode::AssignNode(int sourceLineNumber): StatementNode(sourceLineNumber, new RangeNumber(2, 2)) {
 }
 
 AssignNode::~AssignNode() {

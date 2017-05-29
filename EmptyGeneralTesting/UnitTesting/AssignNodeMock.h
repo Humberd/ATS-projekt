@@ -3,7 +3,7 @@
 
 class AssignNodeMock : public StatementNode {
 public:
-	explicit AssignNodeMock(int lineNumber);
+	explicit AssignNodeMock(int sourceLineNumber);
 	~AssignNodeMock();
 
 	void addChild(Node* child) override;

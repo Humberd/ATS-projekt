@@ -1,24 +1,25 @@
 #include "Node.h"
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
-#include <CppUnitTestLogger.h>
+//#include <CppUnitTestLogger.h>
 #include <sstream>
+#include <CppUnitTestLogger.h>
+
+//#include <CppUnitTestLogger.h>
+
 
 using namespace std;
 
-Node::Node(int sourceLineNumber, int programLineNumber, RangeNumber* rangeOfRequiredChildNodes) {
+Node::Node(int sourceLineNumber,
+           RangeNumber* rangeOfRequiredChildNodes) {
 	if (sourceLineNumber < 1) {
 		throw InvalidArgumentException(this, "sourceLineNumber must be a positive integer, but instead is: " + to_string(sourceLineNumber));
-	}
-	if (programLineNumber < 1) {
-		throw InvalidArgumentException(this, "programLineNumber must be a positive integer, but instead is: " + to_string(programLineNumber));
 	}
 	if (rangeOfRequiredChildNodes == nullptr) {
 		throw InvalidArgumentException(this, "rangeOfRequiredChildNodes must not be a null");
 	}
 
 	this->sourceLineNumber = sourceLineNumber;
-	this->programLineNumber = programLineNumber;
 	this->rangeOfRequiredChildNodes = rangeOfRequiredChildNodes;
 }
 
@@ -85,6 +86,10 @@ Node* Node::getParent() const {
 
 int Node::getSourceLineNumber() const {
 	return sourceLineNumber;
+}
+
+void Node::setProgramLineNumber(int programLineNumber) {
+	this->programLineNumber = programLineNumber;
 }
 
 int Node::getProgramLineNumber() const {

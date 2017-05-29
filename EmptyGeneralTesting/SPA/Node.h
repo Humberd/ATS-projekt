@@ -24,7 +24,7 @@ private:
 
 protected:
 	/*Initialize a node with the line number*/
-	explicit Node(int sourceLineNumber, int programLineNumber, RangeNumber* rangeOfRequiredChildNodes);
+	explicit Node(int sourceLineNumber, RangeNumber* rangeOfRequiredChildNodes);
 
 	/*Adding a child and setting this object as its parent*/
 	void _addChild(Node* child);
@@ -46,6 +46,8 @@ public:
 	/*Getting a source line number*/
 	int getSourceLineNumber() const;
 
+	/*Setting a program line number*/
+	void setProgramLineNumber(int programLineNumber);
 	/*Getting a program line number*/
 	int getProgramLineNumber() const;
 

@@ -4,7 +4,7 @@
 class IfNode: public StatementNode {
 
 public:
-	explicit IfNode(int sourceLineNumber, int programLineNumber);
+	explicit IfNode(int sourceLineNumber);
 	~IfNode() override;
 
 	// pozwala tylko na 3 childy: VariableNode, StmLstNode i StmLstNode

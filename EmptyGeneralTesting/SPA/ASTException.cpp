@@ -14,7 +14,7 @@ ASTException::ASTException(Node* node, string const& _Message): exception(_Messa
 }
 
 string ASTException::errorMessage() const {
-	return string(typeid(*this->node).name()) + " at line: " + to_string(this->node->getLineNumber()) + " - ";
+	return string(typeid(*this->node).name()) + " at source line: " + to_string(this->node->getSourceLineNumber()) + " - ";
 }
 
 char const* ASTException::what() const {

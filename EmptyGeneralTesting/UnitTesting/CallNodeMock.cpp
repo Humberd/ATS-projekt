@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "CallNodeMock.h"
 
-CallNodeMock::CallNodeMock(int lineNumber) : StatementNode(lineNumber, new RangeNumber(0, 0)) {
+CallNodeMock::CallNodeMock(int sourceLineNumber) : StatementNode(sourceLineNumber, new RangeNumber(0, 0)) {
 }
 
 CallNodeMock::~CallNodeMock() {

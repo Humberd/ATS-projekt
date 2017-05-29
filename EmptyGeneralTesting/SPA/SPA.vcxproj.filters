@@ -22,6 +22,12 @@
     <Filter Include="Source Files\AST">
       <UniqueIdentifier>{2f5e669c-7329-432d-b47e-d209b50fec7d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\PKB">
+      <UniqueIdentifier>{e7ce940b-114e-495b-b1d7-4fd1915d64c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PKB\PKBTree">
+      <UniqueIdentifier>{1ac5977d-f7aa-4796-aee6-2746d13ab89e}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\AST\Exceptions">
       <UniqueIdentifier>{789c142f-f524-467a-87ae-b7eea9c37dc1}</UniqueIdentifier>
     </Filter>
@@ -57,6 +63,105 @@
     </Filter>
     <Filter Include="Source Files\SourceParser\Parser">
       <UniqueIdentifier>{3a979d0b-f93f-420b-94ec-473adc34bd0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SourceParser\ProgramLineEvaluator">
+      <UniqueIdentifier>{0a41f444-a87c-4df4-a0ab-9c6fca3da5d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\ProgramLineEvaluator">
+      <UniqueIdentifier>{aedf7cf9-1b90-4808-a0a4-93c2d17e921b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PKB\PKBTree">
+      <UniqueIdentifier>{e087f068-e76f-4bd5-8cb1-8453f9d001a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Constants">
+      <UniqueIdentifier>{b600af61-dcdc-4e11-be6b-6efc7ed2a014}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Constants">
+      <UniqueIdentifier>{f32ed212-0f25-4314-8fb1-68398ce50b30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2">
+      <UniqueIdentifier>{1e6d6ff6-dbce-41dc-a0e5-201536ba7401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\Lexer">
+      <UniqueIdentifier>{9e85149d-47f0-4a1b-b277-1a7a84cefb5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2">
+      <UniqueIdentifier>{6280eb53-424b-4591-922c-9194296ccb57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\Lexer">
+      <UniqueIdentifier>{61c68cca-2afa-43ce-9e7b-2534d766b155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\Exceptions">
+      <UniqueIdentifier>{e4909be9-9e7a-4d7e-ae46-b413de181a7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\Exceptions">
+      <UniqueIdentifier>{3e96fd2a-7975-40f6-88a1-77f6005c99fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SourceParser\Types">
+      <UniqueIdentifier>{9c299f62-d8ad-47c0-808f-388a91e4f868}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SourceParser\Types">
+      <UniqueIdentifier>{d278380d-6b30-4379-9dbb-16eaadb19846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\Types">
+      <UniqueIdentifier>{0012cd96-c12c-4749-9344-26f0d577ef4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\Types">
+      <UniqueIdentifier>{e1f9e088-c684-48cd-b072-135c184d83cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\QueryParser">
+      <UniqueIdentifier>{ebd38acc-b46d-4da9-8e17-43fed5914bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\QueryParser">
+      <UniqueIdentifier>{de11b4d9-e9ab-4f58-ad79-003b2f3df8f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\DeclarationsParser">
+      <UniqueIdentifier>{807b4314-66e0-4ca5-8149-96595cb5786c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\DeclarationsParser">
+      <UniqueIdentifier>{8e43c2dc-55c2-4298-80f7-7f75c02a0f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryParser2\QueryParser\Models">
+      <UniqueIdentifier>{4ef33ecb-3b88-40e3-93f0-d6ee5ca5aef2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryParser2\QueryParser\Models">
+      <UniqueIdentifier>{5258fc4e-bf5e-49cf-8c82-00a67be71687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryEvaluator">
+      <UniqueIdentifier>{91a1c47f-7047-4834-943f-2b6c3a4a36b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryEvaluator">
+      <UniqueIdentifier>{0bff3458-caf4-4fde-8b3c-b181192bc729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryEvaluator\Exceptions">
+      <UniqueIdentifier>{b2636156-0166-4186-9874-9c475c95185a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryEvaluator\Exceptions">
+      <UniqueIdentifier>{d6195f3c-cc66-4825-a296-876dcc35752a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\QueryEvaluator\models">
+      <UniqueIdentifier>{9cc8bf07-da21-436f-aee0-27ab86099ad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\QueryEvaluator\models">
+      <UniqueIdentifier>{99851cb2-8712-4cee-b6f1-35b3dcfcacbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TreeAnalyzer">
+      <UniqueIdentifier>{95312964-983b-454a-a6fc-6f1ced875ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TreeAnalyzer">
+      <UniqueIdentifier>{6415afd1-98a1-4c67-8461-f3bbf69f1af0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TreeAnalyzer\Exceptions">
+      <UniqueIdentifier>{9c15e27e-9327-47c7-8c4b-527f930efb2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TreeAnalyzer\Exceptions">
+      <UniqueIdentifier>{0f984a7c-d2a8-4055-9894-3b6be842afb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\NodeFlowPath">
+      <UniqueIdentifier>{8fba5012-5d2b-46c1-b2c3-1cb12fd8ebfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NodeFlowPath">
+      <UniqueIdentifier>{6b963b38-5c1b-4f8b-a852-5a7871b71f1e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +219,6 @@
     <ClInclude Include="VariableNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ConstantNode.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
@@ -144,17 +246,8 @@
     <ClInclude Include="InvalidArgumentException.h">
       <Filter>Header Files\AST\Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="SourceFileManager.h">
-      <Filter>Header Files\SourceParser</Filter>
-    </ClInclude>
     <ClInclude Include="SourceFileException.h">
       <Filter>Header Files\SourceParser\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Keywords.h">
-      <Filter>Header Files\SourceParser</Filter>
-    </ClInclude>
-    <ClInclude Include="SpecialCharacters.h">
-      <Filter>Header Files\SourceParser</Filter>
     </ClInclude>
     <ClInclude Include="Lexer.h">
       <Filter>Header Files\SourceParser\Lexer</Filter>
@@ -164,9 +257,6 @@
     </ClInclude>
     <ClInclude Include="LexerException.h">
       <Filter>Header Files\SourceParser\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Operators.h">
-      <Filter>Header Files\SourceParser</Filter>
     </ClInclude>
     <ClInclude Include="TokenKeys.h">
       <Filter>Header Files\SourceParser\Lexer</Filter>
@@ -210,10 +300,217 @@
     <ClInclude Include="ProgramParser.h">
       <Filter>Header Files\SourceParser\Parser</Filter>
     </ClInclude>
+    <ClInclude Include="ProgramLineEvaluator.h">
+      <Filter>Header Files\SourceParser\ProgramLineEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="GetCallsDeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
+    <ClInclude Include="DeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
+    <ClInclude Include="FromDeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
+    <ClInclude Include="PROC.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="ASSIGN.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="STMT.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="VAR.h">
+      <Filter>Header Files\Constants</Filter>
+    </ClInclude>
+    <ClInclude Include="FromCallDeepTraverser.h">
+      <Filter>Header Files\PKB\PKBTree</Filter>
+    </ClInclude>
+    <ClInclude Include="QTokenKeys.h">
+      <Filter>Header Files\QueryParser2\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="QLexerToken.h">
+      <Filter>Header Files\QueryParser2\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="QLexer.h">
+      <Filter>Header Files\QueryParser2\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="QLexerException.h">
+      <Filter>Header Files\QueryParser2\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="SourceFileManager.h">
+      <Filter>Header Files\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Keywords.h">
+      <Filter>Header Files\SourceParser\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Operators.h">
+      <Filter>Header Files\SourceParser\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialCharacters.h">
+      <Filter>Header Files\SourceParser\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="DeclarationKeywords.h">
+      <Filter>Header Files\QueryParser2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryKeywords.h">
+      <Filter>Header Files\QueryParser2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryMethods.h">
+      <Filter>Header Files\QueryParser2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="QuerySpecialCharacters.h">
+      <Filter>Header Files\QueryParser2\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Spa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QParsersRepository.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="QParsingEntity.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="QParserException.h">
+      <Filter>Header Files\QueryParser2\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DParsingEntity.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DParsersRepository.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DeclarationParser.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DeclaredVariable.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="DeclarationsSourceParser.h">
+      <Filter>Header Files\QueryParser2\DeclarationsParser</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodRequest.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ParameterType.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryRequest.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ReturnRequest.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ReturnType.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryVariable.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="WithParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="WithRequest.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="WithType.h">
+      <Filter>Header Files\QueryParser2\QueryParser\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="WithManyParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodManyParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="QuerySourceParser.h">
+      <Filter>Header Files\QueryParser2\QueryParser</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryVariablesValidator.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryVariablesValidatorException.h">
+      <Filter>Header Files\QueryEvaluator\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryEvaluator.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="PkbBridge.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryEvaluatorException.h">
+      <Filter>Header Files\QueryEvaluator\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="ValueType.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="InvokationParamState.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="InvokationParam.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponseState.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodEvaluatorResponse.h">
+      <Filter>Header Files\QueryEvaluator\models</Filter>
+    </ClInclude>
+    <ClInclude Include="PkbBridgeMockImpl.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaDataContainer.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeAnalyzer.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiMapResult.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
+    <ClInclude Include="InjectRequest.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
+    <ClInclude Include="InjectRequestsContainer.h">
+      <Filter>Header Files\TreeAnalyzer</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeAnalyzerException.h">
+      <Filter>Header Files\TreeAnalyzer\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="StatementsFilter.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponseParser.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="PkbBridgeImpl.h">
+      <Filter>Header Files\QueryEvaluator</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowPathGenerator.h">
+      <Filter>Header Files\NodeFlowPath</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeFlowWrapper.h">
+      <Filter>Header Files\NodeFlowPath</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Node.cpp">
       <Filter>Source Files\AST</Filter>
+    </ClCompile>
+    <ClCompile Include="Calls.cpp">
+      <Filter>Source Files\PKB</Filter>
     </ClCompile>
     <ClCompile Include="ProgramNode.cpp">
       <Filter>Source Files\AST</Filter>
@@ -272,17 +569,8 @@
     <ClCompile Include="InvalidArgumentException.cpp">
       <Filter>Source Files\AST\Exceptions</Filter>
     </ClCompile>
-    <ClCompile Include="SourceFileManager.cpp">
-      <Filter>Source Files\SourceParser</Filter>
-    </ClCompile>
     <ClCompile Include="SourceFileException.cpp">
       <Filter>Source Files\SourceParser\Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="Keywords.cpp">
-      <Filter>Source Files\SourceParser</Filter>
-    </ClCompile>
-    <ClCompile Include="SpecialCharacters.cpp">
-      <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
     <ClCompile Include="LexerToken.cpp">
       <Filter>Source Files\SourceParser\Lexer</Filter>
@@ -292,9 +580,6 @@
     </ClCompile>
     <ClCompile Include="LexerException.cpp">
       <Filter>Source Files\SourceParser\Exceptions</Filter>
-    </ClCompile>
-    <ClCompile Include="Operators.cpp">
-      <Filter>Source Files\SourceParser</Filter>
     </ClCompile>
     <ClCompile Include="TokenKeys.cpp">
       <Filter>Source Files\SourceParser\Lexer</Filter>
@@ -338,8 +623,221 @@
     <ClCompile Include="ProgramParser.cpp">
       <Filter>Source Files\SourceParser\Parser</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ClCompile Include="ProgramLineEvaluator.cpp">
+      <Filter>Source Files\SourceParser\ProgramLineEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="GetCallsDeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="DeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="FromDeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="Modifies.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Uses.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="ASSIGN.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="PROC.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="STMT.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="VAR.cpp">
+      <Filter>Source Files\Constants</Filter>
+    </ClCompile>
+    <ClCompile Include="FromCallDeepTraverser.cpp">
+      <Filter>Source Files\PKB\PKBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="QTokenKeys.cpp">
+      <Filter>Source Files\QueryParser2\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="QLexerToken.cpp">
+      <Filter>Source Files\QueryParser2\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="QLexerException.cpp">
+      <Filter>Source Files\QueryParser2\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="QLexer.cpp">
+      <Filter>Source Files\QueryParser2\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="SourceFileManager.cpp">
+      <Filter>Source Files\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Keywords.cpp">
+      <Filter>Source Files\SourceParser\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files\SourceParser\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialCharacters.cpp">
+      <Filter>Source Files\SourceParser\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclarationKeywords.cpp">
+      <Filter>Source Files\QueryParser2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryKeywords.cpp">
+      <Filter>Source Files\QueryParser2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryMethods.cpp">
+      <Filter>Source Files\QueryParser2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="QuerySpecialCharacters.cpp">
+      <Filter>Source Files\QueryParser2\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="Spa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Parent.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Affects.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Next.cpp">
+      <Filter>Source Files\PKB</Filter>
+    </ClCompile>
+    <ClCompile Include="Follows.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QParsingEntity.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QParserException.cpp">
+      <Filter>Source Files\QueryParser2\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="QParsersRepository.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DParsersRepository.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DParsingEntity.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclarationParser.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclaredVariable.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="DeclarationsSourceParser.cpp">
+      <Filter>Source Files\QueryParser2\DeclarationsParser</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodRequest.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ReturnRequest.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryRequest.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryVariable.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="WithParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="WithRequest.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="WithManyParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodManyParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QuerySourceParser.cpp">
+      <Filter>Source Files\QueryParser2\QueryParser</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryVariablesValidator.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryVariablesValidatorException.cpp">
+      <Filter>Source Files\QueryEvaluator\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryEvaluator.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="PkbBridge.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryEvaluatorException.cpp">
+      <Filter>Source Files\QueryEvaluator\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="InvokationParam.cpp">
+      <Filter>Source Files\QueryEvaluator\models</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodEvaluatorResponse.cpp">
+      <Filter>Source Files\QueryEvaluator\models</Filter>
+    </ClCompile>
+    <ClCompile Include="PkbBridgeMockImpl.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaDataContainer.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeAnalyzer.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiMapResult.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="InjectRequest.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="InjectRequestsContainer.cpp">
+      <Filter>Source Files\TreeAnalyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeAnalyzerException.cpp">
+      <Filter>Source Files\TreeAnalyzer\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="StatementsFilter.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponseParser.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PkbBridgeImpl.cpp">
+      <Filter>Source Files\QueryEvaluator</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Operators.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeFlowWrapper.cpp">
+      <Filter>Source Files\NodeFlowPath</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowPathGenerator.cpp">
+      <Filter>Source Files\NodeFlowPath</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

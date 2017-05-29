@@ -21,4 +21,3 @@ Node* ExpressionParserMock::parse() {
 		throw ParserException("exc");
 	}
 }
-

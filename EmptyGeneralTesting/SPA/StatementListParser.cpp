@@ -1,5 +1,5 @@
 #include "StatementListParser.h"
-#include "ParsersRepository.h";
+#include "ParsersRepository.h"
 #include "StatementListNode.h"
 #include "ParserException.h"
 #include <sstream>
@@ -18,7 +18,7 @@ Node* StatementListParser::parse() {
 	throwOnEOF();
 
 	if ((*iterator)->isOpenBrace()) {
-		statementListNode = new StatementListNode((*iterator)->getFileLineNumber());
+		statementListNode = new StatementListNode((*iterator)->getSourceLineNumber());
 	} else {
 		throw ParserException(getClassName() + " - expected an open brace, but instead got: " + (*iterator)->toString());
 	}

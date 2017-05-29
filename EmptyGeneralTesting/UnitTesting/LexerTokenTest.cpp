@@ -12,7 +12,7 @@ TEST_CLASS(LexerTokenTest) {
 
 		Assert::IsTrue(token->getKey() == "foo");
 		Assert::IsTrue(token->getValue() == "bar");
-		Assert::IsTrue(token->getFileLineNumber() == 1);
+		Assert::IsTrue(token->getSourceLineNumber() == 1);
 
 		delete token;
 	}
@@ -22,7 +22,7 @@ TEST_CLASS(LexerTokenTest) {
 
 		Assert::IsTrue(token->getKey() == "foo");
 		Assert::IsTrue(token->getValue() == "b");
-		Assert::IsTrue(token->getFileLineNumber() == 32);
+		Assert::IsTrue(token->getSourceLineNumber() == 32);
 
 		delete token;
 	}

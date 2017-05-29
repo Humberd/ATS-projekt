@@ -3,7 +3,7 @@
 
 class StatementNode: public Node {
 protected:
-	explicit StatementNode(int sourceLineNumber, int programLineNumber, RangeNumber* rangeOfRequiredChildNodes);
+	explicit StatementNode(int sourceLineNumber, RangeNumber* rangeOfRequiredChildNodes);
 
 public:
 	virtual ~StatementNode();

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "IfNodeMock.h"
 
-IfNodeMock::IfNodeMock(int lineNumber) : StatementNode(lineNumber, new RangeNumber(0, 0)) {
+IfNodeMock::IfNodeMock(int sourceLineNumber) : StatementNode(sourceLineNumber, new RangeNumber(0, 0)) {
 }
 
 IfNodeMock::~IfNodeMock() {

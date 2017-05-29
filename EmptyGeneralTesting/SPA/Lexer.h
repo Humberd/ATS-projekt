@@ -12,7 +12,7 @@ public:
 	~Lexer();
 
 	static vector<LexerToken*> parse(vector<string>& sourceLines);
-	static vector<LexerToken*> parseLine(string sourceLine, int fileLineNumber);
+	static vector<LexerToken*> parseLine(string sourceLine, int sourceLineNumber);
 
 	static void mergeVectors(vector<LexerToken*>& to, vector<LexerToken*>& add);
 	static string scanName(string::iterator& iterator, string::iterator& endIterator);

@@ -2,7 +2,8 @@
 #include "ValidateException.h"
 #include "InvalidArgumentException.h"
 
-ConstantNode::ConstantNode(int lineNumber, int value) : ReferenceNode(lineNumber) {
+ConstantNode::ConstantNode(int sourceLineNumber,
+                           int value) : ReferenceNode(sourceLineNumber) {
 	this->value = value;
 }
 

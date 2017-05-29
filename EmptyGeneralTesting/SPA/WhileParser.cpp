@@ -19,7 +19,7 @@ Node* WhileParser::parse() {
 	throwOnEOF();
 
 	if ((*iterator)->isWhile()) {
-		whileNode = new WhileNode((*iterator)->getFileLineNumber());
+		whileNode = new WhileNode((*iterator)->getSourceLineNumber());
 	} else {
 		throw ParserException(getClassName() + " - expected a 'while' keyword, but instead got: " + (*iterator)->toString());
 	}
@@ -27,7 +27,7 @@ Node* WhileParser::parse() {
 	throwOnEOF();
 
 	if ((*iterator)->isName()) {
-		leftExpr = new VariableNode((*iterator)->getFileLineNumber(), (*iterator)->getValue());
+		leftExpr = new VariableNode((*iterator)->getSourceLineNumber(), (*iterator)->getValue());
 	} else {
 		throw ParserException(getClassName() + " - expected a name, but instead got: " + (*iterator)->toString());
 	}

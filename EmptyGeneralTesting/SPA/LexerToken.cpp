@@ -4,16 +4,24 @@
 #include "Operators.h"
 #include "SpecialCharacters.h"
 
-LexerToken::LexerToken(string key, string value, int fileLineNumber): key(key), value(value), fileLineNumber(fileLineNumber) {
+LexerToken::LexerToken(string key,
+                       string value,
+                       int sourceLineNumber): key(key), value(value), sourceLineNumber(sourceLineNumber) {
 }
 
-LexerToken::LexerToken(string key, char value, int fileLineNumber): LexerToken(key, string(1, value), fileLineNumber) {
+LexerToken::LexerToken(string key,
+                       char value,
+                       int sourceLineNumber): LexerToken(key, string(1, value), sourceLineNumber) {
 }
 
-LexerToken::LexerToken(char key, char value, int fileLineNumber): LexerToken(string(1, key), string(1, value), fileLineNumber) {
+LexerToken::LexerToken(char key,
+                       char value,
+                       int sourceLineNumber) : LexerToken(string(1, key), string(1, value), sourceLineNumber) {
 }
 
-LexerToken::LexerToken(char key, string value, int fileLineNumber): LexerToken(string(1, key), value, fileLineNumber) {
+LexerToken::LexerToken(char key,
+                       string value,
+                       int sourceLineNumber): LexerToken(string(1, key), value, sourceLineNumber) {
 }
 
 LexerToken::~LexerToken() {
@@ -27,8 +35,8 @@ string LexerToken::getValue() const {
 	return value;
 }
 
-int LexerToken::getFileLineNumber() const {
-	return fileLineNumber;
+int LexerToken::getSourceLineNumber() const {
+	return sourceLineNumber;
 }
 
 bool LexerToken::isKeyword() const {
@@ -105,7 +113,6 @@ bool LexerToken::isSemicolon() const {
 	return isSpecialCharacter() && value == SpecialCharacters::SEMICOLON;
 }
 
-
 string LexerToken::toString() const {
-	return "{key: '" + key + "', value: '" + value + "', fileLineNumber: '" + to_string(fileLineNumber) + "'}";
+	return "{key: '" + key + "', value: '" + value + "', sourceLineNumber: '" + to_string(sourceLineNumber) + "}";
 }

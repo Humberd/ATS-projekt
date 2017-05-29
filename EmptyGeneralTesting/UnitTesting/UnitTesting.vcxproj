@@ -184,21 +184,36 @@
     <ClCompile Include="CallNodeMock.cpp" />
     <ClCompile Include="CallParserMock.cpp" />
     <ClCompile Include="CallParserTest.cpp" />
+    <ClCompile Include="DeclarationParserTest.cpp" />
+    <ClCompile Include="DeclarationsSourceParserTest.cpp" />
     <ClCompile Include="ExpressionParserMock.cpp" />
     <ClCompile Include="ExpressionNodeMock.cpp" />
     <ClCompile Include="ExpressionParserTest.cpp" />
+    <ClCompile Include="FollowsTest.cpp" />
     <ClCompile Include="IfNodeMock.cpp" />
     <ClCompile Include="IfParserMock.cpp" />
     <ClCompile Include="KeywordsTest.cpp" />
     <ClCompile Include="LexerTest.cpp" />
     <ClCompile Include="LexerTokenTest.cpp" />
+    <ClCompile Include="MethodManyParserTest.cpp" />
+    <ClCompile Include="MethodParserTest.cpp" />
+    <ClCompile Include="ModifiesTest.cpp" />
+    <ClCompile Include="NodeFlowPathTest.cpp" />
     <ClCompile Include="NodeTest.cpp" />
+    <ClCompile Include="ParentTest.cpp" />
     <ClCompile Include="OperatorsTest.cpp" />
     <ClCompile Include="ParsingEntityTest.cpp" />
     <ClCompile Include="ProcedureNodeMock.cpp" />
     <ClCompile Include="ProcedureParserMock.cpp" />
     <ClCompile Include="ProcedureParserTest.cpp" />
+    <ClCompile Include="ProgramLineEvaluatorTest.cpp" />
     <ClCompile Include="ProgramParserTest.cpp" />
+    <ClCompile Include="QLexerTest.cpp" />
+    <ClCompile Include="QueryEvaluatorTest.cpp" />
+    <ClCompile Include="QueryEvaluatorTest2.cpp" />
+    <ClCompile Include="QuerySourceParserTest.cpp" />
+    <ClCompile Include="QueryVariablesValidatorTest.cpp" />
+    <ClCompile Include="SelectParserTest.cpp" />
     <ClCompile Include="SourceParserTest.cpp" />
     <ClCompile Include="RangeNumberTest.cpp" />
     <ClCompile Include="SourceFileManagerTest.cpp" />
@@ -206,6 +221,7 @@
     <ClCompile Include="StatementListNodeMock.cpp" />
     <ClCompile Include="StatementListParserMock.cpp" />
     <ClCompile Include="StatementListParserTest.cpp" />
+    <ClCompile Include="CallsTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -213,9 +229,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TokenKeyMocks.cpp" />
+    <ClCompile Include="TreeAnalyzerTest.cpp" />
+    <ClCompile Include="VariableParserTest.cpp" />
     <ClCompile Include="WhileNodeMock.cpp" />
     <ClCompile Include="WhileParserMock.cpp" />
     <ClCompile Include="WhileParserTest.cpp" />
+    <ClCompile Include="UsesTest.cpp" />
+    <ClCompile Include="WithManyParserTest.cpp" />
+    <ClCompile Include="WithParserTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="TestSource1.txt" />
