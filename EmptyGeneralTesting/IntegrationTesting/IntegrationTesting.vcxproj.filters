@@ -67,5 +67,8 @@
     <Text Include="NestedFlowPath.txt">
       <Filter>Resource Files\Assignment</Filter>
     </Text>
+    <Text Include="source-parenthesis.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -1370,7 +1370,7 @@ p,q,a,d
 5000
 404 - Clauses, Typed ::
 assign a; variable v;
-select a such that Affects(a,a) and Modifies(a,v) and Uses(a,v)
+Select a such that Affects(a,a) and Modifies(a,v) and Uses(a,v)
 6,27,28,43,70,72
 5000
 405 - Clauses, Typed ::
@@ -1385,6 +1385,6 @@ Select <a1, a2> such that Affects(a1, a2) and Affects(a2, a1)
 5000
 407 - Clauses, Typed:: 
 Stmt s1,s2;
-select s1 such that Next(s1,s2) and Next(s2,s1)
+Select s1 such that Next(s1,s2) and Next(s2,s1)
 51, 52
 5000

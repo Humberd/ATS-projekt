@@ -14,4 +14,12 @@ TEST_CLASS(SourceToASTTest) {
 			Logger::WriteMessage(e.what());
 		}
 	}
+
+	TEST_METHOD(PARENTHESIS) {
+		try {
+			Node* rootNode = Spa::generateAstFromFile("../IntegrationTesting/source-parenthesis.txt");
+		} catch(exception& e) {
+			Logger::WriteMessage(e.what());
+		}
+	}
 };

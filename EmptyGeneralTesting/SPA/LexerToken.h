@@ -43,6 +43,8 @@ public:
 	bool isCloseBrace() const;
 	bool isEquals() const;
 	bool isSemicolon() const;
+	bool isParenthesisOpen() const;
+	bool isParenthesisClose() const;
 
 	string toString() const override;
 };

@@ -16,7 +16,7 @@ TEST_CLASS(SpecialCharactersTest) {
 	}
 
 	TEST_METHOD(SpecialCharacters_isSpecialCharacter_Invalid) {
-		string specialCharacters[] = {"foo", "bar", "+","-","/","[","]","(",")"};
+		string specialCharacters[] = {"foo", "bar", "+","-","/","[","]"};
 
 		for (auto specChar : specialCharacters) {
 			Assert::IsFalse(SpecialCharacters::isSpecialCharacter(specChar));

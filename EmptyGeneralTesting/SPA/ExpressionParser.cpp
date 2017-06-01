@@ -62,7 +62,7 @@ Node* ExpressionParser::parse() {
 	vector<ExpressionNode*> expressionNodes;
 	vector<OperatorNode*> operatorNodes;
 
-//	throwEOF();
+	//	throwEOF();
 	throwOnEOF();
 
 	int numberOfTimes = 0;
@@ -101,6 +101,9 @@ Node* ExpressionParser::parse() {
 		} else if ((*iterator)->isSemicolon() && ct == 1) {
 			nextElement();
 			break;
+		} else if ((*iterator)->isParenthesisOpen() || (*iterator)->isParenthesisClose()) {
+			nextElement();
+			continue;
 		} else {
 			if (ct == 0) {
 				throw ParserException(getClassName() + " - expected name or integer, but instead got: " + (*iterator)->toString());
@@ -139,7 +142,7 @@ Node* ExpressionParser::parse() {
 
 		operatorNodes.erase(operatorNodes.begin() + hwNode->index);
 		expressionNodes.erase(expressionNodes.begin() + hwNode->index + 1);
-		
+
 		expressionNodes.at(hwNode->index) = hwNode->operatorNode;
 	}
 

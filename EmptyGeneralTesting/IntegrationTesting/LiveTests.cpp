@@ -12,7 +12,7 @@ TEST_CLASS(LiveTests) {
 	string expresssion = "";
 	string expectedResult = "";
 
-	Node* rootNode = Spa::generateAstFromFile("../IntegrationTesting/final-source.txt");
+	Node* rootNode = Spa::generateAstFromFile("../IntegrationTesting/source-parenthesis.txt");
 	SpaDataContainer* spaDataContainer = Spa::generateHelperTables(rootNode);
 
 	TEST_METHOD_CLEANUP(Eval) {
@@ -851,6 +851,12 @@ TEST_CLASS(LiveTests) {
 
 	TEST_METHOD(Test_140) {
 		declaredVariables = "assign a;";
+		expresssion = "Select c.value such that Affects (a,a)";
+		expectedResult = "1,2,3,5,8";
+	}
+
+	TEST_METHOD(Test_404) {
+		declaredVariables = "assign a; variable v;";
 		expresssion = "Select c.value such that Affects (a,a)";
 		expectedResult = "1,2,3,5,8";
 	}

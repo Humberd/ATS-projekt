@@ -113,6 +113,14 @@ bool LexerToken::isSemicolon() const {
 	return isSpecialCharacter() && value == SpecialCharacters::SEMICOLON;
 }
 
+bool LexerToken::isParenthesisOpen() const {
+	return isSpecialCharacter() && value == SpecialCharacters::PARENTHASIS_OPEN;
+}
+
+bool LexerToken::isParenthesisClose() const {
+	return isSpecialCharacter() && value == SpecialCharacters::PARENTHASIS_CLOSE;
+}
+
 string LexerToken::toString() const {
 	return "{key: '" + key + "', value: '" + value + "', sourceLineNumber: '" + to_string(sourceLineNumber) + "}";
 }

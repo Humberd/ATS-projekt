@@ -20,6 +20,7 @@ TestWrapper::TestWrapper() {
 }
 
 TestWrapper::~TestWrapper() {
+	delete spaDataContainer->rootNode;
 	delete spaDataContainer;
 }
 
@@ -36,6 +37,11 @@ void TestWrapper::evaluate(std::string query, std::list<std::string>& results) {
 	string declarations = query.substr(0, selectIndex);
 	string queries = query.substr(selectIndex);
 
-	list<string> myResults = Spa::evaluateExpression(declarations, queries, spaDataContainer);
-	results.insert(results.begin(), myResults.begin(), myResults.end());
+	try {
+		list<string> myResults = Spa::evaluateExpression(declarations, queries, spaDataContainer);
+		results.insert(results.begin(), myResults.begin(), myResults.end());
+	} catch (...) {
+		results.clear();
+		/*Just don't throw any exception in case of an error :( */
+	}
 }
