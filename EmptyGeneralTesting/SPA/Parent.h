@@ -10,13 +10,11 @@ using namespace std;
 
 class Parent {
 public:
-	Parent(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable);
+	explicit Parent(map<int, vector<int>>& intTable, map<int, vector<Node*>>& stmtTable);
 	vector<STMT*> getParent(STMT* s, bool goDeep);
 	vector<STMT*> getParentOf(STMT* s, bool goDeep);
 	bool isParent(STMT* s1, STMT* s2, bool goDeep);
-	static Parent* getInstance(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable);
 private:
-	static Parent* instance;
 	vector<vector<Node*>> parentTable;
 	Node* mainNode;
 	vector<STMT*> getParentWithoutDeep(STMT* s);

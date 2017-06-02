@@ -1,20 +1,6 @@
 #include "Follows.h"
-Follows *Follows::instance = 0;
 
-
-
-
-Follows * Follows::getInstance(map<int, vector<int>> _map)
-{
-	if (!instance) {
-		instance = new Follows(_map);
-	}
-
-	return instance;
-}
-
-
-Follows::Follows(map<int, vector<int>> _map)
+Follows::Follows(map<int, vector<int>>& _map)
 {
 	this->followsTable = _map;
 }

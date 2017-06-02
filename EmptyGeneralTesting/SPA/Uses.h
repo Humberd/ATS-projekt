@@ -15,11 +15,8 @@ private:
 	map<int, vector<VAR*>> usesASSIGN;
 	map<int, vector<VAR*>> usesSTMT;
 	map<string, vector<VAR*>> usesPROC;
-	static Uses *instance;
-
 public:
-	static Uses *getInstance(map<int, vector<string>> usesStatementTable, map<string, vector<string>> usesProcedureTable);
-	Uses(map<int, vector<string>> usesStatementTable, map<string, vector<string>> usesProcedureTable);
+	explicit Uses(map<int, vector<string>>& usesStatementTable, map<string, vector<string>>& usesProcedureTable);
 	~Uses();
 	void setUses(ASSIGN* a, VAR* v);
 	void setUses(STMT* s, VAR* v);

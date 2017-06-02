@@ -1,6 +1,29 @@
 procedure p{ a = x + y * b;
 	c = m - y + z * 3;
 	call a;
+	x = 2;
+	z = 3;
+	i = 5;
+	while i {
+		x = x - 1;
+		if x then {
+			z = x + 1;
+			if y then {
+			if m then {
+				if k then {
+					k = k + 1;
+				} else { y = y - 1; }
+			} else { y = y + 1; }
+		} else { while y {
+				y = y + k;
+				if y then {
+					k = k - m;
+				} else { c = b - m - x; }}}}
+		else {
+			y = z + x; }
+		z = z + x + i;
+		call q;
+		i = i - 1;}
 	if b then {
 		while m {
 			m = m - 1;
@@ -72,3 +95,119 @@ procedure d { y = i + m + b;
 				k = k - m;
 			} else { c = b - m - x; }}}
 	c = k + y * 3;}
+
+procedure newproc { y = i + m + b;
+	if y then {
+		if m then {
+			if k then {
+				k = k + 1;
+			} else { y = y - 1; }
+		} else { y = y + 1; }
+	} else { while y {
+			y = y + k;
+			if y then {
+				k = k - m;
+			} else { c = b - m - x; }}}
+	c = k + y * 3;}
+
+procedure a{ 
+	call Planet;
+	while b {
+		while d {
+			x = m + i;
+			k = x - z - y; }}
+	b = m * i - k;
+	call newproc;
+	if i then {
+		a = b - m - x;
+	} else { e = b - m;
+		c = e + b * x; }
+	a = e + k; 
+	y = i + m + b;
+	if y then {
+		if m then {
+			if k then {
+				k = k + 1;
+			} else { y = y - 1; }
+		} else { y = y + 1; }
+	} else { while y {
+			y = y + k;
+			if y then {
+				k = k - m;
+			} else { c = b - m - x; }}}
+	c = k + y * 3;}
+
+procedure Example {
+  x = 2;
+  z = 3;
+  i = 5;
+  while i {
+    x = x - 1;
+    if x then {
+      z = x + 1; }
+    else {
+      y = z + x; }
+    z = z + x + i;
+    call q;
+    i = i - 1; }
+  call p; }
+
+procedure foobar {
+  if x then {
+    while i {
+      x = z * 3 + 2 * y;
+      call q;
+      i = i - 1; }
+    x = x + 1;
+    z = x + z; }
+  else {
+    z = 1; }
+  z = z + x + i; }
+
+procedure akkk {
+  if x then {
+    z = x + 1; }
+  else {
+    x = z + x; } }
+
+procedure Planet {
+  x = 8;
+  z = x + 4;
+  m = x * 4;
+  d = x * z + 6;
+  call Sun;
+  a = x + z * a;
+  call Moon;
+  y = a * x + z;
+  if m then {
+    y = a + z;
+    while t {
+      y = y + x;
+      x = x - 1; }
+    z = x + a; }
+   else {
+    z = x + a;
+    call Moon;
+    m = m + 6; }
+  call Earth; }
+
+procedure Earth {
+  while t {
+    x = d + 5 * y + z;
+    call Sun;
+    t = t - 1; }
+  d = x + d; }
+
+procedure Moon {
+  if a then {
+    x = x * a; }
+   else {
+    x = x + a; }
+  y = x + 2; }
+
+procedure Sun {
+  while y {
+    if t then {
+      z = x + 30; }
+     else {
+      x = x * y + d + y * a; } } }

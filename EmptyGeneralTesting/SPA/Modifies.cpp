@@ -1,17 +1,6 @@
 #include "Modifies.h"
 
-Modifies *Modifies::instance = 0;
-
-Modifies * Modifies::getInstance(map<int, vector<string>> modifiesStatementTable, map<string, vector<string>> modifiesProcedureTable)
-{
-	if (!instance) {
-		instance = new Modifies(modifiesStatementTable, modifiesProcedureTable);
-	}
-
-	return instance;
-}
-
-Modifies::Modifies(map<int, vector<string>> modifiesStatementTable, map<string, vector<string>> modifiesProcedureTable)
+Modifies::Modifies(map<int, vector<string>>& modifiesStatementTable, map<string, vector<string>>& modifiesProcedureTable)
 {
 
 	for (map<string, vector<string>>::const_iterator it = modifiesProcedureTable.begin(); it != modifiesProcedureTable.end(); ++it) {

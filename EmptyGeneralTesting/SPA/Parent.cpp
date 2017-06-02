@@ -1,47 +1,9 @@
 #include "Parent.h"
 #include <set>
-Parent* Parent::instance = 0;
 
-Parent::Parent(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable) {
+Parent::Parent(map<int, vector<int>>& intTable, map<int, vector<Node*>>& stmtTable) {
 	this->statementTable = stmtTable;
 	this->parentMap = intTable;
-	/*
-	vector<int> test;
-	test.push_back(5);
-	test.push_back(4);
-	test.push_back(3);
-
-	vector<int> test2;
-	test2.push_back(10);
-	test2.push_back(20);
-	test2.push_back(30);
-
-	vector<int> test3;
-	test3.push_back(66);
-	test3.push_back(65);
-	test3.push_back(66);
-
-	parentMap[1] = test;
-	parentMap[2] = test2;
-	parentMap[4] = test3;
-	*/
-	SourceFileManager* fileManager = new SourceFileManager("../IntegrationTesting/Source2.txt");
-	vector<string> fileLines = fileManager->readFile();
-
-	/*Parsing fileLines to a LexerTokens*/
-	vector<LexerToken*> tokensList = Lexer::parse(fileLines);
-
-	/*Starting the actual parser*/
-	SourceParser* sourceParser = new SourceParser(tokensList);
-	ProgramLineEvaluator* evaluator = new ProgramLineEvaluator;
-	try {
-		Node* rootNode = sourceParser->parse();
-		rootNode->validate();
-		evaluator->evaluate(rootNode);
-		mainNode = rootNode;
-	} catch (exception& e) {
-	}
-
 }
 
 
@@ -74,15 +36,6 @@ bool Parent::isParent(STMT* s1, STMT* s2, bool goDeep) {
 	}
 	return output;
 }
-
-Parent* Parent::getInstance(map<int, vector<int>> intTable, map<int, vector<Node*>> stmtTable) {
-	if (!instance) {
-		instance = new Parent(intTable, stmtTable);
-	}
-
-	return instance;
-}
-
 
 vector<STMT*> Parent::getParentWithoutDeep(STMT* s) {
 	vector<STMT*> result;

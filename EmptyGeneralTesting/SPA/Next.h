@@ -7,7 +7,7 @@ using namespace std;
 class Next {
 
 public:
-	Next(SpaDataContainer* spaDataContainer);
+	explicit Next(SpaDataContainer* spaDataContainer);
 	vector<STMT*> goNext(STMT* s, bool goDeep);
 	vector<STMT*> goBefore(STMT* s, bool goDeep);
 	bool isNext(STMT* s1, STMT* s2, bool goDeep);

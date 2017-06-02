@@ -94,8 +94,7 @@ TEST_CLASS(ParentTest) {
 			mapa[15] = t15;
 			mapa[16] = t16;
 
-			Parent* parent;
-			parent=parent->getInstance(mapa, statementTable);
+			Parent* parent = new Parent(mapa, statementTable);
 			parent->getParent(new STMT(12), false);
 			parent->getParentOf(new STMT(9), false);
 

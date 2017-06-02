@@ -66,8 +66,7 @@ TEST_CLASS(FollowsTest) {
 		mapa[15] = t15;
 		mapa[16] = t16;
 		mapa[17] = t17;
-		Follows* follows;
-		follows = follows->getInstance(mapa);
+		Follows* follows = new Follows(mapa);
  		vector<STMT*> test = follows->getFollows(new STMT(11), false);
 		vector<STMT*> test3 = follows->getFollows(new STMT(10), false);
 		vector<STMT*> test2 = follows->getFollows(new STMT(4), true);

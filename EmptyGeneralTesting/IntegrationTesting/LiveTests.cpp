@@ -12,7 +12,8 @@ TEST_CLASS(LiveTests) {
 	string expresssion = "";
 	string expectedResult = "";
 
-	Node* rootNode = Spa::generateAstFromFile("../IntegrationTesting/source-parenthesis.txt");
+	Node* rootNode = Spa::generateAstFromFile("../IntegrationTesting/final-source.txt");
+//	Node* rootNode = Spa::generateAstFromFile("../IntegrationTesting/source-parenthesis.txt");
 	SpaDataContainer* spaDataContainer = Spa::generateHelperTables(rootNode);
 
 	TEST_METHOD_CLEANUP(Eval) {

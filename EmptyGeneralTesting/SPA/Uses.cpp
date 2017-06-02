@@ -1,18 +1,6 @@
 #include "Uses.h"
 
-Uses *Uses::instance = 0;
-
-Uses * Uses::getInstance(map<int, vector<string>> usesStatementTable, map<string, vector<string>> usesProcedureTable)
-{
-	if (!instance) {
-		instance = new Uses(usesStatementTable, usesProcedureTable);
-	}
-
-	return instance;
-}
-
-Uses::Uses(map<int, vector<string>> usesStatementTable, map<string, vector<string>> usesProcedureTable)
-{
+Uses::Uses(map<int, vector<string>>& usesStatementTable, map<string, vector<string>>& usesProcedureTable) {
 	for (map<string, vector<string>>::const_iterator it = usesProcedureTable.begin(); it != usesProcedureTable.end(); ++it) {
 		vector<VAR*> tmp;
 
@@ -34,27 +22,22 @@ Uses::Uses(map<int, vector<string>> usesStatementTable, map<string, vector<strin
 	}
 }
 
-Uses::~Uses()
-{
+Uses::~Uses() {
 }
 
-void Uses::setUses(ASSIGN* a, VAR* v)
-{
+void Uses::setUses(ASSIGN* a, VAR* v) {
 	usesASSIGN[a->getASSIGN()].push_back(v);
 }
 
-void Uses::setUses(STMT* s, VAR* v)
-{
+void Uses::setUses(STMT* s, VAR* v) {
 	usesSTMT[s->getSTMT()].push_back(v);
 }
 
-void Uses::setUses(PROC* p, VAR* v)
-{
+void Uses::setUses(PROC* p, VAR* v) {
 	usesPROC[p->getProc()].push_back(v);
 }
 
-vector<VAR*> Uses::getUses(ASSIGN* a)
-{
+vector<VAR*> Uses::getUses(ASSIGN* a) {
 	if (usesASSIGN.count(a->getASSIGN()) != 0) {
 		return usesASSIGN[a->getASSIGN()];
 	}
@@ -62,8 +45,7 @@ vector<VAR*> Uses::getUses(ASSIGN* a)
 	return vector<VAR*>();
 }
 
-vector<VAR*> Uses::getUses(STMT* s)
-{
+vector<VAR*> Uses::getUses(STMT* s) {
 	if (usesSTMT.count(s->getSTMT()) != 0) {
 		return usesSTMT[s->getSTMT()];
 	}
@@ -71,8 +53,7 @@ vector<VAR*> Uses::getUses(STMT* s)
 	return vector<VAR*>();
 }
 
-vector<VAR*> Uses::getUses(PROC* p)
-{
+vector<VAR*> Uses::getUses(PROC* p) {
 	if (usesPROC.count(p->getProc()) != 0) {
 		return usesPROC[p->getProc()];
 	}
@@ -80,8 +61,7 @@ vector<VAR*> Uses::getUses(PROC* p)
 	return vector<VAR*>();
 }
 
-vector<ASSIGN*> Uses::getUsedByASSIGN(VAR* v)
-{
+vector<ASSIGN*> Uses::getUsedByASSIGN(VAR* v) {
 	vector<ASSIGN*> returnModifiesList;
 
 	for (map<int, vector<VAR*>>::iterator it = usesASSIGN.begin(); it != usesASSIGN.end(); ++it) {
@@ -93,8 +73,7 @@ vector<ASSIGN*> Uses::getUsedByASSIGN(VAR* v)
 	return returnModifiesList;
 }
 
-vector<STMT*> Uses::getUsesBySTMT(VAR* v)
-{
+vector<STMT*> Uses::getUsesBySTMT(VAR* v) {
 	vector<STMT*> returnModifiesList;
 
 	for (map<int, vector<VAR*>>::iterator it = usesSTMT.begin(); it != usesSTMT.end(); ++it) {
@@ -106,8 +85,7 @@ vector<STMT*> Uses::getUsesBySTMT(VAR* v)
 	return returnModifiesList;
 }
 
-vector<PROC*> Uses::getUsesByPROC(VAR* v)
-{
+vector<PROC*> Uses::getUsesByPROC(VAR* v) {
 	vector<PROC*> returnModifiesList;
 
 	for (map<string, vector<VAR*>>::iterator it = usesPROC.begin(); it != usesPROC.end(); ++it) {
@@ -119,14 +97,10 @@ vector<PROC*> Uses::getUsesByPROC(VAR* v)
 	return returnModifiesList;
 }
 
-bool Uses::isUsed(ASSIGN* a, VAR* v)
-{
-	if (usesASSIGN.count(a->getASSIGN()) == 0)
-	{
+bool Uses::isUsed(ASSIGN* a, VAR* v) {
+	if (usesASSIGN.count(a->getASSIGN()) == 0) {
 		return false;
-	}
-	else
-	{
+	} else {
 		for (VAR* var : usesASSIGN[a->getASSIGN()]) {
 			if (var->getVAR() == v->getVAR()) {
 				return true;
@@ -137,14 +111,10 @@ bool Uses::isUsed(ASSIGN* a, VAR* v)
 	}
 }
 
-bool Uses::isUsed(STMT* s, VAR* v)
-{
-	if (usesSTMT.count(s->getSTMT()) == 0)
-	{
+bool Uses::isUsed(STMT* s, VAR* v) {
+	if (usesSTMT.count(s->getSTMT()) == 0) {
 		return false;
-	}
-	else
-	{
+	} else {
 		for (VAR* proc : usesSTMT[s->getSTMT()]) {
 			if (proc->getVAR() == v->getVAR()) {
 				return true;
@@ -155,14 +125,10 @@ bool Uses::isUsed(STMT* s, VAR* v)
 	}
 }
 
-bool Uses::isUsed(PROC* p, VAR* v)
-{
-	if (usesPROC.count(p->getProc()) == 0)
-	{
+bool Uses::isUsed(PROC* p, VAR* v) {
+	if (usesPROC.count(p->getProc()) == 0) {
 		return false;
-	}
-	else
-	{
+	} else {
 		for (VAR* var : usesPROC[p->getProc()]) {
 			if (var->getVAR() == v->getVAR()) {
 				return true;
@@ -172,4 +138,3 @@ bool Uses::isUsed(PROC* p, VAR* v)
 		return false;
 	}
 }
-	

@@ -9,12 +9,8 @@ class Follows
 {
 private:
 	map<int, vector<int>> followsTable;
-
-	static Follows *instance;
-
 public:
-	static Follows *getInstance(map<int, vector<int>> _map);
-	Follows(map<int, vector<int>> _map);
+	explicit Follows(map<int, vector<int>>& _map);
 	~Follows();
 	void setFollows(STMT* s1, STMT* s2);
 	vector<STMT*> getFollows(STMT* s, bool goDeep);
